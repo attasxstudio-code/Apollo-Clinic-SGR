@@ -5,7 +5,7 @@ import BookingForm from '../components/BookingForm';
 /* ─── scroll helper ─── */
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-const WA_LINK = `https://wa.me/911942488069?text=${encodeURIComponent('Hello! I would like to book an appointment at Apollo Clinic Srinagar.')}`;
+const WA_LINK = `https://wa.me/917947427698?text=${encodeURIComponent('Hello! I would like to book an appointment at Apollo Clinic Srinagar.')}`;
 
 /* WhatsApp SVG icon */
 const WAIcon = ({ size = 20 }) => (
@@ -438,7 +438,7 @@ const HomecareServices = () => {
             <h3 style={{ margin:'0 0 0.2rem', color:'#fff', fontSize:'1.25rem', fontWeight:800 }}>Book a Consultation</h3>
             <p style={{ margin:'0 0 0.75rem', color:'rgba(255,255,255,0.82)', fontSize:'0.88rem' }}>Mon–Sat · Multi-Speciality · Karan Nagar, Srinagar</p>
             <div className="services-phone-row" style={{ display:'flex', gap:'0.6rem', flexWrap:'wrap' }}>
-              {['+91 1942488069'].map(num => (
+              {['+91 7947427698'].map(num => (
                 <a key={num} href={`tel:${num.replace(/\s/g,'')}`} style={{
                   color:'#fff', fontWeight:700, fontSize:'0.85rem', textDecoration:'none',
                   background:'rgba(255,255,255,0.18)', padding:'0.35rem 0.85rem',
@@ -616,7 +616,7 @@ const BookingSection = () => (
 
           {/* Call Us button only — WhatsApp button removed */}
           <div className="booking-contact-btns" style={{ display:'flex', gap:'0.75rem', marginTop:'1.1rem', flexWrap:'wrap' }}>
-            <a href="tel:+911942488069" style={{
+            <a href="tel:+917947427698" style={{
               display:'flex', alignItems:'center', gap:'0.45rem',
               background:'linear-gradient(135deg,#0369a1,#0ea5e9)',
               color:'#fff', padding:'0.7rem 1.4rem', borderRadius:'12px',
@@ -624,7 +624,7 @@ const BookingSection = () => (
               boxShadow:'0 4px 14px rgba(3,105,161,0.28)',
               flex: 1, justifyContent: 'center',
             }}>
-              <Phone size={16} /> Call Us — +91 1942488069
+              <Phone size={16} /> Call Us — +91 7947427698
             </a>
           </div>
         </div>

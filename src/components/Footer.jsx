@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, MapPin, Heart, ShieldCheck, MessageCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const WA_NUMBER = '911942488069';
+const WA_NUMBER = '917947427698';
 
 const QUICK_LINKS = [
   { label: 'Home',             path: '/', id: 'home' },
@@ -61,7 +61,7 @@ const Footer = () => {
             📅 Book a Consultation — Mon to Sun
           </p>
           <div className="footer-cta-grid">
-            <a href="tel:+911942488069" className="footer-action-btn footer-action-call">
+            <a href="tel:+917947427698" className="footer-action-btn footer-action-call">
               <Phone size={17} />
               Call Now
             </a>
@@ -114,7 +114,7 @@ const Footer = () => {
               Contact Us
             </h4>
             {[
-              { icon: <Phone size={15}/>, text: '+91 1942488069', href: 'tel:+911942488069' },
+              { icon: <Phone size={15}/>, text: '+91 7947427698', href: 'tel:+917947427698' },
               { icon: <MessageCircle size={15}/>, text: 'Chat on WhatsApp', href: `https://wa.me/${WA_NUMBER}` },
               { icon: <MapPin size={15}/>, text: 'Karan Nagar, Near National School, Srinagar', href: null },
             ].map((item, i) => (

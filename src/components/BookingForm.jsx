@@ -34,7 +34,7 @@ const BookingForm = () => {
 
     // 2️⃣  Open WhatsApp
     const text = `New Appointment Request — Apollo Clinic Srinagar:\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
-    window.open(`https://wa.me/911942488069?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/917947427698?text=${encodeURIComponent(text)}`, '_blank');
 
     // 3️⃣  Show brief success state then reset
     setSubmitted(true);
