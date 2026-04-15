@@ -117,9 +117,20 @@ const Home = () => (
         }
         .hero-grid {
           grid-template-columns: 1fr !important;
-          gap: 0 !important;
+          gap: 1.75rem !important;
         }
-        .hero-visual-card { display: none !important; }
+        /* Show the visual card on mobile — compact version */
+        .hero-visual-card { display: flex !important; justify-content: center !important; }
+        .hero-visual-card > div {
+          padding: 1.5rem !important;
+          border-radius: 20px !important;
+          max-width: 100% !important;
+        }
+        .hero-visual-card > div > div:first-child { font-size: 2.25rem !important; margin-bottom: 0.6rem !important; }
+        .hero-visual-card h3 { font-size: 1.1rem !important; margin-bottom: 0.5rem !important; }
+        .hero-visual-card p { font-size: 0.82rem !important; margin-bottom: 0.85rem !important; }
+        .hero-visual-card .feature-row { padding: 0.45rem 0.7rem !important; margin-bottom: 0.4rem !important; border-radius: 8px !important; }
+        .hero-visual-card .feature-row span { font-size: 0.8rem !important; }
         .hero-h1 { font-size: clamp(1.75rem, 7.5vw, 2.5rem) !important; line-height: 1.2 !important; }
         .hero-sub { font-size: 0.95rem !important; line-height: 1.65 !important; }
         .hero-badge-row { gap: 0.4rem !important; }
@@ -300,7 +311,7 @@ const HeroSection = () => (
               '❤️ Preventive Health Checks',
               '👨‍👩‍👧 Family Healthcare',
             ].map((item, i) => (
-              <div key={i} style={{ display:'flex', alignItems:'center', gap:'0.6rem',
+              <div key={i} className="feature-row" style={{ display:'flex', alignItems:'center', gap:'0.6rem',
                 padding:'0.55rem 0.85rem', borderRadius:'10px',
                 background:'rgba(255,255,255,0.12)', marginBottom:'0.5rem',
                 backdropFilter:'blur(4px)',
