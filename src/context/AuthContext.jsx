@@ -3,8 +3,8 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 const AuthContext = createContext(null);
 
 // ── Hardcoded single-admin credentials (client-side auth) ──
-const ADMIN_EMAIL    = 'admin@qdermaskinclinic.com';
-const ADMIN_PASSWORD = 'Qderma@001admin';
+const ADMIN_EMAIL    = 'admin@apolloclinicsrg.com';
+const ADMIN_PASSWORD = 'Apolloclinicsrg@001admin';
 const SESSION_KEY    = 'hhc_session';
 const SESSION_TTL    = 60 * 60 * 1000; // 1 hour in ms
 
