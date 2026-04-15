@@ -74,7 +74,7 @@ const Login = () => {
             Admin Login
           </h2>
           <p style={{ color:'#64748b', fontSize:'0.9rem', margin:0 }}>
-            HomeHeal Clinic — Secure Dashboard
+            Q'Derma — Admin Dashboard
           </p>
         </div>
 
@@ -98,7 +98,7 @@ const Login = () => {
             </label>
             <input
               type="email" className="form-control"
-              placeholder="admin@homeheal.com"
+              placeholder="admin@qderma.com"
               value={email} onChange={e => setEmail(e.target.value)}
               required autoComplete="email"
               style={{ minHeight:'52px', fontSize:'1rem' }}
@@ -147,7 +147,7 @@ const Login = () => {
         </form>
 
         <p style={{ textAlign:'center', marginTop:'1.5rem', color:'#94a3b8', fontSize:'0.78rem', marginBottom:0 }}>
-          🔒 Secure admin access · HomeHeal Clinic
+          🔒 Secure admin access · Q'Derma The Skin Clinic
         </p>
       </div>
 

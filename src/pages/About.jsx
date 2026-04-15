@@ -4,31 +4,31 @@ import { Home, HeartPulse, CheckCircle2, Heart, Award, Users, Shield } from 'luc
 const DIFFERENTIATORS = [
   {
     icon: '🏡',
-    title: 'A Calm, Healing Environment',
-    desc: 'Our clinic is designed to reduce stress and promote comfort, helping patients feel relaxed from the moment they arrive.',
+    title: 'Comfortable & Welcoming',
+    desc: 'Our clinic is designed to feel clean, calm, and inviting — helping every patient feel at ease from the moment they arrive.',
   },
   {
     icon: '🎯',
-    title: 'Personalized Attention',
-    desc: 'We take the time to listen, understand, and guide you with care that is tailored specifically to you.',
+    title: 'Personalized Treatment Plans',
+    desc: 'Every treatment is specifically tailored to your skin type, condition severity, and goals — no generic protocols, only what works for you.',
   },
   {
     icon: '🤝',
-    title: 'Compassionate Care Team',
-    desc: "Our doctors don't just treat—they connect. Every interaction is built on trust, respect, and clear communication.",
+    title: 'Clear Communication',
+    desc: "Dr. Aslam takes time to thoroughly explain your diagnosis, treatment options, and expected results — so you always feel fully informed.",
   },
   {
     icon: '📈',
-    title: 'Focus on Long-Term Wellness',
-    desc: 'We believe in preventing problems before they start, helping you maintain a healthier lifestyle over time.',
+    title: 'Focus on Long-Term Results',
+    desc: 'We prioritize lasting improvements over quick fixes. Every plan is designed with your skin long-term health in mind.',
   },
 ];
 
 const STATS = [
   { number: '500+', label: 'Patients Served' },
-  { number: '24/7', label: 'Availability' },
-  { number: '12+',  label: 'Homecare Services' },
-  { number: '100%', label: 'Certified Staff' },
+  { number: 'Mon–Sun', label: 'Clinic Open' },
+  { number: '10+',  label: 'Skin Treatments' },
+  { number: '100%', label: 'Certified Specialist' },
 ];
 
 const About = () => {
@@ -64,14 +64,14 @@ const About = () => {
           <span className="pill" style={{ marginBottom:'1.2rem', display:'inline-block',
             background:'rgba(255,255,255,0.18)', color:'#fff', border:'1px solid rgba(255,255,255,0.3)',
             backdropFilter:'blur(8px)' }}>
-            🏥 About HomeHeal Clinic
+            🧴 About Q'Derma
           </span>
           <h1 style={{ color:'#fff', marginBottom:'1.25rem', fontSize:'clamp(2.2rem,5vw,3.5rem)' }}>
-            Care You Can Trust,<br/>At Home
+            Expert Skin Care,<br/>Tailored to You
           </h1>
           <p style={{ color:'rgba(255,255,255,0.82)', fontSize:'1.15rem', maxWidth:'680px', margin:'0 auto', lineHeight:1.7 }}>
-            At HomeHeal Clinic, we believe that healing should never feel stressful or impersonal.
-            It should feel calm, reassuring, and comfortable — just like being at home.
+            At Q'Derma, we believe exceptional skin health begins with precise diagnosis and personalized treatment.
+            Dr. Shah Aaqib Aslam is dedicated to helping every patient achieve their healthiest, most confident skin.
           </p>
         </div>
       </section>
@@ -123,16 +123,16 @@ const About = () => {
               </div>
               <h2 style={{ color:'#0c4a6e', fontSize:'1.5rem', marginBottom:'1rem' }}>Our Story</h2>
               <p style={{ color:'#475569', lineHeight:1.75, marginBottom:'0.85rem' }}>
-                Located in Barzulla, Srinagar, our clinic is built around a patient-first philosophy where care goes beyond prescriptions.
-                We focus on creating an environment where every individual feels heard, respected, and genuinely supported throughout their health journey.
+                Q'Derma is a specialized dermatology clinic based in Jawahar Nagar, Srinagar. Led by Dr. Shah Aaqib Aslam,
+                the clinic combines expert clinical knowledge with advanced dermatological technology to deliver real results.
               </p>
               <p style={{ color:'#475569', lineHeight:1.75, marginBottom:'0.85rem' }}>
-                HomeHeal Clinic was created with a simple vision — to redefine the way people experience healthcare. Many patients often feel
-                rushed or overlooked in traditional clinical settings. We wanted to change that.
+                Q'Derma was founded with one clear purpose — to bring high-quality, trustworthy dermatology care to Srinagar.
+                From complex medical skin conditions to cosmetic procedures, we are committed to outcomes that matter.
               </p>
               <p style={{ color:'#475569', lineHeight:1.75, margin:0 }}>
-                Every visit is designed to be different. From the moment you connect with us, you're welcomed into a space that prioritizes
-                comfort, clarity, and care.
+                Every patient receives thorough, personalized attention — from the first consultation through to follow-up care.
+                Your skin's long-term health is our priority.
               </p>
             </div>
 
@@ -152,17 +152,17 @@ const About = () => {
               </div>
               <h2 style={{ color:'#0c4a6e', fontSize:'1.5rem', marginBottom:'1rem' }}>Our Approach</h2>
               <p style={{ color:'#475569', lineHeight:1.75 }}>
-                We take a holistic approach to healthcare — we don't just treat symptoms, we understand the root cause.
-                Our homecare services are designed to support both physical and medical well-being:
+                At Q'Derma we take a thorough, evidence-based approach to dermatology —
+                starting with precise diagnosis before selecting the right treatment:
               </p>
               <ul style={{ listStyle:'none', padding:0, margin:'1rem 0', display:'flex', flexDirection:'column', gap:'0.65rem' }}>
                 {[
-                  'Professional nursing & IV care',
-                  'Physiotherapy & neuro rehabilitation',
-                  'Post-operative recovery support',
-                  'Vital parameters monitoring 24/7',
-                  'Wound care & diabetic foot care',
-                  'Ambulance transportation all over India',
+                  'Medical Dermatology: Acne, Eczema & Psoriasis',
+                  'Cosmetic & Aesthetic Treatments',
+                  'Laser & Light-based Therapies',
+                  'Advanced Skin Analysis & Diagnostics',
+                  'Hair Loss & Scalp Treatments',
+                  'Patient Follow-up & Education',
                 ].map((item, i) => (
                   <li key={i} style={{ display:'flex', alignItems:'center', gap:'0.6rem', color:'#334155', fontWeight:500, fontSize:'0.93rem' }}>
                     <div style={{ width:20, height:20, borderRadius:'50%', background:'linear-gradient(135deg,#0ea5e9,#10b981)',
@@ -185,7 +185,7 @@ const About = () => {
         <div className="container">
           <div className="text-center" style={{ marginBottom:'3rem' }}>
             <span className="pill" style={{ marginBottom:'0.85rem', display:'inline-block' }}>⭐ Why Choose Us</span>
-            <h2 style={{ color:'#0c4a6e', margin:0 }}>What Makes Us Different</h2>
+            <h2 style={{ color:'#0c4a6e', margin:0 }}>What Makes Q'Derma Different</h2>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))', gap:'1.2rem' }}>
             {DIFFERENTIATORS.map((item, i) => (
@@ -230,19 +230,19 @@ const About = () => {
 
             <div style={{ fontSize:'3rem', marginBottom:'1rem' }}>❤️</div>
             <h2 style={{ color:'#fff', fontSize:'clamp(1.6rem,3.5vw,2.2rem)', marginBottom:'1.25rem', fontWeight:800 }}>
-              Our Mission
+              Our Mission at Q'Derma
             </h2>
             <p style={{ fontSize:'1.2rem', fontStyle:'italic', color:'rgba(255,255,255,0.88)',
               maxWidth:'680px', margin:'0 auto 2rem', lineHeight:1.7 }}>
-              "To provide modern, compassionate homecare that is accessible, trustworthy,
-              and focused on long-term well-being — right at your doorstep."
+              “Short mission statement or vision quote. Describe what your clinic stands for
+              and the impact you aim to make on your patients’ lives.”
             </p>
             <div style={{ display:'inline-block', background:'rgba(255,255,255,0.15)',
               borderRadius:'12px', padding:'1rem 1.75rem', border:'1px solid rgba(255,255,255,0.25)',
               backdropFilter:'blur(8px)' }}>
               <p style={{ color:'rgba(255,255,255,0.82)', fontSize:'0.95rem', margin:0, lineHeight:1.65 }}>
-                Whether you're reaching out for a routine checkup or ongoing homecare, HomeHeal Clinic is here
-                to support you every step of the way. Because true healing begins where you feel at home.
+                Whether you are managing a persistent skin condition or exploring cosmetic options, Q'Derma is here with
+                expertise, transparency, and care focused entirely on you. Your skin deserves a specialist.
               </p>
             </div>
           </div>

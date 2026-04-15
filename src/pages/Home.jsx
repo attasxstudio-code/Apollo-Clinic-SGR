@@ -5,7 +5,7 @@ import BookingForm from '../components/BookingForm';
 /* ─── scroll helper ─── */
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-const WA_LINK = `https://wa.me/919149425496?text=${encodeURIComponent('Hello! I would like to book a homecare appointment.')}`;
+const WA_LINK = `https://wa.me/916005348879?text=${encodeURIComponent('Hello! I would like to book an appointment at Q Derma The Skin Clinic.')}`;
 
 /* WhatsApp SVG icon */
 const WAIcon = ({ size = 20 }) => (
@@ -22,6 +22,7 @@ const Home = () => (
     <HeroSection />
     <HomecareServices />
     <DoctorsSection />
+    <TestimonialsSection />
     <BookingSection />
 
     {/* ── Floating WhatsApp button ── */}
@@ -174,22 +175,22 @@ const HeroSection = () => {
           {/* Text */}
           <div className="animate-fade-in">
             <span className="pill" style={{ marginBottom:'1.25rem', display:'inline-block' }}>
-              🏥 Homecare Services · Barzulla, Srinagar
+              🧴 Dermatology Clinic · Jawahar Nagar, Srinagar
             </span>
             <h1 className="hero-h1" style={{ color:'#0c4a6e', marginBottom:'1rem', lineHeight:1.15 }}>
-              Hospital-Grade Care,<br />
+              Expert Skin Care,<br />
               <span style={{ background:'linear-gradient(135deg,#0ea5e9,#10b981)',
                 WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>
-                In Your Home
+                By a Specialist
               </span>
             </h1>
             <p className="hero-sub" style={{ fontSize:'1.1rem', color:'#475569', lineHeight:1.7, marginBottom:'1.75rem', maxWidth:'480px' }}>
-              Certified nurses, IV therapy, physiotherapy &amp; 12+ homecare services — delivered with compassion, right at your doorstep.
+              Advanced dermatology for all skin types — medical treatments, laser procedures, and cosmetic care by Dr. Shah Aaqib Aslam.
             </p>
 
             {/* Trust badges */}
             <div className="hero-badge-row" style={{ display:'flex', gap:'0.65rem', flexWrap:'wrap', marginBottom:'1.75rem' }}>
-              {['✅ Certified Staff', '🕐 24/7 Available', '🏥 Clinical Standards'].map((badge, i) => (
+              {['✅ Certified Dermatologist', '🕐 Mon–Sun Open', '🏥 Advanced Technology'].map((badge, i) => (
                 <span key={i} style={{
                   background:'rgba(14,165,233,0.1)', color:'#0369a1',
                   padding:'0.35rem 0.85rem', borderRadius:'20px',
@@ -228,16 +229,16 @@ const HeroSection = () => {
                 background:'rgba(255,255,255,0.08)', pointerEvents:'none' }} />
               <div style={{ fontSize:'3.5rem', marginBottom:'1rem' }}>🏠</div>
               <h3 style={{ color:'#fff', fontWeight:800, fontSize:'1.35rem', marginBottom:'0.75rem' }}>
-                HomeHeal Clinic
+                Q'Derma The Skin Clinic
               </h3>
               <p style={{ color:'rgba(255,255,255,0.82)', fontSize:'0.9rem', lineHeight:1.65, marginBottom:'1.5rem' }}>
-                Professional medical care delivered to your doorstep by our certified team.
+                Precision dermatology combining expert diagnosis with advanced laser and cosmetic skin treatments.
               </p>
               {[
-                '🩺 Nursing Care & IV Therapy',
-                '🤸 Physiotherapy',
-                '🚑 Ambulance Services',
-                '📊 Vitals Monitoring',
+                '✨ Laser Treatments',
+                '🔬 Precise Skin Analysis',
+                '🌟 Cosmetic Dermatology',
+                '💊 Medical Skin Care',
               ].map((item, i) => (
                 <div key={i} style={{ display:'flex', alignItems:'center', gap:'0.6rem',
                   padding:'0.55rem 0.85rem', borderRadius:'10px',
@@ -257,18 +258,16 @@ const HeroSection = () => {
 
 /* ─── Homecare Services ─── */
 const SERVICES = [
-  { icon: '🩺', title: 'Nursing Care',                              desc: 'Expert nursing professionals providing round-the-clock care at home.' },
-  { icon: '💉', title: 'Central & Long IV Care',                    desc: 'Safe central line and long-line IV therapy by trained nursing staff.' },
-  { icon: '🔧', title: "Ryle's Tube Insertion / Removal",           desc: 'Professional nasogastric tube insertion and removal with patient comfort.' },
-  { icon: '🧪', title: 'IV Fluids & Medications',                   desc: 'Precise IV fluid therapy and medication administration at home.' },
-  { icon: '🫁', title: 'Tracheostomy Tube Change & Care',           desc: 'Hygienic tracheostomy management ensuring airway safety and comfort.' },
-  { icon: '🩹', title: 'Wound Care & Dressing',                     desc: 'Sterile catheterization, wound irrigation, and professional dressings.' },
-  { icon: '🦶', title: 'Diabetic Foot Care',                        desc: 'Specialised diabetic foot assessment and evidence-based wound dressing.' },
-  { icon: '🩸', title: 'IV Cannulation',                            desc: 'Skilled peripheral IV access with minimal patient discomfort.' },
-  { icon: '📊', title: 'Vitals Monitoring',                         desc: 'Continuous monitoring of BP, SpO₂, heart rate and temperature.' },
-  { icon: '🏥', title: 'Post-Operative Care',                       desc: 'Expert post-op recovery support and safe home blood sample collection.' },
-  { icon: '🤸', title: 'Physiotherapy',                             desc: 'Tailored physio for mobility, breathing recovery, and neuro rehab.' },
-  { icon: '🚑', title: 'Ambulance Transport (All India)',           desc: 'Equipped ambulance services with trained medical staff across India.' },
+  { icon: '✨', title: 'Acne & Acne Scar Treatment',          desc: 'Targeted treatment for active acne and lasting scar reduction using clinically proven methods.' },
+  { icon: '🧴', title: 'Eczema & Psoriasis Management',      desc: 'Expert management of chronic skin conditions with personalized plans to reduce flare-ups.' },
+  { icon: '🌟', title: 'Pigmentation & Melasma Treatment',   desc: 'Precise treatment for dark spots, uneven tone, and melasma for a clearer complexion.' },
+  { icon: '💇', title: 'Hair Loss & Alopecia Treatment',     desc: 'Comprehensive evaluation and advanced treatment for hair thinning and scalp conditions.' },
+  { icon: '🔬', title: 'Skin Allergy & Infection Treatment', desc: 'Accurate diagnosis and targeted treatment of skin allergies, rashes, and infections.' },
+  { icon: '💡', title: 'Laser Hair Reduction',               desc: 'Safe, long-lasting laser hair removal for all skin types with minimal downtime.' },
+  { icon: '💎', title: 'Skin Rejuvenation & Glow Therapy',   desc: 'Advanced treatments to refresh and brighten skin tone, leaving it radiant and healthy.' },
+  { icon: '🌸', title: 'Anti-Aging Treatments',             desc: 'Tailored procedures to reduce fine lines, improve texture, and restore a youthful look.' },
+  { icon: '🩹', title: 'Scar Reduction Procedures',          desc: 'Medical-grade treatments to minimize the appearance of surgical, acne, and injury scars.' },
+  { icon: '🔍', title: 'Advanced Skin Analysis',             desc: 'In-depth skin assessment using advanced diagnostic tools for precise diagnosis and planning.' },
 ];
 
 const HomecareServices = () => {
@@ -301,11 +300,11 @@ const HomecareServices = () => {
       <div className="container" style={{ position:'relative', zIndex:1 }}>
         {/* Header */}
         <div className="text-center" style={{ marginBottom:'3rem' }}>
-          <span className="pill" style={{ marginBottom:'1rem', display:'inline-block' }}>🏠 Homecare Services</span>
-          <h2 style={{ color:'#0c4a6e', margin:'0 0 1rem' }}>Wellness At Home</h2>
+          <span className="pill" style={{ marginBottom:'1rem', display:'inline-block' }}>🏥 Dermatology Services</span>
+          <h2 style={{ color:'#0c4a6e', margin:'0 0 1rem' }}>Our Treatments</h2>
           <p style={{ maxWidth:'580px', margin:'0 auto', color:'#475569', fontSize:'1rem', lineHeight:1.7 }}>
-            Professional medical care delivered with compassion — right at your doorstep.
-            Our certified team brings hospital-grade services to the comfort of your home.
+            From medical skin care to advanced cosmetic procedures — Q'Derma offers expert dermatology
+            tailored to your unique skin type and concerns.
           </p>
         </div>
 
@@ -368,10 +367,10 @@ const HomecareServices = () => {
         }}>
           <div style={{ flex:1, minWidth:220 }}>
             <div style={{ fontSize:'2rem', marginBottom:'0.4rem' }}>📞</div>
-            <h3 style={{ margin:'0 0 0.25rem', color:'#fff', fontSize:'1.35rem', fontWeight:800 }}>Need Homecare Now?</h3>
-            <p style={{ margin:'0 0 0.85rem', color:'rgba(255,255,255,0.82)', fontSize:'0.9rem' }}>Available 24/7 · Trained Professionals · All Over India</p>
+            <h3 style={{ margin:'0 0 0.25rem', color:'#fff', fontSize:'1.35rem', fontWeight:800 }}>Book a Consultation</h3>
+            <p style={{ margin:'0 0 0.85rem', color:'rgba(255,255,255,0.82)', fontSize:'0.9rem' }}>Mon–Sun Open · Expert Dermatologist · Jawahar Nagar, Srinagar</p>
             <div className="services-phone-row" style={{ display:'flex', gap:'0.65rem', flexWrap:'wrap' }}>
-              {['+91 7006159475', '+91 6006271727'].map(num => (
+              {['+91 XXXXXXXXXX'].map(num => (
                 <a key={num} href={`tel:${num.replace(/\s/g,'')}`} style={{
                   color:'#fff', fontWeight:700, fontSize:'0.88rem', textDecoration:'none',
                   background:'rgba(255,255,255,0.18)', padding:'0.35rem 0.85rem',
@@ -406,10 +405,7 @@ const HomecareServices = () => {
 
 /* ─── Doctors ─── */
 const DOCTORS = [
-  { name: 'Doctor Owais',          role: 'Emergency Supervisor / PG / OT / AT',      icon: '🩺' },
-  { name: 'Doctor Aatif Fayaz',    role: 'Anaesthetist & Critical Care',              icon: '💉' },
-  { name: 'Doctor Aadil Ali Khan', role: 'ICU Incharge — Critically Ill Patients',   icon: '🏥' },
-  { name: 'Doctor Mehraj Mushtaq', role: 'HR · MSc Nursing · Incharge Nursing Officer', icon: '👨‍⚕️' },
+  { name: 'Dr. Shah Aaqib Aslam', role: 'Dermatologist | Skin Specialist', icon: '🩺' },
 ];
 
 const DoctorsSection = () => {
@@ -428,9 +424,9 @@ const DoctorsSection = () => {
       <div className="container">
         <div className="text-center" style={{ marginBottom:'3rem' }}>
           <span className="pill" style={{ marginBottom:'1rem', display:'inline-block' }}>👨‍⚕️ Our Experts</span>
-          <h2 style={{ color:'#0c4a6e', margin:0 }}>Meet Our Medical Team</h2>
+          <h2 style={{ color:'#0c4a6e', margin:0 }}>Meet Dr. Shah Aaqib Aslam</h2>
           <p style={{ color:'#64748b', marginTop:'0.75rem', fontSize:'1rem', maxWidth:500, margin:'0.75rem auto 0' }}>
-            Experienced specialists dedicated to delivering the highest standard of homecare.
+            Specialized in medical and cosmetic dermatology — precise diagnosis and personalized skin care for every patient.
           </p>
         </div>
         <div className="doctors-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))', gap:'1.25rem' }}>
@@ -482,11 +478,11 @@ const BookingSection = () => (
       <div className="booking-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:'4rem', alignItems:'center' }}>
         {/* Left info */}
         <div>
-          <span className="pill" style={{ marginBottom:'1.1rem', display:'inline-block' }}>📅 Book Appointment</span>
-          <h2 style={{ color:'#0c4a6e', marginBottom:'1rem' }}>Ready to Get Care?</h2>
+          <span className="pill" style={{ marginBottom:'1.1rem', display:'inline-block' }}>📅 Book Your Consultation</span>
+          <h2 style={{ color:'#0c4a6e', marginBottom:'1rem' }}>Ready for Expert Skin Care?</h2>
           <p style={{ fontSize:'1.05rem', color:'#475569', lineHeight:1.75, marginBottom:'2rem' }}>
-            Taking the first step is often the hardest, but we're here to make it as simple and
-            comforting as possible. Reach out via WhatsApp to schedule care at home.
+            Schedule your consultation with Dr. Shah Aaqib Aslam. Fill the form below and we will
+            confirm your appointment via WhatsApp at the earliest available slot.
           </p>
 
           <div style={{
@@ -501,7 +497,7 @@ const BookingSection = () => (
             }}>
               <MapPin size={16} color="#fff" />
               <span style={{ color:'#fff', fontWeight:700, fontSize:'0.9rem' }}>
-                Barzulla, Srinagar · Jammu &amp; Kashmir
+                Jawahar Nagar / Raj Bagh · Srinagar
               </span>
             </div>
             <iframe
@@ -509,8 +505,8 @@ const BookingSection = () => (
               style={{ border:0, display:'block' }}
               allowFullScreen="" loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://maps.google.com/maps?q=34.0402115,74.7993097&hl=en&z=15&output=embed"
-              title="Home Heal Clinic Location"
+              src="https://maps.google.com/maps?q=34.0839,74.8121&hl=en&z=15&output=embed"
+              title="Q'Derma The Skin Clinic - Jawahar Nagar, Srinagar"
             />
           </div>
         </div>
@@ -523,5 +519,88 @@ const BookingSection = () => (
     </div>
   </section>
 );
+
+/* ─── Testimonials ─── */
+const TESTIMONIALS = [
+  {
+    name: 'Farah Q.',
+    text: "I visited Q'Derma for a persistent pigmentation issue. Dr. Aslam diagnosed the exact cause and the treatment worked beautifully. My skin looks noticeably better in just 6 weeks.",
+    rating: 5,
+  },
+  {
+    name: 'Tariq M.',
+    text: 'Very professional and thorough. Dr. Aslam explained everything clearly — what my condition was, why it was happening, and what the treatment would do. I felt completely at ease.',
+    rating: 5,
+  },
+  {
+    name: 'Rida A.',
+    text: 'I came in for acne scarring. The clinic is clean, calm, and welcoming. The treatment timeline was realistic — no false promises, just visible results over time.',
+    rating: 5,
+  },
+];
+
+const TestimonialsSection = () => {
+  const [hov, setHov] = React.useState(null);
+  const [vis, setVis] = React.useState(false);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVis(true); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="testimonials" style={{ background: 'linear-gradient(180deg,#f8fafc 0%,#fff 100%)', padding: '5rem 0' }} ref={ref}>
+      <div className="container">
+        <div className="text-center" style={{ marginBottom: '3rem' }}>
+          <span className="pill" style={{ marginBottom: '1rem', display: 'inline-block' }}>⭐ Patient Reviews</span>
+          <h2 style={{ color: '#0c4a6e', margin: 0 }}>What Our Patients Say</h2>
+          <p style={{ color: '#64748b', marginTop: '0.75rem', fontSize: '1rem', maxWidth: 520, margin: '0.75rem auto 0' }}>
+            Real experiences from patients who trusted Q'Derma with their skin health.
+          </p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '1.25rem' }}>
+          {TESTIMONIALS.map((t, i) => (
+            <div key={i}
+              onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)}
+              style={{
+                borderRadius: '20px', padding: '2rem 1.75rem',
+                border: `1.5px solid ${hov === i ? '#0ea5e9' : '#e0eef8'}`,
+                background: hov === i ? 'linear-gradient(140deg,#f0f9ff,#ecfdf5)' : '#fff',
+                boxShadow: hov === i ? '0 16px 42px rgba(14,165,233,0.18)' : '0 2px 12px rgba(14,165,233,0.06)',
+                transform: vis ? (hov === i ? 'translateY(-6px)' : 'translateY(0)') : 'translateY(28px)',
+                opacity: vis ? 1 : 0,
+                transition: `opacity 0.5s ease ${i * 0.12}s, transform 0.3s ease, box-shadow 0.3s, border-color 0.3s, background 0.3s`,
+              }}
+            >
+              <div style={{ display: 'flex', gap: '3px', marginBottom: '1rem' }}>
+                {Array.from({ length: t.rating }).map((_, s) => (
+                  <span key={s} style={{ color: '#f59e0b', fontSize: '1.1rem' }}>★</span>
+                ))}
+              </div>
+              <p style={{ color: '#475569', fontSize: '0.92rem', lineHeight: 1.7, margin: '0 0 1.25rem', fontStyle: 'italic' }}>
+                "{t.text}"
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                <div style={{
+                  width: 40, height: 40, borderRadius: '50%',
+                  background: hov === i ? 'linear-gradient(135deg,#0ea5e9,#10b981)' : 'linear-gradient(135deg,#e0f2fe,#d1fae5)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1rem', fontWeight: 800, color: hov === i ? '#fff' : '#0369a1',
+                  transition: 'all 0.3s',
+                }}>{t.name[0]}</div>
+                <div style={{ fontWeight: 700, fontSize: '0.9rem', color: hov === i ? '#0c4a6e' : '#1e293b' }}>{t.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Home;

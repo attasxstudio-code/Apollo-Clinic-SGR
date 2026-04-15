@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, MapPin, Heart, ShieldCheck, MessageCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const WA_NUMBER = '919149425496';
+const WA_NUMBER = '916005348879';
 
 const QUICK_LINKS = [
   { label: 'Home',             path: '/', id: 'home' },
@@ -58,15 +58,15 @@ const Footer = () => {
           backdropFilter: 'blur(8px)',
         }}>
           <p style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 700, fontSize: '1rem', textAlign: 'center', margin: '0 0 1rem' }}>
-            📞 Get in Touch — We're Available 24/7
+            📅 Book a Consultation — Mon to Sun
           </p>
           <div className="footer-cta-grid">
-            <a href="tel:+919149425496" className="footer-action-btn footer-action-call">
+            <a href="tel:+91XXXXXXXXXX" className="footer-action-btn footer-action-call">
               <Phone size={17} />
               Call Now
             </a>
             <a
-              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hello! I would like to book a homecare appointment.')}`}
+              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hello! I would like to book an appointment.')}`}
               target="_blank" rel="noreferrer"
               className="footer-action-btn footer-action-wa"
             >
@@ -86,15 +86,15 @@ const Footer = () => {
             <div style={{ display:'flex', alignItems:'center', gap:'0.65rem', marginBottom:'1rem' }}>
               <div style={{ background:'rgba(255,255,255,0.15)', borderRadius:'10px', padding:'6px',
                 display:'flex', alignItems:'center', justifyContent:'center', backdropFilter:'blur(4px)' }}>
-                <img src="/logo.jpg" alt="Home Heal Clinic" height="32" style={{ objectFit:'contain', borderRadius:'6px' }} />
+                <img src="/logo.jpg" alt="Clinic Logo" height="32" style={{ objectFit:'contain', borderRadius:'6px' }} />
               </div>
               <div>
-                <div style={{ fontWeight:800, fontSize:'1.05rem', color:'#fff' }}>HomeHeal Clinic</div>
-                <div style={{ fontSize:'0.7rem', color:'rgba(255,255,255,0.6)', letterSpacing:'0.05em' }}>BARZULLA, SRINAGAR</div>
+                <div style={{ fontWeight:800, fontSize:'1.05rem', color:'#fff' }}>Q'Derma The Skin Clinic</div>
+                <div style={{ fontSize:'0.7rem', color:'rgba(255,255,255,0.6)', letterSpacing:'0.05em' }}>JAWAHAR NAGAR, SRINAGAR</div>
               </div>
             </div>
             <p style={{ color:'rgba(255,255,255,0.72)', fontSize:'0.9rem', lineHeight:1.65, maxWidth:'280px', margin:'0 0 1rem' }}>
-              Healing That Listens, Care That Understands. Professional homecare services delivered with compassion.
+              Precision Dermatology. Personalized Care. Your Skin, Perfected.
             </p>
           </div>
 
@@ -104,11 +104,9 @@ const Footer = () => {
               Contact Us
             </h4>
             {[
-              { icon: <Phone size={15}/>, text: '+91 9149425496', href: 'tel:+919149425496' },
-              { icon: <Phone size={15}/>, text: '+91 7006159475', href: 'tel:+917006159475' },
-              { icon: <Phone size={15}/>, text: '+91 6006271727', href: 'tel:+916006271727' },
+              { icon: <Phone size={15}/>, text: '+91 XXXXXXXXXX', href: 'tel:+91XXXXXXXXXX' },
               { icon: <MessageCircle size={15}/>, text: 'Chat on WhatsApp', href: `https://wa.me/${WA_NUMBER}` },
-              { icon: <MapPin size={15}/>, text: 'Barzulla, Srinagar, J&K', href: null },
+              { icon: <MapPin size={15}/>, text: 'Jawahar Nagar / Raj Bagh, Srinagar', href: null },
             ].map((item, i) => (
               <div key={i} style={{ display:'flex', alignItems:'center', gap:'0.6rem', marginBottom:'0.7rem' }}>
                 <span style={{ color:'#67e8f9', flexShrink: 0 }}>{item.icon}</span>
@@ -126,9 +124,9 @@ const Footer = () => {
               Working Hours
             </h4>
             {[
-              { day: 'Mon – Sat', time: '8:00 AM – 8:00 PM' },
-              { day: 'Sunday', time: '9:00 AM – 5:00 PM' },
-              { day: 'Emergency', time: '24/7 Available' },
+              { day: 'Mon – Sat', time: '12:00 PM – 7:00 PM' },
+              { day: 'Sunday', time: '10:00 AM – 1:30 PM' },
+              { day: 'Appointment', time: 'Book via WhatsApp' },
             ].map((row, i) => (
               <div key={i} style={{ display:'flex', justifyContent:'space-between', alignItems:'center',
                 marginBottom:'0.65rem', gap:'1rem' }}>
@@ -163,9 +161,9 @@ const Footer = () => {
         <div style={{ borderTop:'1px solid rgba(255,255,255,0.15)', paddingTop:'1.5rem', marginTop:'1rem',
           display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem' }}>
           <p style={{ color:'rgba(255,255,255,0.6)', fontSize:'0.8rem', margin:0 }}>
-            © {new Date().getFullYear()} Home Heal Clinic. Built with{' '}
+            © {new Date().getFullYear()} Q'Derma The Skin Clinic. Built with{' '}
             <Heart size={12} color="#f87171" style={{ verticalAlign:'middle', margin:'0 2px' }} />
-            for the community of Srinagar.
+            for the patients of Srinagar.
           </p>
           <Link to="/admin/login"
             style={{

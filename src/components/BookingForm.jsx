@@ -33,8 +33,8 @@ const BookingForm = () => {
     saveLeadToAdmin({ name, phone, date, message });
 
     // 2️⃣  Open WhatsApp
-    const text = `New Appointment Request — HomeHeal Clinic:\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
-    window.open(`https://wa.me/919149425496?text=${encodeURIComponent(text)}`, '_blank');
+    const text = `New Appointment Request — Q'Derma The Skin Clinic:\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
+    window.open(`https://wa.me/916005348879?text=${encodeURIComponent(text)}`, '_blank');
 
     // 3️⃣  Show brief success state then reset
     setSubmitted(true);
@@ -82,7 +82,7 @@ const BookingForm = () => {
           Book an Appointment
         </h3>
         <p style={{ color: '#64748b', fontSize: '0.85rem', margin: 0 }}>
-          Fill the form to reach us instantly via WhatsApp.
+          Complete the form and we'll confirm your appointment via WhatsApp.
         </p>
       </div>
 
@@ -161,7 +161,7 @@ const BookingForm = () => {
           <div style={{ position: 'relative' }}>
             <FileText size={15} style={{ position:'absolute', left:'0.9rem', top:'0.95rem', color: iconColor('message'), transition:'color 0.2s' }} />
             <textarea id="message" name="message" rows="3"
-              placeholder="e.g. Need nursing care for post-surgery recovery..."
+              placeholder="e.g. Please describe your concerns..."
               style={{ ...fieldStyle('message'), paddingTop: '0.85rem', resize: 'vertical' }}
               onFocus={() => setFocused('message')}
               onBlur={() => setFocused(null)} />

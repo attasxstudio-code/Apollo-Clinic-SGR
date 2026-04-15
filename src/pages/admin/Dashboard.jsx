@@ -230,7 +230,7 @@ const Dashboard = () => {
                 WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>
                 Admin Panel
               </div>
-              <div style={{ color:'#94a3b8', fontSize:'0.65rem', fontWeight:500 }}>HomeHeal Clinic</div>
+              <div style={{ color:'#94a3b8', fontSize:'0.65rem', fontWeight:500 }}>Q'Derma The Skin Clinic</div>
             </div>
           </div>
 
