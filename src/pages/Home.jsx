@@ -560,18 +560,18 @@ const BookingSection = () => (
 /* ─── Testimonials ─── */
 const TESTIMONIALS = [
   {
-    name: 'Farah Q.',
-    text: "I visited Q'Derma for a persistent pigmentation issue. Dr. Aslam diagnosed the exact cause and the treatment worked beautifully. My skin looks noticeably better in just 6 weeks.",
+    name: 'Aisha R.',
+    text: 'The doctor makes you feel completely comfortable and actually listens to your concerns patiently. The whole experience felt very professional and reassuring.',
     rating: 5,
   },
   {
-    name: 'Tariq M.',
-    text: 'Very professional and thorough. Dr. Aslam explained everything clearly — what my condition was, why it was happening, and what the treatment would do. I felt completely at ease.',
+    name: 'Mudasir K.',
+    text: 'Everything was explained clearly before starting the treatment. I really appreciated how transparent and detailed the consultation was.',
     rating: 5,
   },
   {
-    name: 'Rida A.',
-    text: 'I came in for acne scarring. The clinic is clean, calm, and welcoming. The treatment timeline was realistic — no false promises, just visible results over time.',
+    name: 'Zara B.',
+    text: "I've seen consistent improvement in my skin after following the treatment plan. Highly satisfied with the results and care.",
     rating: 5,
   },
 ];
