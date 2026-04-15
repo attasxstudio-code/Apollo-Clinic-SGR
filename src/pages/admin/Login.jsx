@@ -19,6 +19,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    // Basic client-side checks
+    if (!email.trim()) return setError('Please enter your email address.');
+    if (!password)     return setError('Please enter your password.');
+
     setLoading(true);
     try {
       await login(email.trim(), password);
@@ -85,7 +90,7 @@ const Login = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           {/* Email */}
           <div style={{ marginBottom:'1.25rem' }}>
             <label style={{ display:'block', marginBottom:'0.5rem', fontWeight:600, color:'#334155', fontSize:'0.9rem' }}>
