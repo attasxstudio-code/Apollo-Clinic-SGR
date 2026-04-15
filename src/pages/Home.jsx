@@ -542,7 +542,7 @@ const BookingSection = () => (
               style={{ border:0, display:'block' }}
               allowFullScreen="" loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://maps.google.com/maps?q=34.0839,74.8121&hl=en&z=15&output=embed"
+              src="https://maps.google.com/maps?q=34.0611327,74.8187207&hl=en&z=17&output=embed"
               title="Q'Derma The Skin Clinic - Jawahar Nagar, Srinagar"
             />
           </div>
