@@ -84,9 +84,10 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div style={{ display:'flex', alignItems:'center', gap:'0.65rem', marginBottom:'1rem' }}>
-              <div style={{ background:'rgba(255,255,255,0.15)', borderRadius:'10px', padding:'6px',
-                display:'flex', alignItems:'center', justifyContent:'center', backdropFilter:'blur(4px)' }}>
-                <img src="/logo.jpg" alt="Clinic Logo" height="32" style={{ objectFit:'contain', borderRadius:'6px' }} />
+              <div style={{ background:'#fff', borderRadius:'12px', padding:'5px',
+                display:'flex', alignItems:'center', justifyContent:'center',
+                boxShadow:'0 2px 12px rgba(0,0,0,0.25)' }}>
+                <img src="/logo.jpg" alt="Apollo Clinic Logo" height="44" style={{ objectFit:'contain', borderRadius:'8px', width:'auto' }} />
               </div>
               <div>
                 <div style={{ fontWeight:800, fontSize:'1.05rem', color:'#fff' }}>Apollo Clinic Srinagar</div>

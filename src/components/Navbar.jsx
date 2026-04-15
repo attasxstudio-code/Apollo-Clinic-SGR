@@ -64,24 +64,27 @@ const Navbar = () => {
 
           {/* Logo */}
           <NavLink to="/" onClick={e => { e.preventDefault(); handleNavClick('/', 'home'); }}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
+            style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}>
+            {/* Logo — larger, clean white background */}
             <div style={{
-              background: 'linear-gradient(135deg,#0ea5e9,#10b981)',
-              borderRadius: '10px', padding: '6px',
+              background: '#fff',
+              borderRadius: '12px',
+              padding: '4px',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 12px rgba(14,165,233,0.3)',
+              boxShadow: '0 2px 10px rgba(14,165,233,0.18)',
+              border: '1.5px solid rgba(14,165,233,0.15)',
               flexShrink: 0,
             }}>
-              <img src="/logo.jpg" alt="Clinic Logo" height="28"
-                style={{ objectFit: 'contain', borderRadius: '6px', display: 'block' }} />
+              <img src="/logo.jpg" alt="Apollo Clinic Logo" height="42"
+                style={{ objectFit: 'contain', borderRadius: '8px', display: 'block', width: 'auto' }} />
             </div>
             <div>
-              <div style={{ fontWeight: 800, fontSize: '0.98rem', lineHeight: 1.1,
+              <div style={{ fontWeight: 800, fontSize: '1.05rem', lineHeight: 1.1,
                 background: 'linear-gradient(135deg,#0369a1,#047857)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Apollo Clinic
               </div>
-              <div style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 600, letterSpacing: '0.06em' }}>
+              <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600, letterSpacing: '0.07em' }}>
                 SRINAGAR
               </div>
             </div>
