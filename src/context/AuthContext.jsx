@@ -3,8 +3,8 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 const AuthContext = createContext(null);
 
 // ── Hardcoded single-admin credentials (client-side auth) ──
-const ADMIN_EMAIL    = 'admin@homeheal.com';
-const ADMIN_PASSWORD = 'Homeheal@001admin';
+const ADMIN_EMAIL    = 'admin@qdermaskinclinic.com';
+const ADMIN_PASSWORD = 'Qderma@001admin';
 const SESSION_KEY    = 'hhc_session';
 const SESSION_TTL    = 60 * 60 * 1000; // 1 hour in ms
 
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Invalid credentials.');
     }
 
-    const adminData = { email: ADMIN_EMAIL, role: 'admin', name: 'HomeHeal Admin' };
+    const adminData = { email: ADMIN_EMAIL, role: 'admin', name: "Q'Derma Admin" };
     const session   = JSON.stringify({
       admin:     adminData,
       expiresAt: Date.now() + SESSION_TTL,
