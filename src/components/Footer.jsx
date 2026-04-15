@@ -61,7 +61,7 @@ const Footer = () => {
             📅 Book a Consultation — Mon to Sun
           </p>
           <div className="footer-cta-grid">
-            <a href="tel:+91XXXXXXXXXX" className="footer-action-btn footer-action-call">
+            <a href="tel:+916005348879" className="footer-action-btn footer-action-call">
               <Phone size={17} />
               Call Now
             </a>
@@ -104,7 +104,7 @@ const Footer = () => {
               Contact Us
             </h4>
             {[
-              { icon: <Phone size={15}/>, text: '+91 XXXXXXXXXX', href: 'tel:+91XXXXXXXXXX' },
+              { icon: <Phone size={15}/>, text: '+91 6005348879', href: 'tel:+916005348879' },
               { icon: <MessageCircle size={15}/>, text: 'Chat on WhatsApp', href: `https://wa.me/${WA_NUMBER}` },
               { icon: <MapPin size={15}/>, text: 'Jawahar Nagar / Raj Bagh, Srinagar', href: null },
             ].map((item, i) => (

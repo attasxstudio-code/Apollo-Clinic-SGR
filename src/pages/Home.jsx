@@ -370,7 +370,7 @@ const HomecareServices = () => {
             <h3 style={{ margin:'0 0 0.25rem', color:'#fff', fontSize:'1.35rem', fontWeight:800 }}>Book a Consultation</h3>
             <p style={{ margin:'0 0 0.85rem', color:'rgba(255,255,255,0.82)', fontSize:'0.9rem' }}>Mon–Sun Open · Expert Dermatologist · Jawahar Nagar, Srinagar</p>
             <div className="services-phone-row" style={{ display:'flex', gap:'0.65rem', flexWrap:'wrap' }}>
-              {['+91 XXXXXXXXXX'].map(num => (
+              {['+91 6005348879'].map(num => (
                 <a key={num} href={`tel:${num.replace(/\s/g,'')}`} style={{
                   color:'#fff', fontWeight:700, fontSize:'0.88rem', textDecoration:'none',
                   background:'rgba(255,255,255,0.18)', padding:'0.35rem 0.85rem',
