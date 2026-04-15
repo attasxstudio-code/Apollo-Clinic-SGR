@@ -130,7 +130,7 @@ const Column = ({ title, items, status, onAdvance, onDelete }) => {
 ════════════════════════════════════════ */
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { admin, logout, token } = useAuth();
+  const { admin, logout } = useAuth();
 
   const [leads,     setLeads]     = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -139,9 +139,9 @@ const Dashboard = () => {
 
   /* ── Verify admin info & load leads ── */
   useEffect(() => {
-    if (!token) { navigate('/admin/login'); return; }
+    if (!admin) { navigate('/admin/login'); return; }
     loadLeads();
-  }, [token]);
+  }, [admin]);
 
   const loadLeads = () => {
     const saved = localStorage.getItem('clinic_leads');
