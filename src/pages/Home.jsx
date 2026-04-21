@@ -194,12 +194,23 @@ const Hero = ({ goBook }) => (
               <span>Mon–Sat: 12:00 PM – 7:00 PM &nbsp;·&nbsp; Sunday: 10:00 AM – 1:30 PM</span>
             </div>
           </div>
-
           {/* CTAs */}
           <div className="hero-btns" style={{ display: 'flex', gap: '0.7rem', flexWrap: 'wrap' }}>
             <button onClick={goBook} className="btn btn-primary" style={{ padding: '0.85rem 1.6rem', fontSize: '0.95rem' }}>
               Book Appointment
             </button>
+            <Link to="/book-checkup" style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+              padding: '0.85rem 1.6rem', background: '#059669',
+              borderRadius: '9999px',
+              color: '#fff', fontWeight: 700, fontSize: '0.92rem',
+              textDecoration: 'none', transition: 'all 0.2s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#047857'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#059669'; }}
+            >
+              🔬 Book a Checkup
+            </Link>
             <a href={PHONE_HREF} style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
               padding: '0.85rem 1.4rem', background: '#f0f9ff',
@@ -291,6 +302,12 @@ const Hero = ({ goBook }) => (
               color: '#fff', border: 'none', borderRadius: '10px', fontWeight: 800,
               fontSize: '0.9rem', cursor: 'pointer', fontFamily: 'inherit',
             }}>Book Appointment</button>
+            <Link to="/book-checkup" style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+              padding: '0.75rem', background: 'linear-gradient(135deg,#059669,#10b981)',
+              borderRadius: '10px', color: '#fff', fontWeight: 800, fontSize: '0.88rem',
+              textDecoration: 'none',
+            }}>🔬 Book a Checkup</Link>
             <a href={PHONE_HREF} style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
               padding: '0.75rem', background: '#f8fafc', border: '1.5px solid #e2e8f0',
