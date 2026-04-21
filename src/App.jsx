@@ -11,6 +11,7 @@ import Services from './pages/Services';
 import Diagnostics from './pages/Diagnostics';
 import Contact from './pages/Contact';
 import BookAppointment from './pages/BookAppointment';
+import BookCheckup from './pages/BookCheckup';
 import FAQ from './pages/FAQ';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
@@ -44,8 +45,9 @@ function App() {
                     <Route path="/services"    element={<Services />} />
                     <Route path="/diagnostics" element={<Diagnostics />} />
                     <Route path="/contact"     element={<Contact />} />
-                    <Route path="/book"        element={<BookAppointment />} />
-                    <Route path="/faq"         element={<FAQ />} />
+                    <Route path="/book"          element={<BookAppointment />} />
+                    <Route path="/book-checkup"   element={<BookCheckup />} />
+                    <Route path="/faq"             element={<FAQ />} />
                     <Route path="*"            element={<Home />} />
                   </Routes>
                 </main>

@@ -91,7 +91,7 @@ const Diagnostics = () => {
             Apollo Clinic Srinagar offers a range of in-house diagnostic services and health checkup packages — delivered with precision, speed, and care.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/book" className="btn btn-white"><Calendar size={17} /> Book a Checkup</Link>
+            <Link to="/book-checkup" className="btn btn-white"><Calendar size={17} /> Book a Checkup</Link>
             <a href={`tel:+919000000000`} className="btn" style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', border: '1.5px solid rgba(255,255,255,0.35)' }}>
               <Phone size={17} /> Call Now
             </a>
@@ -203,7 +203,7 @@ const Diagnostics = () => {
                     </li>
                   ))}
                 </ul>
-                <Link to="/book" className={`btn ${pkg.featured ? 'btn-primary' : 'btn-outline'}`} style={{ width: '100%', justifyContent: 'center' }}>
+                <Link to="/book-checkup" className={`btn ${pkg.featured ? 'btn-primary' : 'btn-outline'}`} style={{ width: '100%', justifyContent: 'center' }}>
                   <Calendar size={16} /> Book This Package
                 </Link>
               </div>
@@ -222,7 +222,7 @@ const Diagnostics = () => {
               Early detection saves lives. Schedule your checkup at Apollo Clinic Srinagar — Mon to Sun.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/book" className="btn btn-white"><Calendar size={17} /> Book Now</Link>
+              <Link to="/book-checkup" className="btn btn-white"><Calendar size={17} /> Book Now</Link>
               <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn" style={{ background: '#25D366', color: '#fff', border: 'none' }}>WhatsApp Us</a>
               <a href="tel:+919000000000" className="btn" style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', border: '1.5px solid rgba(255,255,255,0.35)' }}>
                 <Phone size={17} /> +91 9000000000

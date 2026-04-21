@@ -615,7 +615,7 @@ const Diagnostics = ({ goBook }) => {
               ))}
             </div>
             <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
-              <button onClick={goBook} className="btn btn-primary" style={{ fontSize: '0.9rem', padding: '0.75rem 1.4rem' }}>Book a Checkup</button>
+              <Link to="/book-checkup" className="btn btn-primary" style={{ fontSize: '0.9rem', padding: '0.75rem 1.4rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}>Book a Checkup</Link>
               <Link to="/diagnostics" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.75rem 1.2rem', background: '#f8fafc', border: '1.5px solid #e2e8f0', borderRadius: '9999px', color: '#334155', fontWeight: 700, fontSize: '0.88rem', textDecoration: 'none' }}>
                 View Packages <ArrowRight size={14} />
               </Link>
