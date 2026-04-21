@@ -2,11 +2,9 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 
 const AuthContext = createContext(null);
 
-// ── Hardcoded single-admin credentials (client-side auth) ──
-const ADMIN_EMAIL    = 'admin@apolloclinicsgr.com';
-const ADMIN_PASSWORD = 'Apolloclinicsgr@001admin';
-const SESSION_KEY    = 'hhc_session';
-const SESSION_TTL    = 60 * 60 * 1000; // 1 hour in ms
+// ── Session storage keys ──
+const SESSION_KEY = 'hhc_session';
+const SESSION_TTL = 60 * 60 * 1000; // 1 hour in ms
 
 const isSessionValid = (session) => {
   if (!session) return false;
@@ -35,18 +33,25 @@ export const AuthProvider = ({ children }) => {
     return () => clearInterval(interval);
   }, [admin]);
 
-  /* ── login: client-side credential check ── */
+  /* ── login: calls the server-side API — no credentials in client code ── */
   const login = useCallback(async (email, password) => {
-    if (
-      email.trim().toLowerCase() !== ADMIN_EMAIL ||
-      password !== ADMIN_PASSWORD
-    ) {
-      throw new Error('Invalid credentials.');
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      // Propagate server error message — already generic ("Invalid credentials.")
+      throw new Error(data.error || 'Login failed.');
     }
 
-    const adminData = { email: ADMIN_EMAIL, role: 'admin', name: "Apollo Clinic Admin" };
-    const session   = JSON.stringify({
+    const adminData = data.admin;
+    const session = JSON.stringify({
       admin:     adminData,
+      token:     data.token,
       expiresAt: Date.now() + SESSION_TTL,
     });
 
@@ -61,9 +66,20 @@ export const AuthProvider = ({ children }) => {
     setAdmin(null);
   }, []);
 
-  /* ── authFetch kept for API compatibility (no-op wrapper) ── */
+  /* ── authFetch — attaches Bearer token to API requests ── */
   const authFetch = useCallback((url, options = {}) => {
-    return fetch(url, { ...options });
+    const session = localStorage.getItem(SESSION_KEY);
+    let token = null;
+    if (session) {
+      try { token = JSON.parse(session).token; } catch {}
+    }
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...(options.headers || {}),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+    });
   }, []);
 
   return (

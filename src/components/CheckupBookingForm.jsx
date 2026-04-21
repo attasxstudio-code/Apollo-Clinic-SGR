@@ -1,5 +1,12 @@
 import React from 'react';
 import { MessageSquare, User, Phone, Calendar, FlaskConical, FileText, CheckCircle } from 'lucide-react';
+import {
+  checkRateLimit, recordAttempt,
+  sanitizeInput, isValidName, isValidPhone, isValidDate, isValidMessage,
+  isBot, isTooFast, isDuplicateSubmission, logSuspicious,
+} from '../utils/security';
+
+const RATE_KEY = 'checkup_form';
 
 const CHECKUP_TYPES = [
   'Basic Health Screen',
@@ -16,17 +23,19 @@ const CHECKUP_TYPES = [
 const CheckupBookingForm = () => {
   const [focused,   setFocused]   = React.useState(null);
   const [submitted, setSubmitted] = React.useState(false);
+  const [error,     setError]     = React.useState('');
+  const mountTime = React.useRef(Date.now());
 
   /* ── Save to localStorage so it shows in Admin → Checkups ── */
   const saveCheckupToAdmin = ({ name, phone, checkupType, date, notes }) => {
     const existing = JSON.parse(localStorage.getItem('clinic_checkups') || '[]');
     const newEntry = {
       id:         Date.now(),
-      name,
-      phone,
-      checkupType,
-      date,
-      notes,
+      name:       sanitizeInput(name, 100),
+      phone:      sanitizeInput(phone, 20),
+      checkupType:sanitizeInput(checkupType, 100),
+      date:       sanitizeInput(date, 10),
+      notes:      sanitizeInput(notes, 1000),
       status:     'Pending',
       createdAt:  new Date().toISOString(),
       source:     'Website Checkup Form',
@@ -36,12 +45,49 @@ const CheckupBookingForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const name       = document.getElementById('cu-name').value.trim();
-    const rawPhone   = document.getElementById('cu-phone').value.trim();
+    setError('');
+
+    // Honeypot check
+    const hp = document.getElementById('checkup_hp')?.value;
+    if (isBot(hp)) {
+      logSuspicious('checkup_honeypot_triggered');
+      return;
+    }
+
+    // Fill time check
+    if (isTooFast(mountTime.current, 2000)) {
+      logSuspicious('checkup_too_fast');
+      return setError('Please take a moment to fill the form properly.');
+    }
+
+    // Duplicate submission guard
+    if (isDuplicateSubmission('checkup', 3000)) {
+      return setError('Please wait a few seconds before submitting again.');
+    }
+
+    // Rate limit
+    const rl = checkRateLimit(RATE_KEY, 3, 10 * 60 * 1000);
+    if (!rl.allowed) {
+      logSuspicious('checkup_rate_limited');
+      return setError(`Too many submissions. Please wait ${Math.ceil(rl.resetIn / 60)} minute(s).`);
+    }
+
+    const name       = sanitizeInput(document.getElementById('cu-name').value, 100);
+    const rawPhone   = sanitizeInput(document.getElementById('cu-phone').value, 15);
     const phone      = '+91 ' + rawPhone;
-    const checkupType= document.getElementById('cu-type').value;
-    const date       = document.getElementById('cu-date').value;
-    const notes      = document.getElementById('cu-notes').value.trim();
+    const checkupType= sanitizeInput(document.getElementById('cu-type').value, 100);
+    const date       = sanitizeInput(document.getElementById('cu-date').value, 10);
+    const notes      = sanitizeInput(document.getElementById('cu-notes').value, 1000);
+
+    // Validate
+    if (!isValidName(name)) return setError('Please enter a valid name (letters only, 2–100 characters).');
+    if (!isValidPhone(rawPhone)) return setError('Please enter a valid 10-digit Indian phone number.');
+    if (!checkupType) return setError('Please select a checkup or test type.');
+    if (!CHECKUP_TYPES.includes(checkupType)) return setError('Please select a valid checkup type from the list.');
+    if (!isValidDate(date)) return setError('Please select a valid date (today or future).');
+    if (!isValidMessage(notes, 1000)) return setError('Notes are too long (max 1000 characters).');
+
+    recordAttempt(RATE_KEY);
 
     // 1️⃣ Save to admin
     saveCheckupToAdmin({ name, phone, checkupType, date, notes });
@@ -113,6 +159,18 @@ const CheckupBookingForm = () => {
         </p>
       </div>
 
+      {/* Error banner */}
+      {error && (
+        <div style={{
+          background: '#fff1f2', border: '1.5px solid #fecdd3',
+          color: '#be123c', padding: '0.85rem 1rem',
+          borderRadius: '12px', marginBottom: '1.25rem',
+          fontSize: '0.84rem', textAlign: 'center', lineHeight: 1.5,
+        }}>
+          ⚠️ {error}
+        </div>
+      )}
+
       {/* Success banner */}
       {submitted && (
         <div style={{
@@ -136,6 +194,11 @@ const CheckupBookingForm = () => {
 
       <form onSubmit={handleSubmit}>
 
+        {/* Honeypot — invisible to users */}
+        <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+          <input id="checkup_hp" name="company_name" type="text" tabIndex="-1" autoComplete="off" />
+        </div>
+
         {/* Name */}
         <div style={{ marginBottom: '1rem' }}>
           <label style={{ display: 'block', fontWeight: 700, fontSize: '0.82rem', color: '#374151', marginBottom: '0.4rem' }}>
@@ -144,6 +207,7 @@ const CheckupBookingForm = () => {
           <div style={{ position: 'relative' }}>
             <User size={15} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: iconColor('cu-name'), transition: 'color 0.2s' }} />
             <input id="cu-name" type="text" required placeholder="e.g. Aisha Bhat"
+              maxLength={100}
               style={fieldStyle('cu-name')}
               onFocus={() => setFocused('cu-name')}
               onBlur={() => setFocused(null)} />
@@ -166,6 +230,7 @@ const CheckupBookingForm = () => {
             }}>+91</span>
             <Phone size={14} style={{ position: 'absolute', left: '4.2rem', top: '50%', transform: 'translateY(-50%)', color: iconColor('cu-phone'), transition: 'color 0.2s' }} />
             <input id="cu-phone" type="tel" required placeholder="XXXXX XXXXX"
+              maxLength={15}
               style={{ ...fieldStyle('cu-phone'), borderRadius: '0 12px 12px 0', paddingLeft: '2.2rem', flex: 1 }}
               onFocus={() => setFocused('cu-phone')}
               onBlur={() => setFocused(null)} />
@@ -212,6 +277,7 @@ const CheckupBookingForm = () => {
             <FileText size={15} style={{ position: 'absolute', left: '0.9rem', top: '0.95rem', color: iconColor('cu-notes'), transition: 'color 0.2s' }} />
             <textarea id="cu-notes" rows="3"
               placeholder="e.g. Any symptoms, previous reports, or special requests..."
+              maxLength={1000}
               style={{ ...fieldStyle('cu-notes'), paddingTop: '0.85rem', resize: 'vertical' }}
               onFocus={() => setFocused('cu-notes')}
               onBlur={() => setFocused(null)} />

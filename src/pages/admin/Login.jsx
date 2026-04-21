@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { ShieldCheck, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import {
+  checkRateLimit, recordAttempt, clearRateLimit,
+  sanitizeInput, isValidEmail, logSuspicious,
+} from '../../utils/security';
+
+const RATE_KEY = 'admin_login';
+const MAX_ATTEMPTS = 5;
+const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 
 const Login = () => {
   const { login, admin } = useAuth();
@@ -12,28 +20,69 @@ const Login = () => {
   const [showPwd,  setShowPwd]  = useState(false);
   const [error,    setError]    = useState('');
   const [loading,  setLoading]  = useState(false);
+  const [cooldown, setCooldown] = useState(0);
+  const cooldownRef = useRef(null);
 
   // Already logged in → go straight to dashboard
   if (admin) return <Navigate to="/admin/dashboard" replace />;
+
+  const startCooldownTimer = (seconds) => {
+    setCooldown(seconds);
+    if (cooldownRef.current) clearInterval(cooldownRef.current);
+    cooldownRef.current = setInterval(() => {
+      setCooldown(prev => {
+        if (prev <= 1) {
+          clearInterval(cooldownRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
     // Basic client-side checks
-    if (!email.trim()) return setError('Please enter your email address.');
+    const trimmedEmail = sanitizeInput(email, 254);
+    if (!trimmedEmail) return setError('Please enter your email address.');
     if (!password)     return setError('Please enter your password.');
+
+    // Email format check
+    if (!isValidEmail(trimmedEmail)) {
+      return setError('Please enter a valid email address.');
+    }
+
+    // Rate limit check
+    const rl = checkRateLimit(RATE_KEY, MAX_ATTEMPTS, WINDOW_MS);
+    if (!rl.allowed) {
+      logSuspicious('admin_login_rate_limited', { email: trimmedEmail });
+      startCooldownTimer(rl.resetIn);
+      return setError(`Too many login attempts. Please try again in ${Math.ceil(rl.resetIn / 60)} minute(s).`);
+    }
 
     setLoading(true);
     try {
-      await login(email.trim(), password);
+      await login(trimmedEmail, password);
+      clearRateLimit(RATE_KEY);
       navigate('/admin/dashboard', { replace: true });
     } catch (err) {
-      setError(err.message || 'Invalid credentials.');
+      recordAttempt(RATE_KEY);
+      const remaining = checkRateLimit(RATE_KEY, MAX_ATTEMPTS, WINDOW_MS);
+      if (!remaining.allowed) {
+        startCooldownTimer(remaining.resetIn);
+        setError(`Too many failed attempts. Please wait ${Math.ceil(remaining.resetIn / 60)} minute(s).`);
+      } else {
+        setError('Invalid credentials. Please try again.');
+      }
+      logSuspicious('admin_login_failed', { email: trimmedEmail });
     } finally {
       setLoading(false);
     }
   };
+
+  const isLocked = cooldown > 0;
 
   return (
     <div style={{
@@ -101,7 +150,8 @@ const Login = () => {
               placeholder="admin@apolloclinicsgr.com"
               value={email} onChange={e => setEmail(e.target.value)}
               required autoComplete="email"
-              style={{ minHeight:'52px', fontSize:'1rem' }}
+              disabled={isLocked}
+              style={{ minHeight:'52px', fontSize:'1rem', opacity: isLocked ? 0.6 : 1 }}
             />
           </div>
 
@@ -116,7 +166,8 @@ const Login = () => {
                 placeholder="Enter password"
                 value={password} onChange={e => setPassword(e.target.value)}
                 required autoComplete="current-password"
-                style={{ minHeight:'52px', fontSize:'1rem', paddingRight:'3rem' }}
+                disabled={isLocked}
+                style={{ minHeight:'52px', fontSize:'1rem', paddingRight:'3rem', opacity: isLocked ? 0.6 : 1 }}
               />
               <button type="button" onClick={() => setShowPwd(!showPwd)} style={{
                 position:'absolute', right:'0.9rem', top:'50%', transform:'translateY(-50%)',
@@ -127,14 +178,26 @@ const Login = () => {
             </div>
           </div>
 
+          {/* Cooldown indicator */}
+          {isLocked && (
+            <div style={{
+              background:'#fffbeb', border:'1.5px solid #fde68a',
+              color:'#92400e', padding:'0.75rem 1rem',
+              borderRadius:'12px', marginBottom:'1rem',
+              fontSize:'0.84rem', textAlign:'center', fontWeight:600,
+            }}>
+              🔒 Account locked. Try again in {cooldown}s
+            </div>
+          )}
+
           {/* Submit */}
-          <button type="submit" disabled={loading} style={{
+          <button type="submit" disabled={loading || isLocked} style={{
             width:'100%', minHeight:'54px',
-            background: loading
+            background: (loading || isLocked)
               ? 'linear-gradient(135deg,#93c5fd,#6ee7b7)'
               : 'linear-gradient(135deg,#0369a1,#0ea5e9,#10b981)',
             color:'#fff', border:'none', borderRadius:'14px',
-            fontWeight:800, fontSize:'1.05rem', cursor: loading ? 'not-allowed' : 'pointer',
+            fontWeight:800, fontSize:'1.05rem', cursor: (loading || isLocked) ? 'not-allowed' : 'pointer',
             boxShadow:'0 6px 20px rgba(14,165,233,0.3)',
             transition:'all 0.25s',
             display:'flex', alignItems:'center', justifyContent:'center', gap:'0.5rem',

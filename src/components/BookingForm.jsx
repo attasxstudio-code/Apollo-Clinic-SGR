@@ -1,19 +1,28 @@
 import React from 'react';
 import { MessageSquare, User, Phone, Calendar, FileText, CheckCircle } from 'lucide-react';
+import {
+  checkRateLimit, recordAttempt,
+  sanitizeInput, isValidName, isValidPhone, isValidDate, isValidMessage,
+  isBot, isTooFast, isDuplicateSubmission, logSuspicious,
+} from '../utils/security';
+
+const RATE_KEY = 'booking_form';
 
 const BookingForm = () => {
   const [focused,   setFocused]   = React.useState(null);
   const [submitted, setSubmitted] = React.useState(false);
+  const [error,     setError]     = React.useState('');
+  const mountTime = React.useRef(Date.now());
 
   // ── Save lead to localStorage so it appears in the Admin Dashboard ──
   const saveLeadToAdmin = ({ name, phone, date, message }) => {
     const existing = JSON.parse(localStorage.getItem('clinic_leads') || '[]');
     const newLead = {
       id:        Date.now(),
-      name,
-      phone,          // already includes "+91 " prefix
-      date,
-      notes:     message,
+      name:      sanitizeInput(name, 100),
+      phone:     sanitizeInput(phone, 20),
+      date:      sanitizeInput(date, 10),
+      notes:     sanitizeInput(message, 1000),
       status:    'Pending',
       createdAt: new Date().toISOString(),
       source:    'Website Booking Form',
@@ -23,11 +32,47 @@ const BookingForm = () => {
 
   function sendToWhatsApp(e) {
     e.preventDefault();
-    const name    = document.getElementById('name').value.trim();
-    const rawPhone= document.getElementById('phone').value.trim();
+    setError('');
+
+    // Honeypot check
+    const hp = document.getElementById('booking_hp')?.value;
+    if (isBot(hp)) {
+      logSuspicious('booking_honeypot_triggered');
+      return; // Silent fail for bots
+    }
+
+    // Fill time check
+    if (isTooFast(mountTime.current, 2000)) {
+      logSuspicious('booking_too_fast');
+      return setError('Please take a moment to fill the form properly.');
+    }
+
+    // Duplicate submission guard
+    if (isDuplicateSubmission('booking', 3000)) {
+      return setError('Please wait a few seconds before submitting again.');
+    }
+
+    // Rate limit check
+    const rl = checkRateLimit(RATE_KEY, 3, 10 * 60 * 1000); // 3 per 10 min
+    if (!rl.allowed) {
+      logSuspicious('booking_rate_limited');
+      return setError(`Too many submissions. Please wait ${Math.ceil(rl.resetIn / 60)} minute(s).`);
+    }
+
+    const name    = sanitizeInput(document.getElementById('name').value, 100);
+    const rawPhone= sanitizeInput(document.getElementById('phone').value, 15);
     const phone   = '+91 ' + rawPhone;
-    const date    = document.getElementById('date').value;
-    const message = document.getElementById('message').value.trim();
+    const date    = sanitizeInput(document.getElementById('date').value, 10);
+    const message = sanitizeInput(document.getElementById('message').value, 1000);
+
+    // Validate
+    if (!isValidName(name)) return setError('Please enter a valid name (letters only, 2–100 characters).');
+    if (!isValidPhone(rawPhone)) return setError('Please enter a valid 10-digit Indian phone number.');
+    if (!isValidDate(date)) return setError('Please select a valid date (today or future).');
+    if (!isValidMessage(message, 1000)) return setError('Message is too long (max 1000 characters).');
+
+    // Record attempt
+    recordAttempt(RATE_KEY);
 
     // 1️⃣  Save to admin dashboard
     saveLeadToAdmin({ name, phone, date, message });
@@ -86,6 +131,18 @@ const BookingForm = () => {
         </p>
       </div>
 
+      {/* ── Error Banner ── */}
+      {error && (
+        <div style={{
+          background: '#fff1f2', border: '1.5px solid #fecdd3',
+          color: '#be123c', padding: '0.85rem 1rem',
+          borderRadius: '12px', marginBottom: '1.25rem',
+          fontSize: '0.84rem', textAlign: 'center', lineHeight: 1.5,
+        }}>
+          ⚠️ {error}
+        </div>
+      )}
+
       {/* ── Success Banner (shows for 4s after submit) ── */}
       {submitted && (
         <div style={{
@@ -112,12 +169,18 @@ const BookingForm = () => {
 
       <form onSubmit={sendToWhatsApp}>
 
+        {/* Honeypot — invisible to users, bots fill it */}
+        <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+          <input id="booking_hp" name="website_url" type="text" tabIndex="-1" autoComplete="off" />
+        </div>
+
         {/* Name */}
         <div className="form-group">
           <label className="form-label" htmlFor="name">Full Name *</label>
           <div style={{ position: 'relative' }}>
             <User size={15} style={{ position:'absolute', left:'0.9rem', top:'50%', transform:'translateY(-50%)', color: iconColor('name'), transition:'color 0.2s' }} />
             <input id="name" name="name" type="text" required placeholder="e.g. Aisha Bhat"
+              maxLength={100}
               style={fieldStyle('name')}
               onFocus={() => setFocused('name')}
               onBlur={() => setFocused(null)} />
@@ -137,6 +200,7 @@ const BookingForm = () => {
             }}>+91</span>
             <Phone size={14} style={{ position:'absolute', left:'4.2rem', top:'50%', transform:'translateY(-50%)', color: iconColor('phone'), transition:'color 0.2s' }} />
             <input id="phone" name="phone" type="tel" required placeholder="XXXXX XXXXX"
+              maxLength={15}
               style={{ ...fieldStyle('phone'), borderRadius: '0 12px 12px 0', paddingLeft: '2.2rem', flex: 1 }}
               onFocus={() => setFocused('phone')}
               onBlur={() => setFocused(null)} />
@@ -162,6 +226,7 @@ const BookingForm = () => {
             <FileText size={15} style={{ position:'absolute', left:'0.9rem', top:'0.95rem', color: iconColor('message'), transition:'color 0.2s' }} />
             <textarea id="message" name="message" rows="3"
               placeholder="e.g. Please describe your concerns..."
+              maxLength={1000}
               style={{ ...fieldStyle('message'), paddingTop: '0.85rem', resize: 'vertical' }}
               onFocus={() => setFocused('message')}
               onBlur={() => setFocused(null)} />
@@ -183,4 +248,3 @@ const BookingForm = () => {
 };
 
 export default BookingForm;
-

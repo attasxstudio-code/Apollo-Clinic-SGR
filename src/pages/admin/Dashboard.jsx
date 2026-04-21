@@ -6,6 +6,7 @@ import {
   ShieldCheck, FlaskConical, Stethoscope,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { sanitizeObject } from '../../utils/security';
 
 /* ══════════════════════════════════════════
    STATUS CONFIG
@@ -161,9 +162,17 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
   const loadLeads = () => {
     const saved = localStorage.getItem(storageKey);
     if (saved) {
-      setLeads(JSON.parse(saved));
+      try {
+        const parsed = JSON.parse(saved);
+        // Sanitize all string fields when reading from localStorage (prevent stored XSS)
+        const sanitized = Array.isArray(parsed) ? parsed.map(sanitizeObject) : [];
+        setLeads(sanitized);
+      } catch {
+        // Corrupted data — reset
+        setLeads([]);
+        localStorage.setItem(storageKey, JSON.stringify([]));
+      }
     } else {
-      // Seed with empty for the first time
       setLeads([]);
       localStorage.setItem(storageKey, JSON.stringify([]));
     }
