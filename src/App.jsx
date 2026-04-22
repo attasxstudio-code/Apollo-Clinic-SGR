@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
@@ -18,9 +18,19 @@ import Dashboard from './pages/admin/Dashboard';
 import ReportVerify from './pages/ReportVerify';
 import Reports from './pages/Reports';
 
+/* ── Scroll to top on every route change ── */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
         <div className="app-layout flex flex-col" style={{ minHeight: '100vh' }}>
           <Routes>
