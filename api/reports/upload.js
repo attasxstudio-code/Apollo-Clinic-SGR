@@ -159,6 +159,7 @@ export default async function handler(req, res) {
   let blob;
   try {
     blob = await put(`reports/${reportId}.${fileExt}`, fileBuffer, {
+      access: 'private',
       contentType: mimeType,
       addRandomSuffix: true,
       token: process.env.BLOB_READ_WRITE_TOKEN,
