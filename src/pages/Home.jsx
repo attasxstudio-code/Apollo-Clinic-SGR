@@ -772,29 +772,29 @@ const PatientServices = ({ goBook }) => {
 ═══════════════════════════════════ */
 const TESTIMONIALS = [
   {
-    initials: 'AB', color: '#0369a1',
-    name: 'Aisha Bhat', location: 'Karan Nagar, Srinagar', rating: 5,
-    text: 'Very clean clinic with well-organised staff. I came for a routine checkup — the blood tests were done in-house and the doctor explained everything clearly. Didn\'t have to wait long.',
+    initials: 'A', color: '#0369a1',
+    name: 'Arjuman', location: 'Srinagar', rating: 5,
+    text: 'I had an excellent experience at Apollo Clinic. The clinic was clean, hygienic, and very well maintained. The facilities were impressive, the waiting time was short, and the staff made the entire visit comfortable and smooth.',
   },
   {
-    initials: 'IW', color: '#047857',
-    name: 'Irfan Wani', location: 'Srinagar', rating: 5,
-    text: 'Took my child for a pediatric consultation. The doctor was patient and thorough. ECG and lab tests available in the same clinic saved us a separate trip. Good service overall.',
+    initials: 'AM', color: '#047857',
+    name: 'Arsheen Mehrajudin', location: 'Srinagar', rating: 5,
+    text: 'My visit to Apollo Clinic was very smooth and comfortable. The clinic is clean, well maintained, and the staff is friendly and helpful. Booking was simple, and the overall experience felt professional and reassuring.',
   },
   {
-    initials: 'NF', color: '#6d28d9',
-    name: 'Noor Fatima', location: 'Srinagar', rating: 5,
-    text: 'Had an orthopedic consultation. The doctor was experienced and straightforward — explained the condition and treatment options clearly without overcomplicating things.',
+    initials: 'MP', color: '#6d28d9',
+    name: 'Mrs Pakiza', location: 'Karan Nagar, Srinagar', rating: 5,
+    text: 'Apollo Clinic offers a caring and supportive environment. The staff is attentive, and the facilities feel modern and well equipped. The overall experience was seamless and professional.',
   },
   {
-    initials: 'FA', color: '#b45309',
-    name: 'Faizan Ahmad', location: 'Rajbagh, Srinagar', rating: 5,
-    text: 'Visited for a preventive health checkup package. Everything was smooth — registration, blood work, ECG — all done in one visit. Report was ready by evening. Convenient.',
+    initials: 'G', color: '#b45309',
+    name: 'Gagan', location: 'Srinagar', rating: 5,
+    text: 'The treatment experience at Apollo Clinic was excellent. The staff was caring, the facilities were very good, and the overall service felt professional. It gave me a lot of confidence in the care provided.',
   },
   {
-    initials: 'SP', color: '#0891b2',
-    name: 'Sameera Parvez', location: 'Karan Nagar', rating: 5,
-    text: 'Consulted for a skin condition. The dermatologist was knowledgeable and prescribed a clear treatment plan. Felt comfortable and the clinic maintains good hygiene standards.',
+    initials: 'T', color: '#0891b2',
+    name: 'Tabassum', location: 'Srinagar', rating: 5,
+    text: 'I was impressed by the quick support and professional care at Apollo Clinic. The staff was responsive, the environment felt safe and hygienic, and the treatment process was handled very efficiently.',
   },
 ];
 
