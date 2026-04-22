@@ -108,7 +108,7 @@ const Navbar = () => {
   const moreLinks = [
     { label: 'About Us',           action: () => goTo('/about')    },
     { label: 'Contact & Timings',  action: () => goTo('/contact')  },
-    { label: 'View Reports',       action: () => goTo('/faq')      },
+    { label: 'View Reports',       action: () => goTo('/reports')  },
     { label: 'FAQ',                action: () => goTo('/faq')      },
   ];
 

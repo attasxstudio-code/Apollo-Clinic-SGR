@@ -11,7 +11,7 @@ const QUICK_LINKS = [
   { label: 'Our Doctors',         path: '/doctors',     id: null        },
   { label: 'Services',            path: '/services',    id: null        },
   { label: 'Diagnostics',         path: '/diagnostics', id: null        },
-  { label: 'View Test Reports',   path: '/faq',         id: null        },
+  { label: 'View Test Reports',   path: '/reports',     id: null        },
   { label: 'Contact Us',          path: '/contact',     id: null        },
   { label: 'Book Appointment',    path: '/book',        id: null        },
   { label: 'FAQ',                 path: '/faq',         id: null        },

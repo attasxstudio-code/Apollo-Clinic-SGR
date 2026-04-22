@@ -712,7 +712,7 @@ const PatientServices = ({ goBook }) => {
       case 'book': goBook(); break;
       case 'call': window.location.href = PHONE_HREF; break;
       case 'wa': window.open(WA_LINK, '_blank'); break;
-      case 'reports': navigate('/faq'); window.scrollTo(0, 0); break;
+      case 'reports': navigate('/reports'); window.scrollTo(0, 0); break;
       case 'map': window.open(MAPS_LINK, '_blank'); break;
       case 'checkup': navigate('/book-checkup'); window.scrollTo(0, 0); break;
       default: break;

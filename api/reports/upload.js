@@ -200,6 +200,26 @@ export default async function handler(req, res) {
     .replace(/\//g, '_')
     .replace(/=/g, '~');
 
+  /* ── Store lookup index entry (for patient self-service lookup by name+DOB) ── */
+  try {
+    const lookupKey = `lookup/${nameHash}_${dobHash}/${reportId}.json`;
+    const lookupData = JSON.stringify({
+      token: urlSafeToken,
+      title: cleanTitle,
+      date: cleanDate,
+      type: cleanType,
+      createdAt: Date.now(),
+    });
+    await put(lookupKey, lookupData, {
+      access: 'private',
+      contentType: 'application/json',
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
+  } catch (err) {
+    // Non-fatal — report is still uploaded, just lookup won't work
+    console.warn('[Lookup Index] Failed to store lookup entry:', err.message);
+  }
+
   /* ── Return success ── */
   return res.status(200).json({
     message: 'Report uploaded successfully.',
