@@ -243,6 +243,19 @@ const Hero = ({ goBook }) => {
             <button onClick={goBook} className="btn btn-primary" style={{ padding: '0.8rem 1.5rem', fontSize: '0.92rem' }}>
               <Calendar size={15} /> Book Appointment
             </button>
+            <Link to="/book-checkup" style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+              padding: '0.8rem 1.5rem', background: 'linear-gradient(135deg,#059669,#10b981)',
+              borderRadius: '9999px',
+              color: '#fff', fontWeight: 700, fontSize: '0.92rem',
+              textDecoration: 'none', transition: 'all 0.2s',
+              boxShadow: '0 4px 16px rgba(5,150,105,0.25)',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.08)'; }}
+              onMouseLeave={e => { e.currentTarget.style.filter = 'none'; }}
+            >
+              🔬 Book Health Checkup
+            </Link>
             <a href={PHONE_HREF} style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
               padding: '0.8rem 1.3rem', background: '#f0f9ff',
