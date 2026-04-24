@@ -56,6 +56,7 @@ const Home = () => {
       <Doctors  goBook={goBook} />
       <Diagnostics goBook={goBook} />
       <PatientServices goBook={goBook} />
+      <CareGuide />
       <Testimonials />
       <ContactSection />
       <FAQSection goBook={goBook} />
@@ -810,6 +811,247 @@ const TESTIMONIALS = [
     text: 'I was impressed by the quick support and professional care at Apollo Clinic. The staff was responsive, the environment felt safe and hygienic, and the treatment process was handled very efficiently.',
   },
 ];
+
+/* ════════════════════════════════════════════
+   CARE GUIDE — Premium information cards
+════════════════════════════════════════════ */
+const CARE_CARDS = [
+  {
+    id: 'appointments',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="3"/>
+        <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+        <circle cx="12" cy="15" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+    ),
+    accent: '#0369a1',
+    accentLight: '#e0f2fe',
+    tag: 'Appointments',
+    title: 'Consultations & Bookings',
+    body: 'Learn how to schedule a consultation, what to expect during your visit, follow-up procedures, clinic timings, and how our doctors review your case.',
+    cta: 'Explore More',
+    href: '/book',
+  },
+  {
+    id: 'treatments',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2C9 2 6 5 6 8c0 4 6 10 6 10s6-6 6-10c0-3-3-6-6-6z"/>
+        <circle cx="12" cy="8" r="2"/>
+        <line x1="12" y1="18" x2="12" y2="22"/>
+        <line x1="8" y1="22" x2="16" y2="22"/>
+      </svg>
+    ),
+    accent: '#059669',
+    accentLight: '#d1fae5',
+    tag: 'Treatments',
+    title: 'Treatments & Specialties',
+    body: 'Discover the full range of clinical specialties, treatment protocols, and procedures available at Apollo Clinic — from general medicine to specialist consultations.',
+    cta: 'Explore More',
+    href: '/services',
+  },
+  {
+    id: 'diagnostics',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V8l-5-5H9z"/>
+        <polyline points="9 3 9 8 19 8"/>
+        <line x1="7" y1="13" x2="17" y2="13"/>
+        <line x1="7" y1="17" x2="13" y2="17"/>
+      </svg>
+    ),
+    accent: '#7c3aed',
+    accentLight: '#ede9fe',
+    tag: 'Diagnostics',
+    title: 'Diagnostics & Patient Care',
+    body: 'Understand our in-house lab tests, ECG, blood workups, and the clinic\'s commitment to accurate, timely, and safe diagnostic support for every patient.',
+    cta: 'Explore More',
+    href: '/diagnostics',
+  },
+  {
+    id: 'faq',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+        <circle cx="12" cy="17" r=".5" fill="currentColor" stroke="none"/>
+      </svg>
+    ),
+    accent: '#b45309',
+    accentLight: '#fef3c7',
+    tag: 'Patient FAQ',
+    title: 'Patient Guidance & FAQ',
+    body: 'Get clear answers to common questions about appointments, prescriptions, report collection, consultation follow-ups, and how to prepare for your visit.',
+    cta: 'Explore More',
+    href: '/faq',
+  },
+];
+
+const CareGuide = () => {
+  const navigate = useNavigate();
+  const [ref, vis] = useInView(0.07);
+  const [hovered, setHovered] = React.useState(null);
+
+  return (
+    <section ref={ref} style={{
+      background: '#fafbfc',
+      padding: '5.5rem 0',
+      position: 'relative',
+      overflow: 'hidden',
+      borderTop: '1px solid #f0f4f8',
+    }}>
+      {/* Decorative background cross — medical, low opacity */}
+      <div style={{
+        position: 'absolute', top: '-60px', right: '-60px',
+        width: '340px', height: '340px', opacity: 0.03,
+        pointerEvents: 'none',
+      }}>
+        <svg viewBox="0 0 200 200" fill="#0369a1">
+          <rect x="75" y="0" width="50" height="200" rx="8"/>
+          <rect x="0" y="75" width="200" height="50" rx="8"/>
+        </svg>
+      </div>
+      <div style={{
+        position: 'absolute', bottom: '-40px', left: '-40px',
+        width: '260px', height: '260px', opacity: 0.025,
+        pointerEvents: 'none',
+      }}>
+        <svg viewBox="0 0 200 200" fill="#059669">
+          <rect x="75" y="0" width="50" height="200" rx="8"/>
+          <rect x="0" y="75" width="200" height="50" rx="8"/>
+        </svg>
+      </div>
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Header */}
+        <div style={{
+          maxWidth: 620, marginBottom: '3.5rem',
+          opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(18px)',
+          transition: 'opacity 0.55s ease, transform 0.55s ease',
+        }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+            background: '#e0f2fe', borderRadius: '999px',
+            padding: '0.3rem 0.9rem', marginBottom: '1rem',
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#0369a1' }} />
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              Your Complete Guide
+            </span>
+          </div>
+          <h2 style={{ color: '#0c1f3f', fontSize: 'clamp(1.7rem,4vw,2.4rem)', fontWeight: 800, lineHeight: 1.2, margin: '0 0 1rem' }}>
+            Have Questions?{' '}
+            <span style={{
+              background: 'linear-gradient(135deg,#0369a1,#0ea5e9)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            }}>
+              Our Care Team
+            </span>
+            {' '}Is Here to Guide You.
+          </h2>
+          <p style={{ color: '#64748b', fontSize: '1rem', lineHeight: 1.7, margin: 0 }}>
+            Everything you need to know about your care at Apollo Clinic — consultations, treatments, diagnostics, and more — clearly explained.
+          </p>
+        </div>
+
+        {/* Card grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.25rem',
+        }}>
+          {CARE_CARDS.map((card, i) => {
+            const isHov = hovered === card.id;
+            return (
+              <div
+                key={card.id}
+                onClick={() => { navigate(card.href); window.scrollTo(0, 0); }}
+                onMouseEnter={() => setHovered(card.id)}
+                onMouseLeave={() => setHovered(null)}
+                style={{
+                  background: '#fff',
+                  borderRadius: '20px',
+                  padding: '2rem 1.75rem 1.75rem',
+                  border: `1.5px solid ${isHov ? card.accent + '40' : '#eef2f7'}`,
+                  boxShadow: isHov
+                    ? `0 20px 48px rgba(0,0,0,0.08), 0 0 0 1px ${card.accent}18`
+                    : '0 2px 16px rgba(14,31,63,0.05)',
+                  cursor: 'pointer',
+                  transform: isHov ? 'translateY(-6px)' : 'translateY(0)',
+                  transition: 'all 0.28s cubic-bezier(0.34,1.56,0.64,1)',
+                  opacity: vis ? 1 : 0,
+                  transitionDelay: vis ? `${i * 0.08}s` : '0s',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Top accent line */}
+                <div style={{
+                  position: 'absolute', top: 0, left: '1.75rem', right: '1.75rem', height: '3px',
+                  background: `linear-gradient(90deg,${card.accent},${card.accent}66)`,
+                  borderRadius: '0 0 4px 4px',
+                  opacity: isHov ? 1 : 0.4,
+                  transition: 'opacity 0.28s ease',
+                }} />
+
+                {/* Icon */}
+                <div style={{
+                  width: 56, height: 56, borderRadius: '16px',
+                  background: isHov ? card.accent : card.accentLight,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  marginBottom: '1.25rem',
+                  color: isHov ? '#fff' : card.accent,
+                  transition: 'all 0.28s ease',
+                  boxShadow: isHov ? `0 8px 20px ${card.accent}40` : 'none',
+                }}>
+                  {card.icon}
+                </div>
+
+                {/* Tag */}
+                <div style={{
+                  fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase',
+                  letterSpacing: '0.1em', color: card.accent,
+                  marginBottom: '0.4rem',
+                }}>
+                  {card.tag}
+                </div>
+
+                {/* Title */}
+                <h3 style={{
+                  color: '#0c1f3f', fontWeight: 800, fontSize: '1.05rem',
+                  lineHeight: 1.25, margin: '0 0 0.75rem',
+                }}>
+                  {card.title}
+                </h3>
+
+                {/* Body */}
+                <p style={{
+                  color: '#64748b', fontSize: '0.875rem', lineHeight: 1.7,
+                  margin: '0 0 1.5rem',
+                }}>
+                  {card.body}
+                </p>
+
+                {/* CTA */}
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+                  color: card.accent, fontWeight: 700, fontSize: '0.85rem',
+                  transform: isHov ? 'translateX(4px)' : 'none',
+                  transition: 'transform 0.25s ease',
+                }}>
+                  {card.cta}
+                  <ArrowRight size={14} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Testimonials = () => {
   const [ref, vis] = useInView(0.07);
