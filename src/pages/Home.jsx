@@ -54,6 +54,7 @@ const Home = () => {
       <TrustStrip />
       <Services goBook={goBook} />
       <Doctors  goBook={goBook} />
+      <WhyChooseUs goBook={goBook} />
       <Diagnostics goBook={goBook} />
       <PatientServices goBook={goBook} />
       <CareGuide />
@@ -1114,8 +1115,314 @@ const Doctors = ({ goBook }) => {
 };
 
 
+/* ════════════════════════════════════════════
+   5. WHY CHOOSE US
+════════════════════════════════════════════ */
+const WHY_POINTS = [
+  {
+    id: 'experts',
+    accent: '#0369a1', accentLight: '#e0f2fe',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+        <path d="M16 3.13a4 4 0 010 7.75"/>
+      </svg>
+    ),
+    title: 'Experienced Medical Professionals',
+    body: 'Our team brings together clinical expertise, thoughtful diagnosis, and patient-focused care across every stage of treatment.',
+  },
+  {
+    id: 'patient',
+    accent: '#059669', accentLight: '#d1fae5',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+      </svg>
+    ),
+    title: 'Patient-Centered Approach',
+    body: 'We prioritize comfort, clarity, and personal attention so every patient feels supported from consultation to recovery.',
+  },
+  {
+    id: 'diagnostics',
+    accent: '#7c3aed', accentLight: '#ede9fe',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    ),
+    title: 'Accurate Diagnostics & Quality Care',
+    body: 'We emphasize reliable evaluation, timely diagnosis, and structured treatment planning to support better health outcomes.',
+  },
+  {
+    id: 'facilities',
+    accent: '#0891b2', accentLight: '#e0f7fa',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="3"/>
+        <path d="M3 9h18"/>
+        <path d="M9 21V9"/>
+      </svg>
+    ),
+    title: 'Modern Facilities & Comfortable Environment',
+    body: 'Our clinical environment is designed to provide efficient care in a setting that feels reassuring, organized, and professional.',
+  },
+  {
+    id: 'planning',
+    accent: '#d97706', accentLight: '#fef3c7',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 11l3 3L22 4"/>
+        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+      </svg>
+    ),
+    title: 'Personalized Treatment Planning',
+    body: 'We understand that every patient is different, which is why our care approach is tailored to individual needs and health goals.',
+  },
+  {
+    id: 'multispe',
+    accent: '#047857', accentLight: '#d1fae5',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+      </svg>
+    ),
+    title: 'Multi-Specialty Support Under One Roof',
+    body: 'With access to essential specialties in one place, patients benefit from coordinated care, convenience, and continuity.',
+  },
+];
+
+const WHY_STATS = [
+  { value: '10+', label: 'Medical Specialties' },
+  { value: '6',   label: 'Expert Doctors' },
+  { value: '12+', label: 'Years of Service' },
+  { value: '∞',   label: 'Patient First, Always' },
+];
+
+const WhyChooseUs = ({ goBook }) => {
+  const navigate = useNavigate();
+  const [ref, vis] = useInView(0.05);
+  const [hovCard, setHovCard] = React.useState(null);
+  const status = getClinicStatus();
+
+  return (
+    <section style={{
+      background: '#fff',
+      padding: '5.5rem 0',
+      borderTop: '1px solid #f0f4f8',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      {/* Very subtle cross-hatch background */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle at 90% 10%, rgba(3,105,161,0.03) 0%, transparent 50%), radial-gradient(circle at 5% 90%, rgba(5,150,105,0.025) 0%, transparent 50%)',
+      }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+
+        {/* ── Top: heading + subtitle ── */}
+        <div style={{
+          textAlign: 'center', maxWidth: 680, margin: '0 auto 3.5rem',
+          opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(18px)',
+          transition: 'opacity 0.55s ease, transform 0.55s ease',
+        }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+            background: '#e0f2fe', borderRadius: '999px',
+            padding: '0.28rem 0.85rem', marginBottom: '0.9rem',
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#0369a1' }} />
+            <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              Why Apollo Clinic
+            </span>
+          </div>
+          <h2 style={{
+            color: '#0c1f3f', fontSize: 'clamp(1.7rem,3.8vw,2.4rem)',
+            fontWeight: 800, lineHeight: 1.18, margin: '0 0 0.9rem',
+          }}>
+            Trusted Care,{' '}
+            <span style={{
+              background: 'linear-gradient(135deg,#0369a1,#0ea5e9)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            }}>
+              Centered Around You
+            </span>
+          </h2>
+          <p style={{ color: '#64748b', fontSize: '0.97rem', lineHeight: 1.72, margin: 0 }}>
+            We combine medical expertise, compassionate support, and a patient-first approach to deliver a healthcare experience built on trust, comfort, and clinical excellence.
+          </p>
+        </div>
+
+        {/* ── Middle: split layout ── */}
+        <div ref={ref} className="why-split">
+
+          {/* LEFT: trust-point cards in 2-col mini-grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px,1fr))', gap: '1rem' }}>
+            {WHY_POINTS.map((pt, i) => {
+              const isHov = hovCard === pt.id;
+              return (
+                <div
+                  key={pt.id}
+                  onMouseEnter={() => setHovCard(pt.id)}
+                  onMouseLeave={() => setHovCard(null)}
+                  style={{
+                    background: '#fff',
+                    borderRadius: '18px',
+                    padding: '1.5rem 1.4rem',
+                    border: `1.5px solid ${isHov ? pt.accent + '38' : '#edf2f7'}`,
+                    boxShadow: isHov
+                      ? `0 16px 40px rgba(0,0,0,0.07), 0 0 0 1px ${pt.accent}14`
+                      : '0 2px 12px rgba(14,31,63,0.04)',
+                    transform: isHov ? 'translateY(-4px)' : 'none',
+                    transition: 'all 0.25s cubic-bezier(0.34,1.4,0.64,1)',
+                    opacity: vis ? 1 : 0,
+                    transitionDelay: `${i * 0.06}s`,
+                    position: 'relative', overflow: 'hidden',
+                  }}
+                >
+                  {/* Thin top accent */}
+                  <div style={{
+                    position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+                    background: `linear-gradient(90deg,${pt.accent},${pt.accent}55)`,
+                    opacity: isHov ? 1 : 0.3,
+                    transition: 'opacity 0.25s',
+                  }} />
+
+                  {/* Icon */}
+                  <div style={{
+                    width: 46, height: 46, borderRadius: '13px',
+                    background: isHov ? pt.accent : pt.accentLight,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: isHov ? '#fff' : pt.accent,
+                    marginBottom: '1rem',
+                    transition: 'all 0.25s ease',
+                    boxShadow: isHov ? `0 6px 16px ${pt.accent}40` : 'none',
+                  }}>
+                    {pt.icon}
+                  </div>
+
+                  <h3 style={{
+                    color: '#0c1f3f', fontWeight: 800, fontSize: '0.93rem',
+                    lineHeight: 1.25, margin: '0 0 0.5rem',
+                  }}>
+                    {pt.title}
+                  </h3>
+                  <p style={{
+                    color: '#64748b', fontSize: '0.82rem',
+                    lineHeight: 1.68, margin: 0,
+                  }}>
+                    {pt.body}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* RIGHT: dark premium highlight panel */}
+          <div style={{
+            background: 'linear-gradient(160deg,#0c1f3f 0%,#0f3460 55%,#0369a1 100%)',
+            borderRadius: '22px',
+            padding: '2.2rem 1.75rem',
+            color: '#fff',
+            position: 'sticky', top: '5.5rem',
+            opacity: vis ? 1 : 0,
+            transform: vis ? 'none' : 'translateY(20px)',
+            transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
+            overflow: 'hidden',
+          }}>
+            {/* glow blob */}
+            <div style={{
+              position: 'absolute', top: '-60px', right: '-60px',
+              width: 220, height: 220, borderRadius: '50%',
+              background: 'radial-gradient(circle,rgba(14,165,233,0.25),transparent 70%)',
+              pointerEvents: 'none',
+            }} />
+
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+              background: 'rgba(255,255,255,0.12)', borderRadius: '999px',
+              padding: '0.25rem 0.75rem', marginBottom: '1.25rem',
+              border: '1px solid rgba(255,255,255,0.15)',
+            }}>
+              <div style={{
+                width: 7, height: 7, borderRadius: '50%',
+                background: status.open ? '#4ade80' : '#f87171',
+                boxShadow: status.open ? '0 0 6px #4ade80' : '0 0 6px #f87171',
+              }} />
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.05em' }}>
+                {status.open ? 'Currently Open' : 'Clinic Closed'}
+              </span>
+            </div>
+
+            <h3 style={{ fontWeight: 800, fontSize: '1.25rem', lineHeight: 1.25, margin: '0 0 0.6rem', color: '#fff' }}>
+              Apollo Clinic Srinagar
+            </h3>
+            <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.83rem', lineHeight: 1.65, margin: '0 0 1.5rem' }}>
+              A trusted multi-specialty clinic in Karan Nagar, committed to patient-centered care, expert consultation, and quality clinical outcomes.
+            </p>
+
+            {/* Stat pairs */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '1.75rem' }}>
+              {WHY_STATS.map((s, i) => (
+                <div key={i} style={{
+                  background: 'rgba(255,255,255,0.07)',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  borderRadius: '14px', padding: '0.9rem 0.85rem',
+                  textAlign: 'center',
+                }}>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: '0.25rem' }}>
+                    {s.value}
+                  </div>
+                  <div style={{ fontSize: '0.67rem', color: 'rgba(255,255,255,0.55)', fontWeight: 600, letterSpacing: '0.04em', lineHeight: 1.3 }}>
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '0 0 1.5rem' }} />
+
+            {/* Timing */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.67rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
+                Consultation Hours
+              </div>
+              <div style={{ color: '#fff', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.2rem' }}>Mon – Sat &nbsp; 12:00 PM – 7:00 PM</div>
+              <div style={{ color: '#fff', fontSize: '0.82rem', fontWeight: 600 }}>Sunday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10:00 AM – 1:30 PM</div>
+            </div>
+
+            {/* CTA */}
+            <button
+              onClick={goBook}
+              style={{
+                width: '100%', padding: '0.85rem',
+                background: '#0ea5e9', color: '#fff',
+                border: 'none', borderRadius: '13px',
+                fontWeight: 800, fontSize: '0.9rem',
+                cursor: 'pointer', fontFamily: 'inherit',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem',
+                transition: 'all 0.22s',
+                boxShadow: '0 4px 18px rgba(14,165,233,0.35)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background='#0284c7'; e.currentTarget.style.transform='scale(1.02)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background='#0ea5e9'; e.currentTarget.style.transform='scale(1)'; }}
+            >
+              <Calendar size={15} /> Book a Consultation
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
 /* ═══════════════════════════════════
-   5. DIAGNOSTICS
+   6. DIAGNOSTICS
 ═══════════════════════════════════ */
 const DIAG_ITEMS = [
   { icon: '❤️', name: 'ECG (12-Lead)',            why: 'Heart rhythm & electrical activity. Done in-clinic, results same day.' },

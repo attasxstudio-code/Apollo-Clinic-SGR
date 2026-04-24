@@ -879,3 +879,17 @@ nav a:hover {
   }
 }
 
+/* ═══════════════════════════════════════════
+   WHY CHOOSE US — responsive split grid
+═══════════════════════════════════════════ */
+.why-split {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,360px);
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .why-split {
+    grid-template-columns: 1fr;
+  }
+}
