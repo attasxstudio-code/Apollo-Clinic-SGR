@@ -407,138 +407,375 @@ const TrustStrip = () => (
 /* ═══════════════════════════════════
    3. SERVICES / SPECIALITIES
 ═══════════════════════════════════ */
-const SERVICES = [
+const SPECIALTIES = [
   {
-    label: 'General Medicine',
-    icon: '🩺',
-    desc: 'Primary care for fever, infections, diabetes, hypertension, and chronic conditions. Your first point of care at Apollo Clinic.',
-    tags: ['Fever & Infections', 'Diabetes', 'Hypertension', 'Chronic Care'],
+    id: 'gp',
+    accent: '#0369a1', accentLight: '#e0f2fe',
+    tag: 'Primary Care',
+    label: 'General Physician',
+    desc: 'Comprehensive primary care focused on diagnosis, preventive health, and long-term wellness for patients of all ages.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    ),
   },
   {
-    label: 'Cardiology',
-    icon: '❤️',
-    desc: 'Heart health evaluation with in-house ECG and ECHO. Cardiac risk screening, monitoring, and ongoing management.',
-    tags: ['ECG', 'ECHO', 'Heart Screening', 'Cardiac Risk'],
+    id: 'peds',
+    accent: '#0891b2', accentLight: '#e0f7fa',
+    tag: 'Child Health',
+    label: 'Pediatrics',
+    desc: 'Specialized child healthcare with expert attention to growth, development, immunization, and common childhood illnesses.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="7" r="4"/>
+        <path d="M8 14s-4 .5-4 4v1h16v-1c0-3.5-4-4-4-4"/>
+        <line x1="12" y1="11" x2="12" y2="14"/>
+      </svg>
+    ),
   },
   {
+    id: 'obgyn',
+    accent: '#7c3aed', accentLight: '#ede9fe',
+    tag: "Women's Health",
+    label: 'Obstetrics & Gynecology',
+    desc: 'Complete women\'s healthcare covering pregnancy, reproductive wellness, gynecological concerns, and lifelong support.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="8" r="5"/>
+        <line x1="12" y1="13" x2="12" y2="21"/>
+        <line x1="8.5" y1="17" x2="15.5" y2="17"/>
+      </svg>
+    ),
+  },
+  {
+    id: 'derm',
+    accent: '#db2777', accentLight: '#fce7f3',
+    tag: 'Skin Care',
     label: 'Dermatology',
-    icon: '🧴',
-    desc: 'Skin, hair, and nail conditions — acne, eczema, psoriasis, fungal infections, hair loss, and cosmetic concerns.',
-    tags: ['Acne & Eczema', 'Hair Loss', 'Skin Care', 'Cosmetic'],
+    desc: 'Advanced care for skin, hair, and nail conditions with personalized treatment and expert clinical guidance.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.5 4.5c1 1 1.5 2.5 1.5 4a6 6 0 01-6 6c-1.5 0-3-.5-4-1.5"/>
+        <path d="M5 15c-.5 2 .5 4 2.5 5s4.5.5 6-1l1-1.5"/>
+        <path d="M20 4l-1 1"/>
+        <circle cx="17" cy="7" r="1"/>
+      </svg>
+    ),
   },
   {
-    label: 'Paediatrics',
-    icon: '👶',
-    desc: 'Child healthcare from newborn to adolescent. Vaccinations, growth tracking, nutrition guidance, illness management.',
-    tags: ['Vaccinations', 'Growth Monitoring', 'Child Nutrition', 'Paediatric Care'],
+    id: 'ortho',
+    accent: '#d97706', accentLight: '#fef3c7',
+    tag: 'Bone & Joint',
+    label: 'Orthopedics',
+    desc: 'Specialized treatment for bone, joint, muscle, and spine conditions to restore strength, mobility, and comfort.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 8h1a4 4 0 010 8h-1"/>
+        <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+        <line x1="6" y1="1" x2="6" y2="4"/>
+        <line x1="10" y1="1" x2="10" y2="4"/>
+        <line x1="14" y1="1" x2="14" y2="4"/>
+      </svg>
+    ),
   },
   {
-    label: 'Gynaecology',
-    icon: '🌸',
-    desc: "Women's health — menstrual disorders, reproductive health, hormonal concerns, and routine preventive care with complete privacy.",
-    tags: ["Women's Health", 'Menstrual Care', 'Hormonal', 'Preventive'],
+    id: 'ent',
+    accent: '#059669', accentLight: '#d1fae5',
+    tag: 'ENT',
+    label: 'ENT (Otolaryngology)',
+    desc: 'Expert care for ear, nose, and throat conditions, including sinus issues, infections, hearing concerns, and more.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a7 7 0 00-7 7c0 3 1.5 5.5 3.5 7l.5 4h6l.5-4c2-1.5 3.5-4 3.5-7a7 7 0 00-7-7z"/>
+        <line x1="9" y1="20" x2="15" y2="20"/>
+      </svg>
+    ),
   },
   {
-    label: 'Orthopaedics',
-    icon: '🦴',
-    desc: 'Bone, joint, and muscle conditions — arthritis, back pain, sports injuries, and post-surgical rehabilitation support.',
-    tags: ['Joint Pain', 'Back & Spine', 'Sports Injuries', 'Rehabilitation'],
+    id: 'eye',
+    accent: '#0e7490', accentLight: '#cffafe',
+    tag: 'Eye Care',
+    label: 'Ophthalmology',
+    desc: 'Comprehensive eye care focused on vision protection, diagnosis, treatment, and long-term visual health.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    ),
   },
   {
-    label: 'Pulmonology / PFT',
-    icon: '🫁',
-    desc: 'Respiratory health with in-house Pulmonary Function Testing. Asthma, COPD, chronic cough, and breathlessness evaluation.',
-    tags: ['PFT Testing', 'Asthma', 'COPD', 'Lung Function'],
+    id: 'dental',
+    accent: '#0369a1', accentLight: '#dbeafe',
+    tag: 'Dental',
+    label: 'Dentistry',
+    desc: 'Complete dental care ranging from routine check-ups to restorative and smile-enhancing treatments.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2C8.5 2 6 4.5 6 7c0 1.5.5 3 1 4-.5 3-1 5-1 7 0 2 1 4 3 4 1 0 2-1 3-3 1 2 2 3 3 3 2 0 3-2 3-4 0-2-.5-4-1-7 .5-1 1-2.5 1-4 0-2.5-2.5-5-6-5z"/>
+      </svg>
+    ),
   },
   {
-    label: 'Diagnostics & Lab',
-    icon: '🔬',
-    desc: 'Complete in-house lab — CBC, LFT, KFT, lipid profile, thyroid, HbA1c, urine analysis, and specialized panels.',
-    tags: ['Blood Tests', 'Thyroid', 'HbA1c', 'Lipid Profile'],
+    id: 'path',
+    accent: '#6d28d9', accentLight: '#ede9fe',
+    tag: 'Lab & Diagnostics',
+    label: 'Pathology',
+    desc: 'Accurate laboratory diagnostics and timely reporting to support reliable medical decisions and better patient care.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V8l-5-5H9z"/>
+        <polyline points="9 3 9 8 19 8"/>
+        <line x1="7" y1="13" x2="17" y2="13"/>
+        <line x1="7" y1="17" x2="13" y2="17"/>
+      </svg>
+    ),
   },
   {
-    label: 'Preventive Checkups',
-    icon: '🛡️',
-    desc: 'Structured annual health packages for individuals, families, and professionals. Detect conditions early, stay ahead.',
-    tags: ['Annual Checkup', 'Health Packages', 'Early Detection', 'Family Care'],
-  },
-  {
+    id: 'physio',
+    accent: '#047857', accentLight: '#d1fae5',
+    tag: 'Rehabilitation',
     label: 'Physiotherapy',
-    icon: '💪',
-    desc: 'Personalised rehabilitation for pain relief, post-surgery recovery, mobility improvement, and sports injury management.',
-    tags: ['Pain Relief', 'Post-Surgery', 'Mobility', 'Sports Rehab'],
+    desc: 'Personalized rehabilitation and movement therapy to reduce pain, improve mobility, and restore daily function.',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="5" r="2"/>
+        <path d="M8 22v-8l-2-4h12l-2 4v8"/>
+        <path d="M8 14h8"/>
+      </svg>
+    ),
   },
 ];
 
+/* ── Specialty card sub-component ── */
+const SpecCard = ({ sp, vis, delay, navigate }) => {
+  const [hov, setHov] = React.useState(false);
+  return (
+    <div
+      onClick={() => { navigate('/services'); window.scrollTo(0, 0); }}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        background: '#fff',
+        borderRadius: '18px',
+        padding: '1.75rem 1.6rem 1.5rem',
+        border: `1.5px solid ${hov ? sp.accent + '35' : '#edf2f7'}`,
+        boxShadow: hov
+          ? `0 18px 44px rgba(0,0,0,0.07), 0 0 0 1px ${sp.accent}15`
+          : '0 2px 12px rgba(14,31,63,0.045)',
+        cursor: 'pointer',
+        transform: hov ? 'translateY(-5px)' : 'translateY(0)',
+        transition: 'all 0.26s cubic-bezier(0.34,1.4,0.64,1)',
+        opacity: vis ? 1 : 0,
+        transitionDelay: `${delay}s`,
+        position: 'relative',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* Top accent strip */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+        background: `linear-gradient(90deg,${sp.accent},${sp.accent}55)`,
+        opacity: hov ? 1 : 0.35,
+        transition: 'opacity 0.26s ease',
+      }} />
+
+      {/* Icon bubble */}
+      <div style={{
+        width: 52, height: 52, borderRadius: '14px',
+        background: hov ? sp.accent : sp.accentLight,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        marginBottom: '1.1rem',
+        color: hov ? '#fff' : sp.accent,
+        transition: 'all 0.26s ease',
+        boxShadow: hov ? `0 6px 18px ${sp.accent}45` : 'none',
+        flexShrink: 0,
+      }}>
+        {sp.icon}
+      </div>
+
+      {/* Tag */}
+      <div style={{
+        fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase',
+        letterSpacing: '0.1em', color: sp.accent, marginBottom: '0.3rem',
+      }}>
+        {sp.tag}
+      </div>
+
+      {/* Title */}
+      <h3 style={{
+        color: '#0c1f3f', fontWeight: 800, fontSize: '0.97rem',
+        lineHeight: 1.25, margin: '0 0 0.65rem',
+      }}>
+        {sp.label}
+      </h3>
+
+      {/* Description */}
+      <p style={{
+        color: '#64748b', fontSize: '0.82rem', lineHeight: 1.68,
+        margin: '0 0 1.25rem', flex: 1,
+      }}>
+        {sp.desc}
+      </p>
+
+      {/* CTA */}
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
+        color: sp.accent, fontWeight: 700, fontSize: '0.8rem',
+        transform: hov ? 'translateX(4px)' : 'translateX(0)',
+        transition: 'transform 0.22s ease',
+        marginTop: 'auto',
+      }}>
+        Learn More
+        <ArrowRight size={13} />
+      </div>
+    </div>
+  );
+};
+
 const Services = ({ goBook }) => {
   const [ref, vis] = useInView(0.04);
+  const navigate   = useNavigate();
+
   return (
-    <section id="services" style={{ background: '#fff', padding: '4.5rem 0', borderTop: '1px solid #f1f5f9' }}>
-      <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem', gap: '1rem', flexWrap: 'wrap' }}>
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
-              Clinical Specialities
+    <section id="services" style={{
+      background: '#fff',
+      padding: '5.5rem 0',
+      borderTop: '1px solid #f0f4f8',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      {/* Subtle background texture */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(3,105,161,0.03) 0%, transparent 60%), radial-gradient(circle at 10% 80%, rgba(5,150,105,0.025) 0%, transparent 55%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+
+        {/* ── Section heading ── */}
+        <div style={{
+          display: 'flex', justifyContent: 'space-between',
+          alignItems: 'flex-end', marginBottom: '3rem',
+          gap: '1rem', flexWrap: 'wrap',
+        }}>
+          <div style={{ maxWidth: 600 }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+              background: '#e0f2fe', borderRadius: '999px',
+              padding: '0.28rem 0.85rem', marginBottom: '0.9rem',
+            }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#0369a1' }} />
+              <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                Clinical Specialties
+              </span>
             </div>
-            <h2 style={{ color: '#0c4a6e', margin: 0, fontSize: 'clamp(1.5rem,4vw,2.3rem)' }}>Services & Specialities</h2>
-            <p style={{ color: '#64748b', marginTop: '0.4rem', fontSize: '0.95rem', maxWidth: 520, margin: '0.4rem 0 0' }}>
-              10 specialities and full diagnostic support — all under one roof at Karan Nagar.
+            <h2 style={{
+              color: '#0c1f3f', fontSize: 'clamp(1.7rem,3.8vw,2.4rem)',
+              fontWeight: 800, lineHeight: 1.18, margin: '0 0 0.75rem',
+            }}>
+              Specialized Care,{' '}
+              <span style={{
+                background: 'linear-gradient(135deg,#0369a1,#0ea5e9)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+              }}>
+                All Under One Roof
+              </span>
+            </h2>
+            <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.7, margin: 0, maxWidth: 520 }}>
+              Delivering trusted, patient-centered care across 10 essential specialties — with clinical excellence, comfort, and continuity at Karan Nagar.
             </p>
           </div>
-          <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#0369a1', fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none', flexShrink: 0 }}>
-            All services <ArrowRight size={14} />
+
+          <Link to="/services" onClick={() => window.scrollTo(0,0)} style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+            padding: '0.6rem 1.2rem', border: '1.5px solid #0369a1',
+            borderRadius: '9999px', color: '#0369a1', fontWeight: 700,
+            fontSize: '0.82rem', textDecoration: 'none',
+            transition: 'all 0.2s ease', flexShrink: 0,
+            background: 'transparent',
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background='#0369a1'; e.currentTarget.style.color='#fff'; }}
+            onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='#0369a1'; }}
+          >
+            All Specialties <ArrowRight size={13} />
           </Link>
         </div>
 
-        <div ref={ref} className="svc-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: '1px', background: '#e2e8f0', border: '1px solid #e2e8f0', borderRadius: '14px', overflow: 'hidden' }}>
-          {SERVICES.map((svc, i) => (
-            <div key={i} style={{
-              background: '#fff', padding: '1.25rem 1.3rem',
-              transition: 'background 0.2s',
-              opacity: vis ? 1 : 0,
-              transform: vis ? 'none' : 'translateY(12px)',
-              transitionDelay: `${i * 0.03}s`,
-              transitionProperty: 'opacity, transform, background',
-              transitionDuration: '0.4s',
-            }}
-              onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
-              onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-            >
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                <div style={{
-                  width: 40, height: 40, borderRadius: '10px',
-                  background: '#f0f9ff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '1.2rem', flexShrink: 0,
-                }}>{svc.icon}</div>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ color: '#0c4a6e', fontWeight: 800, fontSize: '0.9rem', margin: '0 0 0.25rem', lineHeight: 1.3 }}>{svc.label}</h3>
-                  <p style={{ color: '#64748b', fontSize: '0.78rem', lineHeight: 1.55, margin: 0 }}>{svc.desc}</p>
-                </div>
-              </div>
-            </div>
+        {/* ── Specialty card grid ── */}
+        <div
+          ref={ref}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+            gap: '1.1rem',
+          }}
+        >
+          {SPECIALTIES.map((sp, i) => (
+            <SpecCard key={sp.id} sp={sp} vis={vis} delay={i * 0.055} navigate={navigate} />
           ))}
         </div>
 
+        {/* ── CTA bar ── */}
         <div style={{
-          marginTop: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          gap: '1rem', flexWrap: 'wrap', background: '#f0f9ff',
-          border: '1px solid #bae6fd', borderRadius: '12px', padding: '1.2rem 1.4rem',
+          marginTop: '2.5rem',
+          background: 'linear-gradient(135deg,#0c1f3f 0%,#0369a1 60%,#0ea5e9 100%)',
+          borderRadius: '18px',
+          padding: 'clamp(1.5rem,3vw,2rem) clamp(1.5rem,3vw,2.5rem)',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          gap: '1.25rem', flexWrap: 'wrap',
         }}>
           <div>
-            <div style={{ fontWeight: 800, color: '#0c4a6e', fontSize: '0.95rem', marginBottom: '0.15rem' }}>Need a consultation?</div>
-            <div style={{ color: '#64748b', fontSize: '0.82rem' }}>Walk in or book ahead · Karan Nagar, Srinagar</div>
+            <div style={{ color: '#bae6fd', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '0.35rem' }}>
+              Apollo Clinic Srinagar
+            </div>
+            <div style={{ color: '#fff', fontWeight: 800, fontSize: 'clamp(1rem,2.5vw,1.25rem)', lineHeight: 1.25, marginBottom: '0.3rem' }}>
+              Need a consultation with a specialist?
+            </div>
+            <div style={{ color: '#94d3f7', fontSize: '0.84rem' }}>
+              Walk in or book ahead · Mon–Sat 12PM–7PM · Sun 10AM–1:30PM
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-            <button onClick={goBook} className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.88rem' }}>Book Appointment</button>
-            <a href={PHONE_HREF} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.6rem 1.1rem', background: '#fff', border: '1.5px solid #bae6fd', borderRadius: '9999px', color: '#0369a1', fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none' }}>
+          <div style={{ display: 'flex', gap: '0.7rem', flexWrap: 'wrap' }}>
+            <button onClick={goBook} style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+              padding: '0.7rem 1.4rem', background: '#fff',
+              color: '#0369a1', fontWeight: 800, fontSize: '0.88rem',
+              border: 'none', borderRadius: '10px', cursor: 'pointer',
+              fontFamily: 'inherit', transition: 'all 0.2s',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+            }}
+              onMouseEnter={e => e.currentTarget.style.transform='scale(1.04)'}
+              onMouseLeave={e => e.currentTarget.style.transform='scale(1)'}
+            >
+              <Calendar size={14} /> Book Appointment
+            </button>
+            <a href={PHONE_HREF} style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+              padding: '0.7rem 1.2rem',
+              background: 'rgba(255,255,255,0.12)',
+              border: '1.5px solid rgba(255,255,255,0.3)',
+              borderRadius: '10px', color: '#fff',
+              fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none',
+              transition: 'all 0.2s',
+            }}
+              onMouseEnter={e => e.currentTarget.style.background='rgba(255,255,255,0.2)'}
+              onMouseLeave={e => e.currentTarget.style.background='rgba(255,255,255,0.12)'}
+            >
               <Phone size={13} /> {PHONE}
             </a>
           </div>
         </div>
+
       </div>
     </section>
   );
 };
+
 
 /* ═══════════════════════════════════
    4. DOCTORS
