@@ -118,15 +118,29 @@ export default async function handler(req, res) {
   }
 
   /* ── Verify identity ── */
-  const submittedNameHash = crypto.createHash('sha256').update(fullName.toUpperCase().trim()).digest('hex');
-  const submittedDobHash  = crypto.createHash('sha256').update(dob.trim()).digest('hex');
+  // Normalize: uppercase, collapse spaces, trim
+  const normalizedName = fullName.toUpperCase().replace(/\s+/g, ' ').trim();
+  const normalizedDob  = dob.trim();
+
+  console.log('[Report Verify] Submitted name:', JSON.stringify(normalizedName));
+  console.log('[Report Verify] Submitted DOB:', JSON.stringify(normalizedDob));
+
+  const submittedNameHash = crypto.createHash('sha256').update(normalizedName).digest('hex');
+  const submittedDobHash  = crypto.createHash('sha256').update(normalizedDob).digest('hex');
+
+  console.log('[Report Verify] Name hash match:', submittedNameHash === payload.nh);
+  console.log('[Report Verify] DOB hash match:', submittedDobHash === payload.dh);
+  console.log('[Report Verify] Expected NH:', payload.nh?.slice(0, 12) + '...');
+  console.log('[Report Verify] Got NH:', submittedNameHash.slice(0, 12) + '...');
+  console.log('[Report Verify] Expected DH:', payload.dh?.slice(0, 12) + '...');
+  console.log('[Report Verify] Got DH:', submittedDobHash.slice(0, 12) + '...');
 
   const nameMatch = submittedNameHash === payload.nh;
   const dobMatch  = submittedDobHash === payload.dh;
 
   if (!nameMatch || !dobMatch) {
     recordAttempt(ipKey);
-    console.warn('[Report Verify] Failed verification from', ipKey, '- Name match:', nameMatch, 'DOB match:', dobMatch);
+    console.warn('[Report Verify] FAILED from', ipKey, '- Name match:', nameMatch, 'DOB match:', dobMatch);
     // Generic error — no indication of which field is wrong
     return res.status(401).json({ error: 'Verification failed. Please check your full name (in CAPITAL LETTERS) and date of birth.' });
   }

@@ -170,7 +170,8 @@ export default async function handler(req, res) {
   }
 
   /* ── Create verification hashes ── */
-  const nameHash = crypto.createHash('sha256').update(cleanName.toUpperCase().trim()).digest('hex');
+  const normalizedName = cleanName.toUpperCase().replace(/\s+/g, ' ').trim();
+  const nameHash = crypto.createHash('sha256').update(normalizedName).digest('hex');
   const dobHash  = crypto.createHash('sha256').update(cleanDob.trim()).digest('hex');
 
   /* ── Encrypt report token ── */
