@@ -229,7 +229,7 @@ const Services = () => {
             <ArrowRight size={12} />
             <span>Clinical Specialties</span>
           </nav>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '3rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 440px', gap: '3rem', alignItems: 'center' }}>
             <div>
               <div className="section-label">Our Services</div>
               <h1 style={{ marginBottom: '0.85rem' }}>
@@ -247,25 +247,43 @@ const Services = () => {
                 </a>
               </div>
             </div>
-            {/* Stats panel */}
-            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--r-xl)', padding: '1.75rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-                {[
-                  { n: '10+', l: 'Specialties' },
-                  { n: '6',   l: 'Doctors' },
-                  { n: '24/7', l: 'Reports Online' },
-                  { n: '100%', l: 'In-House Lab' },
-                ].map(s => (
-                  <div key={s.l} style={{ textAlign: 'center', padding: '1rem', background: '#fff', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)' }}>
-                    <div style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--navy)', letterSpacing: '-0.03em', lineHeight: 1 }}>{s.n}</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 500, marginTop: '0.3rem' }}>{s.l}</div>
-                  </div>
-                ))}
+
+            {/* Image with Floating Stats Overlay */}
+            <div style={{ position: 'relative', marginTop: '1rem' }}>
+              {/* Collage Image */}
+              <div style={{ borderRadius: 'var(--r-xl)', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
+                <img src="/services-collage.jpg" alt="Apollo Clinic Services" style={{ width: '100%', display: 'block', objectFit: 'cover' }} />
+              </div>
+
+              {/* Smaller Stats panel floating overlay */}
+              <div style={{
+                position: 'absolute', bottom: '-1.5rem', left: '-2.5rem',
+                background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r-xl)',
+                padding: '1.2rem', boxShadow: '0 10px 30px rgba(15,23,42,0.08)',
+                maxWidth: '280px',
+              }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
+                  {[
+                    { n: '10+', l: 'Specialties' },
+                    { n: '6',   l: 'Doctors' },
+                    { n: '24/7', l: 'Reports Online' },
+                    { n: '100%', l: 'In-House Lab' },
+                  ].map(s => (
+                    <div key={s.l} style={{ textAlign: 'center', padding: '0.75rem 0.5rem', background: '#f8fafc', borderRadius: 'var(--r-md)', border: '1px solid var(--border)' }}>
+                      <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--navy)', letterSpacing: '-0.03em', lineHeight: 1 }}>{s.n}</div>
+                      <div style={{ fontSize: '0.62rem', color: 'var(--muted)', fontWeight: 600, marginTop: '0.3rem' }}>{s.l}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <style>{`@media(max-width:860px){section > .container > div[style*="grid-template-columns: 1fr 380px"]{grid-template-columns:1fr!important}}`}</style>
+        <style>{`@media(max-width:860px){
+          section > .container > div[style*="grid-template-columns: 1fr 440px"]{grid-template-columns:1fr!important; gap: 2rem !important; padding-bottom: 1.5rem;}
+          section > .container > div[style*="grid-template-columns"] > div:last-child { margin-top: 2rem !important; }
+          section > .container > div[style*="grid-template-columns"] > div:last-child > div:last-child { left: 50% !important; transform: translateX(-50%); bottom: -2rem !important; width: 90%; max-width: none; }
+        }`}</style>
       </section>
 
       {/* ── Trust strip ── */}
