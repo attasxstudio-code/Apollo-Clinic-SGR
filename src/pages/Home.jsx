@@ -56,9 +56,8 @@ const Hero = ({ goBook, goTo }) => {
       padding: 'clamp(3.5rem,8vw,5.5rem) 0 clamp(3rem,6vw,5rem)',
     }}>
       <div className="container">
-        <div style={{
+        <div className="hero-split" style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 420px',
           gap: '3.5rem',
           alignItems: 'center',
         }}>
@@ -567,7 +566,7 @@ const PRINCIPLES = [
 const GuidingPrinciples = ({ goBook, goTo }) => {
   const [ref, vis] = useInView(0.06);
   return (
-    <section style={{ background: '#fff', padding: '5rem 0', borderTop: '1px solid var(--border)' }}>
+    <section id="principles" style={{ background: '#fff', padding: '5rem 0', borderTop: '1px solid var(--border)' }}>
       <div className="container">
         <div style={{
           display: 'grid',
@@ -631,7 +630,7 @@ const GuidingPrinciples = ({ goBook, goTo }) => {
 
       <style>{`
         @media (max-width: 860px) {
-          section:has(h2 ~ [style*="grid-template-columns: 420px"]) .container > div {
+          #principles .container > div {
             grid-template-columns: 1fr !important;
           }
         }
