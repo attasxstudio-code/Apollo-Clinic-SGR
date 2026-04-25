@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Phone, CheckCircle, ArrowRight, Clock, MapPin } from 'lucide-react';
+import { Calendar, Phone, CheckCircle, ArrowRight, Clock, MapPin, ShieldCheck } from 'lucide-react';
 
 const PHONE      = '+91 9149425496';
 const PHONE_HREF = 'tel:+919149425496';
@@ -200,33 +200,69 @@ const Diagnostics = () => {
             </div>
 
             {/* Right info card */}
-            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--r-xl)', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ fontWeight: 800, fontSize: '0.97rem', color: 'var(--heading)' }}>In-House Laboratory</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                {[
-                  { icon: <CheckCircle size={14} />, text: 'ECG & ECHO on site — no referrals needed' },
-                  { icon: <CheckCircle size={14} />, text: 'Blood tests processed in-house' },
-                  { icon: <CheckCircle size={14} />, text: 'Same-visit report review with your doctor' },
-                  { icon: <CheckCircle size={14} />, text: 'Secure online report access' },
-                  { icon: <CheckCircle size={14} />, text: 'Certified diagnostic equipment' },
-                ].map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.84rem', color: 'var(--body)' }}>
-                    <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: '1px' }}>{item.icon}</span>
-                    {item.text}
+            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--r-xl)', overflow: 'hidden' }}>
+
+              {/* Lab photo with NABL badge overlay */}
+              <div style={{ position: 'relative', height: 240, overflow: 'hidden' }}>
+                <img
+                  src="/lab-technician.jpg"
+                  alt="Apollo Clinic In-House Laboratory"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+                />
+                {/* NABL Accredited floating badge */}
+                <div style={{
+                  position: 'absolute', bottom: '1rem', right: '1rem',
+                  background: 'rgba(255,255,255,0.97)',
+                  borderRadius: '14px', padding: '0.65rem 0.9rem',
+                  display: 'flex', alignItems: 'center', gap: '0.6rem',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.14)',
+                  maxWidth: '200px',
+                }}>
+                  <div style={{
+                    width: 36, height: 36, borderRadius: '50%',
+                    background: 'var(--blue-light)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>
+                    <ShieldCheck size={18} color="var(--blue)" />
                   </div>
-                ))}
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem', marginTop: '0.25rem' }}>
-                <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '0.85rem', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--navy)', letterSpacing: '-0.03em' }}>6+</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 500 }}>Test Types</div>
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: '0.82rem', color: 'var(--heading)', lineHeight: 1.2 }}>NABL Accredited</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--muted)', lineHeight: 1.4, marginTop: '0.1rem' }}>Ensuring the highest standards of diagnostic accuracy.</div>
+                  </div>
                 </div>
-                <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '0.85rem', textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--navy)', letterSpacing: '-0.03em' }}>Same</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 500 }}>Day Results</div>
+              </div>
+
+              {/* Info content */}
+              <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ fontWeight: 800, fontSize: '0.97rem', color: 'var(--heading)' }}>In-House Laboratory</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                  {[
+                    { icon: <CheckCircle size={14} />, text: 'ECG & ECHO on site — no referrals needed' },
+                    { icon: <CheckCircle size={14} />, text: 'Blood tests processed in-house' },
+                    { icon: <CheckCircle size={14} />, text: 'Same-visit report review with your doctor' },
+                    { icon: <CheckCircle size={14} />, text: 'Secure online report access' },
+                    { icon: <CheckCircle size={14} />, text: 'Certified diagnostic equipment' },
+                  ].map((item, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.84rem', color: 'var(--body)' }}>
+                      <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: '1px' }}>{item.icon}</span>
+                      {item.text}
+                    </div>
+                  ))}
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem', marginTop: '0.25rem' }}>
+                  <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '0.85rem', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--navy)', letterSpacing: '-0.03em' }}>6+</div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 500 }}>Test Types</div>
+                  </div>
+                  <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '0.85rem', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--navy)', letterSpacing: '-0.03em' }}>Same</div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: 500 }}>Day Results</div>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         <style>{`@media(max-width:860px){ section .container > div[style*="grid-template-columns: 1fr 360px"]{grid-template-columns:1fr!important}}`}</style>
