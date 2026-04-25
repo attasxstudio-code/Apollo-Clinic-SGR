@@ -139,30 +139,31 @@ const ServiceCard = ({ svc, vis, delay, onBook, onDoctor }) => {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background: '#fff',
-        border: `1px solid ${hov ? 'var(--blue-border)' : 'var(--border)'}`,
+        background: 'linear-gradient(150deg, #ffffff 0%, #f7fafe 100%)',
+        border: `1px solid ${hov ? 'rgba(13,82,192,0.2)' : 'rgba(13,82,192,0.08)'}`,
         borderRadius: 'var(--r-xl)',
         display: 'flex', flexDirection: 'column',
-        transition: 'all 0.2s ease',
-        boxShadow: hov ? 'var(--shadow-md)' : 'var(--shadow-xs)',
-        transform: hov ? 'translateY(-2px)' : 'none',
+        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+        boxShadow: hov ? '0 16px 32px rgba(13,82,192,0.12)' : '0 4px 16px rgba(13,82,192,0.04)',
+        transform: hov ? 'translateY(-3px)' : 'none',
         opacity: vis ? 1 : 0,
         transitionDelay: `${delay}s`,
         overflow: 'hidden',
       }}
     >
       {/* Top accent line */}
-      <div style={{ height: 3, background: hov ? 'var(--blue)' : 'var(--border)', transition: 'background 0.2s' }} />
+      <div style={{ height: 3, background: hov ? 'var(--blue)' : 'var(--border)', transition: 'background 0.3s' }} />
 
-      <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '0' }}>
+      <div style={{ padding: '1.25rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '0' }}>
         {/* Icon + dept */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
           <div style={{
             width: 46, height: 46, borderRadius: 'var(--r-md)',
-            background: hov ? 'var(--navy)' : 'var(--blue-light)',
+            background: hov ? 'linear-gradient(135deg, var(--navy), var(--blue))' : 'var(--blue-light)',
             color: hov ? '#fff' : 'var(--blue)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'all 0.2s',
+            transition: 'all 0.3s',
+            boxShadow: hov ? '0 4px 12px rgba(13,82,192,0.2)' : 'none',
           }}>
             {svc.icon}
           </div>
@@ -171,15 +172,15 @@ const ServiceCard = ({ svc, vis, delay, onBook, onDoctor }) => {
           </span>
         </div>
 
-        <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.5rem', lineHeight: 1.2 }}>{svc.name}</h3>
-        <p style={{ fontSize: '0.82rem', color: 'var(--body)', lineHeight: 1.65, marginBottom: '0.85rem' }}>{svc.desc}</p>
+        <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem', lineHeight: 1.3 }}>{svc.name}</h3>
+        <p style={{ fontSize: '0.86rem', color: 'var(--body)', lineHeight: 1.55, marginBottom: '0.85rem' }}>{svc.desc}</p>
 
         {/* Doctor */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1rem', padding: '0.5rem 0.65rem', background: 'var(--bg)', borderRadius: 'var(--r-md)' }}>
-          <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.6rem', fontWeight: 900, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1rem', padding: '0.5rem 0.65rem', background: 'rgba(13,82,192,0.03)', borderRadius: 'var(--r-md)', border: '1px solid rgba(13,82,192,0.05)' }}>
+          <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'linear-gradient(135deg, var(--blue-light), #e0eeff)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.65rem', fontWeight: 900, flexShrink: 0 }}>
             {svc.doctor.includes('Visiting') ? '?' : svc.doctor.split(' ')[1]?.[0]}{svc.doctor.split(' ')[2]?.[0]}
           </div>
-          <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--heading)' }}>{svc.doctor}</span>
+          <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--heading)' }}>{svc.doctor}</span>
         </div>
 
         {/* Feature tags */}

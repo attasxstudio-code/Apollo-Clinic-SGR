@@ -596,24 +596,25 @@ const GuidingPrinciples = ({ goBook, goTo }) => {
           <div ref={ref} className="principles-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             {PRINCIPLES.map((p, i) => (
               <div key={i} style={{
-                background: 'var(--bg)',
-                border: '1px solid var(--border)',
+                background: 'linear-gradient(150deg, #ffffff 0%, #f7fafe 100%)',
+                border: '1px solid rgba(13,82,192,0.08)',
                 borderRadius: 'var(--r-xl)',
-                padding: '1.5rem',
+                padding: '1.25rem',
                 opacity: vis ? 1 : 0,
+                boxShadow: '0 4px 16px rgba(13,82,192,0.04)',
                 transform: vis ? 'none' : 'translateY(14px)',
-                transition: `opacity 0.45s ease ${i * 0.08}s, transform 0.4s ease ${i * 0.08}s`,
+                transition: `all 0.4s ease ${i * 0.08}s`,
               }}>
                 <div style={{
-                  width: 40, height: 40, borderRadius: 'var(--r-md)',
-                  background: 'var(--blue-light)', color: 'var(--blue)',
+                  width: 44, height: 44, borderRadius: 'var(--r-md)',
+                  background: 'linear-gradient(135deg, var(--blue-light), #e0eeff)', color: 'var(--blue)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  marginBottom: '0.85rem',
+                  marginBottom: '1rem',
                 }}>
                   {p.icon}
                 </div>
-                <div style={{ fontWeight: 700, fontSize: '0.93rem', color: 'var(--heading)', marginBottom: '0.35rem' }}>{p.title}</div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--body)', lineHeight: 1.62 }}>{p.desc}</div>
+                <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--heading)', marginBottom: '0.4rem', lineHeight: 1.3 }}>{p.title}</div>
+                <div style={{ fontSize: '0.86rem', color: 'var(--body)', lineHeight: 1.55 }}>{p.desc}</div>
               </div>
             ))}
           </div>

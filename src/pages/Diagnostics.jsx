@@ -282,30 +282,31 @@ const Diagnostics = () => {
           <div ref={servRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1rem' }}>
             {DIAG_SERVICES.map((svc, i) => (
               <div key={i} style={{
-                background: '#fff',
-                border: '1px solid var(--border)',
+                background: 'linear-gradient(150deg, #ffffff 0%, #f7fafe 100%)',
+                border: '1px solid rgba(13,82,192,0.08)',
                 borderRadius: 'var(--r-xl)',
                 overflow: 'hidden',
-                transition: 'all 0.2s',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                boxShadow: '0 4px 16px rgba(13,82,192,0.04)',
                 opacity: servVis ? 1 : 0,
                 transform: servVis ? 'none' : 'translateY(14px)',
                 transitionDelay: `${i * 0.04}s`,
               }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--blue-border)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none'; }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(13,82,192,0.2)'; e.currentTarget.style.boxShadow = '0 16px 32px rgba(13,82,192,0.12)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(13,82,192,0.08)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(13,82,192,0.04)'; e.currentTarget.style.transform = 'none'; }}
               >
                 <div style={{ height: 3, background: 'var(--blue)' }} />
-                <div style={{ padding: '1.5rem' }}>
+                <div style={{ padding: '1.25rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
-                    <div style={{ width: 44, height: 44, borderRadius: 'var(--r-md)', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: 44, height: 44, borderRadius: 'var(--r-md)', background: 'linear-gradient(135deg, var(--blue-light), #e0eeff)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {svc.icon}
                     </div>
                     <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '0.18rem 0.55rem', borderRadius: 'var(--r-sm)', border: '1px solid var(--blue-border)' }}>
                       {svc.tag}
                     </span>
                   </div>
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem', lineHeight: 1.2 }}>{svc.name}</h3>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--body)', lineHeight: 1.65, marginBottom: '0.85rem' }}>{svc.detail}</p>
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem', lineHeight: 1.3 }}>{svc.name}</h3>
+                  <p style={{ fontSize: '0.86rem', color: 'var(--body)', lineHeight: 1.55, marginBottom: '0.85rem' }}>{svc.detail}</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '1.1rem' }}>
                     {svc.includes.map((inc, j) => (
                       <span key={j} style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--r-sm)', fontSize: '0.68rem', fontWeight: 500, color: 'var(--body)', padding: '0.15rem 0.5rem' }}>
