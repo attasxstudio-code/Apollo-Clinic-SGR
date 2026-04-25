@@ -34,7 +34,7 @@ const DIAG_SERVICES = [
     name: 'ECHO — Echocardiogram',
     tag: 'Cardiac',
     short: 'Ultrasound imaging of heart structure, chambers, and valves.',
-    detail: 'Echocardiography uses sound waves to produce detailed images of the heart's anatomy. It evaluates heart muscle function, valve conditions, and congenital abnormalities without any radiation.',
+    detail: "Echocardiography uses sound waves to produce detailed images of the heart's anatomy. It evaluates heart muscle function, valve conditions, and congenital abnormalities without any radiation.",
     includes: ['2D cardiac imaging', 'Valve assessment', 'Ejection fraction', 'Wall motion analysis'],
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
