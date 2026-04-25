@@ -49,11 +49,27 @@ const Navbar = () => {
             className="navbar-logo"
             onClick={() => goTo('/')}
             aria-label="Apollo Clinic Srinagar — home"
+            style={{ position: 'relative' }}
           >
+            <div style={{
+              position: 'absolute',
+              inset: '-4px -10px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, rgba(3,105,161,0.08) 0%, rgba(14,165,233,0.06) 50%, rgba(16,185,129,0.06) 100%)',
+              border: '1px solid rgba(3,105,161,0.1)',
+              zIndex: 0,
+            }} />
             <img 
               src="/logo.jpg" 
               alt="Apollo Clinic Srinagar Logo" 
-              style={{ height: '44px', width: 'auto', objectFit: 'contain' }} 
+              style={{ 
+                height: '44px', 
+                width: 'auto', 
+                objectFit: 'contain', 
+                position: 'relative', 
+                zIndex: 1,
+                filter: 'contrast(1.1) saturate(1.15)',
+              }} 
             />
           </button>
 
