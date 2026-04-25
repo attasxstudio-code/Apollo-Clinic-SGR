@@ -35,14 +35,13 @@ const Footer = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
               <div style={{
-                width: 36, height: 36, borderRadius: '8px',
+                width: 48, height: 48, borderRadius: '10px',
                 background: '#fff',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+                overflow: 'hidden',
               }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="var(--navy)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2v20M2 12h20"/>
-                </svg>
+                <img src="/logo.jpg" alt="Apollo Clinic Logo" style={{ width: '44px', height: '44px', objectFit: 'contain' }} />
               </div>
               <div>
                 <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#fff', lineHeight: 1.2 }}>
