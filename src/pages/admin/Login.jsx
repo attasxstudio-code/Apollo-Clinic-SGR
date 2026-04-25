@@ -194,9 +194,9 @@ const Login = () => {
           <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--muted)', fontSize: '0.75rem', marginBottom: '0.35rem' }}>
             🔒 Secure admin access only
           </p>
-          <div style={{ textAlign: 'center' }}>
-            <Link to="/" style={{ color: 'var(--blue)', fontSize: '0.8rem', fontWeight: 600 }}>
-              ← Back to Apollo Clinic
+          <div style={{ marginTop: '1.2rem' }}>
+            <Link to="/" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--r-md)' }}>
+              ← Back to Apollo
             </Link>
           </div>
         </div>

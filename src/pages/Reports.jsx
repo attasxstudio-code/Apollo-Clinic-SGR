@@ -159,9 +159,9 @@ const Reports = () => {
             </button>
           </form>
 
-          <div style={{ textAlign: 'center', marginTop: '1.1rem', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
-            <Link to="/" style={{ color: 'var(--muted)', fontSize: '0.78rem', fontWeight: 500 }}>
-              Need help accessing your report?
+          <div style={{ marginTop: '1.1rem', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
+            <Link to="/" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--r-md)' }}>
+              ← Back to Apollo
             </Link>
           </div>
         </div>
