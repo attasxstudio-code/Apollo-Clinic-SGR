@@ -164,7 +164,6 @@ Dr. Asma is particularly passionate about mental health awareness in Kashmir and
 
 const SPECIALTIES_FILTER = ['All', 'Primary Care', 'Skin & Hair', 'Child Health', "Women's Health", 'Bone & Joint', 'Mental Health'];
 
-/* ── Doctor card (Find a Doctor page) ── */
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
   return (
@@ -172,22 +171,38 @@ const DoctorCard = ({ doc, onProfile, onBook }) => {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background: '#fff',
-        border: `1px solid ${hov ? 'var(--blue-border)' : 'var(--border)'}`,
+        background: 'linear-gradient(150deg, #ffffff 0%, #f7fafe 100%)',
+        border: `1px solid ${hov ? 'rgba(13,82,192,0.2)' : 'rgba(13,82,192,0.08)'}`,
         borderRadius: 'var(--r-xl)',
-        overflow: 'hidden',
-        transition: 'all 0.2s',
-        boxShadow: hov ? 'var(--shadow-md)' : 'var(--shadow-xs)',
         display: 'flex', flexDirection: 'column',
+        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+        boxShadow: hov ? '0 16px 32px rgba(13,82,192,0.12)' : '0 4px 16px rgba(13,82,192,0.04)',
+        transform: hov ? 'translateY(-3px)' : 'none',
+        overflow: 'hidden',
       }}
     >
+      {/* Top accent line */}
+      <div style={{ height: 3, background: hov ? 'var(--blue)' : 'var(--border)', transition: 'background 0.3s' }} />
+
       {/* Avatar area */}
-      <div style={{ background: 'var(--blue-light)', height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-        <div style={{ fontSize: '2.2rem', fontWeight: 900, color: 'var(--navy)', letterSpacing: '-0.03em' }}>
+      <div style={{ 
+        background: hov ? 'linear-gradient(135deg, var(--navy), var(--blue))' : 'var(--blue-light)', 
+        height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative',
+        transition: 'all 0.3s',
+        boxShadow: hov ? '0 4px 12px rgba(13,82,192,0.1)' : 'none',
+      }}>
+        <div style={{ fontSize: '2.2rem', fontWeight: 900, color: hov ? '#fff' : 'var(--navy)', letterSpacing: '-0.03em', transition: 'color 0.3s' }}>
           {doc.initials}
         </div>
         <div style={{ position: 'absolute', top: 10, right: 10 }}>
-          <span style={{ background: 'var(--green-light)', border: '1px solid var(--green-border)', borderRadius: 'var(--r-sm)', fontSize: '0.62rem', fontWeight: 700, color: 'var(--green)', padding: '0.18rem 0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <span style={{ 
+            background: hov ? 'rgba(255,255,255,0.2)' : 'var(--green-light)', 
+            border: hov ? '1px solid rgba(255,255,255,0.4)' : '1px solid var(--green-border)', 
+            borderRadius: 'var(--r-sm)', fontSize: '0.62rem', fontWeight: 700, 
+            color: hov ? '#fff' : 'var(--green)', 
+            padding: '0.18rem 0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em',
+            transition: 'all 0.3s'
+          }}>
             {doc.avail}
           </span>
         </div>
@@ -198,11 +213,15 @@ const DoctorCard = ({ doc, onProfile, onBook }) => {
         <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--blue)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
           {doc.specialty}
         </div>
-        <div style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--heading)', lineHeight: 1.2 }}>{doc.name}</div>
-        <div style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '0.5rem' }}>{doc.qual}</div>
-        <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-          <span style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--r-sm)', fontSize: '0.67rem', fontWeight: 600, color: 'var(--body)', padding: '0.18rem 0.5rem' }}>{doc.exp}</span>
-          <span style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--r-sm)', fontSize: '0.67rem', fontWeight: 600, color: 'var(--body)', padding: '0.18rem 0.5rem' }}>{doc.languages[0]}</span>
+        <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--heading)', lineHeight: 1.3 }}>{doc.name}</div>
+        <div style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '0.85rem' }}>{doc.qual}</div>
+        <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+          <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.68rem', fontWeight: 600, padding: '0.18rem 0.55rem', borderRadius: 'var(--r-sm)' }}>
+            Exp: {doc.exp}
+          </span>
+          <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.68rem', fontWeight: 600, padding: '0.18rem 0.55rem', borderRadius: 'var(--r-sm)' }}>
+            {doc.languages[0]}
+          </span>
         </div>
       </div>
 
@@ -210,19 +229,19 @@ const DoctorCard = ({ doc, onProfile, onBook }) => {
       <div style={{ padding: '0 1.25rem 1.25rem', display: 'flex', gap: '0.5rem' }}>
         <button
           onClick={onProfile}
-          style={{ flex: 1, padding: '0.55rem 0.75rem', fontSize: '0.8rem', fontWeight: 600, color: 'var(--navy)', background: '#fff', border: '1.5px solid var(--navy)', borderRadius: 'var(--r-md)', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s' }}
+          style={{ flex: 1, padding: '0.65rem 0.75rem', fontSize: '0.8rem', fontWeight: 600, color: 'var(--navy)', background: '#fff', border: '1.5px solid var(--navy)', borderRadius: 'var(--r-md)', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg)'; }}
           onMouseLeave={e => { e.currentTarget.style.background = '#fff'; }}
         >
-          Learn More
+          View Profile
         </button>
         <button
           onClick={onBook}
-          style={{ flex: 1, padding: '0.55rem 0.75rem', fontSize: '0.8rem', fontWeight: 700, color: '#fff', background: 'var(--navy)', border: '1.5px solid var(--navy)', borderRadius: 'var(--r-md)', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s' }}
-          onMouseEnter={e => e.currentTarget.style.background = 'var(--navy-hover)'}
+          style={{ flex: 1, padding: '0.65rem 0.75rem', fontSize: '0.8rem', fontWeight: 700, color: '#fff', background: 'var(--navy)', border: '1.5px solid var(--navy)', borderRadius: 'var(--r-md)', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          onMouseEnter={e => e.currentTarget.style.background = 'var(--blue)'}
           onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}
         >
-          Book
+          Book Now
         </button>
       </div>
     </div>
