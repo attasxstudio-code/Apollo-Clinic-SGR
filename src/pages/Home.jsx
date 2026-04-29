@@ -6,7 +6,7 @@ import {
   FileText, Navigation, Stethoscope, ShieldCheck, 
   Baby, HeartPulse, Syringe, Users, ChevronRight,
   ChevronLeft, Briefcase, Lock, Mail, Check,
-  Facebook, Instagram, Youtube, Linkedin, Menu, X
+  Facebook, Instagram, Youtube, Linkedin, Menu, X, UserCircle
 } from 'lucide-react';
 
 /* ─── Constants ─── */
