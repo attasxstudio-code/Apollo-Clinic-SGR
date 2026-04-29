@@ -168,12 +168,13 @@ const Home = () => {
             className="no-scrollbar"
           >
             {ALL_DOCTORS.map((d, i) => (
-              <div key={i} className="card" onClick={() => goTo(`/doctors/${d.id}`)} style={{ minWidth: '300px', flexShrink: 0, padding: 0, overflow: 'hidden', cursor: 'pointer', scrollSnapAlign: 'start' }}>
+              <div key={i} className="card" onClick={() => goTo(`/doctors/${d.id}`)} style={{ flex: '0 0 calc((100% - 6rem) / 4)', padding: 0, overflow: 'hidden', cursor: 'pointer', scrollSnapAlign: 'start' }}>
                 <img src={d.image} alt={d.name} style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
                 <div style={{ padding: '1.5rem' }}>
                   <h3 style={{ fontSize: '1.2rem', color: 'var(--blue)', marginBottom: '0.25rem' }}>{d.name}</h3>
-                  <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.25rem' }}>{d.specialty}</p>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '0.75rem' }}>{d.education}</p>
+                  <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.25rem' }}>{d.title || d.specialty}</p>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '0.75rem' }}>{d.qual}</p>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0 }}>{d.exp} experience</p>
                 </div>
               </div>
             ))}
@@ -248,7 +249,7 @@ const Home = () => {
             className="no-scrollbar"
           >
             {REVIEWS.map((r, i) => (
-              <div key={i} className="card" style={{ minWidth: '400px', flexShrink: 0, padding: '2.5rem', display: 'flex', flexDirection: 'column', scrollSnapAlign: 'start' }}>
+              <div key={i} className="card" style={{ flex: '0 0 calc((100% - 4rem) / 3)', padding: '2.5rem', display: 'flex', flexDirection: 'column', scrollSnapAlign: 'start' }}>
                 <div style={{ display: 'flex', gap: '0.25rem', color: '#f59e0b', marginBottom: '1.5rem' }}>
                   {[1,2,3,4,5].map(star => <Star key={star} size={20} fill="currentColor" />)}
                 </div>
