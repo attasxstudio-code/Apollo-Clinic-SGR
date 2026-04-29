@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Calendar, Phone } from 'lucide-react';
+import { Menu, X, Calendar, Phone, Lock } from 'lucide-react';
 
 const PHONE      = '+91 9149425496';
 const PHONE_HREF = 'tel:+919149425496';
@@ -88,33 +88,20 @@ const Navbar = () => {
           </nav>
 
           {/* ── Desktop Actions ── */}
-          <div className="navbar-actions">
-            {/* Status dot */}
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: '0.35rem',
-              fontSize: '0.75rem', fontWeight: 600,
-              color: status.open ? 'var(--green)' : 'var(--muted)',
-              padding: '0.3rem 0.65rem',
-              background: status.open ? 'var(--green-light)' : 'var(--bg-alt)',
-              border: `1px solid ${status.open ? 'var(--green-border)' : 'var(--border)'}`,
-              borderRadius: 'var(--r-full)',
-              whiteSpace: 'nowrap',
-            }}>
-              <span style={{
-                width: 6, height: 6, borderRadius: '50%',
-                background: status.open ? 'var(--green)' : 'var(--muted)',
-                display: 'inline-block', flexShrink: 0,
-              }} />
-              {status.open ? 'Open Now' : 'Closed'}
-            </div>
-
+          <div className="navbar-actions" style={{ gap: '1rem' }}>
             <button
-              className="btn btn-primary btn-sm"
-              onClick={() => goTo('/book')}
-              style={{ borderRadius: 'var(--r-full)' }}
+              className="btn btn-outline-blue"
+              onClick={() => goTo('/admin/login')}
+              style={{ fontSize: '0.9rem', fontWeight: 600, padding: '0.5rem 1rem', borderRadius: 'var(--r-full)' }}
             >
-              <Calendar size={14} />
-              Book Appointment
+              <Lock size={16} /> Admin Login
+            </button>
+            <button
+              className="btn btn-orange"
+              onClick={() => goTo('/book')}
+              style={{ fontSize: '0.9rem', fontWeight: 600, padding: '0.5rem 1rem', borderRadius: 'var(--r-full)' }}
+            >
+              <Calendar size={16} /> Book Appointment
             </button>
           </div>
 

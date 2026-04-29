@@ -392,8 +392,8 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   justify-content: center;
 }
 .navbar-link {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--body);
   padding: 0.45rem 0.75rem;
   border-radius: var(--r-md);
@@ -406,7 +406,6 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
 }
 .navbar-link:hover, .navbar-link.active {
   color: var(--blue);
-  background: var(--blue-light);
 }
 .navbar-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
 .navbar-toggle {
