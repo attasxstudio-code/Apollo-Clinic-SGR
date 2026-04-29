@@ -220,7 +220,18 @@ const Services = () => {
               <div key={i} style={{ 
                 background: '#fff', borderRadius: '16px', padding: '2rem 1.5rem', 
                 border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center'
+                display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+                transition: 'all 0.3s ease', cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(13,82,192,0.1)';
+                e.currentTarget.style.borderColor = 'rgba(13,82,192,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
               }}>
                 <div style={{ 
                   width: '64px', height: '64px', borderRadius: '50%', 
@@ -268,7 +279,18 @@ const Services = () => {
               <div key={i} style={{ 
                 background: '#fff', borderRadius: '16px', padding: '2rem 1.5rem', 
                 border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
-                display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left'
+                display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left',
+                transition: 'all 0.3s ease', cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(13,82,192,0.1)';
+                e.currentTarget.style.borderColor = 'rgba(13,82,192,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
               }}>
                 <div style={{ color: 'var(--blue)', flexShrink: 0 }}>
                   {f.icon}

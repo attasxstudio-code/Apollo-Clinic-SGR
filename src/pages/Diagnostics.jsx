@@ -216,7 +216,18 @@ const Diagnostics = () => {
               <div key={i} style={{ 
                 background: '#fff', borderRadius: '16px', padding: '1.5rem', 
                 border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
-                display: 'flex', flexDirection: 'column'
+                display: 'flex', flexDirection: 'column',
+                transition: 'all 0.3s ease', cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(13,82,192,0.1)';
+                e.currentTarget.style.borderColor = 'rgba(13,82,192,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
                   <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -274,7 +285,26 @@ const Diagnostics = () => {
                 borderRadius: '16px', padding: '1.5rem', 
                 border: pkg.featured ? 'none' : '1px solid rgba(0,0,0,0.05)', 
                 boxShadow: pkg.featured ? '0 10px 30px rgba(13,82,192,0.15)' : '0 4px 20px rgba(0,0,0,0.02)',
-                display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden'
+                display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden',
+                transition: 'all 0.3s ease', cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                if (pkg.featured) {
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(13,82,192,0.25)';
+                } else {
+                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(13,82,192,0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(13,82,192,0.15)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                if (pkg.featured) {
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(13,82,192,0.15)';
+                } else {
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
+                  e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
+                }
               }}>
                 {pkg.badge && (
                   <div style={{ position: 'absolute', top: 16, right: 16, background: '#3b82f6', color: '#fff', fontSize: '0.65rem', fontWeight: 700, padding: '0.2rem 0.6rem', borderRadius: '4px', letterSpacing: '0.5px' }}>
@@ -338,7 +368,18 @@ const Diagnostics = () => {
               <div key={i} style={{ 
                 background: '#fff', borderRadius: '16px', padding: '2rem 1.5rem', 
                 border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
-                display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left'
+                display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left',
+                transition: 'all 0.3s ease', cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(13,82,192,0.1)';
+                e.currentTarget.style.borderColor = 'rgba(13,82,192,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
               }}>
                 <div style={{ color: 'var(--blue)', flexShrink: 0 }}>
                   {f.icon}
