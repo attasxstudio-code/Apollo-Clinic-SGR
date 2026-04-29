@@ -1331,6 +1331,201 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     text-align: center !important;
     align-items: center !important;
   }
+
+  /* ═══════════════════════════════════════
+     ALL-PAGES MOBILE — Services, Doctors,
+     About, Contact, FAQ, Book, Diagnostics,
+     Reports, DoctorProfile
+  ═══════════════════════════════════════ */
+
+  /* ── PAGE HERO (navy bg) — Contact, FAQ ── */
+  .page-hero {
+    padding: 3rem 0 2.5rem !important;
+  }
+  .page-hero h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+  }
+  .page-hero p {
+    font-size: 0.95rem !important;
+  }
+
+  /* ── CONTACT PAGE ── */
+  .info-box {
+    padding: 1.25rem !important;
+  }
+  .timing-row {
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+    font-size: 0.85rem !important;
+  }
+  /* Contact quick strip — stack on mobile */
+  .contact-strip-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── SERVICES PAGE — specialty grid ── */
+  /* 5-column grid → 2 cols on mobile */
+  .m-grid-2[style*="repeat(5"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  /* 4-column grid → 2 cols on mobile */
+  .m-grid-2[style*="repeat(4"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  /* Fallback: any m-grid-2 → 1fr or 2-col */
+  .m-grid-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Service/feature cards — compact padding on mobile */
+  .m-grid-2 > div[style*="borderRadius"] {
+    padding: 1.25rem 1rem !important;
+  }
+
+  /* ── DOCTORS PAGE — filter pills ── */
+  /* Specialty filter row */
+  div[style*="flexWrap: 'wrap'"] > button,
+  div[style*="flexWrap"] > button {
+    font-size: 0.78rem !important;
+    padding: 0.4rem 0.85rem !important;
+  }
+
+  /* Doctors grid — 1 column on mobile */
+  .m-grid-2[style*="repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── ABOUT PAGE — stats bar ── */
+  .m-grid-2.m-static {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    padding: 1.25rem !important;
+    margin-top: 1.5rem !important;
+  }
+  .m-grid-2.m-static > div {
+    border-right: none !important;
+    justify-content: center !important;
+  }
+
+  /* About hero extra top padding removed */
+  section[style*="8rem 0 5rem"] {
+    padding-top: 2.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* ── BOOKING PAGES — form container ── */
+  .m-p-sm {
+    padding: 1.25rem !important;
+  }
+  /* Form inputs on mobile */
+  .form-input, .form-select, .form-textarea {
+    font-size: 16px !important; /* prevents iOS zoom */
+    padding: 0.75rem 0.9rem !important;
+  }
+
+  /* ── DOCTOR PROFILE PAGE ── */
+  .doctor-profile-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .doctor-profile-header {
+    flex-direction: column !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+  .doctor-profile-header img {
+    width: 100% !important;
+    max-width: 300px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  /* ── REPORTS PAGE — already responsive, fine-tune ── */
+  /* Reports form card */
+  div[style*="maxWidth: 400"] {
+    max-width: 100% !important;
+    padding: 1.5rem !important;
+  }
+
+  /* ── CTA BANNER (m-stack + m-p-sm + m-center) ── */
+  .m-stack.m-p-sm.m-center {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1.5rem 1.25rem !important;
+    gap: 1.25rem !important;
+  }
+  .m-stack.m-p-sm.m-center > div {
+    text-align: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* CTA banner icon */
+  .m-stack.m-p-sm.m-center div[style*="64px"] {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  /* ── BOTTOM STRIP GRIDS (booking pages) ── */
+  .m-grid-1.m-p-sm[style*="repeat(3"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    padding: 1.25rem !important;
+  }
+  .m-grid-1.m-p-sm > div {
+    border-right: none !important;
+    text-align: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* ── CONTACT / FAQ — ensure no horizontal overflow ── */
+  iframe {
+    max-width: 100% !important;
+  }
+
+  /* ── ALL IMAGES — never overflow ── */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Exception: doctor card images keep fixed height */
+  .doctor-card img {
+    height: 200px !important;
+    object-fit: cover !important;
+  }
+
+  /* ── SEARCH INPUTS ── */
+  input[style*="borderRadius: '50px'"] {
+    font-size: 0.95rem !important;
+    padding: 0.85rem 1rem 0.85rem 3rem !important;
+  }
+
+  /* ── FAQ page specifically ── */
+  .faq-item {
+    border-radius: 10px !important;
+  }
+  .faq-question {
+    font-size: 0.9rem !important;
+    padding: 1rem !important;
+  }
+  .faq-answer {
+    padding: 0 1rem 1rem !important;
+  }
+  .faq-answer p {
+    font-size: 0.88rem !important;
+  }
+
+  /* ── TEXT-CENTER helper for non-utility containers ── */
+  .text-center {
+    text-align: center !important;
+  }
 }
 
 /* ── Extra small (≤420px) ── */
@@ -1339,8 +1534,15 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   .btn-lg { font-size: 0.9rem !important; padding: 0.7rem 1.25rem !important; }
   .carousel-container > .card { flex: 0 0 calc(100vw - 48px) !important; }
   .trust-chip { font-size: 0.75rem !important; padding: 0.35rem 0.7rem !important; }
+
+  /* Service grid → 1 col on very small */
+  .m-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+  /* Stats bar → 1 col on very small */
+  .m-grid-2.m-static {
+    grid-template-columns: 1fr !important;
+  }
 }
-
-
 
 
