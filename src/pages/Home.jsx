@@ -96,7 +96,7 @@ const Home = () => {
 
           <div style={{ position: 'relative' }}>
             <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-              <img src="/APOLLO-receptionist-image.jpg" alt="Apollo Clinic Srinagar Interior" style={{ width: '100%', height: 'auto', display: 'block' }} />
+              <img src="/APOLLO-receptionist-image.png" alt="Apollo Clinic Srinagar Interior" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
           </div>
         </div>

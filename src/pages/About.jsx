@@ -53,7 +53,7 @@ const About = () => {
 
             {/* Right Image */}
             <div style={{ position: 'relative', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-              <img src="/APOLLO-outside.jpg" alt="Apollo Clinic Building" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/APOLLO-outside.png" alt="Apollo Clinic Building" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
 
