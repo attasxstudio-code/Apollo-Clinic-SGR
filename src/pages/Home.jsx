@@ -54,7 +54,7 @@ const Home = () => {
       <section style={{ padding: '6rem 0', background: 'linear-gradient(to bottom, #f8fafc, #fff)' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
           
-          <div style={{ maxWidth: '600px' }}>
+          <div className="m-center" style={{ maxWidth: '600px' }}>
             <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
               WELCOME TO APOLLO CLINIC
             </div>
@@ -78,7 +78,7 @@ const Home = () => {
               </button>
             </div>
 
-            <div className="m-stack m-gap-1" style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
+            <div className="m-stack m-gap-1 m-center" style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <Users className="text-blue" size={24} />
                 <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--heading)' }}>Top<br/>Specialists</span>
@@ -194,7 +194,7 @@ const Home = () => {
       <section style={{ padding: '5rem 0', background: '#fff' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
           
-          <div>
+          <div className="m-center">
             <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1rem' }}>
               LAB & DIAGNOSTICS
             </div>
@@ -276,7 +276,7 @@ const Home = () => {
       <section style={{ padding: '5rem 0', background: '#fff' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '4rem', alignItems: 'center' }}>
           
-          <div>
+          <div className="m-center">
             <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1rem' }}>
               FIND US
             </div>

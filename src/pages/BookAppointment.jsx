@@ -14,7 +14,7 @@ const BookAppointment = () => (
         <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: '5rem', alignItems: 'flex-start' }}>
 
           {/* Left Column: Info & Image */}
-          <div style={{ paddingTop: '2rem' }}>
+          <div className="m-center" style={{ paddingTop: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
               <ChevronLeft size={16} color="var(--blue)" />
               <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>

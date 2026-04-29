@@ -316,7 +316,7 @@ const OurDoctors = () => {
       <section style={{ padding: '5rem 0' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '4rem', alignItems: 'center' }}>
           
-          <div>
+          <div className="m-center">
             <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
               <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                 OUR SPECIALISTS

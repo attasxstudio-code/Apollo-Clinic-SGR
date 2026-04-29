@@ -22,7 +22,7 @@ const About = () => {
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '4rem', alignItems: 'center' }}>
             {/* Left Content */}
-            <div>
+            <div className="m-center">
               <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
                 <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                   ABOUT US
@@ -100,7 +100,7 @@ const About = () => {
       <section style={{ padding: '8rem 0 5rem' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '5rem', alignItems: 'center' }}>
-            <div>
+            <div className="m-center">
               <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
                 <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                   WHO WE ARE
@@ -260,7 +260,7 @@ const About = () => {
         <div className="container" style={{ maxWidth: '1400px' }}>
           
           <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
-            <div>
+            <div className="m-center">
               <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
                 <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                   OUR CARE APPROACH

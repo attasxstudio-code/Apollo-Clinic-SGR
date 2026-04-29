@@ -117,7 +117,7 @@ const Diagnostics = () => {
       <section style={{ padding: '5rem 0' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
           
-          <div style={{ maxWidth: '600px' }}>
+          <div className="m-center" style={{ maxWidth: '600px' }}>
             <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
               <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
                 LAB & DIAGNOSTICS

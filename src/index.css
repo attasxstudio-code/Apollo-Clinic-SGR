@@ -1065,60 +1065,190 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
 
 /* ── Tablet breakpoint (≤900px) ── */
 @media (max-width: 900px) {
+  /* Grid collapses */
   .m-grid-1 { grid-template-columns: 1fr !important; }
   .m-grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Visibility */
   .m-hide    { display: none !important; }
-  .m-stack   { flex-direction: column !important; }
-  .m-center  { text-align: center !important; justify-content: center !important; }
-  .m-static  { position: static !important; transform: none !important; width: 100% !important; }
+
+  /* Flex stacking */
+  .m-stack   { flex-direction: column !important; align-items: stretch !important; }
+  .m-center  { text-align: center !important; justify-content: center !important; align-items: center !important; }
+  .m-wrap    { flex-wrap: wrap !important; justify-content: center !important; }
+
+  /* Position resets */
+  .m-static  { position: static !important; transform: none !important; width: 100% !important; left: auto !important; right: auto !important; bottom: auto !important; }
   .m-full    { width: 100% !important; }
-  .m-wrap    { flex-wrap: wrap !important; }
+
+  /* Spacing */
   .m-gap-1   { gap: 1rem !important; }
-  .m-p-sm    { padding: 1.5rem !important; }
-  .m-h-auto  { height: auto !important; max-height: 280px !important; }
+  .m-p-sm    { padding: 1.5rem 1rem !important; }
   .m-ml-0    { margin-left: 0 !important; }
   .m-mt-1    { margin-top: 1rem !important; }
   .m-section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+
+  /* Heights auto */
+  .m-h-auto  { height: auto !important; max-height: none !important; }
 }
 
 /* ── Mobile breakpoint (≤768px) ── */
 @media (max-width: 768px) {
-  /* Typography */
+
+  /* ── Prevent horizontal overflow globally ── */
+  html, body { overflow-x: hidden !important; }
+  section { overflow-x: hidden !important; }
+
+  /* ── Typography ── */
   h1 { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; line-height: 1.2 !important; }
   h2 { font-size: clamp(1.3rem, 5.5vw, 1.75rem) !important; }
 
-  /* Container */
-  .container { padding: 0 1rem; max-width: 100% !important; }
+  /* ── Container ── */
+  .container { padding: 0 1.25rem !important; max-width: 100% !important; overflow: hidden; }
 
-  /* Section spacing */
+  /* ── Section spacing ── */
   section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
 
-  /* Carousel cards on mobile → swipeable, single-card view */
-  .no-scrollbar > .card { flex: 0 0 85% !important; min-width: 0 !important; }
+  /* ── ALL grids → single column on mobile ── */
+  .m-grid-1 { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .m-grid-2 { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
 
-  /* Scroll arrows hide — swipe is natural on touch */
+  /* ── Center all text on mobile ── */
+  .m-grid-1 > div,
+  .m-stack > div { text-align: center; }
+
+  /* ── Center headings globally on mobile ── */
+  .m-grid-1 h1, .m-grid-1 h2, .m-grid-1 h3,
+  .m-stack h1, .m-stack h2, .m-stack h3 {
+    text-align: center !important;
+  }
+  .m-grid-1 p, .m-stack p {
+    text-align: center !important;
+  }
+
+  /* ── Center section labels on mobile ── */
+  .m-grid-1 div[style*="textTransform"],
+  .m-grid-1 span[style*="textTransform"] {
+    text-align: center !important;
+    display: block !important;
+  }
+
+  /* ── Buttons: center and wrap on mobile ── */
+  .m-wrap {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .m-wrap .btn {
+    flex: 1 1 100% !important;
+    max-width: 300px !important;
+    justify-content: center !important;
+  }
+
+  /* ── Flex lists (features, contact info): center ── */
+  .m-grid-1 ul, .m-grid-1 ol { padding: 0 !important; }
+  .m-grid-1 li { justify-content: center !important; }
+
+  /* ── Carousel: swipeable single-card view ── */
+  .no-scrollbar > .card {
+    flex: 0 0 80% !important;
+    min-width: 0 !important;
+    scroll-snap-align: center !important;
+  }
+
+  /* ── Scroll arrows: hide on touch devices ── */
   .scroll-arrow { display: none !important; }
 
-  /* FAQ smaller text */
+  /* ── Floating stat cards: make static ── */
+  .m-static {
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin-top: 1.5rem !important;
+  }
+
+  /* ── Image containers: don't clip, auto height ── */
+  .m-h-auto {
+    height: auto !important;
+    max-height: none !important;
+  }
+  .m-h-auto img {
+    height: auto !important;
+    max-height: 300px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
+
+  /* ── Negative margins: remove ── */
+  .m-ml-0 { margin-left: 0 !important; margin-right: 0 !important; }
+
+  /* ── CTA banners: stack and center ── */
+  .m-stack.m-p-sm.m-center {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1.5rem 1rem !important;
+    gap: 1.5rem !important;
+  }
+  .m-stack.m-p-sm.m-center > div {
+    text-align: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* ── FAQ ── */
   .faq-item button { font-size: 0.9rem !important; padding: 1rem !important; }
 
-  /* Footer */
+  /* ── Footer ── */
   .footer-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
   .footer-bottom { flex-direction: column; text-align: center; }
 
-  /* Doctor profile */
+  /* ── Doctor profile ── */
   .doctor-profile-layout { grid-template-columns: 1fr !important; }
   .doctor-profile-header { flex-direction: column !important; text-align: center; }
 
-  /* Trust strip */
-  .trust-strip { flex-direction: column; gap: 0.5rem; }
+  /* ── Trust strip ── */
+  .trust-strip { flex-direction: column; gap: 0.5rem; align-items: center; }
   .trust-item { border-right: none !important; padding: 0.25rem 0.5rem; }
+
+  /* ── Forms: tighter padding ── */
+  .m-p-sm { padding: 1.5rem 1rem !important; }
+
+  /* ── Section header rows: stack title + link vertically ── */
+  .m-stack.m-gap-1 {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1rem !important;
+  }
+  .m-stack.m-gap-1 button {
+    white-space: nowrap !important;
+  }
+
+  /* ── "View All" buttons: center on mobile ── */
+  .m-static.m-mt-1 {
+    position: static !important;
+    margin-top: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
 }
 
 /* ── Extra small (≤480px) ── */
 @media (max-width: 480px) {
   h1 { font-size: clamp(1.4rem, 6vw, 1.8rem) !important; }
   .btn-lg { font-size: 0.85rem !important; padding: 0.65rem 1.25rem !important; }
-  .no-scrollbar > .card { flex: 0 0 92% !important; }
+
+  /* Carousel: near-full width */
+  .no-scrollbar > .card { flex: 0 0 88% !important; }
+
+  /* Stack trust badges */
+  .m-stack.m-gap-1 > div { flex-direction: row; }
 }
 
