@@ -442,8 +442,8 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
    FOOTER
 ───────────────────────────────────────── */
 .footer {
-  background: var(--heading);
-  color: rgba(255,255,255,0.7);
+  background: #fff;
+  border-top: 1px solid var(--border);
   padding: 3.5rem 0 0;
   font-size: 0.875rem;
 }
@@ -452,24 +452,24 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 2.5rem;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid var(--border);
 }
 .footer-heading {
   font-size: 0.72rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.5);
+  color: var(--muted);
   margin-bottom: 1rem;
 }
 .footer-link {
   display: block;
-  color: rgba(255,255,255,0.65);
+  color: var(--body);
   margin-bottom: 0.55rem;
   font-size: 0.875rem;
   font-weight: 400;
   transition: color 0.15s;
   cursor: pointer; background: none; text-align: left; border: none; font-family: inherit;
 }
-.footer-link:hover { color: #fff; }
+.footer-link:hover { color: var(--blue); }
 .footer-bottom {
   padding: 1.25rem 0;
   display: flex;
@@ -478,7 +478,7 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   gap: 1rem;
   flex-wrap: wrap;
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.4);
+  color: var(--muted);
 }
 @media (max-width: 768px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }

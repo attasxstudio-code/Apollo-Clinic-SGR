@@ -34,26 +34,10 @@ const Footer = () => {
           {/* Brand column */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-              <div style={{
-                width: 48, height: 48, borderRadius: '10px',
-                background: '#fff',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
-                overflow: 'hidden',
-              }}>
-                <img src="/logo.jpg" alt="Apollo Clinic Logo" style={{ width: '44px', height: '44px', objectFit: 'contain' }} />
-              </div>
-              <div>
-                <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#fff', lineHeight: 1.2 }}>
-                  Apollo Clinic
-                </div>
-                <div style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                  Srinagar
-                </div>
-              </div>
+              <img src="/logo.jpg" alt="Apollo Clinic Logo" style={{ height: '44px', objectFit: 'contain' }} />
             </div>
 
-            <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: '1.25rem', maxWidth: 240 }}>
+            <p style={{ color: 'var(--body)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: '1.25rem', maxWidth: 240 }}>
               Multi-speciality care with in-house diagnostics. Patient-centered medicine at Karan Nagar, Srinagar.
             </p>
 
@@ -64,10 +48,10 @@ const Footer = () => {
                 { icon: <Clock size={13} />, text: 'Mon–Sat: 12 PM–7 PM · Sun: 10 AM–1:30 PM', href: null },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.4)', flexShrink: 0, marginTop: '2px' }}>{item.icon}</span>
+                  <span style={{ color: 'var(--blue)', flexShrink: 0, marginTop: '2px' }}>{item.icon}</span>
                   {item.href
-                    ? <a href={item.href} style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.82rem' }}>{item.text}</a>
-                    : <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.82rem', lineHeight: 1.55 }}>{item.text}</span>
+                    ? <a href={item.href} style={{ color: 'var(--body)', fontSize: '0.82rem', textDecoration: 'none' }}>{item.text}</a>
+                    : <span style={{ color: 'var(--body)', fontSize: '0.82rem', lineHeight: 1.55 }}>{item.text}</span>
                   }
                 </div>
               ))}
@@ -89,29 +73,20 @@ const Footer = () => {
           {/* Contact CTA */}
           <div>
             <div className="footer-heading">Book a Visit</div>
-            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.82rem', marginBottom: '1rem', lineHeight: 1.6 }}>
+            <p style={{ color: 'var(--body)', fontSize: '0.82rem', marginBottom: '1rem', lineHeight: 1.6 }}>
               Call us or send a WhatsApp message to schedule your appointment.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              <a href={PHONE_HREF} style={{
-                display: 'flex', alignItems: 'center', gap: '0.45rem',
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: '8px', padding: '0.65rem 1rem',
-                color: 'rgba(255,255,255,0.85)', fontWeight: 600, fontSize: '0.85rem',
-                textDecoration: 'none', transition: 'all 0.2s',
-              }}
-                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.14)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
-              >
+              <a href={PHONE_HREF} className="btn btn-outline-blue" style={{
+                display: 'flex', alignItems: 'center', gap: '0.45rem', justifyContent: 'center',
+                padding: '0.65rem 1rem', fontSize: '0.85rem', textDecoration: 'none',
+              }}>
                 <Phone size={14} /> {PHONE}
               </a>
               <a href={WA_LINK} target="_blank" rel="noreferrer" style={{
-                display: 'flex', alignItems: 'center', gap: '0.45rem',
-                background: '#25D366',
-                borderRadius: '8px', padding: '0.65rem 1rem',
-                color: '#fff', fontWeight: 600, fontSize: '0.85rem',
-                textDecoration: 'none', transition: 'all 0.2s',
+                display: 'flex', alignItems: 'center', gap: '0.45rem', justifyContent: 'center',
+                background: '#25D366', borderRadius: '8px', padding: '0.65rem 1rem',
+                color: '#fff', fontWeight: 600, fontSize: '0.85rem', textDecoration: 'none', transition: 'opacity 0.2s',
               }}
                 onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
                 onMouseLeave={e => e.currentTarget.style.opacity = '1'}
@@ -134,13 +109,13 @@ const Footer = () => {
             <button className="footer-link" onClick={() => goTo('/contact')} style={{ marginBottom: 0 }}>Contact Us</button>
             <Link to="/admin/login" style={{
               display: 'flex', alignItems: 'center', gap: '0.35rem',
-              background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)',
-              color: 'rgba(255,255,255,0.45)', borderRadius: '6px',
+              background: 'var(--bg-alt)', border: '1px solid var(--border)',
+              color: 'var(--muted)', borderRadius: '6px',
               padding: '0.3rem 0.75rem', fontSize: '0.75rem', fontWeight: 600,
               textDecoration: 'none', transition: 'all 0.2s',
             }}
-              onMouseEnter={e => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.45)'}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--blue)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
             >
               <ShieldCheck size={12} /> Admin
             </Link>

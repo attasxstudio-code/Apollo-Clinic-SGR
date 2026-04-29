@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Calendar, Phone, Lock } from 'lucide-react';
+import { Menu, X, Calendar, Phone, Lock, Stethoscope } from 'lucide-react';
 
 const PHONE      = '+91 9149425496';
 const PHONE_HREF = 'tel:+919149425496';
@@ -91,10 +91,10 @@ const Navbar = () => {
           <div className="navbar-actions" style={{ gap: '1rem' }}>
             <button
               className="btn btn-outline-blue"
-              onClick={() => goTo('/admin/login')}
+              onClick={() => goTo('/services')}
               style={{ fontSize: '0.9rem', fontWeight: 600, padding: '0.5rem 1rem', borderRadius: 'var(--r-full)' }}
             >
-              <Lock size={16} /> Admin Login
+              <Stethoscope size={16} /> Book Checkup
             </button>
             <button
               className="btn btn-orange"

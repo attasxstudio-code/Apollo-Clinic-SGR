@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Phone, MapPin, ArrowRight, Calendar, CheckCircle,
@@ -16,6 +16,11 @@ const MAPS_EMBED = 'https://maps.google.com/maps?q=34.0806043,74.7988594&hl=en&z
 
 const Home = () => {
   const navigate = useNavigate();
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
 
   const goBook = () => navigate('/book');
   const goTo = (path) => navigate(path);
@@ -303,20 +308,28 @@ const Home = () => {
             </button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', alignItems: 'start' }}>
             {[
-              "How do I book an appointment?",
-              "How can I access my test reports?",
-              "Do you accept health insurance?",
-              "Do you offer home sample collection?",
-              "What are your clinic timings?",
-              "What should I carry during my visit?"
-            ].map((q, i) => (
-              <div key={i} onClick={() => goTo('/faq')} className="faq-item" style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '12px', cursor: 'pointer' }}>
-                <button className="faq-question" style={{ width: '100%', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontWeight: 600, fontSize: '1rem', color: 'var(--heading)', fontFamily: 'inherit' }}>
-                  {q}
-                  <ChevronDown size={20} className="text-muted" />
+              { q: "How do I book an appointment?", a: "You can book an appointment by calling us directly, sending a WhatsApp message, or using the 'Book Appointment' button on our website." },
+              { q: "How can I access my test reports?", a: "Test reports can be accessed online through our patient portal or collected in person at the clinic reception." },
+              { q: "Do you accept health insurance?", a: "Yes, we accept all major health insurance plans. Please contact our reception desk for specific details regarding your provider." },
+              { q: "Do you offer home sample collection?", a: "Yes, we offer convenient home sample collection services for most diagnostic tests. Contact us to schedule a pickup." },
+              { q: "What are your clinic timings?", a: "We are open Monday to Saturday from 12 PM to 7 PM, and on Sundays from 10 AM to 1:30 PM." },
+              { q: "What should I carry during my visit?", a: "Please bring your valid ID, previous medical records, and any current prescriptions or test reports." }
+            ].map((faq, i) => (
+              <div key={i} className="faq-item" style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>
+                <button 
+                  onClick={() => toggleFaq(i)}
+                  style={{ width: '100%', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontWeight: 600, fontSize: '1rem', color: 'var(--heading)', fontFamily: 'inherit' }}
+                >
+                  {faq.q}
+                  <ChevronDown size={20} className="text-muted" style={{ transform: activeFaq === i ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.3s', flexShrink: 0, marginLeft: '1rem' }} />
                 </button>
+                {activeFaq === i && (
+                  <div style={{ padding: '0 1.5rem 1.5rem', color: 'var(--body)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                    {faq.a}
+                  </div>
+                )}
               </div>
             ))}
           </div>
