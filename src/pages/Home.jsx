@@ -5,7 +5,7 @@ import {
   Clock, Star, ChevronDown, Shield, Heart, Activity,
   FileText, Navigation, Stethoscope, ShieldCheck, 
   Baby, HeartPulse, Syringe, Users, ChevronRight,
-  ChevronLeft, BriefcaseMedical, Lock, Mail, Check,
+  ChevronLeft, Briefcase, Lock, Mail, Check,
   Facebook, Instagram, Youtube, Linkedin, Menu, X
 } from 'lucide-react';
 
@@ -231,7 +231,7 @@ const Home = () => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2rem' }}>
             {[
               { icon: <UserCircle size={32} />, title: 'Experienced Doctors', desc: 'Highly qualified and compassionate specialists.' },
-              { icon: <BriefcaseMedical size={32} />, title: 'Advanced Technology', desc: 'Modern facilities and latest medical technology.' },
+              { icon: <Briefcase size={32} />, title: 'Advanced Technology', desc: 'Modern facilities and latest medical technology.' },
               { icon: <Heart size={32} />, title: 'Patient-Centric Care', desc: 'Personalized care with empathy and respect.' },
               { icon: <ShieldCheck size={32} />, title: 'Safe & Hygienic', desc: 'Strict safety protocols for your peace of mind.' },
               { icon: <MapPin size={32} />, title: 'Convenient Access', desc: 'Multiple centers and easy appointment booking.' },
@@ -257,7 +257,7 @@ const Home = () => {
               { icon: <Calendar size={28} />, title: 'Book Appointment' },
               { icon: <HeartPulse size={28} />, title: 'Health Checkups' },
               { icon: <Shield size={28} />, title: 'Insurance Assistance' },
-              { icon: <BriefcaseMedical size={28} />, title: 'Pharmacy' },
+              { icon: <Briefcase size={28} />, title: 'Pharmacy' },
               { icon: <FileText size={28} />, title: 'Online Reports' },
               { icon: <MapPin size={28} />, title: 'Home Collection' },
             ].map((s, i) => (
