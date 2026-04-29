@@ -5,7 +5,7 @@ import { Calendar, Phone, Stethoscope, FlaskConical, ShieldCheck, FileText, Chec
 const PHONE      = '+91 9149425496';
 const PHONE_HREF = 'tel:+919149425496';
 
-const SPECIALTIES = [
+export const SPECIALTIES = [
   {
     name: 'General Physician',
     desc: 'Comprehensive care for common illnesses and lifestyle conditions.',

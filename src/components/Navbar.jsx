@@ -91,7 +91,7 @@ const Navbar = () => {
           <div className="navbar-actions" style={{ gap: '1rem' }}>
             <button
               className="btn btn-outline-blue"
-              onClick={() => goTo('/services')}
+              onClick={() => goTo('/book-checkup')}
               style={{ fontSize: '0.9rem', fontWeight: 600, padding: '0.5rem 1rem', borderRadius: 'var(--r-full)' }}
             >
               <Stethoscope size={16} /> Book Checkup

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Phone, MapPin, ArrowRight, Calendar, CheckCircle,
@@ -8,15 +8,38 @@ import {
   ChevronLeft, Mail,
 } from 'lucide-react';
 
+import { SPECIALTIES } from './Services';
+import { ALL_DOCTORS } from './OurDoctors';
+
 /* ─── Constants ─── */
 const PHONE      = '+91 9149425496';
 const PHONE_HREF = 'tel:+919149425496';
 const EMAIL      = 'contact@apolloclinic.com';
 const MAPS_EMBED = 'https://maps.google.com/maps?q=34.0806043,74.7988594&hl=en&z=17&output=embed&iwloc=near';
 
+const REVIEWS = [
+  { quote: "Excellent care and professional staff. The doctors explained everything clearly and patiently.", author: "Anjali S.", img: "/patient-anjali.png" },
+  { quote: "Very clean and well-organized clinic. Got my reports quickly and the staff was very helpful.", author: "Rahul K.", img: "/patient-rahul.png" },
+  { quote: "I highly recommend Apollo Clinic for anyone looking for quality healthcare and genuine care.", author: "Meena T.", img: "/patient-meena.png" },
+  { quote: "The pediatric department is wonderful. My kids feel very comfortable with the doctors here.", author: "Sunita M.", img: "/patient-anjali.png" },
+  { quote: "State-of-the-art facilities and a very smooth booking process. Saved me a lot of time.", author: "Vikram R.", img: "/patient-rahul.png" },
+  { quote: "Their preventive health checkups are very comprehensive. Great value for money.", author: "Neha P.", img: "/patient-meena.png" },
+];
+
 const Home = () => {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = useState(null);
+
+  const servicesRef = useRef(null);
+  const doctorsRef = useRef(null);
+  const reviewsRef = useRef(null);
+
+  const scrollContainer = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -81,7 +104,7 @@ const Home = () => {
 
       {/* ─── OUR SERVICES ─── */}
       <section style={{ padding: '5rem 0', background: '#fff', textAlign: 'center' }}>
-        <div className="container" style={{ maxWidth: '1400px' }}>
+        <div className="container" style={{ maxWidth: '1400px', position: 'relative' }}>
           <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1rem' }}>
             OUR SERVICES
           </div>
@@ -89,20 +112,19 @@ const Home = () => {
             Comprehensive care for you and your family.
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1.5rem' }}>
-            {[
-              { icon: <Stethoscope size={28} />, title: 'Consultation', desc: 'Expert consultations across multiple specialties.' },
-              { icon: <ShieldCheck size={28} />, title: 'Preventive Care', desc: 'Screenings and health checkups for everyone.' },
-              { icon: <span style={{fontSize: '28px', lineHeight: 1}}>♀</span>, title: "Women's Health", desc: 'Compassionate care for women at every stage.' },
-              { icon: <Baby size={28} />, title: 'Child Care', desc: 'Complete healthcare for infants, children and teens.' },
-              { icon: <HeartPulse size={28} />, title: 'Chronic Care', desc: 'Managed care for long-term conditions.' },
-              { icon: <Syringe size={28} />, title: 'Vaccination', desc: 'Safe and effective vaccination services.' },
-            ].map((s, i) => (
-              <div key={i} className="card" onClick={() => goTo('/services')} style={{ padding: '2rem 1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}>
+          <div 
+            ref={servicesRef}
+            style={{ 
+              display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory'
+            }}
+            className="no-scrollbar"
+          >
+            {SPECIALTIES.map((s, i) => (
+              <div key={i} className="card" onClick={() => goTo('/services')} style={{ minWidth: '280px', flexShrink: 0, padding: '2rem 1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', scrollSnapAlign: 'start' }}>
                 <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
                   {s.icon}
                 </div>
-                <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>{s.title}</h3>
+                <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>{s.name}</h3>
                 <p style={{ fontSize: '0.85rem', color: 'var(--body)', marginBottom: '1.5rem', flex: 1 }}>{s.desc}</p>
                 <span style={{ color: 'var(--blue)', fontWeight: 600, fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   Learn More <ArrowRight size={16} />
@@ -110,12 +132,22 @@ const Home = () => {
               </div>
             ))}
           </div>
+
+          <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
+
+          {/* Scroll Arrows */}
+          <div onClick={() => scrollContainer(servicesRef, 'left')} style={{ position: 'absolute', left: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+            <ChevronLeft size={24} color="var(--blue)" />
+          </div>
+          <div onClick={() => scrollContainer(servicesRef, 'right')} style={{ position: 'absolute', right: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+            <ChevronRight size={24} color="var(--blue)" />
+          </div>
         </div>
       </section>
 
       {/* ─── OUR DOCTORS ─── */}
       <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
-        <div className="container" style={{ maxWidth: '1400px' }}>
+        <div className="container" style={{ maxWidth: '1400px', position: 'relative' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem' }}>
             <div>
               <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1rem' }}>
@@ -130,28 +162,29 @@ const Home = () => {
             </button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', position: 'relative' }}>
-            {[
-              { name: 'Dr. Neha Sharma', spec: 'Consultant - Internal Medicine', qual: 'MBBS, MD', exp: '12+ years experience', img: '/doctor-neha.png' },
-              { name: 'Dr. Arjun Mehta', spec: 'Consultant - Cardiology', qual: 'MBBS, MD, DM', exp: '15+ years experience', img: '/doctor-arjun.png' },
-              { name: 'Dr. Priya Nair', spec: 'Consultant - Gynecology', qual: 'MBBS, MS (OBG)', exp: '14+ years experience', img: '/doctor-priya.png' },
-              { name: 'Dr. Rohan Verma', spec: 'Consultant - Orthopedics', qual: 'MBBS, MS (Ortho)', exp: '10+ years experience', img: '/doctor-rohan.png' },
-            ].map((d, i) => (
-              <div key={i} className="card" onClick={() => goTo('/doctors')} style={{ padding: 0, overflow: 'hidden', cursor: 'pointer' }}>
-                <img src={d.img} alt={d.name} style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
+          <div 
+            ref={doctorsRef}
+            style={{ display: 'flex', gap: '2rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
+            className="no-scrollbar"
+          >
+            {ALL_DOCTORS.map((d, i) => (
+              <div key={i} className="card" onClick={() => goTo(`/doctors/${d.id}`)} style={{ minWidth: '300px', flexShrink: 0, padding: 0, overflow: 'hidden', cursor: 'pointer', scrollSnapAlign: 'start' }}>
+                <img src={d.image} alt={d.name} style={{ width: '100%', height: '240px', objectFit: 'cover' }} />
                 <div style={{ padding: '1.5rem' }}>
                   <h3 style={{ fontSize: '1.2rem', color: 'var(--blue)', marginBottom: '0.25rem' }}>{d.name}</h3>
-                  <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.25rem' }}>{d.spec}</p>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '0.75rem' }}>{d.qual}</p>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0 }}>{d.exp}</p>
+                  <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.25rem' }}>{d.specialty}</p>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '0.75rem' }}>{d.education}</p>
                 </div>
               </div>
             ))}
+          </div>
 
-            {/* Next arrow */}
-            <div onClick={() => goTo('/doctors')} style={{ position: 'absolute', right: '-24px', top: '50%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
-              <ChevronRight size={24} color="var(--blue)" />
-            </div>
+          {/* Scroll Arrows */}
+          <div onClick={() => scrollContainer(doctorsRef, 'left')} style={{ position: 'absolute', left: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+            <ChevronLeft size={24} color="var(--blue)" />
+          </div>
+          <div onClick={() => scrollContainer(doctorsRef, 'right')} style={{ position: 'absolute', right: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+            <ChevronRight size={24} color="var(--blue)" />
           </div>
         </div>
       </section>
@@ -196,7 +229,7 @@ const Home = () => {
 
       {/* ─── PATIENT FEEDBACK ─── */}
       <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
-        <div className="container" style={{ maxWidth: '1400px' }}>
+        <div className="container" style={{ maxWidth: '1400px', position: 'relative' }}>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem', position: 'relative' }}>
             <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1rem' }}>
               PATIENT FEEDBACK
@@ -209,13 +242,13 @@ const Home = () => {
             </button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', position: 'relative' }}>
-            {[
-              { quote: "Excellent care and professional staff. The doctors explained everything clearly and patiently.", author: "Anjali S.", img: "/patient-anjali.png" },
-              { quote: "Very clean and well-organized clinic. Got my reports quickly and the staff was very helpful.", author: "Rahul K.", img: "/patient-rahul.png" },
-              { quote: "I highly recommend Apollo Clinic for anyone looking for quality healthcare and genuine care.", author: "Meena T.", img: "/patient-meena.png" },
-            ].map((r, i) => (
-              <div key={i} className="card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column' }}>
+          <div 
+            ref={reviewsRef}
+            style={{ display: 'flex', gap: '2rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
+            className="no-scrollbar"
+          >
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="card" style={{ minWidth: '400px', flexShrink: 0, padding: '2.5rem', display: 'flex', flexDirection: 'column', scrollSnapAlign: 'start' }}>
                 <div style={{ display: 'flex', gap: '0.25rem', color: '#f59e0b', marginBottom: '1.5rem' }}>
                   {[1,2,3,4,5].map(star => <Star key={star} size={20} fill="currentColor" />)}
                 </div>
@@ -226,14 +259,14 @@ const Home = () => {
                 </div>
               </div>
             ))}
+          </div>
             
-            {/* Arrows */}
-            <div style={{ position: 'absolute', left: '-24px', top: '50%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
-              <ChevronLeft size={24} color="var(--blue)" />
-            </div>
-            <div style={{ position: 'absolute', right: '-24px', top: '50%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
-              <ChevronRight size={24} color="var(--blue)" />
-            </div>
+          {/* Arrows */}
+          <div onClick={() => scrollContainer(reviewsRef, 'left')} style={{ position: 'absolute', left: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+            <ChevronLeft size={24} color="var(--blue)" />
+          </div>
+          <div onClick={() => scrollContainer(reviewsRef, 'right')} style={{ position: 'absolute', right: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+            <ChevronRight size={24} color="var(--blue)" />
           </div>
         </div>
       </section>
