@@ -114,7 +114,7 @@ const Diagnostics = () => {
     <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '4rem' }}>
       
       {/* ── Hero Section ── */}
-      <section style={{ padding: '5rem 0' }}>
+      <section className="diag-hero" style={{ padding: '5rem 0' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
           
           <div className="m-center" style={{ maxWidth: '600px' }}>
@@ -133,7 +133,7 @@ const Diagnostics = () => {
               State-of-the-art diagnostics with NABL-standard processes and specialist oversight—delivering accurate results, every time.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div className="diag-features" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <ShieldCheck size={20} />
@@ -156,12 +156,12 @@ const Diagnostics = () => {
           </div>
 
           <div style={{ position: 'relative' }}>
-            <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
+            <div className="diag-hero-img" style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
               <img src="/lab-technician.jpg" alt="Apollo Clinic Diagnostics" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px', objectFit: 'cover' }} />
             </div>
             
             {/* Stats Card */}
-            <div className="m-static m-grid-2" style={{ 
+            <div className="m-static diag-stats" style={{ 
               position: 'absolute', bottom: '-2rem', right: '-2rem', 
               background: '#fff', padding: '2rem', borderRadius: '20px', 
               boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
@@ -201,7 +201,7 @@ const Diagnostics = () => {
       </section>
 
       {/* ── Diagnostic Tests We Offer ── */}
-      <section style={{ padding: '6rem 0' }}>
+      <section className="diag-tests-section" style={{ padding: '6rem 0' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>
           
           <h2 style={{ fontSize: '2.5rem', color: 'var(--navy)', marginBottom: '1rem' }}>
@@ -211,7 +211,7 @@ const Diagnostics = () => {
             Advanced testing across specialties to help in early detection and better health.
           </p>
 
-          <div className="m-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem', textAlign: 'left' }}>
+          <div className="diag-tests-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem', textAlign: 'left' }}>
             {TESTS.map((test, i) => (
               <div key={i} style={{ 
                 background: '#fff', borderRadius: '16px', padding: '1.5rem', 
@@ -268,7 +268,7 @@ const Diagnostics = () => {
       </section>
 
       {/* ── Featured Health Checkups ── */}
-      <section style={{ padding: '2rem 0 6rem' }}>
+      <section className="diag-packages-section" style={{ padding: '2rem 0 6rem' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>
           
           <h2 style={{ fontSize: '2.5rem', color: 'var(--navy)', marginBottom: '1rem' }}>
@@ -278,7 +278,7 @@ const Diagnostics = () => {
             Comprehensive packages for proactive health and peace of mind.
           </p>
 
-          <div className="m-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem', textAlign: 'left' }}>
+          <div className="diag-packages-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem', textAlign: 'left' }}>
             {PACKAGES.map((pkg, i) => (
               <div key={i} style={{ 
                 background: pkg.featured ? 'var(--navy)' : '#fff', 
@@ -351,14 +351,14 @@ const Diagnostics = () => {
       </section>
 
       {/* ── Why Choose Our Diagnostics ── */}
-      <section style={{ padding: '2rem 0 4rem' }}>
+      <section className="diag-why-section" style={{ padding: '2rem 0 4rem' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>
           
           <h2 style={{ fontSize: '2.5rem', color: 'var(--navy)', marginBottom: '4rem' }}>
             Why Choose Our Diagnostics
           </h2>
 
-          <div className="m-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="diag-why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
             {[
               { title: 'Certified Lab Standards', desc: 'NABL-accredited labs following strict quality control protocols.', icon: <Award size={32} /> },
               { title: 'Fast Turnaround', desc: 'Quick sample processing and on-time digital reports.', icon: <Clock size={32} /> },
@@ -395,7 +395,7 @@ const Diagnostics = () => {
       </section>
 
       {/* ── CTA Strip ── */}
-      <section style={{ padding: '2rem 0' }}>
+      <section className="diag-cta" style={{ padding: '2rem 0' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="m-stack m-p-sm m-center" style={{ 
             background: '#fff', borderRadius: '16px', padding: '2.5rem 3rem',

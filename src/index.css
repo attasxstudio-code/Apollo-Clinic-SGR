@@ -1523,6 +1523,219 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   .m-grid-2 > div[style*="borderRadius"] {
     padding: 1.25rem 1rem !important;
   }
+  /* ── DIAGNOSTICS PAGE ─────────────────────────── */
+
+  /* Hero — reduce excessive spacing */
+  .diag-hero {
+    padding-top: 2rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  .diag-hero h1 {
+    font-size: clamp(1.6rem, 7vw, 2.1rem) !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .diag-hero p {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Hero feature rows — compact */
+  .diag-features {
+    gap: 0.75rem !important;
+  }
+  .diag-features > div {
+    gap: 0.75rem !important;
+  }
+  .diag-features span {
+    font-size: 0.88rem !important;
+  }
+  .diag-features div[style*="40px"] {
+    width: 36px !important;
+    height: 36px !important;
+    flex-shrink: 0 !important;
+  }
+  .diag-features div[style*="40px"] svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Hero image — mobile crop */
+  .diag-hero-img {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  /* Stats card — compact 2x2 */
+  .diag-stats {
+    padding: 1rem !important;
+    gap: 0.75rem !important;
+    border-radius: 14px !important;
+    margin-top: 0.75rem !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .diag-stats > div {
+    gap: 0.6rem !important;
+  }
+  .diag-stats > div svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .diag-stats > div > div > div:first-child {
+    font-size: 1rem !important;
+  }
+  .diag-stats > div > div > div:last-child {
+    font-size: 0.7rem !important;
+  }
+
+  /* Diagnostic Tests section — tighter spacing */
+  .diag-tests-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .diag-tests-section h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .diag-tests-section > div > p {
+    font-size: 0.9rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Diagnostic tests grid → 1-column full-width */
+  .diag-tests-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .diag-tests-grid > div {
+    padding: 1.15rem !important;
+    border-radius: 14px !important;
+  }
+  /* Icon + category badge row */
+  .diag-tests-grid > div > div:first-child {
+    margin-bottom: 0.75rem !important;
+  }
+  .diag-tests-grid > div > div:first-child > div {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .diag-tests-grid > div > div:first-child > span {
+    font-size: 0.6rem !important;
+    padding: 0.15rem 0.5rem !important;
+    white-space: nowrap !important;
+  }
+  /* Test title */
+  .diag-tests-grid > div h3 {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+  /* Test description */
+  .diag-tests-grid > div > p {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  /* Bullet list */
+  .diag-tests-grid > div > div[style*="flexWrap"] {
+    margin-bottom: 0.85rem !important;
+    gap: 0.35rem !important;
+  }
+  /* Book button */
+  .diag-tests-grid > div > button {
+    padding: 0.65rem !important;
+    font-size: 0.82rem !important;
+    min-height: 44px !important;
+  }
+
+  /* Featured Health Checkups — tighter spacing */
+  .diag-packages-section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .diag-packages-section h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .diag-packages-section > div > p {
+    font-size: 0.9rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Package cards grid → 1-column full-width */
+  .diag-packages-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .diag-packages-grid > div {
+    padding: 1.15rem !important;
+    border-radius: 14px !important;
+  }
+  .diag-packages-grid > div h3 {
+    font-size: 0.95rem !important;
+  }
+  .diag-packages-grid > div > p {
+    font-size: 0.8rem !important;
+    margin-bottom: 1rem !important;
+  }
+  /* Checklist area */
+  .diag-packages-grid > div > div[style*="flexGrow"] {
+    margin-bottom: 1rem !important;
+  }
+  .diag-packages-grid > div ul {
+    gap: 0.3rem !important;
+  }
+  .diag-packages-grid > div li {
+    font-size: 0.75rem !important;
+  }
+  /* Book button */
+  .diag-packages-grid > div > button {
+    padding: 0.65rem !important;
+    font-size: 0.82rem !important;
+    min-height: 44px !important;
+  }
+
+  /* Why Choose section — tighter spacing */
+  .diag-why-section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  .diag-why-section h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Why Choose grid → 1-column */
+  .diag-why-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+  .diag-why-grid > div {
+    padding: 1rem !important;
+    gap: 0.85rem !important;
+  }
+  .diag-why-grid > div > div:first-child svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .diag-why-grid h4 {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+  .diag-why-grid p {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* CTA section — reduce excess gaps */
+  .diag-cta {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .diag-cta h3 {
+    font-size: 1.1rem !important;
+  }
+  .diag-cta p {
+    font-size: 0.88rem !important;
+  }
 
   /* ── DOCTORS PAGE ──────────────────────────────── */
 
@@ -1796,6 +2009,23 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     max-height: 220px !important;
     object-fit: cover !important;
     object-position: center 30% !important;
+  }
+
+  /* Exception: Diagnostics hero image — fixed crop via container */
+  .diag-hero-img {
+    height: 220px !important;
+    max-height: 220px !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+  section .diag-hero-img img,
+  .diag-hero-img img {
+    width: 100% !important;
+    height: 220px !important;
+    min-height: 0 !important;
+    max-height: 220px !important;
+    object-fit: cover !important;
+    object-position: center 40% !important;
   }
 
   /* Exception: doctor card images keep fixed height */
