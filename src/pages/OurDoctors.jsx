@@ -313,7 +313,7 @@ const OurDoctors = () => {
     <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '4rem' }}>
 
       {/* ── Hero ── */}
-      <section style={{ padding: '5rem 0' }}>
+      <section className="doc-hero" style={{ padding: '5rem 0' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '4rem', alignItems: 'center' }}>
           
           <div className="m-center">
@@ -333,12 +333,12 @@ const OurDoctors = () => {
             </p>
 
             {/* Search + Filter */}
-            <div style={{ position: 'relative', maxWidth: '500px', marginBottom: '1.5rem' }}>
-              <div style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)', display: 'flex', alignItems: 'center' }}>
+            <div className="doc-search" style={{ position: 'relative', maxWidth: '500px', marginBottom: '1.5rem' }}>
+              <div className="doc-search-icon" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)', display: 'flex', alignItems: 'center' }}>
                 <Search size={20} />
               </div>
               <input
-                className="form-input"
+                className="form-input doc-search-input"
                 style={{ width: '100%', padding: '1rem 1rem 1rem 3.5rem', borderRadius: '50px', fontSize: '1rem', border: '1px solid rgba(0,0,0,0.1)', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}
                 placeholder="Search doctor or specialty"
                 value={search}
@@ -346,7 +346,7 @@ const OurDoctors = () => {
               />
             </div>
             
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <div className="doc-filters" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               {SPECIALTIES_FILTER.map(f => (
                 <button
                   key={f}
@@ -389,10 +389,10 @@ const OurDoctors = () => {
       </section>
 
       {/* ── Doctors grid ── */}
-      <section style={{ padding: '2rem 0 6rem' }}>
+      <section className="doc-listing" style={{ padding: '2rem 0 6rem' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div className="doc-listing-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
              <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
                 <div style={{ height: '2px', width: '30px', background: 'var(--orange)', margin: '0 auto 8px' }}></div>
               </div>
@@ -408,7 +408,7 @@ const OurDoctors = () => {
               </button>
             </div>
           ) : (
-            <div className="m-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+            <div className="doc-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
               {filtered.map(doc => (
                 <DoctorCard key={doc.id} doc={doc} onProfile={() => goProfile(doc.id)} onBook={goBook} />
               ))}
@@ -418,7 +418,7 @@ const OurDoctors = () => {
       </section>
 
       {/* ── Why Choose Our Doctors ── */}
-      <section style={{ padding: '2rem 0 5rem' }}>
+      <section className="doc-why-section" style={{ padding: '2rem 0 5rem' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
              <div style={{ height: '2px', width: '30px', background: 'var(--orange)', margin: '0 auto 8px' }}></div>
@@ -427,7 +427,7 @@ const OurDoctors = () => {
             Why Choose Our Doctors
           </h2>
 
-          <div className="m-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="doc-why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
             {[
               { title: 'Experienced Specialists', desc: 'Our doctors bring years of clinical expertise and stay updated with the latest medical advancements.', icon: <UserCheck size={32} /> },
               { title: 'Patient-First Care', desc: 'We prioritize your health and comfort with compassionate, personalized care at every step.', icon: <HeartPulse size={32} /> },
@@ -462,7 +462,7 @@ const OurDoctors = () => {
       </section>
 
       {/* ── CTA Banner ── */}
-      <section style={{ padding: '2rem 0' }}>
+      <section className="doc-cta" style={{ padding: '2rem 0' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="m-stack m-p-sm m-center" style={{ 
             background: '#fff', borderRadius: '16px', padding: '2.5rem 3rem',

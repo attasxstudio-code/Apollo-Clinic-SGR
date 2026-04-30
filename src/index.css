@@ -1524,17 +1524,164 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     padding: 1.25rem 1rem !important;
   }
 
-  /* ── DOCTORS PAGE — filter pills ── */
-  /* Specialty filter row */
-  div[style*="flexWrap: 'wrap'"] > button,
-  div[style*="flexWrap"] > button {
-    font-size: 0.78rem !important;
-    padding: 0.4rem 0.85rem !important;
+  /* ── DOCTORS PAGE ──────────────────────────────── */
+
+  /* Hero — reduce excessive spacing */
+  .doc-hero {
+    padding-top: 2rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  .doc-hero h1 {
+    font-size: clamp(1.6rem, 7vw, 2.1rem) !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .doc-hero p {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
   }
 
-  /* Doctors grid — 1 column on mobile */
-  .m-grid-2[style*="repeat(3"] {
+  /* Search bar — fix icon/text overlap */
+  .doc-search {
+    max-width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+  .doc-search-icon {
+    left: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+  }
+  .doc-search-input {
+    padding: 0.85rem 1rem 0.85rem 3rem !important;
+    font-size: 0.95rem !important;
+    border-radius: 50px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Filter chips — compact, wrapped neatly */
+  .doc-filters {
+    gap: 0.4rem !important;
+    justify-content: center !important;
+  }
+  .doc-filters > button {
+    font-size: 0.78rem !important;
+    padding: 0.4rem 0.85rem !important;
+    border-radius: 50px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Doctor listing section — reduce excess spacing */
+  .doc-listing {
+    padding-top: 0.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .doc-listing-header {
+    margin-bottom: 1.5rem !important;
+  }
+  .doc-listing-header h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .doc-listing-header p {
+    font-size: 0.9rem !important;
+  }
+
+  /* Doctor cards grid → 1 column */
+  .doc-cards-grid {
     grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Doctor card — compact on mobile */
+  .doc-cards-grid > div {
+    border-radius: 14px !important;
+  }
+  /* Doctor image area */
+  .doc-cards-grid > div > div:first-child {
+    height: 200px !important;
+  }
+  .doc-cards-grid > div > div:first-child img {
+    height: 200px !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+  /* Doctor card body */
+  .doc-cards-grid > div > div:last-child {
+    padding: 1rem 1.25rem 1.25rem !important;
+  }
+  /* Tag pills row */
+  .doc-cards-grid > div > div:last-child > div[style*="flexWrap"] {
+    margin-bottom: 1rem !important;
+    gap: 0.35rem !important;
+  }
+  .doc-cards-grid > div > div:last-child > div[style*="flexWrap"] > span {
+    font-size: 0.68rem !important;
+    padding: 0.2rem 0.55rem !important;
+    border-radius: 4px !important;
+  }
+  /* Action buttons */
+  .doc-cards-grid > div > div:last-child > div:last-child {
+    gap: 0.5rem !important;
+  }
+  .doc-cards-grid > div > div:last-child > div:last-child > button {
+    padding: 0.65rem 0.5rem !important;
+    font-size: 0.82rem !important;
+    border-radius: 8px !important;
+    min-height: 44px !important;
+  }
+
+  /* Why Choose section — tighter spacing */
+  .doc-why-section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  .doc-why-section h2 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Why Choose grid → 1-column horizontal cards */
+  .doc-why-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+  .doc-why-grid > div {
+    flex-direction: row !important;
+    text-align: left !important;
+    padding: 1rem !important;
+    gap: 0.85rem !important;
+    align-items: center !important;
+  }
+  .doc-why-grid > div > div:first-child {
+    flex-shrink: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .doc-why-grid > div > div:first-child svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .doc-why-grid h4 {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+  .doc-why-grid p {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* CTA section — reduce excess gaps */
+  .doc-cta {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .doc-cta h3 {
+    font-size: 1.1rem !important;
+  }
+  .doc-cta p {
+    font-size: 0.88rem !important;
   }
 
   /* ── ABOUT PAGE — stats bar ── */
