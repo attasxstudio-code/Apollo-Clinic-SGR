@@ -18,7 +18,7 @@ const About = () => {
     <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '4rem' }}>
 
       {/* ── Hero Section ── */}
-      <section style={{ padding: '4rem 0 6rem', background: '#fff', position: 'relative' }}>
+      <section className="abt-hero" style={{ padding: '4rem 0 6rem', background: '#fff', position: 'relative' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '4rem', alignItems: 'center' }}>
             {/* Left Content */}
@@ -52,13 +52,13 @@ const About = () => {
             </div>
 
             {/* Right Image */}
-            <div className="m-h-auto" style={{ position: 'relative', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
+            <div className="m-h-auto abt-hero-img" style={{ position: 'relative', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
               <img src="/APOLLO-outside.png" alt="Apollo Clinic Building" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
 
           {/* Floating Stats Bar */}
-          <div className="m-grid-2 m-static" style={{ 
+          <div className="m-grid-2 m-static abt-stats" style={{ 
             background: '#fff', borderRadius: '16px', padding: '2rem', 
             boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid rgba(0,0,0,0.05)',
             display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem',
@@ -97,7 +97,7 @@ const About = () => {
       </section>
 
       {/* ── Who We Are ── */}
-      <section style={{ padding: '8rem 0 5rem' }}>
+      <section className="abt-whoweare" style={{ padding: '8rem 0 5rem' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '5rem', alignItems: 'center' }}>
             <div className="m-center">
@@ -114,7 +114,7 @@ const About = () => {
                 Apollo Clinic is built on the trusted foundation of the Apollo brand—one of India's most respected names in healthcare. We bring hospital-grade expertise to your neighborhood with a focus on convenience, compassion, and clinical excellence.
               </p>
               
-              <div className="m-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+              <div className="m-grid-2 abt-trust-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ color: 'var(--blue)', marginBottom: '0.5rem', display: 'flex', justifyContent: 'center' }}><UserCheck size={32} /></div>
                   <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--navy)' }}>Experienced<br/>Doctors</div>
@@ -134,15 +134,15 @@ const About = () => {
               </div>
             </div>
             
-            <div className="m-h-auto" style={{ height: '400px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-              <img src="/clinic-reception.png" alt="Clinic Interior" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="m-h-auto abt-whoweare-img" style={{ height: '400px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
+              <img src="/APOLLO-receptionist-image.png" alt="Clinic Interior" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Purpose, Mission, Vision, Values ── */}
-      <section style={{ padding: '5rem 0', background: '#fff' }}>
+      <section className="abt-mvv" style={{ padding: '5rem 0', background: '#fff' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
             <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
@@ -154,7 +154,7 @@ const About = () => {
             Our Mission, Vision & Values
           </h2>
 
-          <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+          <div className="m-grid-1 abt-mvv-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
             <div style={{ 
               border: '1px solid rgba(0,0,0,0.05)', borderRadius: '16px', padding: '3rem 2rem', 
               boxShadow: '0 10px 30px rgba(0,0,0,0.02)', textAlign: 'left',
@@ -216,7 +216,7 @@ const About = () => {
       </section>
 
       {/* ── Why Patients Trust Apollo Clinic ── */}
-      <section style={{ padding: '5rem 0' }}>
+      <section className="abt-trust-section" style={{ padding: '5rem 0' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
             <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
@@ -228,7 +228,7 @@ const About = () => {
             Trusted care. Backed by expertise.
           </h2>
 
-          <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="m-grid-1 abt-trust-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
             {[
               { title: 'Compassionate Care', desc: 'We listen, we care, and we treat every patient with dignity and empathy.', icon: <HeartPulse size={32} /> },
               { title: 'Coordinated Specialties', desc: 'Seamless collaboration across specialties for comprehensive and continuous care.', icon: <Users size={32} /> },
@@ -256,7 +256,7 @@ const About = () => {
       </section>
 
       {/* ── Our Care Approach & Facility Highlights ── */}
-      <section style={{ padding: '5rem 0', background: '#fff' }}>
+      <section className="abt-care" style={{ padding: '5rem 0', background: '#fff' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           
           <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
@@ -273,7 +273,7 @@ const About = () => {
               <p style={{ fontSize: '1rem', color: 'var(--body)', marginBottom: '2rem', lineHeight: 1.6 }}>
                 We follow a structured, patient-first approach that ensures the right care, at the right time.
               </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <ul className="abt-care-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1rem', color: 'var(--heading)', fontWeight: 600 }}>
                   <CheckCircle2 size={24} color="var(--blue)" /> Detailed consultation and health assessment
                 </li>
@@ -288,7 +288,7 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            <div className="m-h-auto" style={{ height: '350px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
+            <div className="m-h-auto abt-care-img" style={{ height: '350px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
               {/* Patient consulting image placeholder */}
               <img src="/patient-anjali.png" alt="Patient Consultation" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
@@ -303,9 +303,9 @@ const About = () => {
             </div>
           </div>
 
-          <div className="m-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="m-grid-2 abt-facility-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
             {[
-              { img: '/clinic-reception.png', title: 'Welcoming Reception', desc: 'Designed for comfort, convenience, and a smooth experience.' },
+              { img: '/APOLLO-receptionist-image.png', title: 'Welcoming Reception', desc: 'Designed for comfort, convenience, and a smooth experience.' },
               { img: '/consultation-room.png', title: 'Modern Consultation Rooms', desc: 'Well-equipped rooms for private and comfortable consultations.' },
               { img: '/lab-technician.jpg', title: 'Advanced Diagnostics Lab', desc: 'State-of-the-art technology for accurate and reliable results.' },
               { img: '/patient-waiting.png', title: 'Patient Comfort Areas', desc: 'Spacious waiting areas designed for relaxation and ease.' }
@@ -332,7 +332,7 @@ const About = () => {
       </section>
 
       {/* ── CTA Banner ── */}
-      <section style={{ padding: '5rem 0 2rem' }}>
+      <section className="abt-cta" style={{ padding: '5rem 0 2rem' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="m-stack m-p-sm m-center" style={{ 
             background: '#fff', borderRadius: '16px', padding: '2.5rem 3rem',

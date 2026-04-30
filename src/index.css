@@ -1523,6 +1523,275 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   .m-grid-2 > div[style*="borderRadius"] {
     padding: 1.25rem 1rem !important;
   }
+
+  /* ── ABOUT PAGE ────────────────────────────────── */
+
+  /* Hero — reduce excessive spacing */
+  .abt-hero {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .abt-hero h1 {
+    font-size: clamp(1.5rem, 6.5vw, 2rem) !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.2 !important;
+  }
+  .abt-hero p {
+    font-size: 0.92rem !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
+  }
+
+  /* Hero image — mobile crop */
+  .abt-hero-img {
+    height: 220px !important;
+    max-height: 220px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+  .abt-hero-img img {
+    width: 100% !important;
+    height: 220px !important;
+    min-height: 0 !important;
+    max-height: 220px !important;
+    object-fit: cover !important;
+    object-position: center 40% !important;
+  }
+
+  /* Stats bar — compact 2x2 */
+  .abt-stats {
+    padding: 1rem !important;
+    gap: 0.75rem !important;
+    border-radius: 14px !important;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+  .abt-stats > div {
+    gap: 0.6rem !important;
+    border-right: none !important;
+  }
+  .abt-stats > div svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .abt-stats > div > div > div:first-child {
+    font-size: 1rem !important;
+  }
+  .abt-stats > div > div > div:last-child {
+    font-size: 0.75rem !important;
+  }
+
+  /* Who We Are section */
+  .abt-whoweare {
+    padding-top: 2.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .abt-whoweare h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 1rem !important;
+  }
+  .abt-whoweare p {
+    font-size: 0.92rem !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Trust grid — horizontal rows instead of floating icons */
+  .abt-trust-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .abt-trust-grid > div {
+    text-align: center !important;
+    padding: 0.5rem !important;
+  }
+  .abt-trust-grid > div svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .abt-trust-grid > div > div:last-child {
+    font-size: 0.8rem !important;
+  }
+
+  /* Who We Are reception image */
+  .abt-whoweare-img {
+    height: 200px !important;
+    max-height: 200px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+  .abt-whoweare-img img {
+    width: 100% !important;
+    height: 200px !important;
+    min-height: 0 !important;
+    max-height: 200px !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  /* Mission, Vision & Values section */
+  .abt-mvv {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .abt-mvv h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* MVV grid → 1-column, compact cards */
+  .abt-mvv-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .abt-mvv-grid > div {
+    padding: 1.25rem 1rem !important;
+    border-radius: 14px !important;
+  }
+  .abt-mvv-grid > div > div:first-child {
+    margin-bottom: 0.75rem !important;
+    gap: 0.75rem !important;
+  }
+  .abt-mvv-grid > div > div:first-child > div {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .abt-mvv-grid > div > div:first-child > div svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .abt-mvv-grid > div h3 {
+    font-size: 1rem !important;
+  }
+  .abt-mvv-grid > div p {
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Why Patients Trust section */
+  .abt-trust-section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  .abt-trust-section h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Trust cards → 1-column */
+  .abt-trust-cards {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+  .abt-trust-cards > div {
+    padding: 1rem !important;
+    gap: 0.85rem !important;
+  }
+  .abt-trust-cards > div > div:first-child svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .abt-trust-cards h4 {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+  .abt-trust-cards p {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Our Care Approach section */
+  .abt-care {
+    padding-top: 2.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .abt-care h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+    margin-bottom: 1rem !important;
+  }
+  .abt-care p {
+    font-size: 0.92rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  /* Care checklist — left-aligned proper rows */
+  .abt-care-list {
+    gap: 0.75rem !important;
+  }
+  .abt-care-list li {
+    font-size: 0.88rem !important;
+    gap: 0.6rem !important;
+    text-align: left !important;
+  }
+  .abt-care-list li svg {
+    flex-shrink: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Care approach image */
+  .abt-care-img {
+    height: 200px !important;
+    max-height: 200px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+  .abt-care-img img {
+    width: 100% !important;
+    height: 200px !important;
+    min-height: 0 !important;
+    max-height: 200px !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  /* Care approach section margin-bottom reduce */
+  .abt-care .m-grid-1[style*="marginBottom"] {
+    margin-bottom: 3rem !important;
+  }
+
+  /* Facility highlights grid → 1-column */
+  .abt-facility-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .abt-facility-grid > div {
+    border-radius: 14px !important;
+  }
+  .abt-facility-grid > div > div:first-child {
+    height: 160px !important;
+  }
+  .abt-facility-grid > div > div:first-child img {
+    height: 160px !important;
+    object-fit: cover !important;
+  }
+  .abt-facility-grid > div > div:last-child {
+    padding: 1rem !important;
+  }
+  .abt-facility-grid h4 {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  .abt-facility-grid p {
+    font-size: 0.82rem !important;
+  }
+
+  /* CTA section — reduce excess gaps */
+  .abt-cta {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .abt-cta h3 {
+    font-size: 1.1rem !important;
+  }
+  .abt-cta p {
+    font-size: 0.88rem !important;
+  }
+
   /* ── DIAGNOSTICS PAGE ─────────────────────────── */
 
   /* Hero — reduce excessive spacing */
