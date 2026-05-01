@@ -10,6 +10,7 @@ import {
 
 import { SPECIALTIES } from './Services';
 import { ALL_DOCTORS } from './OurDoctors';
+import { DIAGNOSTICS_CATEGORIES } from './Diagnostics';
 
 /* ─── Constants ─── */
 const PHONE      = '+91 9149425496';
@@ -193,40 +194,76 @@ const Home = () => {
       </section>
 
       {/* ─── LAB & DIAGNOSTICS ─── */}
-      <section style={{ padding: '5rem 0', background: '#fff' }}>
-        <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+      <section style={{ padding: '6rem 0', background: '#f8fafc' }}>
+        <div className="container" style={{ maxWidth: '1400px' }}>
           
-          <div className="m-center">
+          <div className="section-header m-stack" style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
               LAB & DIAGNOSTICS
             </div>
-            <h2 style={{ fontSize: '2.5rem', color: 'var(--heading)', marginBottom: '1rem' }}>
-              Accurate results.<br/>Better decisions.
+            <h2 style={{ fontSize: '2.5rem', color: 'var(--heading)', margin: 0, marginBottom: '1rem' }}>
+              Advanced testing.<br/>Precise results.
             </h2>
-            <p style={{ fontSize: '1.05rem', color: 'var(--body)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-              State-of-the-art laboratories and advanced diagnostic imaging for precise and timely results.
+            <p style={{ fontSize: '1.05rem', color: 'var(--body)', maxWidth: '600px', margin: '0 auto' }}>
+              State-of-the-art laboratories and advanced diagnostic imaging for accurate and timely results.
             </p>
+          </div>
 
-            <div className="lab-checklist" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2rem' }}>
-              {[
-                'Advanced pathology lab', 'Digital X-Ray, MRI, CT Scan',
-                'Fast & reliable reporting', 'Home sample collection'
-              ].map(item => (
-                <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <CheckCircle size={18} className="text-blue" style={{ flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--heading)' }}>{item}</span>
+          <div className="diag-categories-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', textAlign: 'left' }}>
+            {DIAGNOSTICS_CATEGORIES.map((cat, i) => (
+              <div key={i} className="diag-category-card" style={{ 
+                background: '#fff', borderRadius: '16px', padding: '2rem', 
+                border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
+                display: 'flex', flexDirection: 'column',
+                transition: 'all 0.3s ease', cursor: 'pointer', height: '100%'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(13,82,192,0.1)';
+                e.currentTarget.style.borderColor = 'rgba(13,82,192,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
+              }}
+              onClick={() => goTo('/diagnostics')}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    {cat.icon}
+                  </div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--navy)', margin: 0, lineHeight: 1.2 }}>
+                    {cat.name}
+                  </h3>
                 </div>
-              ))}
-            </div>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: '2rem', flexGrow: 1 }}>
+                  <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {cat.tests.slice(0, 4).map((test, j) => (
+                      <li key={j} style={{ fontSize: '0.85rem', color: 'var(--body)', display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}>
+                        <span style={{ color: 'var(--blue)', marginTop: '2px' }}>•</span>
+                        <span>{test}</span>
+                      </li>
+                    ))}
+                    {cat.tests.length > 4 && (
+                      <li style={{ fontSize: '0.8rem', color: 'var(--blue)', fontWeight: 600, marginTop: '0.2rem' }}>
+                        + {cat.tests.length - 4} more
+                      </li>
+                    )}
+                  </ul>
+                </div>
 
-            <button className="btn btn-outline-blue btn-lg" onClick={() => goTo('/diagnostics')} style={{ padding: '0.85rem 2rem' }}>
-              Explore Diagnostics <ArrowRight size={18} />
-            </button>
+                <div style={{ 
+                  color: 'var(--blue)', fontWeight: 600, fontSize: '0.9rem', 
+                  display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: 'auto'
+                }}>
+                  View Diagnostics <ArrowRight size={16} />
+                </div>
+              </div>
+            ))}
           </div>
-
-          <div style={{ borderRadius: '20px', overflow: 'hidden' }}>
-            <img src="/lab-technician.jpg" alt="Lab Diagnostics" style={{ width: '100%', height: 'auto', display: 'block' }} />
-          </div>
+          
         </div>
       </section>
 

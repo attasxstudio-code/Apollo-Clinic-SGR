@@ -1,71 +1,54 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Phone, Award, FlaskConical, Clock, ShieldCheck, FileText, CheckCircle, FileSignature, Stethoscope, UserCheck, Smartphone } from 'lucide-react';
+import { Calendar, Phone, Award, FlaskConical, Clock, ShieldCheck, FileText, CheckCircle, FileSignature, Stethoscope, UserCheck, Smartphone, HeartPulse, Moon, Search, Activity } from 'lucide-react';
 
 const PHONE      = '+91 9149425496';
 const PHONE_HREF = 'tel:+919149425496';
 
-const TESTS = [
+export const DIAGNOSTICS_CATEGORIES = [
   {
-    name: 'Complete Blood Count (CBC)', tag: 'HEMATOLOGY',
-    desc: 'Measures different components of your blood to assess overall health and detect infections.',
-    includes: ['Accurate Results', 'NABL Certified', 'Quick Turnaround'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22a8 8 0 0 0 8-8c0-4.4-8-12-8-12S4 9.6 4 14a8 8 0 0 0 8 8z"/><path d="M9 14h6"/><path d="M12 11v6"/></svg>
+    name: 'Ultrasound / USG',
+    desc: 'Advanced ultrasound imaging support for abdominal, vascular, scrotal, and other scan requirements as advised by the doctor.',
+    tests: ['CD / Color Doppler', 'Abdomen USG', 'Scrotum USG', 'Other USG scans as advised'],
+    icon: <Activity size={28} strokeWidth={1.5} />
   },
   {
-    name: 'Lipid Profile', tag: 'CARDIOLOGY',
-    desc: 'Evaluates cholesterol and triglycerides to assess heart disease risk.',
-    includes: ['HDL, LDL, VLDL', 'Total Cholesterol', 'Doctor Reviewed'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22a8 8 0 0 0 8-8c0-4.4-8-12-8-12S4 9.6 4 14a8 8 0 0 0 8 8z"/></svg>
+    name: 'X-Ray & Radiology Studies',
+    desc: 'Radiology and contrast-based imaging services for diagnostic evaluation and specialist guidance.',
+    tests: ['All X-rays', 'MCU', 'Scanogram', 'MCU / RGU', 'Barium Swallow', 'HSG', 'Sinogram'],
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 8v8"/>
+        <path d="M8 12h8"/>
+      </svg>
+    )
   },
   {
-    name: 'Thyroid Profile (T3, T4, TSH)', tag: 'ENDOCRINOLOGY',
-    desc: 'Assesses thyroid hormone levels to detect underactive or overactive thyroid.',
-    includes: ['T3, T4, TSH', 'Hormonal Insight', 'Early Detection'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12c-2.66 0-4.32-2.3-5-4.5-.68 2.2-2.34 4.5-5 4.5s-4.32-2.3-5-4.5c-.68 2.2-2.34 4.5-5 4.5 2.66 0 4.32 2.3 5 4.5.68-2.2 2.34-4.5 5-4.5s4.32 2.3 5 4.5c.68-2.2 2.34-4.5 5-4.5z"/></svg>
+    name: 'Cardiac Diagnostics',
+    desc: 'Heart-related diagnostic tests for cardiac evaluation, rhythm monitoring, blood pressure monitoring, and cardiac monitoring.',
+    tests: ['Echo', 'ECG', 'UMT', 'Holter', 'ABPM'],
+    icon: <HeartPulse size={28} strokeWidth={1.5} />
   },
   {
-    name: 'Liver Function Test (LFT)', tag: 'HEPATOLOGY',
-    desc: 'Checks liver enzymes and proteins to evaluate liver health and function.',
-    includes: ['Enzyme Analysis', 'Liver Health', 'Comprehensive Panel'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 4c-3.3 0-6 2.7-6 6 0 5 8 10 10 11.5 2-1.5 10-6.5 10-11.5 0-3.3-2.7-6-6-6-2.2 0-4.1 1.2-5.1 3-1-1.8-2.9-3-5.1-3z"/></svg>
+    name: 'Sleep, Neuro, ENT & Pulmonary Diagnostics',
+    desc: 'Specialized investigations for sleep, brain activity, hearing assessment, and lung function evaluation.',
+    tests: ['Sleep Study', 'Polysomnography', 'EEG', 'Audiometry', 'PFT'],
+    icon: <Moon size={28} strokeWidth={1.5} />
   },
   {
-    name: 'Kidney Function Test (KFT)', tag: 'NEPHROLOGY',
-    desc: 'Evaluates kidney function and helps detect kidney disorders early.',
-    includes: ['Urea, Creatinine', 'eGFR Calculation', 'Kidney Health'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21a9 9 0 0 0 9-9c0-5-4-9-9-9s-9 4-9 9a9 9 0 0 0 9 9z"/><path d="M12 12c-2 0-3.5-1.5-3.5-3.5S10 5 12 5s3.5 1.5 3.5 3.5S14 12 12 12z"/><path d="M8.5 15.5c1.5 1.5 3.5 2.5 5.5 2.5"/></svg>
+    name: 'Endoscopy & Gastro Diagnostics',
+    desc: 'Endoscopic diagnostic services for evaluation of the digestive tract and related concerns.',
+    tests: ['Endoscopy', 'Colonoscopy', 'Sigmoidoscopy'],
+    icon: <Search size={28} strokeWidth={1.5} />
   },
   {
-    name: 'HbA1c / Diabetes Screening', tag: 'ENDOCRINOLOGY',
-    desc: 'Measures average blood sugar levels over 2-3 months for diabetes management.',
-    includes: ['HbA1c Test', 'Diabetes Monitoring', 'Early Detection'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22a8 8 0 0 0 8-8c0-4.4-8-12-8-12S4 9.6 4 14a8 8 0 0 0 8 8z"/><path d="M9 14h6"/><path d="M12 11v6"/></svg>
-  },
-  {
-    name: 'ECG – 12-Lead Electrocardiogram', tag: 'CARDIOLOGY',
-    desc: 'Records the electrical activity of your heart to detect irregularities.',
-    includes: ['12-Lead ECG', 'Heart Rhythm', 'Instant Results'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-  },
-  {
-    name: 'Chest X-Ray', tag: 'RADIOLOGY',
-    desc: 'Imaging test to examine lungs, heart and chest structures for diagnosis.',
-    includes: ['Digital X-Ray', 'Quick & Safe', 'Expert Report'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22V8M12 8C12 8 9 5 6 5c-2 0-3 1.5-3 3 0 4 3 6 3 9h12c0-3 3-5 3-9 0-1.5-1-3-3-3-3 0-6 3-6 3z"/></svg>
-  },
-  {
-    name: 'Pulmonary Function Test (PFT)', tag: 'PULMONOLOGY',
-    desc: 'Assesses lung capacity and function to detect respiratory disorders.',
-    includes: ['Lung Function', 'Spirometry Test', 'Doctor Reviewed'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22V8M12 8C12 8 9 5 6 5c-2 0-3 1.5-3 3 0 4 3 6 3 9h12c0-3 3-5 3-9 0-1.5-1-3-3-3-3 0-6 3-6 3z"/></svg>
-  },
-  {
-    name: 'Ultrasound Abdomen', tag: 'RADIOLOGY',
-    desc: 'Non-invasive scan to examine abdominal organs and detect abnormalities.',
-    includes: ['High Resolution', 'Safe & Painless', 'Detailed Report'],
-    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M8 8h.01"/><path d="M12 8h.01"/><path d="M16 8h.01"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
-  },
+    name: 'Urology Diagnostics',
+    desc: 'Urology-focused diagnostic testing for urinary flow and related evaluation.',
+    tests: ['Uroflowmetry'],
+    icon: <FlaskConical size={28} strokeWidth={1.5} />
+  }
 ];
 
 const PACKAGES = [
@@ -211,13 +194,13 @@ const Diagnostics = () => {
             Advanced testing across specialties to help in early detection and better health.
           </p>
 
-          <div className="diag-tests-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem', textAlign: 'left' }}>
-            {TESTS.map((test, i) => (
-              <div key={i} style={{ 
-                background: '#fff', borderRadius: '16px', padding: '1.5rem', 
+          <div className="diag-tests-grid diag-categories-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', textAlign: 'left' }}>
+            {DIAGNOSTICS_CATEGORIES.map((cat, i) => (
+              <div key={i} className="diag-category-card" style={{ 
+                background: '#fff', borderRadius: '16px', padding: '2rem', 
                 border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
                 display: 'flex', flexDirection: 'column',
-                transition: 'all 0.3s ease', cursor: 'pointer'
+                transition: 'all 0.3s ease', cursor: 'pointer', height: '100%'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-5px)';
@@ -229,37 +212,37 @@ const Diagnostics = () => {
                 e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.02)';
                 e.currentTarget.style.borderColor = 'rgba(0,0,0,0.05)';
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {test.icon}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.25rem' }}>
+                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    {cat.icon}
                   </div>
-                  <span style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--blue)', background: 'var(--blue-light)', padding: '0.2rem 0.6rem', borderRadius: '4px', letterSpacing: '0.5px' }}>
-                    {test.tag}
-                  </span>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--navy)', margin: 0, lineHeight: 1.2 }}>
+                    {cat.name}
+                  </h3>
                 </div>
                 
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.5rem', lineHeight: 1.3 }}>
-                  {test.name}
-                </h3>
-                <p style={{ fontSize: '0.8rem', color: 'var(--body)', lineHeight: 1.5, marginBottom: '1.25rem', flexGrow: 1 }}>
-                  {test.desc}
+                <p style={{ fontSize: '0.85rem', color: 'var(--body)', lineHeight: 1.5, marginBottom: '1.5rem' }}>
+                  {cat.desc}
                 </p>
                 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
-                  {test.includes.map((inc, j) => (
-                    <span key={j} style={{ fontSize: '0.7rem', color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--blue)' }}></span>
-                      {inc}
-                    </span>
-                  ))}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '2rem', flexGrow: 1 }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--navy)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Key Tests:</span>
+                  <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {cat.tests.map((test, j) => (
+                      <li key={j} style={{ fontSize: '0.85rem', color: 'var(--body)', display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}>
+                        <span style={{ color: 'var(--blue)', marginTop: '2px' }}>•</span>
+                        <span>{test}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <button onClick={() => navigate('/book-checkup')} style={{ 
-                  width: '100%', padding: '0.75rem', background: 'var(--navy)', color: '#fff', 
-                  border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.85rem', 
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer'
+                <button onClick={() => navigate('/book')} style={{ 
+                  width: '100%', padding: '0.85rem', background: 'var(--navy)', color: '#fff', 
+                  border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem', 
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', marginTop: 'auto'
                 }}>
-                  <Calendar size={14} /> Book Test
+                  <Calendar size={16} /> Book Test
                 </button>
               </div>
             ))}
