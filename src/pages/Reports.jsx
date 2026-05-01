@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, User, Calendar, Loader2, FileText, AlertTriangle, ArrowRight, Search } from 'lucide-react';
 
-const PHONE = '+91 9149425496';
+import { PRIMARY_PHONE, PRIMARY_PHONE_HREF } from '../config/contact';
 
 const Reports = () => {
   const navigate = useNavigate();
@@ -179,7 +179,7 @@ const Reports = () => {
             <li>Make sure your name is in <strong>CAPITAL LETTERS</strong></li>
             <li>Enter your date of birth exactly as provided to the clinic</li>
             <li>Reports are available after the clinic processes your results</li>
-            <li>Contact us at <a href={`tel:${PHONE.replace(/\s/g,'')}`} style={{ color: 'var(--blue)', fontWeight: 600 }}>{PHONE}</a> for help</li>
+            <li>Contact us at <a href={PRIMARY_PHONE_HREF} style={{ color: 'var(--blue)', fontWeight: 600 }}>{PRIMARY_PHONE}</a> for help</li>
           </ul>
         </div>
 

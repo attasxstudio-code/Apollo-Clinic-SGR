@@ -2,9 +2,7 @@ import React from 'react';
 import { Phone, MapPin, Clock, ShieldCheck } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const PHONE      = '+91 9149425496';
-const PHONE_HREF = 'tel:+919149425496';
-const WA_LINK    = `https://wa.me/919149425496?text=${encodeURIComponent('Hello! I would like to book an appointment at Apollo Clinic Srinagar.')}`;
+import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, waLink, WORKING_HOURS } from '../config/contact';
 
 const LINKS = {
   'Quick Links': [
@@ -43,9 +41,9 @@ const Footer = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
               {[
-                { icon: <Phone size={13} />, text: PHONE, href: PHONE_HREF },
+                { icon: <Phone size={13} />, text: PRIMARY_PHONE, href: PRIMARY_PHONE_HREF },
                 { icon: <MapPin size={13} />, text: 'Near National School, Arham Towers, Karan Nagar', href: null },
-                { icon: <Clock size={13} />, text: 'Mon–Sat: 12 PM–7 PM · Sun: 10 AM–1:30 PM', href: null },
+                { icon: <Clock size={13} />, text: `${WORKING_HOURS.weekdays.label.replace('Monday – Saturday', 'Mon–Sat')}: ${WORKING_HOURS.weekdays.time.replace('08:00 AM – 07:00 PM', '8 AM–7 PM')} · ${WORKING_HOURS.sunday.label}: ${WORKING_HOURS.sunday.time.replace('08:00 AM – 02:00 PM', '8 AM–2 PM')}`, href: null },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                   <span style={{ color: 'var(--blue)', flexShrink: 0, marginTop: '2px' }}>{item.icon}</span>
@@ -77,13 +75,13 @@ const Footer = () => {
               Call us or send a WhatsApp message to schedule your appointment.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              <a href={PHONE_HREF} className="btn btn-outline-blue" style={{
+              <a href={PRIMARY_PHONE_HREF} className="btn btn-outline-blue" style={{
                 display: 'flex', alignItems: 'center', gap: '0.45rem', justifyContent: 'center',
                 padding: '0.65rem 1rem', fontSize: '0.85rem', textDecoration: 'none',
               }}>
-                <Phone size={14} /> {PHONE}
+                <Phone size={14} /> {PRIMARY_PHONE}
               </a>
-              <a href={WA_LINK} target="_blank" rel="noreferrer" style={{
+              <a href={waLink('Hello! I would like to book an appointment at Apollo Clinic Srinagar.')} target="_blank" rel="noreferrer" style={{
                 display: 'flex', alignItems: 'center', gap: '0.45rem', justifyContent: 'center',
                 background: '#25D366', borderRadius: '8px', padding: '0.65rem 1rem',
                 color: '#fff', fontWeight: 600, fontSize: '0.85rem', textDecoration: 'none', transition: 'opacity 0.2s',

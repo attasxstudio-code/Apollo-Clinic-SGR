@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageSquare, User, Phone, Calendar, FileText, CheckCircle } from 'lucide-react';
+import { waLink } from '../config/contact';
 import {
   checkRateLimit, recordAttempt,
   sanitizeInput, isValidName, isValidPhone, isValidDate, isValidMessage,
@@ -79,7 +80,7 @@ const BookingForm = () => {
 
     // 2️⃣  Open WhatsApp
     const text = `New Appointment Request — Apollo Clinic Srinagar:\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
-    window.open(`https://wa.me/919000000000?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(waLink(text), '_blank');
 
     // 3️⃣  Show brief success state then reset
     setSubmitted(true);

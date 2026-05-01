@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, Clock, MapPin, CheckCircle, MessageCircle, Shield, Users, Lock, ChevronLeft, ShieldCheck, HeartPulse, FileText, Calendar } from 'lucide-react';
 import CheckupBookingForm from '../components/CheckupBookingForm';
+import { WORKING_HOURS, PRIMARY_PHONE, CLINIC_EMAIL } from '../config/contact';
 
 const BookCheckup = () => (
   <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
@@ -104,7 +105,10 @@ const BookCheckup = () => (
             </div>
             <div>
               <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.25rem' }}>Clinic Hours</h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--body)', margin: 0 }}>Mon – Sun<br/>7:00 AM – 9:00 PM</p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--body)', margin: 0 }}>
+                {WORKING_HOURS.weekdays.label.replace('Monday – Saturday', 'Mon–Sat')}: {WORKING_HOURS.weekdays.time.replace('08:00 AM – 07:00 PM', '8 AM–7 PM')}<br/>
+                {WORKING_HOURS.sunday.label}: {WORKING_HOURS.sunday.time.replace('08:00 AM – 02:00 PM', '8 AM–2 PM')}
+              </p>
             </div>
           </div>
           
@@ -114,7 +118,7 @@ const BookCheckup = () => (
             </div>
             <div>
               <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.25rem' }}>Need Help?</h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--body)', margin: 0 }}>Call us at +91 0123 456 7878<br/>or email care@apolloclinic.com</p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--body)', margin: 0 }}>Call us at {PRIMARY_PHONE}<br/>or email {CLINIC_EMAIL}</p>
             </div>
           </div>
         </div>

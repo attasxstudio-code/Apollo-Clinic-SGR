@@ -3,8 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Calendar, Phone, MapPin, Clock, ChevronLeft, CheckCircle, ArrowRight, ShieldCheck, UserCheck, GraduationCap, HeartPulse, Shield, Activity, FileText } from 'lucide-react';
 import { ALL_DOCTORS } from './OurDoctors';
 
-const PHONE      = '+91 1234 567 890';
-const PHONE_HREF = 'tel:+911234567890';
+import { PRIMARY_PHONE, PRIMARY_PHONE_HREF } from '../config/contact';
 
 const DoctorProfile = () => {
   const { id }    = useParams();
@@ -254,7 +253,7 @@ const DoctorProfile = () => {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.25rem' }}>
                         <Phone size={14} /> Contact
                       </div>
-                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>{PHONE}</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>{PRIMARY_PHONE}</div>
                     </div>
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.25rem' }}>
@@ -394,7 +393,7 @@ const DoctorProfile = () => {
               {/* Quick phone link */}
               <div style={{ marginTop: '1.5rem', background: '#f8fafc', borderRadius: '8px', padding: '1.25rem', textAlign: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', color: 'var(--blue)', marginBottom: '0.25rem' }}>
-                  <Phone size={16} /> <span style={{ fontWeight: 800, fontSize: '1rem' }}>{PHONE}</span>
+                  <Phone size={16} /> <span style={{ fontWeight: 800, fontSize: '1rem' }}>{PRIMARY_PHONE}</span>
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Call us for any assistance</div>
               </div>
@@ -430,7 +429,7 @@ const DoctorProfile = () => {
               <button className="btn btn-orange btn-lg" onClick={goBook} style={{ padding: '0.75rem 2rem', fontSize: '0.95rem' }}>
                 <Calendar size={18} /> Book Appointment
               </button>
-              <a href={PHONE_HREF} className="btn btn-outline-orange btn-lg" style={{ padding: '0.75rem 2rem', fontSize: '0.95rem', textDecoration: 'none', border: '1px solid var(--orange)', color: 'var(--orange)', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: 'var(--r-full)' }}>
+              <a href={PRIMARY_PHONE_HREF} className="btn btn-outline-orange btn-lg" style={{ padding: '0.75rem 2rem', fontSize: '0.95rem', textDecoration: 'none', border: '1px solid var(--orange)', color: 'var(--orange)', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: 'var(--r-full)' }}>
                 <Phone size={18} /> Call Now
               </a>
             </div>

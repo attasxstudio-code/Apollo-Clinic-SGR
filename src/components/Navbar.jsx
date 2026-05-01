@@ -2,16 +2,15 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Calendar, Phone, Lock, Stethoscope } from 'lucide-react';
 
-const PHONE      = '+91 9149425496';
-const PHONE_HREF = 'tel:+919149425496';
+import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, WORKING_HOURS } from '../config/contact';
 
 /* ── Live clinic status ── */
 function getClinicStatus() {
   const now  = new Date();
   const day  = now.getDay();
   const mins = now.getHours() * 60 + now.getMinutes();
-  if (day >= 1 && day <= 6) return { open: mins >= 720 && mins < 1140, hours: '12:00 PM – 7:00 PM' };
-  return { open: mins >= 600 && mins < 810, hours: '10:00 AM – 1:30 PM' };
+  if (day >= 1 && day <= 6) return { open: mins >= 480 && mins < 1140, hours: WORKING_HOURS.weekdays.time };
+  return { open: mins >= 480 && mins < 840, hours: WORKING_HOURS.sunday.time };
 }
 
 const NAV_LINKS = [
@@ -138,7 +137,7 @@ const Navbar = () => {
               <Calendar size={16} /> Book Appointment
             </button>
             <a
-              href={PHONE_HREF}
+              href={PRIMARY_PHONE_HREF}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
                 padding: '0.75rem', background: 'var(--blue-light)',
@@ -147,7 +146,7 @@ const Navbar = () => {
                 fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none',
               }}
             >
-              <Phone size={15} /> {PHONE}
+              <Phone size={15} /> {PRIMARY_PHONE}
             </a>
           </div>
         </div>

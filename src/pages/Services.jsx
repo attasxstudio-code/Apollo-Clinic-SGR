@@ -2,8 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Phone, Stethoscope, FlaskConical, ShieldCheck, FileText, CheckCircle, Bone, Baby, Ear, HeartPulse, Eye, Brain, Smile, Apple, Activity, Users } from 'lucide-react';
 
-const PHONE      = '+91 9149425496';
-const PHONE_HREF = 'tel:+919149425496';
+import { PRIMARY_PHONE_HREF } from '../config/contact';
 
 export const SPECIALTIES = [
   {
@@ -316,7 +315,7 @@ const Services = () => {
               <button className="btn btn-orange btn-lg" onClick={() => navigate('/book')} style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem' }}>
                 <Calendar size={18} /> Book Appointment
               </button>
-              <a href={PHONE_HREF} className="btn btn-outline-blue btn-lg" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', textDecoration: 'none' }}>
+              <a href={PRIMARY_PHONE_HREF} className="btn btn-outline-blue btn-lg" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', textDecoration: 'none' }}>
                 <Phone size={18} /> Talk to Clinic
               </a>
             </div>

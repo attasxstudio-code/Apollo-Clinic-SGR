@@ -6,8 +6,7 @@ import {
   ShieldCheck, MessageSquare, CheckCircle2
 } from 'lucide-react';
 
-const PHONE      = '+91 1234 567 890';
-const PHONE_HREF = 'tel:+911234567890';
+import { PRIMARY_PHONE_HREF } from '../config/contact';
 
 const About = () => {
   const navigate = useNavigate();
@@ -357,7 +356,7 @@ const About = () => {
               <button className="btn btn-orange btn-lg" onClick={goBook} style={{ padding: '0.75rem 2rem', fontSize: '0.95rem' }}>
                 <Calendar size={18} /> Book Appointment
               </button>
-              <a href={PHONE_HREF} className="btn btn-outline-blue btn-lg" style={{ padding: '0.75rem 2rem', fontSize: '0.95rem', textDecoration: 'none', border: '1px solid var(--blue)', color: 'var(--blue)', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: '8px' }}>
+              <a href={PRIMARY_PHONE_HREF} className="btn btn-outline-blue btn-lg" style={{ padding: '0.75rem 2rem', fontSize: '0.95rem', textDecoration: 'none', border: '1px solid var(--blue)', color: 'var(--blue)', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: '8px' }}>
                 <Phone size={18} /> Talk to Clinic
               </a>
             </div>

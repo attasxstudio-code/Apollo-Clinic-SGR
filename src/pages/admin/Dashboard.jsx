@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { sanitizeObject } from '../../utils/security';
+import { PRIMARY_PHONE } from '../../config/contact';
 
 /* ══════════════════════════════════════════
    STATUS CONFIG
@@ -604,7 +605,7 @@ const TestReportsSection = () => {
 
   const getWhatsAppMessage = (report) => {
     const link = getReportLink(report.token);
-    return `Hello ${report.patientName},\n\nYour test report from Apollo Clinic Srinagar is ready.\n\n📋 Report: ${report.reportTitle}\n📅 Date: ${report.reportDate}\n\nPlease use the secure link below to access your report:\n${link}\n\nTo protect your privacy, you will need:\n• Your FULL NAME IN CAPITAL LETTERS\n• Your Date of Birth\n\nThis link is confidential. Please do not share it.\n\nApollo Clinic Srinagar\n📍 Karan Nagar, Near National School\n📞 +91 9000000000`;
+    return `Hello ${report.patientName},\n\nYour test report from Apollo Clinic Srinagar is ready.\n\n📋 Report: ${report.reportTitle}\n📅 Date: ${report.reportDate}\n\nPlease use the secure link below to access your report:\n${link}\n\nTo protect your privacy, you will need:\n• Your FULL NAME IN CAPITAL LETTERS\n• Your Date of Birth\n\nThis link is confidential. Please do not share it.\n\nApollo Clinic Srinagar\n📍 Karan Nagar, Near National School\n📞 ${PRIMARY_PHONE}`;
   };
 
   const openWhatsApp = (report) => {

@@ -12,10 +12,9 @@ import { SPECIALTIES } from './Services';
 import { ALL_DOCTORS } from './OurDoctors';
 import { DIAGNOSTICS_CATEGORIES } from './Diagnostics';
 
+import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, CLINIC_EMAIL, WORKING_HOURS } from '../config/contact';
+
 /* ─── Constants ─── */
-const PHONE      = '+91 9149425496';
-const PHONE_HREF = 'tel:+919149425496';
-const EMAIL      = 'contact@apolloclinic.com';
 const MAPS_EMBED = 'https://maps.google.com/maps?q=34.0806043,74.7988594&hl=en&z=17&output=embed&iwloc=near';
 
 const REVIEWS = [
@@ -335,20 +334,20 @@ const Home = () => {
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
                 <Phone className="text-blue" size={20} style={{ flexShrink: 0 }} />
-                <a href={PHONE_HREF} style={{ fontSize: '0.9rem', color: 'var(--body)', textDecoration: 'none' }}>
-                  {PHONE}
+                <a href={PRIMARY_PHONE_HREF} style={{ fontSize: '0.9rem', color: 'var(--body)', textDecoration: 'none' }}>
+                  {PRIMARY_PHONE}
                 </a>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
                 <Mail className="text-blue" size={20} style={{ flexShrink: 0 }} />
                 <span style={{ fontSize: '0.9rem', color: 'var(--body)' }}>
-                  {EMAIL}
+                  {CLINIC_EMAIL}
                 </span>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
                 <Clock className="text-blue" size={20} style={{ flexShrink: 0 }} />
                 <span style={{ fontSize: '0.9rem', color: 'var(--body)' }}>
-                  Mon–Sat: 12 PM–7 PM · Sun: 10 AM–1:30 PM
+                  {WORKING_HOURS.weekdays.label.replace('Monday – Saturday', 'Mon–Sat')}: {WORKING_HOURS.weekdays.time.replace('08:00 AM – 07:00 PM', '8 AM–7 PM')} · {WORKING_HOURS.sunday.label}: {WORKING_HOURS.sunday.time.replace('08:00 AM – 02:00 PM', '8 AM–2 PM')}
                 </span>
               </div>
             </div>
@@ -387,7 +386,7 @@ const Home = () => {
               { q: "How can I access my test reports?", a: "Test reports can be accessed online through our patient portal or collected in person at the clinic reception." },
               { q: "Do you accept health insurance?", a: "Yes, we accept all major health insurance plans. Please contact our reception desk for specific details regarding your provider." },
               { q: "Do you offer home sample collection?", a: "Yes, we offer convenient home sample collection services for most diagnostic tests. Contact us to schedule a pickup." },
-              { q: "What are your clinic timings?", a: "We are open Monday to Saturday from 12 PM to 7 PM, and on Sundays from 10 AM to 1:30 PM." },
+              { q: "What are your clinic timings?", a: `We are open ${WORKING_HOURS.weekdays.label} from ${WORKING_HOURS.weekdays.time}, and on ${WORKING_HOURS.sunday.label} from ${WORKING_HOURS.sunday.time}.` },
               { q: "What should I carry during my visit?", a: "Please bring your valid ID, previous medical records, and any current prescriptions or test reports." }
             ].map((faq, i) => (
               <div key={i} className="faq-item" style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden' }}>

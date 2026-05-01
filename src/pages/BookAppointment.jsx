@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, Clock, MapPin, CheckCircle, MessageCircle, Shield, Users, Lock, ChevronLeft, ShieldCheck } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
+import { WORKING_HOURS } from '../config/contact';
 
 const BookAppointment = () => (
   <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
@@ -116,7 +117,10 @@ const BookAppointment = () => (
             </div>
             <div>
               <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.25rem' }}>Care, When You Need</h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--body)', margin: 0 }}>Mon – Sun<br/>7:00 AM – 9:00 PM</p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--body)', margin: 0 }}>
+                {WORKING_HOURS.weekdays.label.replace('Monday – Saturday', 'Mon–Sat')}: {WORKING_HOURS.weekdays.time.replace('08:00 AM – 07:00 PM', '8 AM–7 PM')}<br/>
+                {WORKING_HOURS.sunday.label}: {WORKING_HOURS.sunday.time.replace('08:00 AM – 02:00 PM', '8 AM–2 PM')}
+              </p>
             </div>
           </div>
         </div>

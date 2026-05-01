@@ -2,8 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Calendar, Phone, ArrowRight, UserCheck, ShieldCheck, HeartPulse, Clock } from 'lucide-react';
 
-const PHONE      = '+91 1234 567 890'; // Updated to match screenshot "+91 1234 567 890" for design fidelity
-const PHONE_HREF = 'tel:+911234567890';
+import { PRIMARY_PHONE_HREF } from '../config/contact';
 
 export const ALL_DOCTORS = [
   {
@@ -488,7 +487,7 @@ const OurDoctors = () => {
               <button className="btn btn-orange btn-lg" onClick={goBook} style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', borderRadius: '50px' }}>
                 <Calendar size={18} /> Book Appointment
               </button>
-              <a href={PHONE_HREF} className="btn btn-outline-blue btn-lg" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', textDecoration: 'none', borderRadius: '50px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <a href={PRIMARY_PHONE_HREF} className="btn btn-outline-blue btn-lg" style={{ padding: '0.75rem 1.5rem', fontSize: '0.95rem', textDecoration: 'none', borderRadius: '50px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Phone size={18} /> Talk to Clinic
               </a>
             </div>

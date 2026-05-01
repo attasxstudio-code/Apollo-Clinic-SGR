@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ChevronDown } from 'lucide-react';
+import { WORKING_HOURS, PRIMARY_PHONE, PRIMARY_PHONE_HREF } from '../config/contact';
 
 const FAQ_CATEGORIES = [
   {
@@ -8,7 +9,7 @@ const FAQ_CATEGORIES = [
     items: [
       {
         q: 'How do I book an appointment at Apollo Clinic Srinagar?',
-        a: 'You can book an appointment by filling out the online form on our Book Appointment page, calling us directly at +91 9000000000, or sending us a WhatsApp message. We will confirm your slot within a few hours.',
+        a: `You can book an appointment by filling out the online form on our Book Appointment page, calling us directly at ${PRIMARY_PHONE}, or sending us a WhatsApp message. We will confirm your slot within a few hours.`,
       },
       {
         q: 'Do I need an appointment, or can I walk in?',
@@ -16,7 +17,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: 'What are the clinic working hours?',
-        a: 'Apollo Clinic Srinagar is open Monday to Saturday from 12:00 PM to 7:00 PM, and on Sundays from 10:00 AM to 1:30 PM.',
+        a: `Apollo Clinic Srinagar is open ${WORKING_HOURS.weekdays.label} from ${WORKING_HOURS.weekdays.time}, and on ${WORKING_HOURS.sunday.label} from ${WORKING_HOURS.sunday.time}.`,
       },
       {
         q: 'How will I know my appointment is confirmed?',
@@ -150,7 +151,7 @@ const FAQ = () => (
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/book" className="btn btn-primary"><Calendar size={16} /> Book Appointment</Link>
-              <a href="tel:+919000000000" className="btn btn-call">Call +91 9000000000</a>
+              <a href={PRIMARY_PHONE_HREF} className="btn btn-call">Call {PRIMARY_PHONE}</a>
             </div>
           </div>
         </div>

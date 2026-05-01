@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageSquare, User, Phone, Calendar, FlaskConical, FileText, CheckCircle } from 'lucide-react';
+import { waLink } from '../config/contact';
 import {
   checkRateLimit, recordAttempt,
   sanitizeInput, isValidName, isValidPhone, isValidDate, isValidMessage,
@@ -81,7 +82,7 @@ const CheckupBookingForm = () => {
       notes ? `Additional Notes: ${notes}` : null,
     ].filter(Boolean).join('\n');
 
-    window.open(`https://wa.me/919149425496?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(waLink(text), '_blank');
 
     setSubmitted(true);
     e.target.reset();
