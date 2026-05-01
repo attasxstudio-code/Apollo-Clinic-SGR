@@ -122,7 +122,7 @@ const Home = () => {
             }}
           >
             {SPECIALTIES.map((s, i) => (
-              <div key={i} className="card service-card" onClick={() => goTo('/services')} style={{ flex: '0 0 calc((100% - 7.5rem) / 6)', padding: '2rem 1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', scrollSnapAlign: 'start' }}>
+              <div key={i} className="card service-card" onClick={() => goTo('/services')} style={{ flex: '0 0 calc((100% - 4.5rem) / 4)', padding: '2rem 1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', scrollSnapAlign: 'start' }}>
                 <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem' }}>
                   {s.icon}
                 </div>

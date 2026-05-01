@@ -1,104 +1,89 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Phone, Stethoscope, FlaskConical, ShieldCheck, FileText, CheckCircle } from 'lucide-react';
+import { Calendar, Phone, Stethoscope, FlaskConical, ShieldCheck, FileText, CheckCircle, Bone, Baby, Ear, HeartPulse, Eye, Brain, Smile, Apple, Activity, Users } from 'lucide-react';
 
 const PHONE      = '+91 9149425496';
 const PHONE_HREF = 'tel:+919149425496';
 
 export const SPECIALTIES = [
   {
-    name: 'General Physician',
-    desc: 'Comprehensive care for common illnesses and lifestyle conditions.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        <circle cx="12" cy="11" r="3"/>
-      </svg>
-    ),
+    name: 'Orthopaedics',
+    desc: 'Care for bone, joint, spine, muscle, ligament, and sports-related problems with expert consultation and treatment guidance.',
+    icon: <Bone size={32} strokeWidth={1.5} />,
   },
   {
-    name: 'Cardiology',
-    desc: 'Expert care for heart health, monitoring and advanced treatments.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-      </svg>
-    ),
+    name: 'Paediatrician',
+    desc: 'Child healthcare services for infants, children, and teenagers, including routine checkups, growth monitoring, fever, infections, and vaccinations.',
+    icon: <Baby size={32} strokeWidth={1.5} />,
   },
   {
-    name: 'Pediatrics',
-    desc: 'Compassionate care for newborns, children and adolescents.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="8" r="5"/><path d="M6 21v-1a6 6 0 0112 0v1"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'Gynecology',
-    desc: "Women's health, from routine care to advanced gynec treatments.",
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 15v7M9 19h6M12 15a6 6 0 100-12 6 6 0 000 12z"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'Dermatology',
-    desc: 'Diagnosis and treatment for skin, hair and nail conditions.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'Orthopedics',
-    desc: 'Bone, joint and muscle care for pain-free movement.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'Clinical Psychology',
-    desc: 'Mental health support for emotional well-being and resilience.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-      </svg>
-    ),
+    name: 'Physician',
+    desc: 'General medical consultation for common illnesses, fever, infections, diabetes, blood pressure, weakness, and preventive health advice.',
+    icon: <Stethoscope size={32} strokeWidth={1.5} />,
   },
   {
     name: 'ENT',
-    desc: 'Diagnosis and treatment for ear, nose, throat and related disorders.',
+    desc: 'Diagnosis and treatment support for ear, nose, and throat concerns including sinus issues, throat infections, hearing problems, and allergy-related symptoms.',
+    icon: <Ear size={32} strokeWidth={1.5} />,
+  },
+  {
+    name: 'Cardiologist',
+    desc: 'Heart health consultation for chest discomfort, blood pressure, ECG evaluation, heart rhythm concerns, and preventive cardiac care.',
+    icon: <HeartPulse size={32} strokeWidth={1.5} />,
+  },
+  {
+    name: 'Ophthalmologist',
+    desc: 'Eye care services for vision problems, eye infections, eye pressure checks, general eye examination, and specialist consultation.',
+    icon: <Eye size={32} strokeWidth={1.5} />,
+  },
+  {
+    name: 'Neuro Surgeon',
+    desc: 'Specialist consultation for brain, spine, nerve-related concerns, headaches, back pain, neurological symptoms, and surgical opinion when required.',
+    icon: <Brain size={32} strokeWidth={1.5} />,
+  },
+  {
+    name: 'Dentist',
+    desc: 'Dental consultation and oral care for tooth pain, gum problems, cleaning, cavities, dental checkups, and preventive dental care.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/>
-        <line x1="12" y1="19" x2="12" y2="22"/>
+        <path d="M10 21v-4a2 2 0 014 0v4"/>
+        <path d="M12 4a3 3 0 00-3 3v2c0 1.5 2 2 2 3v1a1 1 0 002 0v-1c0-1 2-1.5 2-3V7a3 3 0 00-3-3z"/>
+        <path d="M7 9a5 5 0 00-5 5v2a3 3 0 006 0v-2"/>
+        <path d="M17 9a5 5 0 015 5v2a3 3 0 01-6 0v-2"/>
       </svg>
     ),
   },
   {
-    name: 'Diabetes & Endocrinology',
-    desc: 'Comprehensive care for diabetes, thyroid and hormonal disorders.',
+    name: 'Psychologist',
+    desc: 'Mental wellness support for stress, anxiety, emotional health, behavioral concerns, counseling, and psychological guidance.',
+    icon: <Smile size={32} strokeWidth={1.5} />,
+  },
+  {
+    name: 'Dietician',
+    desc: 'Personalized nutrition guidance for weight management, diabetes, cholesterol, digestive health, pregnancy nutrition, and lifestyle improvement.',
+    icon: <Apple size={32} strokeWidth={1.5} />,
+  },
+  {
+    name: 'Urologist',
+    desc: 'Consultation for urinary tract problems, kidney and bladder concerns, prostate issues, stones, infections, and male urological health.',
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-        <path d="M8 12h8M12 8v8"/>
+        <path d="M12 10a4 4 0 0 1-4 4H5.5a2.5 2.5 0 0 1-2.5-2.5V8a4 4 0 0 1 4-4H8a4 4 0 0 1 4 4v2Z"/>
+        <path d="M12 10a4 4 0 0 0 4 4h2.5a2.5 2.5 0 0 0 2.5-2.5V8a4 4 0 0 0-4-4h-1a4 4 0 0 0-4 4v2Z"/>
+        <path d="M12 14v8"/>
+        <path d="M8 22h8"/>
       </svg>
     ),
   },
   {
-    name: 'Respiratory Care',
-    desc: 'Diagnosis and treatment for asthma, allergies and lung conditions.',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22V8M12 8C12 8 9 5 6 5c-2 0-3 1.5-3 3 0 4 3 6 3 9h12c0-3 3-5 3-9 0-1.5-1-3-3-3-3 0-6 3-6 3z"/>
-      </svg>
-    ),
+    name: 'Physiotherapist',
+    desc: 'Rehabilitation and therapy support for pain relief, injury recovery, mobility improvement, posture correction, and post-surgical recovery.',
+    icon: <Activity size={32} strokeWidth={1.5} />,
+  },
+  {
+    name: 'Infertility Clinic',
+    desc: 'Consultation and guidance for fertility concerns, reproductive health, pregnancy planning, and specialist evaluation for couples.',
+    icon: <Users size={32} strokeWidth={1.5} />,
   },
 ];
 
@@ -215,7 +200,7 @@ const Services = () => {
             We offer a wide range of medical services to address all your healthcare needs.
           </p>
 
-          <div className="svc-specialty-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem' }}>
+          <div className="svc-specialty-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
             {SPECIALTIES.map((svc, i) => (
               <div key={i} style={{ 
                 background: '#fff', borderRadius: '16px', padding: '2rem 1.5rem', 
