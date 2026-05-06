@@ -843,10 +843,22 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
 
 const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition', 'Urology'];
 
+const useIsMobile = () => {
+  const [mobile, setMobile] = React.useState(window.innerWidth < 768);
+  React.useEffect(() => {
+    const h = () => setMobile(window.innerWidth < 768);
+    window.addEventListener('resize', h);
+    return () => window.removeEventListener('resize', h);
+  }, []);
+  return mobile;
+};
+
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
+  const isMobile = useIsMobile();
   return (
     <div
+      className="doctor-card"
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
@@ -862,11 +874,11 @@ const DoctorCard = ({ doc, onProfile, onBook }) => {
       }}
     >
       {/* Top Image Area */}
-      <div style={{ position: 'relative', height: '240px', background: 'linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%)', overflow: 'hidden' }}>
+      <div className="doctor-card-img-wrap" style={{ position: 'relative', height: isMobile ? '280px' : '240px', background: 'linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%)', overflow: 'hidden' }}>
         <img 
           src={doc.image} 
           alt={doc.name} 
-          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }}
+          style={{ width: '100%', height: '100%', objectFit: isMobile ? 'contain' : 'cover', objectPosition: isMobile ? 'center center' : 'center top' }}
         />
         <div style={{ position: 'absolute', top: 12, right: 12 }}>
           <span style={{ 

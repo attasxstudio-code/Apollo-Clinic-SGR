@@ -1256,7 +1256,8 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
 
   /* ── DOCTOR CARDS ── */
   .doctor-card { padding: 0 !important; }
-  .doctor-card img { height: 200px !important; object-fit: contain !important; object-position: center center !important; }
+  .doctor-card-img-wrap { height: 280px !important; }
+  .doctor-card img { height: 280px !important; object-fit: contain !important; object-position: center center !important; }
   .doctor-card .card-body { padding: 1rem 1.25rem 1.25rem !important; }
 
   /* ── REVIEW CARDS ── */
@@ -2300,9 +2301,10 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     object-position: center 40% !important;
   }
 
-  /* Exception: doctor card images — contain to prevent face cropping */
+  /* Exception: doctor card images — contain on mobile to prevent face cropping */
+  .doctor-card-img-wrap { height: 280px !important; }
   .doctor-card img {
-    height: 200px !important;
+    height: 280px !important;
     object-fit: contain !important;
     object-position: center center !important;
   }
