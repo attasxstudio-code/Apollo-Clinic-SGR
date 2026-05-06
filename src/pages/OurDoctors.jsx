@@ -362,10 +362,47 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'prof-dr-arshad-farooq',
+    image: '/Doctor-Arshad-Farooq.png',
+    name: 'Prof. Dr. Arshad Farooq',
+    title: 'Child Specialist',
+    specialty: 'Paediatrics',
+    dept: 'Paediatrics',
+    qual: 'MBBS, M.D. Pediatrics',
+    qual_short: 'MBBS\nM.D. Pediatrics',
+    exp: '',
+    avail: 'DAILY',
+    languages: [],
+    bio: `Prof. Dr. Arshad Farooq is a Child Specialist consulting at Apollo Clinic Srinagar. He provides paediatric consultation for infants, children, and adolescents, including general child health concerns, routine checkups, fever, infections, growth-related concerns, and child healthcare guidance.\n\nPatients can consult him at Apollo Clinic Srinagar from Monday to Saturday and on Sunday, between 10:30 AM and 2:00 PM.`,
+    education: [
+      'MBBS',
+      'M.D. Pediatrics',
+      'Child Specialist'
+    ],
+    expertise: [
+      'Paediatrics', 'Child Specialist', 'Child Healthcare', 'Fever & Infections', 'Growth Monitoring', 'Child Wellness', 'Preventive Child Care', 'Paediatric Consultation', 'Routine Child Checkups'
+    ],
+    specializedCare: [
+      { name: 'Child Health Consultation', desc: 'Consultation for general child health concerns, routine illnesses, and paediatric care needs.', icon: 'Activity' },
+      { name: 'Fever & Infections', desc: 'Paediatric consultation for fever, infections, cough, cold, and common childhood illnesses.', icon: 'Shield' },
+      { name: 'Growth & Development', desc: 'Guidance for growth monitoring, developmental concerns, nutrition, and child wellness.', icon: 'Heart' },
+      { name: 'Preventive Child Care', desc: 'Support for routine checkups, preventive guidance, and child healthcare planning.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Monday to Saturday', time: '10:30 AM to 2:00 PM' },
+      { day: 'Sunday', time: '10:30 AM to 2:00 PM' },
+    ],
+    consultation_days: 'Monday to Saturday: 10:30 AM to 2:00 PM\nSunday: 10:30 AM to 2:00 PM',
+    trust_banner: 'Paediatric and child specialist consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);

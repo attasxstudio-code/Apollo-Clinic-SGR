@@ -143,7 +143,7 @@ const DoctorProfile = () => {
                           <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.institution}</div>
                         </div>
                       </div>
-                    ) : (
+                    ) : doc.languages && doc.languages.length > 0 ? (
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
                         <div style={{ color: 'var(--blue)' }}><FileText size={20} /></div>
                         <div>
@@ -151,7 +151,7 @@ const DoctorProfile = () => {
                           <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.languages.join(', ')}</div>
                         </div>
                       </div>
-                    )}
+                    ) : null}
                     
                     {doc.institution && (doc.license || doc.advanced_credentials || doc.advanced_training) ? (
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
