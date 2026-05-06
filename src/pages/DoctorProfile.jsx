@@ -84,14 +84,14 @@ const DoctorProfile = () => {
       </div>
 
       <div className="container" style={{ maxWidth: '1200px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr', gap: '2rem', alignItems: 'flex-start' }}>
+        <div className="doctor-profile-layout" style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr', gap: '2rem', alignItems: 'flex-start' }}>
 
           {/* ════════════ LEFT COLUMN ════════════ */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
 
             {/* Profile Header Card */}
             <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', overflow: 'hidden' }}>
-              <div style={{ padding: '2.5rem', display: 'flex', gap: '2.5rem' }}>
+              <div className="doctor-profile-header" style={{ padding: '2.5rem', display: 'flex', gap: '2.5rem' }}>
                 {/* Image */}
                 <div style={{ width: '220px', height: '280px', borderRadius: '12px', background: '#eef2f6', overflow: 'hidden', flexShrink: 0 }}>
                   <img src={doc.image} alt={doc.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
@@ -107,24 +107,44 @@ const DoctorProfile = () => {
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
                       <div style={{ color: 'var(--blue)' }}><GraduationCap size={20} /></div>
                       <div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>MBBS</div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Qualification</div>
                         <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.qual.split(',')[1]?.trim() || doc.qual}</div>
                       </div>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
-                      <div style={{ color: 'var(--blue)' }}><FileText size={20} /></div>
-                      <div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Languages</div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.languages.join(', ')}</div>
+                    {doc.institution ? (
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                        <div style={{ color: 'var(--blue)' }}><MapPin size={20} /></div>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Institution</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.institution}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
-                      <div style={{ color: 'var(--blue)' }}><Clock size={20} /></div>
-                      <div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>{doc.exp} Years</div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>Overall Experience</div>
+                    ) : (
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                        <div style={{ color: 'var(--blue)' }}><FileText size={20} /></div>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Languages</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.languages.join(', ')}</div>
+                        </div>
                       </div>
-                    </div>
+                    )}
+                    {doc.consultation_days ? (
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                        <div style={{ color: 'var(--blue)' }}><Clock size={20} /></div>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Consultation</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.consultation_days}</div>
+                        </div>
+                      </div>
+                    ) : doc.exp ? (
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                        <div style={{ color: 'var(--blue)' }}><Clock size={20} /></div>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>{doc.exp} Years</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>Overall Experience</div>
+                        </div>
+                      </div>
+                    ) : null}
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'var(--green-light)', border: '1px solid var(--green-border)', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700, color: 'var(--green)', padding: '0.4rem 0.8rem' }}>
                         <CheckCircle size={14} /> Accepting New Patients
@@ -138,7 +158,7 @@ const DoctorProfile = () => {
               <div style={{ background: 'var(--blue-light)', padding: '1.25rem 2.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <ShieldCheck size={18} color="var(--blue)" />
                 <span style={{ fontSize: '0.85rem', color: 'var(--heading)', fontWeight: 600 }}>
-                  Trusted by patients for compassionate care and evidence-based treatment.
+                  {doc.trust_banner || 'Trusted by patients for compassionate care and evidence-based treatment.'}
                 </span>
               </div>
             </div>
@@ -243,7 +263,7 @@ const DoctorProfile = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                   <div>
                     <div style={{ fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.5rem' }}>Location</div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--body)', lineHeight: 1.6 }}>Near National School, Arham Towers, Karan Nagar, Srinagar, Jammu & Kashmir, 190010</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--body)', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{doc.clinic_location || 'Near National School, Arham Towers, Karan Nagar, Srinagar, Jammu & Kashmir, 190010'}</div>
                     <button style={{ background: 'none', border: 'none', color: 'var(--blue)', fontWeight: 700, fontSize: '0.85rem', marginTop: '0.5rem', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       View on Map <ArrowRight size={14} />
                     </button>
@@ -253,14 +273,22 @@ const DoctorProfile = () => {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.25rem' }}>
                         <Phone size={14} /> Contact
                       </div>
-                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>{PRIMARY_PHONE}</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>{doc.clinic_contact || PRIMARY_PHONE}</div>
                     </div>
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.25rem' }}>
                         <FileText size={14} /> Email
                       </div>
-                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>info@apolloclinic.in</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>{doc.clinic_email || 'info@apolloclinic.in'}</div>
                     </div>
+                    {doc.consultation_days && (
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.25rem' }}>
+                          <Clock size={14} /> Consultation
+                        </div>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.consultation_days}</div>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div style={{ height: '120px', borderRadius: '12px', overflow: 'hidden' }}>

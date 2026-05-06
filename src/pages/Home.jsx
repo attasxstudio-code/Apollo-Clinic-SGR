@@ -176,7 +176,7 @@ const Home = () => {
                   <h3 style={{ fontSize: '1.1rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{d.name}</h3>
                   <p style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.2rem' }}>{d.title || d.specialty}</p>
                   <p style={{ fontSize: '0.78rem', color: 'var(--body)', marginBottom: '0.5rem' }}>{d.qual}</p>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>{d.exp} experience</p>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>{d.exp ? `${d.exp} experience` : '\u00A0'}</p>
                 </div>
               </div>
             ))}

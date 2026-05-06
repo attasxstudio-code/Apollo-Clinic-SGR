@@ -205,9 +205,44 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
       { day: 'Sunday',    time: 'Closed'              },
     ],
   },
+  {
+    id: 'dr-junaid-s-wani',
+    image: '/Doctor_junaid-S-Wani.png',
+    name: 'Dr Junaid S Wani',
+    title: 'Professor & Head, Ophthalmology',
+    specialty: 'Ophthalmology',
+    dept: 'Ophthalmology',
+    qual: 'MS',
+    exp: '',
+    avail: 'MON, TUE, THU, FRI',
+    languages: [],
+    bio: `Dr Junaid S Wani is an Ophthalmology specialist consulting at Apollo Clinic Srinagar. He provides specialist consultation for eye-related concerns, vision problems, eye examinations, and ophthalmology care.\n\nHe serves as Professor & Head, Ophthalmology, and is affiliated with GMC Srinagar. Patients can consult him at Apollo Clinic Srinagar on Monday, Tuesday, Thursday, and Friday from 5:00 PM onwards.\n\nPrior registration is mandatory for consultation.`,
+    education: [
+      'MS',
+      'Professor & Head, Ophthalmology',
+      'GMC Srinagar'
+    ],
+    expertise: ['Ophthalmology', 'Eye Care', 'Vision Concerns', 'Eye Examination', 'Eye Infections', 'Specialist Eye Consultation', 'Follow-up Eye Care'],
+    specializedCare: [
+      { name: 'Eye Consultation', desc: 'Specialist consultation for common and complex eye-related concerns.', icon: 'Activity' },
+      { name: 'Vision Problems', desc: 'Evaluation and guidance for blurred vision, reduced vision, and related symptoms.', icon: 'Activity' },
+      { name: 'Eye Examination', desc: 'Clinical eye assessment and specialist ophthalmology evaluation.', icon: 'Shield' },
+      { name: 'Eye Infections & Irritation', desc: 'Consultation for redness, irritation, watering, discomfort, and infection-related concerns.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon, Tue, Thu, Fri', time: '5:00 PM onwards' },
+      { day: 'Wed, Sat, Sun', time: 'Not available' },
+    ],
+    institution: 'GMC Srinagar',
+    consultation_days: 'Monday, Tuesday, Thursday & Friday\nFrom 5:00 PM onwards',
+    trust_banner: 'Specialist ophthalmology consultation available at Apollo Clinic Srinagar with prior registration.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'ENT'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'ENT', 'Ophthalmology'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
@@ -257,17 +292,26 @@ const DoctorCard = ({ doc, onProfile, onBook }) => {
         <p style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '1.25rem' }}>{doc.qual}</p>
         
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.5rem' }}>
-          <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
-            Exp: {doc.exp}
-          </span>
-          <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
-            {doc.languages[0]}
-          </span>
+          {doc.exp && (
+            <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
+              Exp: {doc.exp}
+            </span>
+          )}
+          {doc.languages[0] && (
+            <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
+              {doc.languages[0]}
+            </span>
+          )}
           {doc.languages[1] && (
             <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
               {doc.languages[1]}
             </span>
           )}
+          {(!doc.exp || !doc.languages[0]) && doc.expertise && doc.expertise.slice(0, 2).map((tag, i) => (
+            <span key={i} style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
+              {tag}
+            </span>
+          ))}
         </div>
 
         {/* Actions */}
