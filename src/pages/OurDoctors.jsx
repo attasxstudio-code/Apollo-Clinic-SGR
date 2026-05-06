@@ -520,10 +520,48 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'doctor-khalil-m-baba',
+    image: '/Doctor-Khalil-M-Baba.png',
+    name: 'Doctor Khalil M. Baba',
+    title: 'Professor and Head of Dept. (Pathology), SKIMS Srinagar',
+    specialty: 'Pathology',
+    dept: 'Pathology',
+    qual: 'MD Pathology',
+    qual_short: 'MD Pathology',
+    exp: '',
+    avail: 'TO BE CONFIRMED',
+    languages: [],
+    bio: `Doctor Khalil M. Baba is a Pathology specialist associated with Apollo Clinic Srinagar. He holds MD Pathology and serves as Professor and Head of Dept. (Pathology) at SKIMS Srinagar.\n\nHe provides specialist pathology-related consultation and diagnostic guidance. Consultation schedule is currently to be confirmed, and patients are advised to contact Apollo Clinic Srinagar for availability.`,
+    education: [
+      'MD Pathology',
+      'Professor and Head of Dept. (Pathology)',
+      'SKIMS Srinagar'
+    ],
+    expertise: [
+      'Pathology', 'Laboratory Medicine', 'Diagnostic Guidance', 'Report Interpretation', 'Clinical Pathology', 'Diagnostic Consultation', 'Lab Investigation Review', 'Medical Diagnostics'
+    ],
+    specializedCare: [
+      { name: 'Pathology Consultation', desc: 'Specialist consultation for pathology-related diagnostic guidance and report interpretation.', icon: 'Activity' },
+      { name: 'Laboratory Medicine', desc: 'Guidance related to laboratory investigations, diagnostic testing, and clinical correlation.', icon: 'Shield' },
+      { name: 'Diagnostic Report Review', desc: 'Review and interpretation support for pathology and lab-based reports.', icon: 'Heart' },
+      { name: 'Clinical Diagnostic Guidance', desc: 'Specialist input for diagnostic evaluation in coordination with clinical findings.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Schedule', time: 'To be confirmed' },
+      { day: 'Contact', time: 'Clinic for availability' },
+    ],
+    institution: 'SKIMS Srinagar',
+    consultation_days: 'Schedule to be confirmed\nContact clinic for availability',
+    trust_banner: 'Pathology consultation available at Apollo Clinic Srinagar. Please contact the clinic for schedule confirmation.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
