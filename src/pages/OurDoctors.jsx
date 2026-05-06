@@ -875,6 +875,7 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
             src={doc.image} 
             alt={doc.name} 
             style={{ 
+              position: 'absolute', top: 0, left: 0,
               width: '100%', height: '100%', 
               objectFit: doc.imageFit || 'cover', 
               objectPosition: doc.imagePosition || 'center top' 
