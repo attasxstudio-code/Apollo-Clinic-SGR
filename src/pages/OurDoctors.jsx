@@ -719,6 +719,43 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
     credentials: 'MIDA\nMIPHA',
     focus: 'Lifestyle Diseases Management'
+  },
+  {
+    id: 'dr-shabeer-koul',
+    image: '/Doctor-Shabeer-Koul.png',
+    name: 'Dr. Shabeer Koul',
+    title: 'ENT Head & Neck Surgeon',
+    specialty: 'ENT',
+    dept: 'Ear, Nose & Throat',
+    qual: 'MBBS, MS',
+    qual_short: 'MBBS\nMS',
+    exp: '',
+    avail: 'MON - THU',
+    languages: [],
+    bio: `Dr. Shabeer Koul is an ENT Head & Neck Surgeon consulting at Apollo Clinic Srinagar. He provides specialist consultation for ear, nose, throat, sinus, hearing, voice, tonsil, and head and neck-related concerns.\n\nHe holds MBBS and MS qualifications. Patients can consult him at Apollo Clinic Srinagar on Monday, Tuesday, Wednesday, and Thursday from 9:00 AM to 10:00 AM.`,
+    education: [
+      'MBBS',
+      'MS',
+      'ENT Head & Neck Surgeon'
+    ],
+    expertise: [
+      'ENT', 'Ear, Nose & Throat', 'Head & Neck Surgery', 'Sinus Problems', 'Hearing Concerns', 'Ear Infections', 'Throat Problems', 'Tonsil Concerns', 'Voice Issues', 'Nasal Allergy'
+    ],
+    specializedCare: [
+      { name: 'ENT Consultation', desc: 'Specialist consultation for ear, nose, throat, sinus, and related ENT concerns.', icon: 'Activity' },
+      { name: 'Ear & Hearing Concerns', desc: 'Evaluation and guidance for ear pain, hearing problems, ear infections, and related symptoms.', icon: 'Shield' },
+      { name: 'Nose & Sinus Care', desc: 'Consultation for sinus issues, nasal blockage, allergies, and nose-related concerns.', icon: 'Heart' },
+      { name: 'Throat & Head-Neck Concerns', desc: 'Specialist guidance for throat infections, tonsil concerns, voice issues, and head and neck-related symptoms.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon - Thu', time: '9:00 AM to 10:00 AM' },
+      { day: 'Fri, Sat, Sun', time: 'Closed' },
+    ],
+    consultation_days: 'Monday, Tuesday, Wednesday & Thursday\n9:00 AM to 10:00 AM',
+    trust_banner: 'ENT and head & neck surgery consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
