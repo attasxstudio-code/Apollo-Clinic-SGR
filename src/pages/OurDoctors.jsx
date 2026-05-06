@@ -862,11 +862,11 @@ const DoctorCard = ({ doc, onProfile, onBook }) => {
       }}
     >
       {/* Top Image Area */}
-      <div style={{ position: 'relative', height: '240px', background: '#eef2f6', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', height: '240px', background: 'linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%)', overflow: 'hidden' }}>
         <img 
           src={doc.image} 
           alt={doc.name} 
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }}
         />
         <div style={{ position: 'absolute', top: 12, right: 12 }}>
           <span style={{ 

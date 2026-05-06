@@ -171,7 +171,9 @@ const Home = () => {
           >
             {ALL_DOCTORS.map((d, i) => (
               <div key={i} className="card doctor-card" onClick={() => goTo(`/doctors/${d.id}`)} style={{ flex: '0 0 calc((100% - 4.5rem) / 4)', padding: 0, overflow: 'hidden', cursor: 'pointer', scrollSnapAlign: 'start' }}>
-                <img src={d.image} alt={d.name} style={{ width: '100%', height: '220px', objectFit: 'cover' }} />
+                <div style={{ width: '100%', height: '220px', background: 'linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={d.image} alt={d.name} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }} />
+                </div>
                 <div className="card-body" style={{ padding: '1.25rem' }}>
                   <h3 style={{ fontSize: '1.1rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{d.name}</h3>
                   <p style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.2rem' }}>{d.title || d.specialty}</p>
