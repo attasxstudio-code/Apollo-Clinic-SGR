@@ -558,10 +558,50 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-masood-ahmed-laharwal',
+    image: '/Doctor-Masood-Ahmed-Laharwal.png',
+    name: 'Dr. Masood Ahmed Laharwal',
+    title: 'Neurosurgery Specialist',
+    specialty: 'Neurosurgery',
+    dept: 'Neuro Surgery',
+    qual: 'MBBS, MS, MCh Neurosurgery',
+    qual_short: 'MBBS\nMS\nMCh Neurosurgery',
+    exp: '',
+    avail: 'MON - SAT',
+    languages: [],
+    bio: `Dr. Masood Ahmed Laharwal is a Neurosurgery specialist consulting at Apollo Clinic Srinagar. He holds MBBS, MS, and MCh Neurosurgery qualifications and has served as Ex Consultant Neurosurgery at SKIMS and Ex Senior Consultant at Paras Health Care Srinagar.\n\nHe provides specialist neurosurgery consultation for brain, spine, nerve-related concerns, neurological symptoms, headaches, back and neck pain, and surgical opinion where required. Patients can consult him at Apollo Clinic Srinagar from Monday to Saturday, 3:30 PM to 6:00 PM.`,
+    education: [
+      'MBBS',
+      'MS',
+      'MCh Neurosurgery',
+      'Ex Consultant Neurosurgery, SKIMS',
+      'Ex Senior Consultant, Paras Health Care Srinagar'
+    ],
+    expertise: [
+      'Neurosurgery', 'Brain & Spine', 'Neuro Consultation', 'Spine Care', 'Nerve-Related Concerns', 'Headache Evaluation', 'Back Pain', 'Neck Pain', 'Surgical Opinion', 'Neurological Symptoms'
+    ],
+    specializedCare: [
+      { name: 'Neurosurgery Consultation', desc: 'Specialist consultation for brain, spine, and nerve-related concerns requiring neurosurgical evaluation.', icon: 'Activity' },
+      { name: 'Brain & Nerve Concerns', desc: 'Evaluation and guidance for neurological symptoms, headaches, nerve-related complaints, and specialist opinion.', icon: 'Shield' },
+      { name: 'Spine Consultation', desc: 'Consultation for back pain, neck pain, spine-related symptoms, and neurosurgical assessment.', icon: 'Heart' },
+      { name: 'Surgical Opinion', desc: 'Specialist neurosurgery opinion for cases requiring further evaluation, follow-up, or surgical guidance.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon - Sat', time: '3:30 PM to 6:00 PM' },
+      { day: 'Sunday', time: 'Closed' },
+    ],
+    previous_experience: 'Ex Consultant Neurosurgery, SKIMS\nEx Senior Consultant, Paras Health Care Srinagar',
+    consultation_days: 'Monday to Saturday\n3:30 PM to 6:00 PM',
+    trust_banner: 'Neurosurgery consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
