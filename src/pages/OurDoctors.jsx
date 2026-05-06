@@ -239,10 +239,52 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-adil-bashir-shah',
+    image: '/Doctor-Adil-Bashir-Shah.png',
+    name: 'Dr. Adil Bashir Shah',
+    title: 'Consultant Orthopaedic Surgeon',
+    specialty: 'Orthopaedics',
+    dept: 'Orthopaedics',
+    qual: 'MBBS, MS Orthopaedics, MRCS, FRCS (Tr & Orth)',
+    qual_short: 'MBBS, MS Orthopaedics',
+    exp: '',
+    avail: 'MON - SAT',
+    languages: [],
+    bio: `Dr. Adil Bashir Shah is a Consultant Orthopaedic Surgeon consulting at Apollo Clinic Srinagar. He provides specialist orthopaedic consultation for bone, joint, trauma, arthroplasty, and musculoskeletal conditions.\n\nHe has advanced training in primary and revision joint arthroplasty, general and major trauma, musculoskeletal oncology, complex arthroplasty, and limb salvage surgery. His training includes experience from GMC Srinagar, Edinburgh UK, Birmingham UK, Liverpool UK, and Max Hospital for Cancer Care, Delhi.\n\nPatients can consult him at Apollo Clinic Srinagar from Monday to Saturday, 4:00 PM onwards.`,
+    education: [
+      'MBBS',
+      'MS Orthopaedics, GMC Srinagar',
+      'MRCS, Edinburgh UK',
+      'FRCS (Tr & Orth), Edinburgh UK',
+      'Fellowship training in primary and revision joint arthroplasty',
+      'Fellowship training in general and major trauma',
+      'Fellowship training in musculoskeletal oncology, complex arthroplasty, and limb salvage surgery'
+    ],
+    expertise: [
+      'Orthopaedics', 'Joint Replacement', 'Trauma Care', 'Revision Arthroplasty', 'Fracture Care', 'Musculoskeletal Oncology', 'Limb Salvage Surgery', 'Joint Reconstruction', 'Complex Arthroplasty', 'Bone & Joint Care'
+    ],
+    specializedCare: [
+      { name: 'Joint Arthroplasty', desc: 'Consultation for primary and revision joint replacement-related concerns.', icon: 'Activity' },
+      { name: 'Trauma & Fracture Care', desc: 'Specialist orthopaedic consultation for general trauma, major trauma, and fracture-related conditions.', icon: 'Shield' },
+      { name: 'Musculoskeletal Oncology', desc: 'Specialist guidance for bone and soft tissue tumour-related orthopaedic concerns.', icon: 'Heart' },
+      { name: 'Limb Salvage & Reconstruction', desc: 'Consultation for complex limb reconstruction, joint reconstruction, and limb salvage-related cases.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon – Sat', time: '4:00 PM onwards' },
+      { day: 'Sunday', time: 'Closed' },
+    ],
+    advanced_credentials: 'MRCS, Edinburgh UK\nFRCS (Tr & Orth), Edinburgh UK',
+    consultation_days: 'Monday to Saturday\n4:00 PM onwards',
+    trust_banner: 'Specialist orthopaedic consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'ENT', 'Ophthalmology'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);

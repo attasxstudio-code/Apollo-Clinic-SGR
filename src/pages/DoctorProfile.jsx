@@ -108,15 +108,31 @@ const DoctorProfile = () => {
                       <div style={{ color: 'var(--blue)' }}><GraduationCap size={20} /></div>
                       <div>
                         <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Qualification</div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.qual.split(',')[1]?.trim() || doc.qual}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.qual_short || doc.qual.split(',')[1]?.trim() || doc.qual}</div>
                       </div>
                     </div>
-                    {doc.institution ? (
+                    {doc.advanced_credentials ? (
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                        <div style={{ color: 'var(--blue)' }}><ShieldCheck size={20} /></div>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Advanced Credentials</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.advanced_credentials}</div>
+                        </div>
+                      </div>
+                    ) : doc.advanced_training ? (
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                        <div style={{ color: 'var(--blue)' }}><GraduationCap size={20} /></div>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Advanced Training</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.advanced_training}</div>
+                        </div>
+                      </div>
+                    ) : doc.institution ? (
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
                         <div style={{ color: 'var(--blue)' }}><MapPin size={20} /></div>
                         <div>
                           <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Institution</div>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.institution}</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.institution}</div>
                         </div>
                       </div>
                     ) : (
@@ -124,7 +140,7 @@ const DoctorProfile = () => {
                         <div style={{ color: 'var(--blue)' }}><FileText size={20} /></div>
                         <div>
                           <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Languages</div>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--body)' }}>{doc.languages.join(', ')}</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.languages.join(', ')}</div>
                         </div>
                       </div>
                     )}
