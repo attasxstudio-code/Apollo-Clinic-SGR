@@ -399,10 +399,54 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-faisal-arshad',
+    image: '/Doctor-Faisal_Arshad.png',
+    name: 'Dr. Faisal Arshad',
+    title: 'Assistant Professor',
+    specialty: 'Orthodontics',
+    dept: 'Dentistry',
+    qual: 'BDS, MDS, PhD',
+    qual_short: 'BDS\nMDS\nPhD',
+    exp: '',
+    avail: 'MON-SUN',
+    languages: [],
+    bio: `Dr. Faisal Arshad is an Orthodontics specialist consulting at Apollo Clinic Srinagar. He provides specialist consultation for dental braces, aligners, orthodontic correction, and dentofacial orthopaedic concerns.\n\nHe is an Assistant Professor at Govt. Dental College and Hospital, Srinagar, with qualifications including BDS, MDS, PhD, and specialization in Orthodontics & Dentofacial Orthopaedics.\n\nPatients can consult him at Apollo Clinic Srinagar from Monday to Friday between 4:30 PM and 7:00 PM, on Saturday from 1:30 PM to 7:00 PM, and on Sunday from 10:30 AM to 2:00 PM.`,
+    education: [
+      'BDS',
+      'MDS',
+      'PhD',
+      'Orthodontics & Dentofacial Orthopaedics',
+      'Assistant Professor',
+      'Govt. Dental College and Hospital, Srinagar',
+      'Dental Braces & Aligner Specialist'
+    ],
+    expertise: [
+      'Orthodontics', 'Dental Braces', 'Aligners', 'Dentistry', 'Clear Aligners', 'Teeth Alignment', 'Bite Correction', 'Dentofacial Orthopaedics', 'Orthodontic Consultation', 'Smile Alignment', 'Braces Specialist'
+    ],
+    specializedCare: [
+      { name: 'Dental Braces', desc: 'Specialist consultation for orthodontic braces and teeth alignment-related concerns.', icon: 'Activity' },
+      { name: 'Clear Aligners', desc: 'Consultation for aligner-based orthodontic correction and smile alignment planning.', icon: 'Shield' },
+      { name: 'Orthodontic Consultation', desc: 'Evaluation of teeth alignment, bite concerns, spacing, crowding, and jaw-related orthodontic issues.', icon: 'Heart' },
+      { name: 'Dentofacial Orthopaedics', desc: 'Specialist guidance for dentofacial growth, jaw alignment, and orthodontic correction planning.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon to Fri', time: '4:30 PM to 7:00 PM' },
+      { day: 'Saturday', time: '1:30 PM to 7:00 PM' },
+      { day: 'Sunday', time: '10:30 AM to 2:00 PM' },
+    ],
+    specialization: 'Orthodontics & Dentofacial Orthopaedics',
+    institution: 'Govt. Dental College and Hospital, Srinagar',
+    consultation_days: 'Mon-Fri: 4:30 PM to 7:00 PM\nSat: 1:30 PM to 7:00 PM\nSun: 10:30 AM to 2:00 PM',
+    trust_banner: 'Orthodontic braces and aligner consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
