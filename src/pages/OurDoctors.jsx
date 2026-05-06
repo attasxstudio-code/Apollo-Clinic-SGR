@@ -443,10 +443,47 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-feroze-ahmad',
+    image: '/Doctor-Feroze-Ahmad.png',
+    name: 'Dr. Feroze Ahmad',
+    title: 'Physician',
+    specialty: 'Physician / Internal Medicine',
+    dept: 'General Medicine',
+    qual: 'MBBS, MD Medicine',
+    qual_short: 'MBBS, GMC Srinagar\nMD Medicine, SKIMS',
+    exp: '',
+    avail: 'MON-WED, FRI',
+    languages: [],
+    bio: `Dr. Feroze Ahmad is a Physician and Internal Medicine specialist consulting at Apollo Clinic Srinagar. He provides consultation for general medical concerns, fever, infections, chronic illness management, blood pressure, diabetes-related concerns, and internal medicine evaluation.\n\nHe holds MBBS from GMC Srinagar and MD Medicine from SKIMS. Patients can consult him at Apollo Clinic Srinagar on Monday, Tuesday, Wednesday, and Friday from 8:00 AM to 10:00 AM.`,
+    education: [
+      'MBBS, GMC Srinagar',
+      'MD Medicine, SKIMS',
+      'Physician / Internal Medicine'
+    ],
+    expertise: [
+      'Internal Medicine', 'General Medicine', 'Physician', 'Fever & Infections', 'Diabetes Care', 'Hypertension', 'Preventive Healthcare', 'Chronic Disease Management', 'Adult Health Consultation', 'Routine Medical Checkups'
+    ],
+    specializedCare: [
+      { name: 'General Medicine', desc: 'Consultation for common illnesses, fever, weakness, infections, and general health concerns.', icon: 'Activity' },
+      { name: 'Internal Medicine', desc: 'Medical evaluation and management of adult health concerns and internal medical conditions.', icon: 'Shield' },
+      { name: 'Diabetes & Blood Pressure Care', desc: 'Consultation for diabetes, hypertension, and related lifestyle or chronic health concerns.', icon: 'Heart' },
+      { name: 'Preventive Health Consultation', desc: 'Guidance for early detection, routine checkups, and preventive healthcare planning.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon, Tue, Wed, Fri', time: '8:00 AM to 10:00 AM' },
+      { day: 'Thu, Sat, Sun', time: 'Closed' },
+    ],
+    consultation_days: 'Monday, Tuesday, Wednesday & Friday\n8:00 AM to 10:00 AM',
+    trust_banner: 'Physician and internal medicine consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
