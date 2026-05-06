@@ -119,6 +119,14 @@ const DoctorProfile = () => {
                           <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.specialization}</div>
                         </div>
                       </div>
+                    ) : doc.expertise_card ? (
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
+                        <div style={{ color: 'var(--blue)' }}><Activity size={20} /></div>
+                        <div>
+                          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem' }}>Expertise</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--body)', whiteSpace: 'pre-line' }}>{doc.expertise_card}</div>
+                        </div>
+                      </div>
                     ) : doc.focus ? (
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
                         <div style={{ color: 'var(--blue)' }}><Activity size={20} /></div>
@@ -193,7 +201,7 @@ const DoctorProfile = () => {
                       </div>
                     ) : null}
                     
-                    {doc.institution && (doc.focus || doc.credentials || doc.previous_experience || doc.fellowship || doc.specialization || doc.license || doc.advanced_credentials || doc.advanced_training) ? (
+                    {doc.institution && (doc.expertise_card || doc.focus || doc.credentials || doc.previous_experience || doc.fellowship || doc.specialization || doc.license || doc.advanced_credentials || doc.advanced_training) ? (
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
                         <div style={{ color: 'var(--blue)' }}><MapPin size={20} /></div>
                         <div>

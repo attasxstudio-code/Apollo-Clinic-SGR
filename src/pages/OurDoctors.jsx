@@ -795,10 +795,53 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'prof-dr-syed-sajjad-nazir',
+    image: '/Doctor-Syed-Sajjad-Nazir.png',
+    name: 'Prof. Dr. Syed Sajjad Nazir',
+    title: 'Senior Consultant Urologist',
+    specialty: 'Urology',
+    dept: 'Urology',
+    qual: 'MBBS, MS, DNB Urology',
+    qual_short: 'MBBS\nMS General Surgery\nDNB Urology',
+    exp: '',
+    avail: 'MON - THU',
+    languages: [],
+    bio: `Prof. Dr. Syed Sajjad Nazir is a Senior Consultant Urologist consulting at Apollo Clinic Srinagar. He holds MBBS, MS General Surgery, and DNB Urology qualifications.\n\nHis areas of expertise include endourology, laparoscopic urology, uro oncology, and renal transplant surgery. Patients can consult him at Apollo Clinic Srinagar from Monday to Thursday between 5:00 PM and 6:00 PM.`,
+    education: [
+      'MBBS',
+      'MS General Surgery',
+      'DNB Urology',
+      'Senior Consultant Urologist',
+      'Endourologist',
+      'Laparoscopic Urologist',
+      'Uro Oncologist',
+      'Renal Transplant Surgeon'
+    ],
+    expertise: [
+      'Urology', 'Senior Consultant Urologist', 'Endourology', 'Laparoscopic Urology', 'Uro Oncology', 'Renal Transplant Surgery', 'Kidney Concerns', 'Bladder Concerns', 'Prostate Concerns', 'Male Urological Health', 'Urinary Tract Concerns'
+    ],
+    specializedCare: [
+      { name: 'Urology Consultation', desc: 'Specialist consultation for urinary tract, kidney, bladder, prostate, and male urological concerns.', icon: 'Activity' },
+      { name: 'Endourology', desc: 'Specialist guidance for endoscopic urology-related evaluation and management planning.', icon: 'Shield' },
+      { name: 'Uro Oncology', desc: 'Consultation for cancer-related urological concerns requiring specialist urology opinion.', icon: 'Heart' },
+      { name: 'Renal Transplant & Laparoscopic Urology', desc: 'Specialist consultation for renal transplant-related guidance and laparoscopic urology concerns.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon - Thu', time: '5:00 PM to 6:00 PM' },
+      { day: 'Fri, Sat, Sun', time: 'Closed' },
+    ],
+    consultation_days: 'Monday to Thursday\n5:00 PM to 6:00 PM',
+    trust_banner: 'Senior urology consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+    expertise_card: 'Endourologist\nLaparoscopic Urologist\nUro Oncologist\nRenal Transplant Surgeon'
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition', 'Urology'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
