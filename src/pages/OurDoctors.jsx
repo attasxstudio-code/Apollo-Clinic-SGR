@@ -281,10 +281,50 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-ahmad-javaid',
+    image: '/Doctor-Ahmad-Javid.png',
+    name: 'Dr. Ahmad Javaid',
+    title: 'Physical Therapy & Manual Therapy Specialist',
+    specialty: 'Physiotherapy',
+    dept: 'Physiotherapy',
+    qual: 'P.T., M.T.',
+    qual_short: 'Physical Therapy (P.T.)\nManual Therapy (M.T.)',
+    exp: '',
+    avail: 'MON-THU, SAT-SUN',
+    languages: [],
+    bio: `Dr. Ahmad Javaid provides physiotherapy and manual therapy consultation at Apollo Clinic Srinagar. His work includes physical therapy, manual therapy, spinal and soft tissue manipulations, adjustments, ergonomics guidance, and nutritional balancing support.\n\nHe is available for consultation on Monday, Tuesday, Wednesday, Thursday, Saturday, and Sunday from 11:30 AM to 6:00 PM.`,
+    education: [
+      'Physical Therapy (P.T.)',
+      'Manual Therapy (M.T.)',
+      'Ergonomics, Sweden',
+      'Nutritional Balancing',
+      'HTMA, USA'
+    ],
+    expertise: [
+      'Physiotherapy', 'Manual Therapy', 'Spine Care', 'Physical Therapy', 'Spinal Manipulations', 'Soft Tissue Manipulations', 'Adjustments', 'Ergonomics', 'Posture Care', 'Mobility Improvement', 'Nutritional Balancing', 'HTMA'
+    ],
+    specializedCare: [
+      { name: 'Physical Therapy', desc: 'Therapy support for pain relief, mobility improvement, movement correction, and rehabilitation needs.', icon: 'Activity' },
+      { name: 'Manual Therapy', desc: 'Hands-on therapy approach for musculoskeletal discomfort, stiffness, and movement-related concerns.', icon: 'Shield' },
+      { name: 'Spine & Soft Tissue Care', desc: 'Consultation for spinal, soft tissue, posture, and movement-related issues.', icon: 'Heart' },
+      { name: 'Ergonomics & Adjustments', desc: 'Guidance for posture, workplace ergonomics, body mechanics, and corrective adjustments.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon-Thu, Sat-Sun', time: '11:30 AM to 6:00 PM' },
+      { day: 'Friday', time: 'Closed' },
+    ],
+    advanced_training: 'Ergonomics, Sweden\nNutritional Balancing / HTMA, USA',
+    consultation_days: 'Monday, Tuesday, Wednesday, Thursday, Saturday & Sunday\n11:30 AM to 6:00 PM',
+    trust_banner: 'Physiotherapy and manual therapy consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
