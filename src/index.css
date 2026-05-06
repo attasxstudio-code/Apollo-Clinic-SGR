@@ -2436,3 +2436,263 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     padding: 1.5rem 0 0.5rem;
   }
 }
+
+/* ─────────────────────────────────────────
+   HORIZONTAL DOCTOR CARD — BASE DESKTOP
+───────────────────────────────────────── */
+.doctor-card-h-img {
+  width: 200px;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #eef2f6;
+}
+.doctor-card-h-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* prevent flex children from overflowing */
+}
+.doctor-card-h-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 0.2rem 0;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.doctor-card-h-qual {
+  font-size: 0.78rem;
+  color: var(--body);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+.doctor-card-h-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.doctor-card-h-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: auto;
+}
+.doc-tag {
+  display: inline-block;
+  background: var(--blue-light, #eff6ff);
+  color: var(--blue, #0d52c0);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.doctor-card-h-actions {
+  display: flex;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.doc-btn-primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.75rem 0.5rem;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.doc-btn-secondary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.75rem 0.5rem;
+  background: #fff;
+  color: var(--navy);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: none;
+  border-left: 1px solid rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────
+   HOMEPAGE CAROUSEL — DOCTOR CARD WRAP
+───────────────────────────────────────── */
+.carousel-card-wrap {
+  flex: 0 0 380px;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+/* ─────────────────────────────────────────
+   HOMEPAGE DOCTORS SECTION — SECTION SPACING
+───────────────────────────────────────── */
+.home-doctors-section {
+  padding: 5rem 0;
+}
+
+/* ─────────────────────────────────────────
+   MOBILE — HOMEPAGE DOCTORS SECTION FIX
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* ── Section spacing ── */
+  .home-doctors-section {
+    padding: 3rem 0 1.5rem !important;
+  }
+
+  /* ── Carousel container ── */
+  .home-doctors-section .carousel-container {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 12px !important;
+    padding: 0 16px 0.5rem !important;
+    margin: 0 -16px !important;
+  }
+  .home-doctors-section .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Card wrap — full mobile width ── */
+  .home-doctors-section .carousel-card-wrap {
+    flex: 0 0 calc(100vw - 40px) !important;
+    min-width: 0 !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* ── Card body — stable horizontal layout ── */
+  .home-doctors-section .doctor-card-h-body {
+    display: flex !important;
+    flex-direction: row !important;
+    min-height: 0 !important;
+  }
+
+  /* ── Left image column ── */
+  .home-doctors-section .doctor-card-h-img {
+    width: 38% !important;
+    min-height: 200px !important;
+    max-width: 160px !important;
+    border-radius: 14px 0 0 0 !important;
+  }
+  .home-doctors-section .doctor-card-h-img img {
+    object-position: center 20% !important;
+  }
+
+  /* ── Right info column ── */
+  .home-doctors-section .doctor-card-h-info {
+    padding: 0.85rem 0.75rem !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* ── Specialty + badge header row ── */
+  .home-doctors-section .doctor-card-h-info > div:first-child {
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  /* ── Badge — repositioned to not overlap face ── */
+  .home-doctors-section .doctor-card-h-badge {
+    font-size: 0.52rem !important;
+    padding: 0.15rem 0.35rem !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+    order: 0 !important;
+  }
+
+  /* ── Doctor name ── */
+  .home-doctors-section .doctor-card-h-name {
+    font-size: 0.9rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.15rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* ── Qualification ── */
+  .home-doctors-section .doctor-card-h-qual {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.35rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* ── Tags / pills ── */
+  .home-doctors-section .doctor-card-h-tags {
+    gap: 0.25rem !important;
+    overflow: hidden !important;
+    max-height: 42px !important; /* prevent tags from making card too tall */
+  }
+  .home-doctors-section .doc-tag {
+    font-size: 0.55rem !important;
+    padding: 0.12rem 0.35rem !important;
+    border-radius: 3px !important;
+  }
+
+  /* ── Bottom action buttons ── */
+  .home-doctors-section .doctor-card-h-actions {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  .home-doctors-section .doctor-card-h-actions button {
+    padding: 0.6rem 0.25rem !important;
+    font-size: 0.72rem !important;
+    min-height: 42px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* ── Section title ── */
+  .home-doctors-section .section-header h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* ── Extra small — tighter card for 360px ── */
+@media (max-width: 420px) {
+  .home-doctors-section .carousel-card-wrap {
+    flex: 0 0 calc(100vw - 32px) !important;
+  }
+  .home-doctors-section .doctor-card-h-img {
+    width: 36% !important;
+    min-height: 185px !important;
+  }
+  .home-doctors-section .doctor-card-h-name {
+    font-size: 0.85rem !important;
+  }
+  .home-doctors-section .doctor-card-h-actions button {
+    font-size: 0.68rem !important;
+    padding: 0.55rem 0.15rem !important;
+  }
+}

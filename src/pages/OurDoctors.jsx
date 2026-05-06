@@ -643,10 +643,12 @@ export const ALL_DOCTORS = [
 
 const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition', 'Urology'];
 
+
 export const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
+
   return (
-    <div
+    <div 
       className="doctor-card-h"
       onClick={() => onProfile()}
       onMouseEnter={() => setHov(true)}
@@ -666,11 +668,7 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
       {/* Top row: image + details */}
       <div className="doctor-card-h-body" style={{ display: 'flex', flex: 1 }}>
         {/* Left: Image */}
-        <div className="doctor-card-h-img" style={{ 
-          width: '42%', minHeight: '210px', position: 'relative',
-          background: 'linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%)',
-          overflow: 'hidden', flexShrink: 0
-        }}>
+        <div className="doctor-card-h-img">
           <img 
             src={doc.image} 
             alt={doc.name} 
@@ -681,40 +679,30 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
               objectPosition: doc.imagePosition || 'center top' 
             }}
           />
-          <div style={{ position: 'absolute', top: 8, right: 8 }}>
-            <span style={{ 
-              background: 'rgba(255,255,255,0.95)',
-              border: '1px solid var(--green-border)', 
-              borderRadius: '4px', fontSize: '0.6rem', fontWeight: 800, 
-              color: 'var(--green)', 
-              padding: '0.15rem 0.45rem', textTransform: 'uppercase', letterSpacing: '0.03em',
-              boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
-              lineHeight: 1.3, display: 'inline-block'
-            }}>
-              {doc.avail}
-            </span>
-          </div>
         </div>
 
         {/* Right: Details */}
-        <div className="doctor-card-h-info" style={{ 
-          flex: 1, padding: '1rem 1.15rem', display: 'flex', flexDirection: 'column', 
-          justifyContent: 'center', minWidth: 0
-        }}>
-          <div style={{ fontSize: '0.62rem', fontWeight: 800, color: 'var(--blue)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.35rem' }}>
-            {doc.specialty}
+        <div className="doctor-card-h-info">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.35rem', gap: '0.5rem' }}>
+            <div style={{ fontSize: '0.62rem', fontWeight: 800, color: 'var(--blue)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              {doc.specialty}
+            </div>
+            <span className="doctor-card-h-badge">
+              {doc.avail}
+            </span>
           </div>
-          <h3 className="doctor-card-h-name" style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--navy)', lineHeight: 1.25, marginBottom: '0.2rem', margin: 0 }}>{doc.name}</h3>
-          <p style={{ fontSize: '0.75rem', color: 'var(--body)', marginBottom: '0.6rem', lineHeight: 1.35, margin: '0 0 0.6rem 0' }}>{doc.qual}</p>
           
-          <div className="doctor-card-h-tags" style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+          <h3 className="doctor-card-h-name">{doc.name}</h3>
+          <p className="doctor-card-h-qual">{doc.qual}</p>
+          
+          <div className="doctor-card-h-tags">
             {doc.exp && (
-              <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.62rem', fontWeight: 600, padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+              <span className="doc-tag">
                 Exp: {doc.exp}
               </span>
             )}
             {doc.expertise && doc.expertise.slice(0, 3).map((tag, i) => (
-              <span key={i} style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.62rem', fontWeight: 600, padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+              <span key={i} className="doc-tag">
                 {tag}
               </span>
             ))}
@@ -723,30 +711,18 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
       </div>
 
       {/* Bottom: Action buttons */}
-      <div className="doctor-card-h-actions" style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+      <div className="doctor-card-h-actions">
         <button
+          className="doc-btn-primary"
           onClick={(e) => { e.stopPropagation(); onBook(); }}
-          style={{ 
-            flex: 1, padding: '0.7rem', fontSize: '0.8rem', fontWeight: 700, 
-            color: '#fff', background: 'var(--navy)', 
-            border: 'none', borderRight: '1px solid rgba(255,255,255,0.15)',
-            cursor: 'pointer', transition: 'background 0.2s',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem'
-          }}
           onMouseEnter={e => e.currentTarget.style.background = 'var(--blue)'}
           onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}
         >
           Book Appointment <span style={{ fontSize: '0.85em' }}>↗</span>
         </button>
         <button
+          className="doc-btn-secondary"
           onClick={(e) => { e.stopPropagation(); onProfile(); }}
-          style={{ 
-            flex: 1, padding: '0.7rem', fontSize: '0.8rem', fontWeight: 700, 
-            color: 'var(--navy)', background: '#fff', 
-            border: 'none',
-            cursor: 'pointer', transition: 'background 0.2s',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem'
-          }}
           onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
           onMouseLeave={e => e.currentTarget.style.background = '#fff'}
         >
