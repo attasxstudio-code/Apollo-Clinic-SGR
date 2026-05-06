@@ -672,10 +672,57 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dt-qurat-ul-aan',
+    image: '/Doctor-Qurat-UL-Aan.png',
+    name: 'Dt. Qurat-Ul-Aan',
+    title: 'Consultant Dietitian',
+    specialty: 'Dietitian / Nutrition',
+    dept: 'Dietetics & Nutrition',
+    qual: 'P.G. Dietetics & Food Service Management',
+    qual_short: 'P.G. Dietetics & Food Service Management\nCertified in Food and Nutrition Care',
+    exp: '',
+    avail: 'MON - WED',
+    languages: [],
+    bio: `Dt. Qurat-Ul-Aan is a Consultant Dietitian specializing in lifestyle diseases management at Apollo Clinic Srinagar. She provides nutrition consultation for diabetes, fatty liver disease, PCOS, PCOD, osteoporosis, onco nutrition, gut nutrition, women’s health, juvenile obesity, and maternal nutrition.\n\nShe holds P.G. Dietetics & Food Service Management credentials, is certified in Food and Nutrition Care, and has professional experience across Health & Nutrition consulting, clinical dietetics, and lifestyle nutrition care.\n\nPatients can consult her at Apollo Clinic Srinagar on Monday, Tuesday, and Wednesday from 11:00 AM to 3:00 PM.`,
+    education: [
+      'P.G. Dietetics & Food Service Management',
+      'MIDA',
+      'MIPHA',
+      'Certified in Food and Nutrition Care',
+      'Consultant Dietitian',
+      'Lifestyle Diseases Management',
+      'Former State Consultant, Health & Nutrition, Leh, UT Ladakh, Ministry of Women and Child Development',
+      'Ex Senior Consultant Dietitian, HealthifyMe, Bengaluru',
+      'Ex Senior Consultant Dietitian, Fitelo, Chandigarh',
+      'Ex Clinical Dietitian, Mother Care Clinic, Srinagar',
+      'Ex Clinical Dietitian, Modern Hospital, Srinagar'
+    ],
+    expertise: [
+      'Dietitian', 'Nutrition Care', 'Lifestyle Diseases Management', 'Diabetes Management', 'Fatty Liver Disease', 'PCOS', 'PCOD', 'Osteoporosis', 'Onco Nutrition', 'Gut Nutrition', 'Women’s Health', 'Juvenile Obesity', 'Maternal Nutrition', 'Food and Nutrition Care'
+    ],
+    specializedCare: [
+      { name: 'Diabetes Nutrition', desc: 'Nutrition consultation for diabetes management, blood sugar control, and lifestyle-based dietary guidance.', icon: 'Activity' },
+      { name: 'PCOS, PCOD & Women’s Health', desc: 'Diet and lifestyle guidance for PCOS, PCOD, women’s health, and hormonal wellness concerns.', icon: 'Shield' },
+      { name: 'Fatty Liver & Gut Nutrition', desc: 'Nutrition support for fatty liver disease, digestive health, gut nutrition, and lifestyle improvement.', icon: 'Heart' },
+      { name: 'Maternal & Child Nutrition', desc: 'Guidance for maternal nutrition, juvenile obesity, child nutrition, and healthy diet planning.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon, Tue, Wed', time: '11:00 AM to 3:00 PM' },
+      { day: 'Thu, Fri, Sat, Sun', time: 'Closed' },
+    ],
+    consultation_days: 'Monday, Tuesday & Wednesday\n11:00 AM to 3:00 PM',
+    trust_banner: 'Dietitian and lifestyle disease nutrition consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+    credentials: 'MIDA\nMIPHA',
+    focus: 'Lifestyle Diseases Management'
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
