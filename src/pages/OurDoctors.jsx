@@ -843,107 +843,114 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
 
 const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition', 'Urology'];
 
-const useIsMobile = () => {
-  const [mobile, setMobile] = React.useState(window.innerWidth < 768);
-  React.useEffect(() => {
-    const h = () => setMobile(window.innerWidth < 768);
-    window.addEventListener('resize', h);
-    return () => window.removeEventListener('resize', h);
-  }, []);
-  return mobile;
-};
-
-const DoctorCard = ({ doc, onProfile, onBook }) => {
+export const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
-  const isMobile = useIsMobile();
   return (
     <div
-      className="doctor-card"
+      className="doctor-card-h"
+      onClick={() => onProfile()}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
         background: '#fff',
-        border: '1px solid rgba(0,0,0,0.05)',
-        borderRadius: '16px',
+        border: '1px solid rgba(0,0,0,0.06)',
+        borderRadius: '14px',
         display: 'flex', flexDirection: 'column',
         transition: 'all 0.3s ease',
-        boxShadow: hov ? '0 12px 30px rgba(13,82,192,0.1)' : '0 4px 20px rgba(0,0,0,0.02)',
-        transform: hov ? 'translateY(-5px)' : 'none',
+        boxShadow: hov ? '0 8px 28px rgba(13,82,192,0.12)' : '0 2px 12px rgba(0,0,0,0.04)',
+        transform: hov ? 'translateY(-3px)' : 'none',
         overflow: 'hidden',
         cursor: 'pointer'
       }}
     >
-      {/* Top Image Area */}
-      <div className="doctor-card-img-wrap" style={{ position: 'relative', height: isMobile ? '280px' : '240px', background: 'linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%)', overflow: 'hidden' }}>
-        <img 
-          src={doc.image} 
-          alt={doc.name} 
-          style={{ width: '100%', height: '100%', objectFit: isMobile ? 'contain' : 'cover', objectPosition: isMobile ? 'center center' : 'center top' }}
-        />
-        <div style={{ position: 'absolute', top: 12, right: 12 }}>
-          <span style={{ 
-            background: '#fff',
-            border: '1px solid var(--green-border)', 
-            borderRadius: '4px', fontSize: '0.65rem', fontWeight: 800, 
-            color: 'var(--green)', 
-            padding: '0.2rem 0.6rem', textTransform: 'uppercase', letterSpacing: '0.05em',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
-          }}>
-            {doc.avail}
-          </span>
+      {/* Top row: image + details */}
+      <div className="doctor-card-h-body" style={{ display: 'flex', flex: 1 }}>
+        {/* Left: Image */}
+        <div className="doctor-card-h-img" style={{ 
+          width: '42%', minHeight: '210px', position: 'relative',
+          background: 'linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%)',
+          overflow: 'hidden', flexShrink: 0
+        }}>
+          <img 
+            src={doc.image} 
+            alt={doc.name} 
+            style={{ 
+              width: '100%', height: '100%', 
+              objectFit: doc.imageFit || 'cover', 
+              objectPosition: doc.imagePosition || 'center top' 
+            }}
+          />
+          <div style={{ position: 'absolute', top: 8, right: 8 }}>
+            <span style={{ 
+              background: 'rgba(255,255,255,0.95)',
+              border: '1px solid var(--green-border)', 
+              borderRadius: '4px', fontSize: '0.6rem', fontWeight: 800, 
+              color: 'var(--green)', 
+              padding: '0.15rem 0.45rem', textTransform: 'uppercase', letterSpacing: '0.03em',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+              lineHeight: 1.3, display: 'inline-block'
+            }}>
+              {doc.avail}
+            </span>
+          </div>
+        </div>
+
+        {/* Right: Details */}
+        <div className="doctor-card-h-info" style={{ 
+          flex: 1, padding: '1rem 1.15rem', display: 'flex', flexDirection: 'column', 
+          justifyContent: 'center', minWidth: 0
+        }}>
+          <div style={{ fontSize: '0.62rem', fontWeight: 800, color: 'var(--blue)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.35rem' }}>
+            {doc.specialty}
+          </div>
+          <h3 className="doctor-card-h-name" style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--navy)', lineHeight: 1.25, marginBottom: '0.2rem', margin: 0 }}>{doc.name}</h3>
+          <p style={{ fontSize: '0.75rem', color: 'var(--body)', marginBottom: '0.6rem', lineHeight: 1.35, margin: '0 0 0.6rem 0' }}>{doc.qual}</p>
+          
+          <div className="doctor-card-h-tags" style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+            {doc.exp && (
+              <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.62rem', fontWeight: 600, padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                Exp: {doc.exp}
+              </span>
+            )}
+            {doc.expertise && doc.expertise.slice(0, 3).map((tag, i) => (
+              <span key={i} style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.62rem', fontWeight: 600, padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Body */}
-      <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
-        <div style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--blue)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-          {doc.specialty}
-        </div>
-        <h3 style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--navy)', lineHeight: 1.3, marginBottom: '0.3rem' }}>{doc.name}</h3>
-        <p style={{ fontSize: '0.8rem', color: 'var(--body)', marginBottom: '1.25rem' }}>{doc.qual}</p>
-        
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.5rem' }}>
-          {doc.exp && (
-            <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
-              Exp: {doc.exp}
-            </span>
-          )}
-          {doc.languages[0] && (
-            <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
-              {doc.languages[0]}
-            </span>
-          )}
-          {doc.languages[1] && (
-            <span style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
-              {doc.languages[1]}
-            </span>
-          )}
-          {(!doc.exp || !doc.languages[0]) && doc.expertise && doc.expertise.slice(0, 2).map((tag, i) => (
-            <span key={i} style={{ background: 'var(--blue-light)', color: 'var(--blue)', fontSize: '0.7rem', fontWeight: 600, padding: '0.2rem 0.6rem', borderRadius: '4px' }}>
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Actions */}
-        <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto' }}>
-          <button
-            onClick={(e) => { e.stopPropagation(); onProfile(); }}
-            style={{ flex: 1, padding: '0.75rem', fontSize: '0.85rem', fontWeight: 700, color: 'var(--navy)', background: '#fff', border: '1.5px solid var(--navy)', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--bg)'}
-            onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-          >
-            View Profile
-          </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); onBook(); }}
-            style={{ flex: 1, padding: '0.75rem', fontSize: '0.85rem', fontWeight: 700, color: '#fff', background: 'var(--navy)', border: '1.5px solid var(--navy)', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--blue)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}
-          >
-            Book Now
-          </button>
-        </div>
+      {/* Bottom: Action buttons */}
+      <div className="doctor-card-h-actions" style={{ display: 'flex', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+        <button
+          onClick={(e) => { e.stopPropagation(); onBook(); }}
+          style={{ 
+            flex: 1, padding: '0.7rem', fontSize: '0.8rem', fontWeight: 700, 
+            color: '#fff', background: 'var(--navy)', 
+            border: 'none', borderRight: '1px solid rgba(255,255,255,0.15)',
+            cursor: 'pointer', transition: 'background 0.2s',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem'
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = 'var(--blue)'}
+          onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}
+        >
+          Book Appointment <span style={{ fontSize: '0.85em' }}>↗</span>
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); onProfile(); }}
+          style={{ 
+            flex: 1, padding: '0.7rem', fontSize: '0.8rem', fontWeight: 700, 
+            color: 'var(--navy)', background: '#fff', 
+            border: 'none',
+            cursor: 'pointer', transition: 'background 0.2s',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem'
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
+          onMouseLeave={e => e.currentTarget.style.background = '#fff'}
+        >
+          View Profile
+        </button>
       </div>
     </div>
   );
@@ -1062,7 +1069,7 @@ const OurDoctors = () => {
               </button>
             </div>
           ) : (
-            <div className="doc-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+            <div className="doc-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {filtered.map(doc => (
                 <DoctorCard key={doc.id} doc={doc} onProfile={() => goProfile(doc.id)} onBook={goBook} />
               ))}

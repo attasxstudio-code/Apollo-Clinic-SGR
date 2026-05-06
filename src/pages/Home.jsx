@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 
 import { SPECIALTIES } from './Services';
-import { ALL_DOCTORS } from './OurDoctors';
+import { ALL_DOCTORS, DoctorCard } from './OurDoctors';
 import { DIAGNOSTICS_CATEGORIES } from './Diagnostics';
 
 import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, CLINIC_EMAIL, WORKING_HOURS } from '../config/contact';
@@ -170,16 +170,8 @@ const Home = () => {
             style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
           >
             {ALL_DOCTORS.map((d, i) => (
-              <div key={i} className="card doctor-card" onClick={() => goTo(`/doctors/${d.id}`)} style={{ flex: '0 0 calc((100% - 4.5rem) / 4)', padding: 0, overflow: 'hidden', cursor: 'pointer', scrollSnapAlign: 'start' }}>
-                <div style={{ width: '100%', height: '220px', background: 'linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={d.image} alt={d.name} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }} />
-                </div>
-                <div className="card-body" style={{ padding: '1.25rem' }}>
-                  <h3 style={{ fontSize: '1.1rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{d.name}</h3>
-                  <p style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.2rem' }}>{d.title || d.specialty}</p>
-                  <p style={{ fontSize: '0.78rem', color: 'var(--body)', marginBottom: '0.5rem' }}>{d.qual}</p>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>{d.exp ? `${d.exp} experience` : '\u00A0'}</p>
-                </div>
+              <div key={i} className="carousel-card-wrap" style={{ flex: '0 0 calc((100% - 1.5rem) / 2)', minWidth: '320px', scrollSnapAlign: 'start' }}>
+                <DoctorCard doc={d} onProfile={() => goTo(`/doctors/${d.id}`)} onBook={() => { goTo('/book'); window.scrollTo(0,0); }} />
               </div>
             ))}
           </div>

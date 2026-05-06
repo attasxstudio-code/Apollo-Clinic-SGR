@@ -1255,10 +1255,6 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   .service-card p { font-size: 0.85rem !important; margin-bottom: 1rem !important; }
 
   /* ── DOCTOR CARDS ── */
-  .doctor-card { padding: 0 !important; }
-  .doctor-card-img-wrap { height: 280px !important; }
-  .doctor-card img { height: 280px !important; object-fit: contain !important; object-position: center center !important; }
-  .doctor-card .card-body { padding: 1rem 1.25rem 1.25rem !important; }
 
   /* ── REVIEW CARDS ── */
   .review-card {
@@ -2082,41 +2078,24 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     gap: 1rem !important;
   }
 
-  /* Doctor card — compact on mobile */
-  .doc-cards-grid > div {
-    border-radius: 14px !important;
+  /* Horizontal Doctor Card - Mobile Overrides */
+  .doctor-card-h-img {
+    width: 38% !important;
+    min-height: 180px !important;
   }
-  /* Doctor image area */
-  .doc-cards-grid > div > div:first-child {
-    height: 200px !important;
+  .doctor-card-h-info {
+    padding: 0.85rem !important;
   }
-  .doc-cards-grid > div > div:first-child img {
-    height: 200px !important;
-    object-fit: cover !important;
-    object-position: center top !important;
+  .doctor-card-h-name {
+    font-size: 0.95rem !important;
   }
-  /* Doctor card body */
-  .doc-cards-grid > div > div:last-child {
-    padding: 1rem 1.25rem 1.25rem !important;
+  .doctor-card-h-tags span {
+    font-size: 0.6rem !important;
+    padding: 0.15rem 0.4rem !important;
   }
-  /* Tag pills row */
-  .doc-cards-grid > div > div:last-child > div[style*="flexWrap"] {
-    margin-bottom: 1rem !important;
-    gap: 0.35rem !important;
-  }
-  .doc-cards-grid > div > div:last-child > div[style*="flexWrap"] > span {
-    font-size: 0.68rem !important;
-    padding: 0.2rem 0.55rem !important;
-    border-radius: 4px !important;
-  }
-  /* Action buttons */
-  .doc-cards-grid > div > div:last-child > div:last-child {
-    gap: 0.5rem !important;
-  }
-  .doc-cards-grid > div > div:last-child > div:last-child > button {
-    padding: 0.65rem 0.5rem !important;
-    font-size: 0.82rem !important;
-    border-radius: 8px !important;
+  .doctor-card-h-actions button {
+    padding: 0.6rem !important;
+    font-size: 0.75rem !important;
     min-height: 44px !important;
   }
 
@@ -2301,13 +2280,7 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     object-position: center 40% !important;
   }
 
-  /* Exception: doctor card images — contain on mobile to prevent face cropping */
-  .doctor-card-img-wrap { height: 280px !important; }
-  .doctor-card img {
-    height: 280px !important;
-    object-fit: contain !important;
-    object-position: center center !important;
-  }
+  /* Exception: doctor card images — handled inline now */
 
   /* ── SEARCH INPUTS ── */
   input[style*="borderRadius: '50px'"] {
