@@ -480,6 +480,46 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-gowhar-ahmad-kozgar',
+    image: '/Doctor-Gowhar-Ahmad-Kozgar.png',
+    name: 'Dr. Gowhar Ahmad Kozgar',
+    title: 'Senior Consultant Ophthalmologist',
+    specialty: 'Ophthalmology',
+    dept: 'Eye Care',
+    qual: 'MBBS, MS Ophthalmology',
+    qual_short: 'MBBS\nMS Ophthalmology',
+    exp: '',
+    avail: 'MON, WED, SAT',
+    languages: [],
+    bio: `Dr. Gowhar Ahmad Kozgar is a Senior Consultant Ophthalmologist and Senior Eye Specialist consulting at Apollo Clinic Srinagar. He provides specialist consultation for eye-related concerns, vision problems, eye examinations, and ophthalmology care.\n\nHe holds MBBS and MS Ophthalmology qualifications and has fellowship training in Paediatric Ophthalmology. Patients can consult him at Apollo Clinic Srinagar on Monday, Wednesday, and Saturday from 2:00 PM to 6:00 PM.`,
+    education: [
+      'MBBS',
+      'MS Ophthalmology',
+      'Fellowship in Paediatric Ophthalmology',
+      'Senior Eye Specialist',
+      'Senior Consultant Ophthalmologist'
+    ],
+    expertise: [
+      'Ophthalmology', 'Eye Specialist', 'Paediatric Ophthalmology', 'Senior Eye Consultation', 'Vision Concerns', 'Eye Examination', 'Eye Care', 'Specialist Eye Consultation', 'Follow-up Eye Care'
+    ],
+    specializedCare: [
+      { name: 'Eye Consultation', desc: 'Specialist consultation for eye-related concerns, discomfort, irritation, and vision-related symptoms.', icon: 'Activity' },
+      { name: 'Vision Problems', desc: 'Evaluation and guidance for blurred vision, reduced vision, and related eye concerns.', icon: 'Shield' },
+      { name: 'Paediatric Ophthalmology', desc: 'Specialist eye consultation for children and paediatric vision-related concerns.', icon: 'Heart' },
+      { name: 'Eye Examination', desc: 'Clinical eye assessment and specialist ophthalmology evaluation.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon, Wed, Sat', time: '2:00 PM to 6:00 PM' },
+      { day: 'Tue, Thu, Fri, Sun', time: 'Closed' },
+    ],
+    fellowship: 'Fellowship in Paediatric Ophthalmology',
+    consultation_days: 'Monday, Wednesday & Saturday\n2:00 PM to 6:00 PM',
+    trust_banner: 'Senior ophthalmology and eye specialist consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
