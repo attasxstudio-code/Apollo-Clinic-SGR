@@ -321,10 +321,51 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-ajaz-ahmad-khan',
+    image: '/Doctor-Ajaz-Ahmad-Khan.png',
+    name: 'Dr. Ajaz Ahmad Khan',
+    title: 'Senior Consultant Clinical and Child Psychologist',
+    specialty: 'Clinical Psychology',
+    dept: 'Psychology',
+    qual: 'Ph.D, M.Phil – Clinical Psychology',
+    qual_short: 'Ph.D\nM.Phil – Clinical Psychology',
+    exp: '',
+    avail: 'TUE - WED',
+    languages: [],
+    bio: `Dr. Ajaz Ahmad Khan is a Clinical Psychologist consulting at Apollo Clinic Srinagar. He is an RCI Licensed Clinical Psychologist and serves as Senior Consultant Clinical and Child Psychologist.\n\nHe provides consultation for clinical psychology and child psychology-related concerns. Patients can consult him at Apollo Clinic Srinagar on Tuesday and Wednesday from 4:00 PM to 6:00 PM.`,
+    education: [
+      'Ph.D',
+      'M.Phil – Clinical Psychology',
+      'PGIBAMS',
+      'RCI Licensed Clinical Psychologist',
+      'Senior Consultant Clinical and Child Psychologist'
+    ],
+    expertise: [
+      'Clinical Psychology', 'Child Psychology', 'RCI Licensed', 'Mental Wellness', 'Emotional Health', 'Stress Management', 'Anxiety Support', 'Behavioral Concerns', 'Psychological Guidance', 'RCI Licensed Clinical Psychologist'
+    ],
+    specializedCare: [
+      { name: 'Clinical Psychology Consultation', desc: 'Professional consultation for emotional, behavioral, and psychological concerns.', icon: 'Activity' },
+      { name: 'Child Psychology', desc: 'Specialist support for child behavior, emotional concerns, development-related issues, and family guidance.', icon: 'Shield' },
+      { name: 'Stress & Emotional Health', desc: 'Guidance for stress, anxiety, mood concerns, and emotional well-being.', icon: 'Heart' },
+      { name: 'Psychological Assessment & Guidance', desc: 'Clinical guidance and assessment support based on the patient’s concern and consultation needs.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Tuesday & Wednesday', time: '4:00 PM to 6:00 PM' },
+      { day: 'Mon, Thu, Fri, Sat, Sun', time: 'Closed' },
+    ],
+    license: 'RCI Licensed Clinical Psychologist',
+    institution: 'PGIBAMS',
+    consultation_days: 'Tuesday & Wednesday\n4:00 PM to 6:00 PM',
+    trust_banner: 'Clinical and child psychology consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy'];
+const SPECIALTIES_FILTER = ['All', 'General Physician', 'Cardiology', 'Pediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology'];
 
 const DoctorCard = ({ doc, onProfile, onBook }) => {
   const [hov, setHov] = React.useState(false);
