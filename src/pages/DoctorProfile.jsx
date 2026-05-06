@@ -71,7 +71,7 @@ const DoctorProfile = () => {
     <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '4rem' }}>
 
       {/* ── Breadcrumb / back ── */}
-      <div style={{ padding: '2rem 0 1rem' }}>
+      <div className="dp-back-link">
         <div className="container" style={{ maxWidth: '1200px' }}>
           <button onClick={goBack} style={{
             display: 'flex', alignItems: 'center', gap: '0.4rem',
@@ -84,16 +84,16 @@ const DoctorProfile = () => {
       </div>
 
       <div className="container" style={{ maxWidth: '1200px' }}>
-        <div className="doctor-profile-layout" style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr', gap: '2rem', alignItems: 'flex-start' }}>
+        <div className="doctor-profile-layout">
 
           {/* ════════════ LEFT COLUMN ════════════ */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
 
             {/* Profile Header Card */}
             <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', overflow: 'hidden' }}>
-              <div className="doctor-profile-header" style={{ padding: '2.5rem', display: 'flex', gap: '2.5rem' }}>
+              <div className="doctor-profile-header">
                 {/* Image */}
-                <div style={{ width: '220px', height: '280px', borderRadius: '12px', background: '#eef2f6', overflow: 'hidden', flexShrink: 0 }}>
+                <div className="dp-image-wrap">
                   <img src={doc.image} alt={doc.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
                 </div>
                 
@@ -103,7 +103,7 @@ const DoctorProfile = () => {
                   <div style={{ fontSize: '1.05rem', color: 'var(--blue)', fontWeight: 800, marginBottom: '0.5rem' }}>{doc.specialty}</div>
                   <div style={{ fontSize: '0.95rem', color: 'var(--heading)', fontWeight: 600, marginBottom: '2rem' }}>{doc.title}</div>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2rem' }}>
+                  <div className="dp-quick-info-grid">
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
                       <div style={{ color: 'var(--blue)' }}><GraduationCap size={20} /></div>
                       <div>
@@ -246,7 +246,7 @@ const DoctorProfile = () => {
             </div>
 
             {/* Professional Overview */}
-            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', padding: '2.5rem' }}>
+            <div className="dp-section-card">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <UserCheck size={20} />
@@ -261,7 +261,7 @@ const DoctorProfile = () => {
             </div>
 
             {/* Education & Credentials */}
-            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', padding: '2.5rem' }}>
+            <div className="dp-section-card">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <GraduationCap size={20} />
@@ -278,14 +278,14 @@ const DoctorProfile = () => {
             </div>
 
             {/* Specialized Treatments */}
-            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', padding: '2.5rem' }}>
+            <div className="dp-section-card">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <HeartPulse size={20} />
                 </div>
                 <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Specialized Treatments</h2>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+              <div className="dp-treatments-grid">
                 {doc.specializedCare.map((care, i) => (
                   <div key={i} style={{ 
                     border: '1px solid rgba(0,0,0,0.05)', borderRadius: '12px', padding: '1.5rem 1rem', textAlign: 'center',
@@ -312,14 +312,14 @@ const DoctorProfile = () => {
             </div>
 
             {/* Areas of Expertise */}
-            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', padding: '2.5rem' }}>
+            <div className="dp-section-card">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <ShieldCheck size={20} />
                 </div>
                 <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Areas of Expertise</h2>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <div className="dp-expertise-flex">
                 {doc.expertise.map((tag, i) => (
                   <span key={i} style={{ 
                     background: 'var(--blue-light)', color: 'var(--blue)', 
@@ -333,7 +333,7 @@ const DoctorProfile = () => {
             </div>
 
             {/* Clinic Details */}
-            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', padding: '2.5rem' }}>
+            <div className="dp-section-card">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <MapPin size={20} />
@@ -341,8 +341,8 @@ const DoctorProfile = () => {
                 <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Clinic Details</h2>
               </div>
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px', gap: '2rem', alignItems: 'center' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+              <div className="dp-clinic-grid">
+                <div className="dp-clinic-details-grid">
                   <div>
                     <div style={{ fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.5rem' }}>Location</div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--body)', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{doc.clinic_location || 'Near National School, Arham Towers, Karan Nagar, Srinagar, Jammu & Kashmir, 190010'}</div>
@@ -383,7 +383,7 @@ const DoctorProfile = () => {
 
           {/* ════════════ RIGHT COLUMN ════════════ */}
           <div style={{ position: 'sticky', top: '2rem' }}>
-            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', padding: '2rem', boxShadow: '0 10px 40px rgba(0,0,0,0.04)' }}>
+            <div className="dp-form-card">
               
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '2rem 0' }}>
@@ -435,7 +435,7 @@ const DoctorProfile = () => {
                       />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                    <div className="dp-form-grid">
                       <div>
                         <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem' }}>Preferred Date</label>
                         <input
@@ -516,12 +516,8 @@ const DoctorProfile = () => {
       {/* ── CTA Banner ── */}
       <section style={{ padding: '2rem 0' }}>
         <div className="container" style={{ maxWidth: '1200px' }}>
-          <div style={{ 
-            background: '#fff', borderRadius: '16px', padding: '2.5rem 3rem',
-            border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.04)',
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div className="dp-cta-card" style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.04)' }}>
+            <div className="dp-cta-content">
               <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Calendar size={28} />
               </div>
@@ -535,7 +531,7 @@ const DoctorProfile = () => {
               </div>
             </div>
             
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div className="dp-cta-actions">
               <button className="btn btn-orange btn-lg" onClick={goBook} style={{ padding: '0.75rem 2rem', fontSize: '0.95rem' }}>
                 <Calendar size={18} /> Book Appointment
               </button>
