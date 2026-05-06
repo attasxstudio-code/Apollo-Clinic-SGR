@@ -598,6 +598,43 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-mukhtiar-wani',
+    image: '/Doctor-Mukhtiar-Wani.png',
+    name: 'Dr. Mukhtiar Wani',
+    title: 'General Physician',
+    specialty: 'General Physician',
+    dept: 'Medicine',
+    qual: 'MBBS, MD Medicine',
+    qual_short: 'MBBS\nMD Medicine',
+    exp: '',
+    avail: 'MON - SAT',
+    languages: [],
+    bio: `Dr. Mukhtiar Wani is a General Physician consulting at Apollo Clinic Srinagar. He holds MBBS and MD Medicine qualifications and provides consultation for general medical concerns, fever, infections, weakness, blood pressure, diabetes-related concerns, chronic illness management, and preventive healthcare guidance.\n\nPatients can consult him at Apollo Clinic Srinagar from Monday to Saturday between 11:30 AM and 2:00 PM, with evening consultation available on Monday, Wednesday, and Friday from 4:00 PM to 5:30 PM.`,
+    education: [
+      'MBBS',
+      'MD Medicine',
+      'General Physician'
+    ],
+    expertise: [
+      'General Physician', 'General Medicine', 'Internal Medicine', 'Fever & Infections', 'Diabetes Care', 'Hypertension', 'Preventive Healthcare', 'Chronic Disease Management', 'Adult Health Consultation', 'Routine Medical Checkups'
+    ],
+    specializedCare: [
+      { name: 'General Medical Consultation', desc: 'Consultation for common illnesses, fever, weakness, infections, and general health concerns.', icon: 'Activity' },
+      { name: 'Internal Medicine', desc: 'Medical evaluation and management of adult health concerns and internal medical conditions.', icon: 'Shield' },
+      { name: 'Diabetes & Blood Pressure Care', desc: 'Consultation for diabetes, hypertension, and related lifestyle or chronic health concerns.', icon: 'Heart' },
+      { name: 'Preventive Health Guidance', desc: 'Guidance for routine checkups, early detection, and preventive healthcare planning.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon - Sat', time: '11:30 AM to 2:00 PM' },
+      { day: 'Mon, Wed, Fri', time: '4:00 PM to 5:30 PM' },
+    ],
+    consultation_days: 'Monday to Saturday: 11:30 AM to 2:00 PM\nMonday, Wednesday & Friday: 4:00 PM to 5:30 PM',
+    trust_banner: 'General physician consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
