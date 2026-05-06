@@ -635,6 +635,43 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'prof-dr-nazir-ahmad-lone',
+    image: '/Doctor-Nazir-Ahmad-Lone.png',
+    name: 'Prof. Dr. Nazir Ahmad Lone',
+    title: 'Senior Interventional Cardiologist',
+    specialty: 'Cardiology',
+    dept: 'Cardiology',
+    qual: 'MD Medicine, DM Cardiology',
+    qual_short: 'MD Medicine\nDM Cardiology',
+    exp: '',
+    avail: 'MON - SAT',
+    languages: [],
+    bio: `Prof. Dr. Nazir Ahmad Lone is a Senior Interventional Cardiologist consulting at Apollo Clinic Srinagar. He holds MD Medicine and DM Cardiology qualifications and provides specialist consultation for heart-related concerns, cardiac evaluation, blood pressure, chest discomfort, rhythm-related concerns, and preventive cardiac care.\n\nPatients can consult him at Apollo Clinic Srinagar from Monday to Saturday between 10:00 AM and 5:30 PM.`,
+    education: [
+      'MD Medicine',
+      'DM Cardiology',
+      'Senior Interventional Cardiologist'
+    ],
+    expertise: [
+      'Cardiology', 'Interventional Cardiology', 'Heart Care', 'Cardiac Consultation', 'Blood Pressure', 'Chest Discomfort', 'ECG Review', 'Echo Review', 'Preventive Cardiology', 'Cardiac Risk Assessment'
+    ],
+    specializedCare: [
+      { name: 'Cardiology Consultation', desc: 'Specialist consultation for heart-related symptoms, cardiac concerns, and preventive heart care.', icon: 'Activity' },
+      { name: 'Interventional Cardiology', desc: 'Specialist cardiac guidance for patients requiring interventional cardiology evaluation and opinion.', icon: 'Shield' },
+      { name: 'Blood Pressure & Heart Risk', desc: 'Consultation for hypertension, cardiac risk assessment, and lifestyle-related heart health concerns.', icon: 'Heart' },
+      { name: 'ECG / Echo Review', desc: 'Cardiology consultation and guidance for ECG, Echo, rhythm-related concerns, and cardiac investigation review.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon - Sat', time: '10:00 AM to 5:30 PM' },
+      { day: 'Sunday', time: 'Closed' },
+    ],
+    consultation_days: 'Monday to Saturday\n10:00 AM to 5:30 PM',
+    trust_banner: 'Senior interventional cardiology consultation available at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
