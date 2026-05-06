@@ -756,6 +756,45 @@ He completed his MS in Orthopaedics from a premier institution and has a proven 
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-syed-sadaf-altaf',
+    image: '/Doctor-Syed-Sadaf-Altaf.png',
+    name: 'Dr. Syed Sadaf Altaf',
+    title: 'Lecturer, Govt. Medical College, Srinagar',
+    specialty: 'Ophthalmology',
+    dept: 'Eye Care',
+    qual: 'MS Ophthalmology',
+    qual_short: 'MS Ophthalmology',
+    exp: '',
+    avail: 'FRI',
+    languages: [],
+    bio: `Dr. Syed Sadaf Altaf is an Ophthalmology specialist consulting at Apollo Clinic Srinagar. She holds MS Ophthalmology and serves as Lecturer at Govt. Medical College, Srinagar.\n\nShe provides specialist consultation for eye-related concerns, vision problems, eye examinations, eye irritation, infections, and ophthalmology care. Patients can consult her at Apollo Clinic Srinagar every Friday from 4:00 PM to 6:00 PM.`,
+    education: [
+      'MS Ophthalmology',
+      'Lecturer',
+      'Govt. Medical College, Srinagar',
+      'Ophthalmology'
+    ],
+    expertise: [
+      'Ophthalmology', 'Eye Care', 'Eye Consultation', 'Vision Concerns', 'Eye Examination', 'Eye Infections', 'Eye Irritation', 'Specialist Eye Care', 'Follow-up Eye Care'
+    ],
+    specializedCare: [
+      { name: 'Eye Consultation', desc: 'Specialist consultation for eye-related symptoms, discomfort, irritation, and vision-related concerns.', icon: 'Activity' },
+      { name: 'Vision Problems', desc: 'Evaluation and guidance for blurred vision, reduced vision, and other vision-related issues.', icon: 'Shield' },
+      { name: 'Eye Examination', desc: 'Clinical eye assessment and specialist ophthalmology evaluation.', icon: 'Heart' },
+      { name: 'Eye Infections & Irritation', desc: 'Consultation for redness, watering, irritation, discomfort, and infection-related eye concerns.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Friday', time: '4:00 PM to 6:00 PM' },
+      { day: 'Mon - Thu, Sat - Sun', time: 'Closed' },
+    ],
+    consultation_days: 'Friday\n4:00 PM to 6:00 PM',
+    institution: 'Govt. Medical College, Srinagar',
+    trust_banner: 'Ophthalmology consultation available at Apollo Clinic Srinagar every Friday.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
