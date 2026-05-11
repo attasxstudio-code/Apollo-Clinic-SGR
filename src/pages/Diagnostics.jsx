@@ -226,14 +226,14 @@ const Diagnostics = () => {
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '2rem', flexGrow: 1 }}>
                   <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--navy)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Key Tests:</span>
-                  <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  <div className="diag-pill-list">
                     {cat.tests.map((test, j) => (
-                      <li key={j} style={{ fontSize: '0.85rem', color: 'var(--body)', display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}>
-                        <span style={{ color: 'var(--blue)', marginTop: '2px' }}>•</span>
-                        <span>{test}</span>
-                      </li>
+                      <span key={j} className="diag-pill">
+                        <span className="diag-pill-dot"></span>
+                        {test}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 <button onClick={() => navigate('/book')} style={{ 

@@ -100,6 +100,28 @@ const Home = () => {
             <img src="/APOLLO-receptionist-image.png" alt="Apollo Clinic Srinagar Interior" style={{ width: '100%', height: 'auto', display: 'block' }} />
           </div>
         </div>
+    </section>
+
+      {/* ─── IMAGE SHOWCASE ─── */}
+      <section style={{ padding: '2rem 0 4rem', background: '#fff' }}>
+        <div className="container" style={{ maxWidth: '1400px' }}>
+          <div className="showcase-grid">
+            {/* Left Column - 2 smaller stacked images */}
+            <div className="showcase-col">
+              <div className="showcase-img-wrap showcase-img-small">
+                <img src="/Apollo-real-interior-1.png" alt="Apollo Clinic Interior" loading="lazy" />
+              </div>
+              <div className="showcase-img-wrap showcase-img-small">
+                <img src="/Apollo-real-interior-2.png" alt="Apollo Clinic Interior" loading="lazy" />
+              </div>
+            </div>
+            
+            {/* Right Column - 1 large tall image */}
+            <div className="showcase-img-wrap showcase-img-tall">
+              <img src="/Apollo-real-exterior.jpeg" alt="Apollo Clinic Exterior" loading="lazy" />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ─── OUR SERVICES ─── */}
@@ -148,7 +170,7 @@ const Home = () => {
       </section>
 
       {/* ─── OUR DOCTORS ─── */}
-      <section style={{ padding: '5rem 0', background: '#f8fafc' }}>
+      <section className="home-doctors-section" style={{ background: '#f8fafc' }}>
         <div className="container" style={{ maxWidth: '1400px', position: 'relative' }}>
           <div className="section-header m-stack" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem' }}>
             <div>
@@ -170,7 +192,7 @@ const Home = () => {
             style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
           >
             {ALL_DOCTORS.map((d, i) => (
-              <div key={i} className="carousel-card-wrap" style={{ flex: '0 0 calc((100% - 1.5rem) / 2)', minWidth: '320px', scrollSnapAlign: 'start' }}>
+              <div key={i} className="carousel-card-wrap">
                 <DoctorCard doc={d} onProfile={() => goTo(`/doctors/${d.id}`)} onBook={() => { goTo('/book'); window.scrollTo(0,0); }} />
               </div>
             ))}
@@ -232,19 +254,19 @@ const Home = () => {
                 </div>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: '2rem', flexGrow: 1 }}>
-                  <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  <div className="diag-pill-list">
                     {cat.tests.slice(0, 4).map((test, j) => (
-                      <li key={j} style={{ fontSize: '0.85rem', color: 'var(--body)', display: 'flex', alignItems: 'flex-start', gap: '0.4rem' }}>
-                        <span style={{ color: 'var(--blue)', marginTop: '2px' }}>•</span>
-                        <span>{test}</span>
-                      </li>
+                      <span key={j} className="diag-pill">
+                        <span className="diag-pill-dot"></span>
+                        {test}
+                      </span>
                     ))}
                     {cat.tests.length > 4 && (
-                      <li style={{ fontSize: '0.8rem', color: 'var(--blue)', fontWeight: 600, marginTop: '0.2rem' }}>
-                        + {cat.tests.length - 4} more
-                      </li>
+                      <span className="diag-pill diag-pill-more">
+                        +{cat.tests.length - 4} more
+                      </span>
                     )}
-                  </ul>
+                  </div>
                 </div>
 
                 <div style={{ 

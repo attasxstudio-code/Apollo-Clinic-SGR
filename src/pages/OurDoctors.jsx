@@ -360,9 +360,9 @@ export const ALL_DOCTORS = [
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   },
   {
-    id: 'dr-masood-ahmed-laharwal',
-    image: '/Doctor-Masood-Ahmed-Laharwal.png',
-    name: 'Dr. Masood Ahmed Laharwal',
+    id: 'dr-masood-ahmad-laharwal',
+    image: '/Doctor-Masood-Ahmad-Laharwal.png',
+    name: 'Dr. Masood Ahmad Laharwal',
     title: 'Neurosurgery Specialist',
     specialty: 'Neurosurgery',
     dept: 'Neuro Surgery',
@@ -371,7 +371,7 @@ export const ALL_DOCTORS = [
     exp: '',
     avail: 'MON - SAT',
     languages: [],
-    bio: `Dr. Masood Ahmed Laharwal is a Neurosurgery specialist consulting at Apollo Clinic Srinagar. He holds MBBS, MS, and MCh Neurosurgery qualifications and has served as Ex Consultant Neurosurgery at SKIMS and Ex Senior Consultant at Paras Health Care Srinagar.\n\nHe provides specialist neurosurgery consultation for brain, spine, nerve-related concerns, neurological symptoms, headaches, back and neck pain, and surgical opinion where required. Patients can consult him at Apollo Clinic Srinagar from Monday to Saturday, 3:30 PM to 6:00 PM.`,
+    bio: `Dr. Masood Ahmad Laharwal is a Neurosurgery specialist consulting at Apollo Clinic Srinagar. He holds MBBS, MS, and MCh Neurosurgery qualifications and has served as Ex Consultant Neurosurgery at SKIMS and Ex Senior Consultant at Paras Health Care Srinagar.\n\nHe provides specialist neurosurgery consultation for brain, spine, nerve-related concerns, neurological symptoms, headaches, back and neck pain, and surgical opinion where required. Patients can consult him at Apollo Clinic Srinagar from Monday to Saturday, 3:30 PM to 6:00 PM.`,
     education: [
       'MBBS',
       'MS',
@@ -641,7 +641,10 @@ export const ALL_DOCTORS = [
   }
 ];
 
-const SPECIALTIES_FILTER = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition', 'Urology'];
+const ALL_POSSIBLE_FILTERS = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition', 'Urology'];
+const SPECIALTIES_FILTER = ALL_POSSIBLE_FILTERS.filter(f => 
+  f === 'All' || ALL_DOCTORS.some(d => d.dept === f || d.specialty === f)
+);
 
 
 export const DoctorCard = ({ doc, onProfile, onBook }) => {

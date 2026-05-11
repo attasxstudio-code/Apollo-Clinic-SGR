@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Calendar, Phone, MapPin, Clock, ChevronLeft, CheckCircle, ArrowRight, ShieldCheck, UserCheck, GraduationCap, HeartPulse, Shield, Activity, FileText } from 'lucide-react';
+import { Calendar, Phone, MapPin, Clock, ChevronLeft, CheckCircle, ArrowRight, ShieldCheck, UserCheck, GraduationCap, HeartPulse, Shield, Activity, FileText, Briefcase } from 'lucide-react';
 import { ALL_DOCTORS } from './OurDoctors';
 
 import { PRIMARY_PHONE, PRIMARY_PHONE_HREF } from '../config/contact';
