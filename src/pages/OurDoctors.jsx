@@ -710,7 +710,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-gauri-agarwal',
-    image: '/Doctor-Gauri-Agarwal.png',
+    image: '/images/doctors/Doctor-Gauri-Agarwal.webp',
     name: 'Dr Gauri Agarwal',
     title: 'Founder & Director, Seeds of Innocence IVF & Genestring Labs',
     specialty: 'IVF, Fertility & Reproductive Medicine',
@@ -763,7 +763,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-anindya-mukherjee',
-    image: '/Doctor-Anindya-Mukherjee.png',
+    image: '/images/doctors/Doctor-Anindya-Mukherjee.webp',
     name: 'Dr Anindya Mukherjee',
     title: 'Consultant Medical Oncologist',
     specialty: 'Medical Oncology',
@@ -811,7 +811,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-harish-kumar-verma',
-    image: '/Doctor-Harish-Kumar-Verma.png',
+    image: '/images/doctors/Doctor-Harish-Kumar-Verma.webp',
     name: 'Dr Harish Kumar Verma',
     title: 'Senior Pulmonologist & Critical Care Expert',
     specialty: 'Pulmonology & Critical Care Medicine',
@@ -871,7 +871,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-showkat-nazir-wani',
-    image: '/Doctor-Showkat-Nazir-Wani.png',
+    image: '/images/doctors/Doctor-Showkat-Nazir-Wani.webp',
     name: 'Dr Showkat Nazir Wani',
     title: 'Consultant Neurologist',
     specialty: 'Neurology',
