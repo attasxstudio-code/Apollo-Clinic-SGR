@@ -868,6 +868,85 @@ export const ALL_DOCTORS = [
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-showkat-nazir-wani',
+    image: '/Doctor-Showkat-Nazir-Wani.png',
+    name: 'Dr Showkat Nazir Wani',
+    title: 'Consultant Neurologist',
+    specialty: 'Neurology',
+    specialization: 'Stroke Management, Neuro Critical Care, Epilepsy, Movement Disorders, Neuro Emergencies, Electrophysiology, Demyelinating Diseases',
+    dept: 'Neurology',
+    qual: 'MBBS, MD, DM, ECFMG',
+    exp: '9+ years',
+    type: 'visiting-doctor',
+    avail: 'Once a month',
+    languages: [],
+    bio: `Dr Showkat Nazir Wani is a renowned Neurologist with over 9 years of experience in neurological care. He has strong clinical experience in emergency, inpatient, and outpatient neurology services, with expertise in diagnosing and managing a wide range of neurological diseases.\n\nHis clinical interests include stroke management, neuro critical care, epilepsy, demyelinating disorders, movement disorders, neurological emergencies, electrophysiology, pain management, and nervous system infections. Dr Wani focuses on accurate diagnosis, evidence-based treatment, and comprehensive patient care for complex neurological conditions.`,
+    education: [
+      'MBBS',
+      'MD',
+      'DM',
+      'ECFMGCertified'
+    ],
+    experience: [
+      'More than 9 years of clinical experience',
+      'Experience in emergency, inpatient, and outpatient neurology care',
+      'Experience in diagnosing and managing complex neurological diseases'
+    ],
+    expertise: [
+      'Neurology consultation', 'Neurological and medical emergencies', 'Neuro critical care', 'Stroke management', 'Thrombolysis', 'Demyelinating diseases including Multiple Sclerosis, NMO, and MOGAD', 'Autoimmune neurological diseases', 'Post-stroke rehabilitation', 'Spinal cord diseases', 'Epilepsy diagnosis and management', 'Nerve and muscle diseases', 'Headache disorders', 'Dementia', 'Pain management', 'Parkinson disease and movement disorders', 'Neuro-psychiatric disorders', 'Botox treatment for movement disorders', 'Electrophysiology including EEG, NCV, and EMG', 'Nervous system infections including Brain TB, NCC, and meningitis'
+    ],
+    specializedCareHeading: 'Specialization & Expertise',
+    specializedCare: [
+      { name: 'Neuro Emergencies', desc: 'Neurological and medical emergencies, neuro critical care, stroke management and thrombolysis.', icon: 'Activity' },
+      { name: 'Demyelinating Diseases', desc: 'Multiple Sclerosis, NMO, MOGAD and autoimmune diseases.', icon: 'Shield' },
+      { name: 'Movement Disorders', desc: 'Parkinson disease, botox treatment for movement disorders, and neuro-psychiatric disorders.', icon: 'Activity' },
+      { name: 'Chronic Conditions', desc: 'Epilepsy, headache, dementia, and pain management.', icon: 'Heart' },
+      { name: 'Nerve & Muscle', desc: 'Nerve and muscle diseases, spinal cord diseases, and electrophysiology (EEG, NCV, EMG).', icon: 'Activity' },
+      { name: 'Infections & Rehab', desc: 'Nervous system infections (Brain TB, NCC, meningitis) and post-stroke rehabilitation.', icon: 'Shield' }
+    ],
+    awards: [
+      'ECFMG United States Certified',
+      '2nd position in Poster Presentation at DNACON 2023',
+      '2nd position in Neuroconnect Quiz 2023'
+    ],
+    clinicalInterests: [
+      'Neurological and medical emergencies',
+      'Neuro critical care',
+      'Stroke management',
+      'Demyelinating diseases',
+      'Thrombolysis',
+      'Autoimmune diseases',
+      'Post-stroke rehabilitation',
+      'Spinal cord diseases',
+      'Epilepsy',
+      'Nerve and muscle diseases',
+      'Headache',
+      'Dementia',
+      'Pain management',
+      'Parkinson disease and movement disorders',
+      'Neuro-psychiatric disorders',
+      'Electrophysiology',
+      'Nervous system infections'
+    ],
+    research: [
+      'Etiological and clinico-demographic profile of patients with Longitudinally Extensive Transverse Myelitis',
+      'Study of serum prolactin level in seizures',
+      'Ischemic stroke in COVID-19 patient',
+      'COVID-19 induced hypokalemic paralysis',
+      'Predictors of prolonged hospital stay in patients with acute pulmonary thromboembolism',
+      'Vitamin D level and correlation with disease activity in Rheumatoid Arthritis',
+      'Liver function abnormalities in COVID-19 patients'
+    ],
+    media: [],
+    hours: [],
+    consultation_days: 'Selected monthly schedules. Prior registration is required.',
+    institution: 'Apollo Clinic Srinagar',
+    trust_banner: 'Limited slots available. Prior registration is mandatory for visiting appointments.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 

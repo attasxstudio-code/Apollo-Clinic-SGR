@@ -346,6 +346,25 @@ const DoctorProfile = () => {
               </div>
             )}
 
+            {/* Clinical Interests */}
+            {doc.clinicalInterests && doc.clinicalInterests.length > 0 && (
+              <div className="dp-section-card">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <HeartPulse size={20} />
+                  </div>
+                  <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Clinical Interests</h2>
+                </div>
+                <ul style={{ margin: 0, padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {doc.clinicalInterests.map((item, i) => (
+                    <li key={i} style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.5 }}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* Public Awareness & Media Presence */}
             {doc.media && doc.media.length > 0 && (
               <div className="dp-section-card">
