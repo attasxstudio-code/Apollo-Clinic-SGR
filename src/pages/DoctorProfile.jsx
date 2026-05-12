@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Calendar, Phone, MapPin, Clock, ChevronLeft, CheckCircle, ArrowRight, ShieldCheck, UserCheck, GraduationCap, HeartPulse, Shield, Activity, FileText, Briefcase } from 'lucide-react';
 import { ALL_DOCTORS } from './OurDoctors';
+import VisitingDoctorBookingForm from '../components/VisitingDoctorBookingForm';
 
 import { PRIMARY_PHONE, PRIMARY_PHONE_HREF } from '../config/contact';
 
@@ -516,29 +517,7 @@ const DoctorProfile = () => {
                 </div>
               </div>
             ) : doc.type === 'visiting-doctor' ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div className="dp-form-card" style={{ borderTop: '4px solid var(--orange)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                    <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--orange-light)', color: 'var(--orange)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Calendar size={18} />
-                    </div>
-                    <h3 style={{ fontSize: '1.15rem', color: 'var(--navy)', margin: 0 }}>Book a Visiting Appointment</h3>
-                  </div>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--body)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-                    {doc.name} visits Apollo Clinic Srinagar on selected monthly schedules. Prior registration is required and slots are limited.
-                  </p>
-                  <button 
-                    className="btn btn-primary w-full" 
-                    onClick={() => { window.scrollTo(0,0); alert("Visiting Doctor appointment form will be available soon. Please call the clinic to register."); }}
-                    style={{ borderRadius: '8px', justifyContent: 'center', padding: '0.8rem' }}
-                  >
-                    Book Visiting Appointment
-                  </button>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: '1rem', textAlign: 'center' }}>
-                    * You can also register by calling the clinic directly.
-                  </p>
-                </div>
-              </div>
+              <VisitingDoctorBookingForm doc={doc} />
             ) : (
             <div className="dp-form-card">
               

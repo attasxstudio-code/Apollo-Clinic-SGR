@@ -9,6 +9,13 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { sanitizeObject } from '../../utils/security';
 import { PRIMARY_PHONE } from '../../config/contact';
+import {
+  getAppointments as getVisitingAppts,
+  updateAppointment as updateVisitingAppt,
+  deleteAppointment as deleteVisitingAppt,
+  getAllSettings as getVisitingSettings,
+  saveDoctorSettings as saveVisitingDrSettings,
+} from '../../services/visitingDoctorAppointments';
 
 /* ══════════════════════════════════════════
    STATUS CONFIG
@@ -1024,6 +1031,300 @@ const TestReportsSection = () => {
 };
 
 /* ══════════════════════════════════════════
+   VISITING DOCTORS SECTION
+══════════════════════════════════════════ */
+const VISITING_DOCTORS_LIST = [
+  { slug:'dr-gauri-agarwal',       name:'Dr Gauri Agarwal' },
+  { slug:'dr-anindya-mukherjee',   name:'Dr Anindya Mukherjee' },
+  { slug:'dr-showkat-nazir-wani',  name:'Dr Showkat Nazir Wani' },
+  { slug:'dr-harish-kumar-verma',  name:'Dr Harish Kumar Verma' },
+];
+
+const VisitingAppointmentsSection = () => {
+  const [appts, setAppts] = useState([]);
+  const [settings, setSettings] = useState({});
+  const [showSettings, setShowSettings] = useState(false);
+  const [filterDoc, setFilterDoc] = useState('All');
+  const [filterStatus, setFilterStatus] = useState('All');
+  const [filterCycle, setFilterCycle] = useState('All');
+  const [search, setSearch] = useState('');
+
+  const reload = () => {
+    setAppts(getVisitingAppts());
+    setSettings(getVisitingSettings());
+  };
+
+  useEffect(() => { reload(); }, []);
+
+  const toggleContacted = (id) => {
+    const a = appts.find(x => x.id === id);
+    if (!a) return;
+    const next = !a.contacted;
+    updateVisitingAppt(id, {
+      contacted: next,
+      spotConfirmed: next,
+      status: next ? 'confirmed' : 'new',
+    });
+    reload();
+  };
+
+  const handleDelete = (id) => {
+    if (!window.confirm('Delete this visiting appointment?')) return;
+    deleteVisitingAppt(id);
+    reload();
+  };
+
+  const openWhatsApp = (a) => {
+    const phone = a.phone.replace(/[\s\-+()]/g, '');
+    const phoneNum = phone.startsWith('91') ? phone : `91${phone}`;
+    const msg = `Hello ${a.patientName}, this is Apollo Clinic Srinagar. We received your visiting appointment request for ${a.doctorName}. Our team is contacting you to confirm your spot for the upcoming monthly visit.`;
+    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  const handleSettingToggle = (slug, field) => {
+    const current = settings[slug] || { currentMonthFull: false, acceptNextMonthBookings: true };
+    saveVisitingDrSettings(slug, { [field]: !current[field] });
+    reload();
+  };
+
+  /* Filter logic */
+  let filtered = [...appts];
+  if (filterDoc !== 'All') filtered = filtered.filter(a => a.doctorSlug === filterDoc);
+  if (filterStatus === 'New') filtered = filtered.filter(a => !a.contacted);
+  if (filterStatus === 'Confirmed') filtered = filtered.filter(a => a.contacted);
+  if (filterCycle === 'Current Month') filtered = filtered.filter(a => a.bookingCycle === 'current-month');
+  if (filterCycle === 'Next Month') filtered = filtered.filter(a => a.bookingCycle === 'next-month');
+  if (search.trim()) {
+    const q = search.trim().toLowerCase();
+    filtered = filtered.filter(a => a.patientName?.toLowerCase().includes(q) || a.phone?.includes(q));
+  }
+
+  const totalNew = appts.filter(a => !a.contacted).length;
+  const totalConfirmed = appts.filter(a => a.contacted).length;
+  const currentMonth = appts.filter(a => a.bookingCycle === 'current-month').length;
+  const nextMonth = appts.filter(a => a.bookingCycle === 'next-month').length;
+
+  const selectStyle = {
+    padding:'0.45rem 0.75rem', borderRadius:'8px', border:'1.5px solid #fed7aa',
+    background:'#fff', fontSize:'0.8rem', fontFamily:'inherit', fontWeight:600,
+    color:'#9a3412', cursor:'pointer', outline:'none', minHeight:36,
+  };
+
+  return (
+    <div>
+      {/* Stats */}
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(120px,1fr))', gap:'0.7rem', marginBottom:'1.35rem' }}>
+        {[
+          { label:'Total', value:appts.length, color:'#f97316' },
+          { label:'New', value:totalNew, color:'#f59e0b' },
+          { label:'Confirmed', value:totalConfirmed, color:'#10b981' },
+          { label:'Current Month', value:currentMonth, color:'#0ea5e9' },
+          { label:'Next Month', value:nextMonth, color:'#6366f1' },
+        ].map((s,i) => (
+          <div key={i} style={{
+            background:'#fff', borderRadius:'12px', padding:'0.9rem 0.85rem', textAlign:'center',
+            border:'1.5px solid #fed7aa', borderTop:`4px solid ${s.color}`,
+            boxShadow:'0 2px 10px rgba(249,115,22,0.06)',
+          }}>
+            <div style={{ fontSize:'1.65rem', fontWeight:900, color:'#0f172a', lineHeight:1 }}>{s.value}</div>
+            <div style={{ color:'#64748b', fontSize:'0.72rem', fontWeight:600, marginTop:'0.25rem' }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Section header */}
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'1rem', gap:'0.75rem', flexWrap:'wrap' }}>
+        <div>
+          <h3 style={{ margin:'0 0 0.15rem', color:'#9a3412', fontWeight:800, fontSize:'1.05rem', display:'flex', alignItems:'center', gap:'0.45rem' }}>
+            <Calendar size={16} color="#f97316"/> Visiting Doctors Appointments
+          </h3>
+          <p style={{ margin:0, color:'#94a3b8', fontSize:'0.79rem' }}>Visiting doctor appointment requests from the website</p>
+        </div>
+        <button onClick={() => setShowSettings(!showSettings)} style={{
+          display:'flex', alignItems:'center', gap:'5px',
+          background: showSettings ? '#f97316' : '#fff7ed',
+          color: showSettings ? '#fff' : '#9a3412',
+          border: showSettings ? 'none' : '1.5px solid #fed7aa',
+          borderRadius:'10px', padding:'0.5rem 0.9rem', fontWeight:700, fontSize:'0.85rem',
+          cursor:'pointer', fontFamily:'inherit', transition:'all 0.2s', minHeight:'40px',
+        }}>
+          ⚙️ Booking Settings
+        </button>
+      </div>
+
+      {/* Booking Settings Panel */}
+      {showSettings && (
+        <div style={{
+          background:'#fff7ed', border:'1.5px solid #fed7aa', borderRadius:'16px',
+          padding:'1.25rem', marginBottom:'1.5rem',
+        }}>
+          <h4 style={{ margin:'0 0 1rem', color:'#9a3412', fontWeight:800, fontSize:'0.95rem' }}>Visiting Doctor Booking Settings</h4>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(260px,1fr))', gap:'0.85rem' }}>
+            {VISITING_DOCTORS_LIST.map(dr => {
+              const s = settings[dr.slug] || { currentMonthFull: false, acceptNextMonthBookings: true };
+              return (
+                <div key={dr.slug} style={{
+                  background:'#fff', borderRadius:'12px', padding:'1rem',
+                  border:'1px solid #fed7aa',
+                }}>
+                  <div style={{ fontWeight:700, fontSize:'0.88rem', color:'#0f172a', marginBottom:'0.75rem' }}>{dr.name}</div>
+                  <div style={{ display:'flex', flexDirection:'column', gap:'0.6rem' }}>
+                    <label style={{ display:'flex', alignItems:'center', gap:'0.6rem', cursor:'pointer', fontSize:'0.8rem', color:'#374151' }}>
+                      <input type="checkbox" checked={s.currentMonthFull} onChange={() => handleSettingToggle(dr.slug, 'currentMonthFull')}
+                        style={{ width:18, height:18, accentColor:'#f97316', cursor:'pointer' }}
+                      />
+                      <span>Mark Current Month Full</span>
+                    </label>
+                    <label style={{ display:'flex', alignItems:'center', gap:'0.6rem', cursor:'pointer', fontSize:'0.8rem', color:'#374151' }}>
+                      <input type="checkbox" checked={s.acceptNextMonthBookings} onChange={() => handleSettingToggle(dr.slug, 'acceptNextMonthBookings')}
+                        style={{ width:18, height:18, accentColor:'#10b981', cursor:'pointer' }}
+                      />
+                      <span>Accept Next Month Bookings</span>
+                    </label>
+                  </div>
+                  <div style={{ marginTop:'0.5rem', fontSize:'0.72rem', color:'#94a3b8' }}>
+                    Status: {s.currentMonthFull ? '🔴 Full' : '🟢 Open'}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Filters */}
+      <div style={{ display:'flex', gap:'0.5rem', marginBottom:'1rem', flexWrap:'wrap', alignItems:'center' }}>
+        <select value={filterDoc} onChange={e => setFilterDoc(e.target.value)} style={selectStyle}>
+          <option value="All">All Doctors</option>
+          {VISITING_DOCTORS_LIST.map(d => <option key={d.slug} value={d.slug}>{d.name}</option>)}
+        </select>
+        <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} style={selectStyle}>
+          <option value="All">All Status</option>
+          <option value="New">New</option>
+          <option value="Confirmed">Confirmed</option>
+        </select>
+        <select value={filterCycle} onChange={e => setFilterCycle(e.target.value)} style={selectStyle}>
+          <option value="All">All Months</option>
+          <option value="Current Month">Current Month</option>
+          <option value="Next Month">Next Month</option>
+        </select>
+        <input
+          type="text" placeholder="Search name or phone…" value={search}
+          onChange={e => setSearch(e.target.value)}
+          style={{ ...selectStyle, flex:1, minWidth:160, color:'#0f172a', borderColor:'#e0eef8' }}
+        />
+      </div>
+
+      {/* Appointments List */}
+      {filtered.length === 0 ? (
+        <div style={{
+          textAlign:'center', color:'#94a3b8', fontSize:'0.88rem',
+          padding:'3rem 1rem', borderRadius:'14px',
+          border:'1.5px dashed #fed7aa', background:'#fff',
+        }}>
+          <Calendar size={40} color="#fed7aa" style={{ marginBottom:'0.75rem' }} />
+          <p style={{ fontWeight:600, color:'#64748b', margin:0 }}>No visiting doctor appointments yet.</p>
+        </div>
+      ) : (
+        <div style={{ display:'flex', flexDirection:'column', gap:'0.65rem' }}>
+          {filtered.map(a => {
+            const isConfirmed = a.contacted;
+            return (
+              <div key={a.id} style={{
+                background:'#fff', borderRadius:'14px', padding:'1rem 1.15rem',
+                border:`1.5px solid ${isConfirmed ? '#a7f3d0' : '#fed7aa'}`,
+                boxShadow:'0 2px 8px rgba(249,115,22,0.06)',
+                transition:'all 0.2s',
+              }}>
+                {/* Row 1: Patient + Status */}
+                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'0.5rem' }}>
+                  <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', flex:1, minWidth:0 }}>
+                    <div style={{
+                      width:38, height:38, borderRadius:'50%', flexShrink:0,
+                      background: isConfirmed ? '#ecfdf5' : '#fff7ed',
+                      display:'flex', alignItems:'center', justifyContent:'center',
+                      color: isConfirmed ? '#10b981' : '#f97316',
+                    }}>
+                      <User size={16} />
+                    </div>
+                    <div style={{ minWidth:0 }}>
+                      <div style={{ fontWeight:700, fontSize:'0.92rem', color:'#0f172a',
+                        whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>
+                        {a.patientName}
+                      </div>
+                      <a href={`tel:${a.phone}`} style={{
+                        color:'#64748b', fontSize:'0.78rem', display:'flex',
+                        alignItems:'center', gap:4, textDecoration:'none',
+                      }}>
+                        <Phone size={11} /> {a.phone}
+                      </a>
+                    </div>
+                  </div>
+                  <button onClick={() => handleDelete(a.id)} style={{
+                    background:'none', border:'none', cursor:'pointer',
+                    color:'#cbd5e1', padding:'4px',
+                  }}>
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+
+                {/* Row 2: Doctor + Cycle + Date */}
+                <div style={{ display:'flex', flexWrap:'wrap', gap:'0.6rem', fontSize:'0.78rem', color:'#64748b', marginBottom:'0.6rem' }}>
+                  <span style={{
+                    display:'inline-flex', alignItems:'center', gap:4,
+                    background:'#fff7ed', color:'#9a3412', border:'1px solid #fed7aa',
+                    borderRadius:'8px', padding:'2px 8px', fontWeight:700,
+                  }}>
+                    <Stethoscope size={11} /> {a.doctorName}
+                  </span>
+                  <span style={{
+                    display:'inline-flex', alignItems:'center', gap:4,
+                    background: a.bookingCycle === 'next-month' ? '#f5f3ff' : '#eff9ff',
+                    color: a.bookingCycle === 'next-month' ? '#6366f1' : '#0369a1',
+                    border:`1px solid ${a.bookingCycle === 'next-month' ? '#ddd6fe' : '#bae6fd'}`,
+                    borderRadius:'8px', padding:'2px 8px', fontWeight:600,
+                  }}>
+                    <Calendar size={11} /> {a.bookingCycle === 'next-month' ? 'Next Month' : 'Current Month'}
+                  </span>
+                  <span style={{ display:'flex', alignItems:'center', gap:4, color:'#94a3b8' }}>
+                    <Clock size={11} /> {new Date(a.createdAt).toLocaleDateString()} {new Date(a.createdAt).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' })}
+                  </span>
+                </div>
+
+                {/* Row 3: Actions */}
+                <div style={{ display:'flex', gap:'0.4rem', flexWrap:'wrap', alignItems:'center' }}>
+                  <button onClick={() => toggleContacted(a.id)} style={{
+                    display:'flex', alignItems:'center', gap:4,
+                    padding:'0.4rem 0.85rem', borderRadius:'8px',
+                    background: isConfirmed ? '#ecfdf5' : '#fff7ed',
+                    color: isConfirmed ? '#065f46' : '#9a3412',
+                    border:`1.5px solid ${isConfirmed ? '#a7f3d0' : '#fed7aa'}`,
+                    fontWeight:700, fontSize:'0.76rem', cursor:'pointer', fontFamily:'inherit',
+                    transition:'all 0.2s',
+                  }}>
+                    {isConfirmed ? <><CheckCircle size={13} /> Confirmed</> : <><Clock size={13} /> Mark Contacted</>}
+                  </button>
+                  <button onClick={() => openWhatsApp(a)} style={{
+                    display:'flex', alignItems:'center', gap:'0.3rem',
+                    padding:'0.4rem 0.75rem', borderRadius:'8px',
+                    background:'linear-gradient(135deg,#25D366,#128C7E)',
+                    color:'#fff', fontWeight:700, fontSize:'0.76rem',
+                    cursor:'pointer', border:'none', fontFamily:'inherit',
+                    boxShadow:'0 2px 8px rgba(37,211,102,0.25)',
+                  }}>
+                    <Send size={12} /> WhatsApp
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════
    DASHBOARD
 ══════════════════════════════════════════ */
 const Dashboard = () => {
@@ -1053,6 +1354,7 @@ const Dashboard = () => {
   const SECTIONS = [
     { key:'appointments', label:'Appointments', icon:<Stethoscope size={15}/>, color:'#0369a1' },
     { key:'checkups',     label:'Health Checkups', icon:<FlaskConical size={15}/>, color:'#059669' },
+    { key:'visiting',     label:'Visiting Doctors', icon:<Calendar size={15}/>, color:'#f97316' },
     { key:'reports',      label:'Test Reports', icon:<FileText size={15}/>, color:'#7c3aed' },
   ];
 
@@ -1162,6 +1464,11 @@ const Dashboard = () => {
         {/* Test Reports section */}
         {activeSection === 'reports' && (
           <TestReportsSection />
+        )}
+
+        {/* Visiting Doctors section */}
+        {activeSection === 'visiting' && (
+          <VisitingAppointmentsSection />
         )}
       </div>
 
