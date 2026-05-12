@@ -239,7 +239,7 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
   return (
     <div>
       {/* Stats row */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(120px,1fr))', gap:'0.7rem', marginBottom:'1.35rem' }}>
+      <div className="admin-stats-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(120px,1fr))', gap:'0.7rem', marginBottom:'1.35rem' }}>
         {[
           { label:`Total ${label}`, value:leads.length,    color:'#0ea5e9' },
           { label:'New Today',      value:todayCount,       color:'#6366f1' },
@@ -332,7 +332,7 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
           display:'flex', alignItems:'center', justifyContent:'center',
           zIndex:1000, backdropFilter:'blur(6px)', padding:'1rem',
         }}>
-          <div onClick={e => e.stopPropagation()} style={{
+          <div className="admin-modal" onClick={e => e.stopPropagation()} style={{
             background:'#fff', width:'100%', maxWidth:'520px',
             borderRadius:'20px',
             padding:'2rem',
@@ -858,7 +858,7 @@ const TestReportsSection = () => {
           display:'flex', alignItems:'center', justifyContent:'center',
           padding:'1rem',
         }} onClick={(e) => { if (e.target === e.currentTarget) setShowModal(false); }}>
-          <div style={{
+          <div className="admin-modal" style={{
             background:'#fff', borderRadius:'20px', width:'100%', maxWidth:'520px',
             maxHeight:'90vh', overflow:'auto', padding:'2rem',
             boxShadow:'0 20px 60px rgba(0,0,0,0.2)',
@@ -1113,7 +1113,7 @@ const VisitingAppointmentsSection = () => {
   return (
     <div>
       {/* Stats */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(120px,1fr))', gap:'0.7rem', marginBottom:'1.35rem' }}>
+      <div className="admin-stats-grid" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(120px,1fr))', gap:'0.7rem', marginBottom:'1.35rem' }}>
         {[
           { label:'Total', value:appts.length, color:'#f97316' },
           { label:'New', value:totalNew, color:'#f59e0b' },
@@ -1193,7 +1193,7 @@ const VisitingAppointmentsSection = () => {
       )}
 
       {/* Filters */}
-      <div style={{ display:'flex', gap:'0.5rem', marginBottom:'1rem', flexWrap:'wrap', alignItems:'center' }}>
+      <div className="visiting-filters" style={{ display:'flex', gap:'0.5rem', marginBottom:'1rem', flexWrap:'wrap', alignItems:'center' }}>
         <select value={filterDoc} onChange={e => setFilterDoc(e.target.value)} style={selectStyle}>
           <option value="All">All Doctors</option>
           {VISITING_DOCTORS_LIST.map(d => <option key={d.slug} value={d.slug}>{d.name}</option>)}
@@ -1377,7 +1377,7 @@ const Dashboard = () => {
             title="Go to Home Page">
             <div style={{ background:'linear-gradient(135deg,#0ea5e9,#10b981)', borderRadius:'10px', padding:'6px',
               display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-              <img src="/images/ui/logo.webp" alt="Apollo Clinic" height="26" style={{ objectFit:'contain', borderRadius:'5px' }}/>
+              <img src="/images/ui/logo.webp" alt="Apollo Clinic" height="26" style={{ objectFit:'contain', borderRadius:'5px' }} className="admin-logo-img" />
             </div>
             <div>
               <div style={{ fontWeight:800, fontSize:'0.92rem', lineHeight:1.15,
@@ -1417,14 +1417,10 @@ const Dashboard = () => {
       </nav>
 
       {/* Main */}
-      <div style={{ maxWidth:1200, margin:'0 auto', padding:'1.5rem 1.1rem 3rem' }}>
+      <div className="admin-dash-container">
 
         {/* Section switcher tabs */}
-        <div style={{
-          display:'flex', gap:'0.5rem', marginBottom:'1.75rem',
-          background:'#fff', border:'1.5px solid #e0eef8', borderRadius:'14px', padding:'0.4rem',
-          width:'fit-content',
-        }}>
+        <div className="admin-dash-tabs">
           {SECTIONS.map(s => (
             <button key={s.key} onClick={() => setActiveSection(s.key)} style={{
               display:'flex', alignItems:'center', gap:'0.5rem',
@@ -1432,7 +1428,7 @@ const Dashboard = () => {
               background: activeSection === s.key ? s.color : 'none',
               color: activeSection === s.key ? '#fff' : '#64748b',
               fontWeight: 700, fontSize:'0.88rem', cursor:'pointer',
-              transition:'all 0.2s', fontFamily:'inherit', minHeight:'40px',
+              transition:'all 0.2s', fontFamily:'inherit', minHeight:'40px', flexShrink:0, whiteSpace:'nowrap'
             }}>
               {s.icon} {s.label}
             </button>
@@ -1473,21 +1469,115 @@ const Dashboard = () => {
       </div>
 
       <style>{`
+        /* Base Admin Layout */
+        .admin-dash-nav {
+          background: #fff;
+          border-bottom: 1px solid #e0eef8;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          box-shadow: 0 2px 10px rgba(14,165,233,0.05);
+        }
+        .admin-dash-header {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0.75rem 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .admin-dash-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 1.5rem 1.5rem 3rem;
+        }
+        .admin-dash-tabs {
+          display: flex;
+          gap: 0.5rem;
+          margin-bottom: 1.5rem;
+          background: #fff;
+          border: 1.5px solid #e0eef8;
+          border-radius: 14px;
+          padding: 0.4rem;
+          width: fit-content;
+        }
+
+        /* Desktop specific */
         @media (min-width: 769px) {
           .kanban-desktop { display: flex !important; }
           .kanban-mobile  { display: none !important; }
           .mobile-tabs    { display: none !important; }
           .admin-badge    { display: flex !important; }
         }
+
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
           .kanban-desktop { display: none !important; }
           .kanban-mobile  { display: block !important; }
           .mobile-tabs    { display: flex !important; }
           .admin-badge    { display: none !important; }
           .logout-label   { display: none; }
+          
+          /* Header & Container */
+          .admin-dash-header {
+            padding: 0.75rem 1rem;
+          }
+          .admin-dash-container {
+            padding: 1.25rem 1rem 4rem;
+          }
+          
+          /* Dashboard Main Tabs - horizontal scroll */
+          .admin-dash-tabs {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.2rem; /* space for scrollbar or shadow */
+            border-radius: 12px;
+          }
+          .admin-dash-tabs::-webkit-scrollbar { display: none; }
+          .admin-dash-tabs { scrollbar-width: none; }
+
+          /* Filter Pills / Mobile Tabs */
+          .mobile-tabs {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-wrap: nowrap !important;
+            padding-bottom: 0.2rem;
+          }
+          .mobile-tabs button {
+            flex-shrink: 0;
+            white-space: nowrap;
+          }
+          
+          /* Visiting Doctors Filters */
+          .visiting-filters {
+            flex-wrap: nowrap !important;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.5rem;
+          }
+          
+          /* Stats Grid */
+          .admin-stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+
+          /* Modals */
+          .admin-modal {
+            padding: 1.5rem !important;
+            border-radius: 16px !important;
+            max-height: 85vh !important;
+          }
+          
+          /* Typography & Elements */
+          h3, h4 { font-size: 1.05rem !important; }
+          input, select, button { font-size: 0.9rem !important; }
         }
+        
         .mobile-tabs { scrollbar-width: none; }
         .mobile-tabs::-webkit-scrollbar { display: none; }
+        .visiting-filters::-webkit-scrollbar { display: none; }
       `}</style>
     </div>
   );

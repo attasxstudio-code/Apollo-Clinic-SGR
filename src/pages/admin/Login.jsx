@@ -87,11 +87,11 @@ const Login = () => {
       <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         
         {/* Top Navbar */}
-        <header style={{ padding: '2rem 3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <header className="admin-login-header">
           <div>
-            <img src="/images/ui/logo.webp" alt="Apollo Clinic" style={{ height: '48px', objectFit: 'contain' }} />
+            <img src="/images/ui/logo.webp" alt="Apollo Clinic" className="admin-login-header-logo" />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.9rem', color: 'var(--navy)', fontWeight: 600 }}>
+          <div className="admin-login-trust">
             <span>Trusted healthcare for over 40 years</span>
             <span style={{ color: 'var(--orange)', fontSize: '1.2rem', lineHeight: 0 }}>•</span>
             <div style={{ width: '1px', height: '20px', background: 'rgba(0,0,0,0.1)' }}></div>
@@ -103,17 +103,12 @@ const Login = () => {
         </header>
 
         {/* Center Content */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+        <div className="admin-login-card-container">
           
-          <div style={{
-            background: '#fff', borderRadius: '24px',
-            padding: '3rem 4rem', width: '100%', maxWidth: '520px',
-            boxShadow: '0 25px 60px rgba(0,0,0,0.05)',
-            border: '1px solid rgba(0,0,0,0.03)',
-          }}>
+          <div className="admin-login-card">
             {/* Logo in card */}
             <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-              <img src="/images/ui/logo.webp" alt="Apollo Clinic" style={{ height: '55px', objectFit: 'contain', margin: '0 auto' }} />
+              <img src="/images/ui/logo.webp" alt="Apollo Clinic" className="admin-login-card-logo" />
             </div>
 
             <h2 style={{ color: 'var(--navy)', fontWeight: 900, fontSize: '1.8rem', marginBottom: '0.5rem', textAlign: 'center' }}>
@@ -145,11 +140,11 @@ const Login = () => {
                   value={email} onChange={e => setEmail(e.target.value)}
                   required autoComplete="email" disabled={isLocked}
                   style={{ 
-                    width: '100%', padding: '0.9rem 1.2rem', 
+                    width: '100%', padding: '0.9rem 1rem', 
                     borderRadius: '12px', border: '1.5px solid rgba(0,0,0,0.1)',
-                    fontSize: '0.95rem', color: 'var(--heading)', outline: 'none',
+                    fontSize: '1rem', color: 'var(--heading)', outline: 'none',
                     opacity: isLocked ? 0.6 : 1, transition: 'all 0.2s',
-                    fontFamily: 'inherit'
+                    fontFamily: 'inherit', boxSizing: 'border-box'
                   }}
                   onFocus={(e) => { e.target.style.borderColor = 'var(--blue)'; e.target.style.boxShadow = '0 0 0 3px rgba(14,165,233,0.1)'; }}
                   onBlur={(e) => { e.target.style.borderColor = 'rgba(0,0,0,0.1)'; e.target.style.boxShadow = 'none'; }}
@@ -166,11 +161,11 @@ const Login = () => {
                     value={password} onChange={e => setPassword(e.target.value)}
                     required autoComplete="current-password" disabled={isLocked}
                     style={{ 
-                      width: '100%', padding: '0.9rem 3rem 0.9rem 1.2rem', 
+                      width: '100%', padding: '0.9rem 2.8rem 0.9rem 1rem', 
                       borderRadius: '12px', border: '1.5px solid rgba(0,0,0,0.1)',
-                      fontSize: '0.95rem', color: 'var(--heading)', outline: 'none',
+                      fontSize: '1rem', color: 'var(--heading)', outline: 'none',
                       opacity: isLocked ? 0.6 : 1, transition: 'all 0.2s',
-                      fontFamily: 'inherit'
+                      fontFamily: 'inherit', boxSizing: 'border-box'
                     }}
                     onFocus={(e) => { e.target.style.borderColor = 'var(--blue)'; e.target.style.boxShadow = '0 0 0 3px rgba(14,165,233,0.1)'; }}
                     onBlur={(e) => { e.target.style.borderColor = 'rgba(0,0,0,0.1)'; e.target.style.boxShadow = 'none'; }}
@@ -236,7 +231,76 @@ const Login = () => {
         </div>
       </div>
 
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .admin-login-header {
+          padding: 2rem 3rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .admin-login-header-logo {
+          height: 48px;
+          object-fit: contain;
+        }
+        .admin-login-trust {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          font-size: 0.9rem;
+          color: var(--navy);
+          font-weight: 600;
+        }
+        .admin-login-card-container {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem;
+        }
+        .admin-login-card {
+          background: #fff;
+          border-radius: 24px;
+          padding: 3rem 4rem;
+          width: 100%;
+          max-width: 520px;
+          box-shadow: 0 25px 60px rgba(0,0,0,0.05);
+          border: 1px solid rgba(0,0,0,0.03);
+          box-sizing: border-box;
+        }
+        .admin-login-card-logo {
+          height: 55px;
+          object-fit: contain;
+          margin: 0 auto;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+          .admin-login-header {
+            padding: 1.5rem;
+            justify-content: center;
+          }
+          .admin-login-header-logo {
+            display: none; /* Hide header logo on mobile since card has it */
+          }
+          .admin-login-trust {
+            display: none; /* Hide marketing text on mobile */
+          }
+          .admin-login-card-container {
+            padding: 1rem;
+            align-items: flex-start; /* Move card higher up */
+            padding-top: 2rem;
+          }
+          .admin-login-card {
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+          }
+          .admin-login-card h2 {
+            font-size: 1.6rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
