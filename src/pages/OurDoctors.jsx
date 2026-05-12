@@ -638,10 +638,46 @@ export const ALL_DOCTORS = [
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
     expertise_card: 'Endourologist\nLaparoscopic Urologist\nUro Oncologist\nRenal Transplant Surgeon'
+  },
+  {
+    id: 'dr-muntakhab-ul-nafae',
+    image: '/Doctor-Muntakhab-ul-Nafae.png',
+    name: 'Dr. Muntakhab ul Nafae',
+    title: 'General Surgeon',
+    specialty: 'General Surgery',
+    dept: 'General Surgery',
+    qual: 'MBBS, MS',
+    qual_short: 'MBBS\nMS',
+    exp: '',
+    avail: 'MON - SAT',
+    languages: [],
+    bio: `Dr Muntakhab ul Nafae is a General Surgeon consulting at Apollo Clinic Srinagar. She provides expert surgical consultation, evaluation, and guidance for patients requiring general surgery care, follow-up assessment, and specialist medical opinion.`,
+    education: [
+      'MBBS',
+      'MS'
+    ],
+    expertise: [
+      'General Surgery', 'Surgical Evaluation', 'Abdominal Concerns', 'Gastrointestinal Concerns', 'Minor Surgical Opinion', 'Pre-surgical Guidance', 'Post-surgical Follow-up', 'Specialist Surgical Opinion'
+    ],
+    specializedCare: [
+      { name: 'General Surgery Consultation', desc: 'Expert surgical consultation, evaluation, and guidance for patients requiring general surgery care.', icon: 'Activity' },
+      { name: 'Abdominal & Gastrointestinal', desc: 'Evaluation and specialist surgical opinion for abdominal and gastrointestinal concerns.', icon: 'Shield' },
+      { name: 'Pre & Post Surgical Care', desc: 'Pre-surgical guidance and comprehensive post-surgical follow-up assessment.', icon: 'Heart' },
+      { name: 'Minor Surgical Opinion', desc: 'Specialist medical opinion and evaluation for minor surgical procedures and concerns.', icon: 'Virus' },
+    ],
+    hours: [
+      { day: 'Mon - Sat', time: '3:00 PM to 5:00 PM' },
+      { day: 'Sunday', time: 'Closed' },
+    ],
+    consultation_days: 'Monday to Saturday\n3:00 PM to 5:00 PM',
+    trust_banner: 'General surgery consultation available at Apollo Clinic Srinagar. Prior registration is mandatory.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const ALL_POSSIBLE_FILTERS = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'Dietitian / Nutrition', 'Urology'];
+const ALL_POSSIBLE_FILTERS = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'General Surgery', 'Dietitian / Nutrition', 'Urology'];
 const SPECIALTIES_FILTER = ALL_POSSIBLE_FILTERS.filter(f => 
   f === 'All' || ALL_DOCTORS.some(d => d.dept === f || d.specialty === f)
 );
