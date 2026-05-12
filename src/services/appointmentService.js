@@ -36,15 +36,24 @@ export const appointmentService = {
     }
   },
 
-  async saveLead({ name, phone, date, department, notes, source }) {
+  async saveLead({ name, phone, date, department, notes, message, source }) {
     if (!supabase) { notConfigured(); return null; }
     try {
       const { data, error } = await withTimeout(
         supabase
           .from('appointments')
-          .insert([{ type: 'general', name, phone, date, department, notes, source: source || 'Website Booking Form', status: 'Pending' }])
+          .insert([{ 
+            type: 'general', 
+            name, 
+            phone, 
+            date, 
+            department, 
+            notes: notes || message || '', 
+            source: source || 'Website Booking Form', 
+            status: 'Pending' 
+          }])
           .select(),
-        4000 // 4 second timeout for saving
+        4000
       );
       if (error) { console.error('Error saving lead:', error); throw error; }
       return data[0];
@@ -54,13 +63,22 @@ export const appointmentService = {
     }
   },
 
-  async saveCheckup({ name, phone, date, department, notes, source }) {
+  async saveCheckup({ name, phone, date, department, notes, mainTestType, specificTest, source }) {
     if (!supabase) { notConfigured(); return null; }
     try {
       const { data, error } = await withTimeout(
         supabase
           .from('appointments')
-          .insert([{ type: 'checkup', name, phone, date, department, notes, source: source || 'Lab Checkup Booking', status: 'Pending' }])
+          .insert([{ 
+            type: 'checkup', 
+            name, 
+            phone, 
+            date, 
+            department: department || mainTestType || '', 
+            notes: notes || specificTest || '', 
+            source: source || 'Lab Checkup Booking', 
+            status: 'Pending' 
+          }])
           .select(),
         4000
       );

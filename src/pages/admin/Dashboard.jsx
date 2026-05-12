@@ -1159,8 +1159,8 @@ const VISITING_DOCTORS_LIST = [
   { slug:'dr-harish-kumar-verma',  name:'Dr Harish Kumar Verma' },
 ];
 
-const VisitingAppointmentsSection = () => {
-  const [appts, setAppts] = useState([]);
+const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
+  const [appts, setAppts] = useState(initialData);
   const [settings, setSettings] = useState({});
   const [showSettings, setShowSettings] = useState(false);
   const [filterDoc, setFilterDoc] = useState('All');
@@ -1168,60 +1168,77 @@ const VisitingAppointmentsSection = () => {
   const [filterCycle, setFilterCycle] = useState('All');
   const [search, setSearch] = useState('');
 
+  // Sync with parent data
+  useEffect(() => {
+    setAppts(initialData);
+  }, [initialData]);
+
   const reload = () => {
-    setAppts(getVisitingAppts());
+    if (refreshData) refreshData();
     setSettings(getVisitingSettings());
   };
 
   useEffect(() => { reload(); }, []);
 
-  const toggleContacted = (id) => {
+  const toggleContacted = async (id) => {
     const a = appts.find(x => x.id === id);
     if (!a) return;
-    const next = !a.contacted;
-    updateVisitingAppt(id, {
-      contacted: next,
-      spotConfirmed: next,
-      status: next ? 'confirmed' : 'new',
-    });
-    reload();
+    const isNowConfirmed = a.status !== 'Confirmed';
+    try {
+      await appointmentService.updateAppointment(id, { 
+        status: isNowConfirmed ? 'Confirmed' : 'Pending' 
+      });
+      if (refreshData) refreshData();
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    }
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (!window.confirm('Delete this visiting appointment?')) return;
-    deleteVisitingAppt(id);
-    reload();
+    try {
+      await appointmentService.deleteAppointment(id);
+      if (refreshData) refreshData();
+    } catch (err) {
+      console.error('Failed to delete:', err);
+    }
   };
 
   const openWhatsApp = (a) => {
-    const phone = a.phone.replace(/[\s\-+()]/g, '');
+    const phone = (a.phone || '').replace(/[\s\-+()]/g, '');
     const phoneNum = phone.startsWith('91') ? phone : `91${phone}`;
-    const msg = `Hello ${a.patientName}, this is Apollo Clinic Srinagar. We received your visiting appointment request for ${a.doctorName}. Our team is contacting you to confirm your spot for the upcoming monthly visit.`;
+    const patientName = a.name || a.patientName || 'Patient';
+    const doctorName = a.doctor_name || a.doctorName || 'Specialist';
+    const msg = `Hello ${patientName}, this is Apollo Clinic Srinagar. We received your visiting appointment request for ${doctorName}. Our team is contacting you to confirm your spot for the upcoming monthly visit.`;
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   const handleSettingToggle = (slug, field) => {
     const current = settings[slug] || { currentMonthFull: false, acceptNextMonthBookings: true };
     saveVisitingDrSettings(slug, { [field]: !current[field] });
-    reload();
+    setSettings(getVisitingSettings());
   };
 
   /* Filter logic */
   let filtered = [...appts];
-  if (filterDoc !== 'All') filtered = filtered.filter(a => a.doctorSlug === filterDoc);
-  if (filterStatus === 'New') filtered = filtered.filter(a => !a.contacted);
-  if (filterStatus === 'Confirmed') filtered = filtered.filter(a => a.contacted);
-  if (filterCycle === 'Current Month') filtered = filtered.filter(a => a.bookingCycle === 'current-month');
-  if (filterCycle === 'Next Month') filtered = filtered.filter(a => a.bookingCycle === 'next-month');
+  if (filterDoc !== 'All') filtered = filtered.filter(a => a.doctorSlug === filterDoc || a.doctor_name?.includes(filterDoc));
+  if (filterStatus === 'New') filtered = filtered.filter(a => a.status === 'Pending');
+  if (filterStatus === 'Confirmed') filtered = filtered.filter(a => a.status === 'Confirmed');
+  if (filterCycle === 'Current Month') filtered = filtered.filter(a => (a.bookingCycle || a.notes)?.includes('current-month'));
+  if (filterCycle === 'Next Month') filtered = filtered.filter(a => (a.bookingCycle || a.notes)?.includes('next-month'));
+  
   if (search.trim()) {
     const q = search.trim().toLowerCase();
-    filtered = filtered.filter(a => a.patientName?.toLowerCase().includes(q) || a.phone?.includes(q));
+    filtered = filtered.filter(a => 
+      (a.name || a.patientName || '').toLowerCase().includes(q) || 
+      (a.phone || '').includes(q)
+    );
   }
 
-  const totalNew = appts.filter(a => !a.contacted).length;
-  const totalConfirmed = appts.filter(a => a.contacted).length;
-  const currentMonth = appts.filter(a => a.bookingCycle === 'current-month').length;
-  const nextMonth = appts.filter(a => a.bookingCycle === 'next-month').length;
+  const totalNew = appts.filter(a => a.status === 'Pending').length;
+  const totalConfirmed = appts.filter(a => a.status === 'Confirmed').length;
+  const currentMonth = appts.filter(a => (a.bookingCycle || a.notes)?.includes('current-month')).length;
+  const nextMonth = appts.filter(a => (a.bookingCycle || a.notes)?.includes('next-month')).length;
 
   const selectStyle = {
     padding:'0.45rem 0.75rem', borderRadius:'8px', border:'1.5px solid #fed7aa',
@@ -1369,7 +1386,7 @@ const VisitingAppointmentsSection = () => {
                     <div style={{ minWidth:0 }}>
                       <div style={{ fontWeight:700, fontSize:'0.92rem', color:'#0f172a',
                         whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>
-                        {a.patientName}
+                        {a.name || a.patientName}
                       </div>
                       <a href={`tel:${a.phone}`} style={{
                         color:'#64748b', fontSize:'0.78rem', display:'flex',
@@ -1394,19 +1411,19 @@ const VisitingAppointmentsSection = () => {
                     background:'#fff7ed', color:'#9a3412', border:'1px solid #fed7aa',
                     borderRadius:'8px', padding:'2px 8px', fontWeight:700,
                   }}>
-                    <Stethoscope size={11} /> {a.doctorName}
+                    <Stethoscope size={11} /> {a.doctor_name || a.doctorName}
                   </span>
                   <span style={{
                     display:'inline-flex', alignItems:'center', gap:4,
-                    background: a.bookingCycle === 'next-month' ? '#f5f3ff' : '#eff9ff',
-                    color: a.bookingCycle === 'next-month' ? '#6366f1' : '#0369a1',
-                    border:`1px solid ${a.bookingCycle === 'next-month' ? '#ddd6fe' : '#bae6fd'}`,
+                    background: (a.bookingCycle || a.notes)?.includes('next-month') ? '#f5f3ff' : '#eff9ff',
+                    color: (a.bookingCycle || a.notes)?.includes('next-month') ? '#6366f1' : '#0369a1',
+                    border:`1px solid ${(a.bookingCycle || a.notes)?.includes('next-month') ? '#ddd6fe' : '#bae6fd'}`,
                     borderRadius:'8px', padding:'2px 8px', fontWeight:600,
                   }}>
-                    <Calendar size={11} /> {a.bookingCycle === 'next-month' ? 'Next Month' : 'Current Month'}
+                    <Calendar size={11} /> {(a.bookingCycle || a.notes)?.includes('next-month') ? 'Next Month' : 'Current Month'}
                   </span>
                   <span style={{ display:'flex', alignItems:'center', gap:4, color:'#94a3b8' }}>
-                    <Clock size={11} /> {new Date(a.createdAt).toLocaleDateString()} {new Date(a.createdAt).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' })}
+                    <Clock size={11} /> {new Date(a.created_at || a.createdAt).toLocaleDateString()} {new Date(a.created_at || a.createdAt).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' })}
                   </span>
                 </div>
 
@@ -1415,13 +1432,13 @@ const VisitingAppointmentsSection = () => {
                   <button onClick={() => toggleContacted(a.id)} style={{
                     display:'flex', alignItems:'center', gap:4,
                     padding:'0.4rem 0.85rem', borderRadius:'8px',
-                    background: isConfirmed ? '#ecfdf5' : '#fff7ed',
-                    color: isConfirmed ? '#065f46' : '#9a3412',
-                    border:`1.5px solid ${isConfirmed ? '#a7f3d0' : '#fed7aa'}`,
+                    background: a.status === 'Confirmed' ? '#ecfdf5' : '#fff7ed',
+                    color: a.status === 'Confirmed' ? '#065f46' : '#9a3412',
+                    border:`1.5px solid ${a.status === 'Confirmed' ? '#a7f3d0' : '#fed7aa'}`,
                     fontWeight:700, fontSize:'0.76rem', cursor:'pointer', fontFamily:'inherit',
                     transition:'all 0.2s',
                   }}>
-                    {isConfirmed ? <><CheckCircle size={13} /> Confirmed</> : <><Clock size={13} /> Mark Contacted</>}
+                    {a.status === 'Confirmed' ? <><CheckCircle size={13} /> Confirmed</> : <><Clock size={13} /> Mark Contacted</>}
                   </button>
                   <button onClick={() => openWhatsApp(a)} style={{
                     display:'flex', alignItems:'center', gap:'0.3rem',
@@ -1457,7 +1474,23 @@ const Dashboard = () => {
     setLoading(true);
     try {
       const data = await appointmentService.getAllAppointments();
-      setAllAppointments(data || []);
+      
+      // Normalize data to handle property name differences (Supabase vs Legacy)
+      const normalized = (data || []).map(a => ({
+        ...a,
+        // Ensure name is always available
+        name: a.name || a.patientName || a.patient_name || 'Unknown',
+        // Ensure phone is always available
+        phone: a.phone || a.patient_phone || '',
+        // Ensure doctor_name is available
+        doctor_name: a.doctor_name || a.doctorName || a.doctor || '',
+        // Ensure status is handled
+        status: a.status || 'Pending',
+        // Ensure created_at is handled
+        created_at: a.created_at || a.createdAt || a.createdat || new Date().toISOString()
+      }));
+
+      setAllAppointments(normalized);
     } catch (err) {
       console.error('Dashboard load failed:', err);
     } finally {
@@ -1610,7 +1643,10 @@ const Dashboard = () => {
 
             {/* Visiting Doctors section */}
             {activeSection === 'visiting' && (
-              <VisitingAppointmentsSection />
+              <VisitingAppointmentsSection
+                initialData={allAppointments.filter(a => a.type === 'visiting')}
+                refreshData={fetchAllData}
+              />
             )}
           </>
         )}

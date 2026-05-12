@@ -69,7 +69,8 @@ const VisitingDoctorBookingForm = ({ doc }) => {
       setTimeout(() => {
         const waPhone = WHATSAPP_NUMBER.replace(/[\s\-+()]/g, '');
         const waNum = waPhone.startsWith('91') ? waPhone : `91${waPhone}`;
-        window.open(`https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`, '_blank');
+        console.log('Redirecting to WhatsApp:', waNum);
+        window.location.href = `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
       }, 800);
 
     } catch {
