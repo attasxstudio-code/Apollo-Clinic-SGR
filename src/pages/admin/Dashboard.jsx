@@ -89,8 +89,28 @@ const LeadCard = ({ lead, onAdvance, onDelete, isCheckup }) => {
         </div>
       )}
 
-      {/* Checkup-specific: type */}
-      {isCheckup && lead.checkupType && (
+      {/* Department info */}
+      {!isCheckup && lead.department && (
+        <div style={{ marginTop:'0.45rem', display:'flex', alignItems:'center', gap:5, color:'#7c3aed', fontSize:'0.76rem', fontWeight:700,
+          background:'#f5f3ff', border:'1px solid #ddd6fe', borderRadius:'8px', padding:'3px 8px', width:'fit-content' }}>
+          <Stethoscope size={11}/> {lead.department}
+        </div>
+      )}
+
+      {/* Lab Test-specific: type (New format) */}
+      {isCheckup && lead.mainTestType && (
+        <div style={{ marginTop:'0.6rem', display:'flex', flexDirection:'column', gap:'0.2rem' }}>
+          <div style={{ display:'flex', alignItems:'center', gap:5, color:'#059669', fontSize:'0.76rem', fontWeight:700 }}>
+            <FlaskConical size={11}/> {lead.mainTestType}
+          </div>
+          <div style={{ display:'flex', alignItems:'center', gap:5, color:'#047857', fontSize:'0.72rem', fontWeight:500, paddingLeft:'16px' }}>
+            ↳ {lead.specificTest}
+          </div>
+        </div>
+      )}
+
+      {/* Checkup-specific: type (Old format fallback) */}
+      {isCheckup && !lead.mainTestType && lead.checkupType && (
         <div style={{ marginTop:'0.6rem', display:'flex', alignItems:'center', gap:5, color:'#059669', fontSize:'0.76rem', fontWeight:600 }}>
           <FlaskConical size={11}/> {lead.checkupType}
         </div>
@@ -104,9 +124,9 @@ const LeadCard = ({ lead, onAdvance, onDelete, isCheckup }) => {
         </div>
       )}
 
-      {lead.date && (
+      {(lead.date || lead.time) && (
         <div style={{ display:'flex', alignItems:'center', gap:5, marginTop:'0.6rem', color:'#94a3b8', fontSize:'0.76rem' }}>
-          <Calendar size={11}/> {lead.date}
+          <Calendar size={11}/> {lead.date} {lead.time ? `at ${lead.time}` : ''}
         </div>
       )}
 
@@ -173,7 +193,7 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
   const [leads,     setLeads]     = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState('All');
-  const [newLead,   setNewLead]   = useState({ name:'', phone:'', date:'', checkupType:'', status:'Pending' });
+  const [newLead,   setNewLead]   = useState({ name:'', phone:'', date:'', time:'', department:'', mainTestType:'', specificTest:'', checkupType:'', status:'Pending' });
 
   useEffect(() => { loadLeads(); }, []);
 
@@ -219,7 +239,7 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
       source: 'Admin Manual Entry',
     }, ...leads]);
     setShowModal(false);
-    setNewLead({ name:'', phone:'', date:'', checkupType:'', status:'Pending' });
+    setNewLead({ name:'', phone:'', date:'', time:'', department:'', mainTestType:'', specificTest:'', checkupType:'', status:'Pending' });
   };
 
   const pending   = leads.filter(l => l.status === 'Pending');
@@ -230,10 +250,31 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
   const TABS = ['All','Pending','Contacted','Confirmed'];
   const filteredByTab = { All:leads, Pending:pending, Contacted:contacted, Confirmed:confirmed };
 
-  const CHECKUP_TYPES = [
-    'Basic Health Screen', 'Comprehensive Health Package', 'Cardiac Risk Assessment',
-    'Diabetes Screening', 'Thyroid Panel', 'Pulmonary Function Test (PFT)',
-    'Blood Tests / Lab Work', 'ECG', 'ECHO', 'Other',
+  const labTestCategories = [
+    {
+      name: 'Ultrasound / USG',
+      tests: ['CD / Color Doppler', 'Abdomen USG', 'Scrotum USG', 'Other USG scans as advised']
+    },
+    {
+      name: 'X-Ray & Radiology Studies',
+      tests: ['All X-rays', 'MCU', 'Scanogram', 'MCU / RGU', 'Barium Swallow', 'HSG', 'Sinogram']
+    },
+    {
+      name: 'Cardiac Diagnostics',
+      tests: ['Echo', 'ECG', 'UMT', 'Holter', 'ABPM']
+    },
+    {
+      name: 'Sleep, Neuro, ENT & Pulmonary Diagnostics',
+      tests: ['Sleep Study', 'Polysomnography', 'EEG', 'Audiometry', 'PFT']
+    },
+    {
+      name: 'Endoscopy & Gastro Diagnostics',
+      tests: ['Endoscopy', 'Colonoscopy', 'Sigmoidoscopy']
+    },
+    {
+      name: 'Urology Diagnostics',
+      tests: ['Uroflowmetry']
+    }
   ];
 
   return (
@@ -374,7 +415,7 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
                 />
               </div>
 
-              {/* Phone + Date row */}
+              {/* Phone + Date + Time row */}
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem', marginBottom:'0.85rem' }}>
                 <div>
                   <label style={{ display:'block', fontWeight:700, fontSize:'0.8rem', color:'#374151', marginBottom:'0.3rem' }}>
@@ -391,31 +432,95 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
                     onBlur={e => { e.target.style.borderColor='#cce5f6'; e.target.style.background='#f0f9ff'; }}
                   />
                 </div>
-                <div>
-                  <label style={{ display:'block', fontWeight:700, fontSize:'0.8rem', color:'#374151', marginBottom:'0.3rem' }}>
-                    Preferred Date
-                  </label>
-                  <input
-                    type="date"
-                    value={newLead.date} onChange={e => setNewLead({...newLead, date: e.target.value})}
-                    style={{ width:'100%', padding:'0.75rem 1rem', border:'1.5px solid #cce5f6',
-                      borderRadius:'10px', background:'#f0f9ff', fontSize:'0.9rem',
-                      fontFamily:'inherit', color:'#0f172a', outline:'none', transition:'all 0.2s',
-                      boxSizing:'border-box' }}
-                    onFocus={e => { e.target.style.borderColor='#0ea5e9'; e.target.style.background='#fff'; }}
-                    onBlur={e => { e.target.style.borderColor='#cce5f6'; e.target.style.background='#f0f9ff'; }}
-                  />
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.5rem' }}>
+                  <div>
+                    <label style={{ display:'block', fontWeight:700, fontSize:'0.8rem', color:'#374151', marginBottom:'0.3rem' }}>
+                      Date
+                    </label>
+                    <input
+                      type="date"
+                      value={newLead.date} onChange={e => setNewLead({...newLead, date: e.target.value})}
+                      style={{ width:'100%', padding:'0.75rem 0.5rem', border:'1.5px solid #cce5f6',
+                        borderRadius:'10px', background:'#f0f9ff', fontSize:'0.8rem',
+                        fontFamily:'inherit', color:'#0f172a', outline:'none', transition:'all 0.2s',
+                        boxSizing:'border-box' }}
+                      onFocus={e => { e.target.style.borderColor='#0ea5e9'; e.target.style.background='#fff'; }}
+                      onBlur={e => { e.target.style.borderColor='#cce5f6'; e.target.style.background='#f0f9ff'; }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display:'block', fontWeight:700, fontSize:'0.8rem', color:'#374151', marginBottom:'0.3rem' }}>
+                      Time
+                    </label>
+                    <input
+                      type="time"
+                      value={newLead.time} onChange={e => setNewLead({...newLead, time: e.target.value})}
+                      style={{ width:'100%', padding:'0.75rem 0.5rem', border:'1.5px solid #cce5f6',
+                        borderRadius:'10px', background:'#f0f9ff', fontSize:'0.8rem',
+                        fontFamily:'inherit', color:'#0f172a', outline:'none', transition:'all 0.2s',
+                        boxSizing:'border-box' }}
+                      onFocus={e => { e.target.style.borderColor='#0ea5e9'; e.target.style.background='#fff'; }}
+                      onBlur={e => { e.target.style.borderColor='#cce5f6'; e.target.style.background='#f0f9ff'; }}
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Checkup Type (only for checkups) */}
+              {/* Lab Test Type (only for checkups) */}
               {isCheckup && (
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem', marginBottom:'0.85rem' }}>
+                  <div>
+                    <label style={{ display:'block', fontWeight:700, fontSize:'0.8rem', color:'#374151', marginBottom:'0.3rem' }}>
+                      Main Test Type *
+                    </label>
+                    <select
+                      value={newLead.mainTestType} onChange={e => setNewLead({...newLead, mainTestType: e.target.value, specificTest: ''})}
+                      style={{ width:'100%', padding:'0.75rem 1rem', border:'1.5px solid #cce5f6',
+                        borderRadius:'10px', background:'#f0f9ff', fontSize:'0.9rem',
+                        fontFamily:'inherit', color:'#0f172a', outline:'none', transition:'all 0.2s',
+                        boxSizing:'border-box', appearance:'none', cursor:'pointer' }}
+                      onFocus={e => { e.target.style.borderColor='#0ea5e9'; e.target.style.background='#fff'; }}
+                      onBlur={e => { e.target.style.borderColor='#cce5f6'; e.target.style.background='#f0f9ff'; }}
+                    >
+                      <option value="">Select Test Type</option>
+                      {labTestCategories.map(c => <option key={c.name} value={c.name}>{c.name}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display:'block', fontWeight:700, fontSize:'0.8rem', color:'#374151', marginBottom:'0.3rem' }}>
+                      Specific Test *
+                    </label>
+                    <select
+                      value={newLead.specificTest} onChange={e => setNewLead({...newLead, specificTest: e.target.value})}
+                      disabled={!newLead.mainTestType}
+                      style={{ width:'100%', padding:'0.75rem 1rem', border:'1.5px solid #cce5f6',
+                        borderRadius:'10px', background:'#f0f9ff', fontSize:'0.9rem',
+                        fontFamily:'inherit', color:'#0f172a', outline:'none', transition:'all 0.2s',
+                        boxSizing:'border-box', appearance:'none', cursor: newLead.mainTestType ? 'pointer' : 'not-allowed', opacity: newLead.mainTestType ? 1 : 0.6 }}
+                      onFocus={e => { e.target.style.borderColor='#0ea5e9'; e.target.style.background='#fff'; }}
+                      onBlur={e => { e.target.style.borderColor='#cce5f6'; e.target.style.background='#f0f9ff'; }}
+                    >
+                      {!newLead.mainTestType ? (
+                        <option value="">Select type first</option>
+                      ) : (
+                        <>
+                          <option value="">Select Specific Test</option>
+                          {labTestCategories.find(c => c.name === newLead.mainTestType)?.tests.map(t => <option key={t} value={t}>{t}</option>)}
+                        </>
+                      )}
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Department (only for appointments) */}
+              {!isCheckup && (
                 <div style={{ marginBottom:'0.85rem' }}>
                   <label style={{ display:'block', fontWeight:700, fontSize:'0.8rem', color:'#374151', marginBottom:'0.3rem' }}>
-                    Checkup / Test Type *
+                    Department / Service
                   </label>
                   <select
-                    value={newLead.checkupType} onChange={e => setNewLead({...newLead, checkupType: e.target.value})}
+                    value={newLead.department} onChange={e => setNewLead({...newLead, department: e.target.value})}
                     style={{ width:'100%', padding:'0.75rem 1rem', border:'1.5px solid #cce5f6',
                       borderRadius:'10px', background:'#f0f9ff', fontSize:'0.9rem',
                       fontFamily:'inherit', color:'#0f172a', outline:'none', transition:'all 0.2s',
@@ -423,8 +528,8 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
                     onFocus={e => { e.target.style.borderColor='#0ea5e9'; e.target.style.background='#fff'; }}
                     onBlur={e => { e.target.style.borderColor='#cce5f6'; e.target.style.background='#f0f9ff'; }}
                   >
-                    <option value="">Select Checkup Type</option>
-                    {CHECKUP_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+                    <option value="">Select Department</option>
+                    {['Orthopaedics','Paediatrician','Physician','ENT','Cardiologist','Ophthalmologist','Neuro Surgeon','Dentist','Psychologist','Dietician','Urologist','Physiotherapist','Infertility Clinic','General Consultation'].map(d => <option key={d} value={d}>{d}</option>)}
                   </select>
                 </div>
               )}
@@ -1353,7 +1458,7 @@ const Dashboard = () => {
 
   const SECTIONS = [
     { key:'appointments', label:'Appointments', icon:<Stethoscope size={15}/>, color:'#0369a1' },
-    { key:'checkups',     label:'Health Checkups', icon:<FlaskConical size={15}/>, color:'#059669' },
+    { key:'checkups',     label:'Lab Tests', icon:<FlaskConical size={15}/>, color:'#059669' },
     { key:'visiting',     label:'Visiting Doctors', icon:<Calendar size={15}/>, color:'#f97316' },
     { key:'reports',      label:'Test Reports', icon:<FileText size={15}/>, color:'#7c3aed' },
   ];
@@ -1451,7 +1556,7 @@ const Dashboard = () => {
           <Section
             key="checkups"
             storageKey="clinic_checkups"
-            label="Health Checkups"
+            label="Lab Tests"
             isCheckup={true}
             icon={<FlaskConical size={16} color="#059669"/>}
           />

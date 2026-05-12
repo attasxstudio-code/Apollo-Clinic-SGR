@@ -53,7 +53,7 @@ const Home = () => {
   const goTo = (path) => navigate(path);
 
   return (
-    <>
+    <div className="has-mobile-bar">
       {/* ─── HERO SECTION ─── */}
       <section className="hero-section" style={{ padding: '6rem 0', background: 'linear-gradient(to bottom, #f8fafc, #fff)' }}>
         <div className="container m-grid-1" style={{ maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
@@ -566,7 +566,7 @@ const Home = () => {
           .mqb-book span { color: #0369a1; }
         }
       `}</style>
-    </>
+    </div>
   );
 };
 

@@ -9,37 +9,58 @@ import {
 
 const RATE_KEY = 'checkup_form';
 
-const CHECKUP_TYPES = [
-  'Basic Health Screen',
-  'Comprehensive Health Package',
-  'Cardiac Risk Assessment (ECG + ECHO)',
-  'Diabetes Screening',
-  'Thyroid Panel',
-  'Pulmonary Function Test (PFT)',
-  'Blood Tests / Lab Work',
-  'Urine Analysis',
-  'Other / Not Sure',
+const labTestCategories = [
+  {
+    name: 'Ultrasound / USG',
+    tests: ['CD / Color Doppler', 'Abdomen USG', 'Scrotum USG', 'Other USG scans as advised']
+  },
+  {
+    name: 'X-Ray & Radiology Studies',
+    tests: ['All X-rays', 'MCU', 'Scanogram', 'MCU / RGU', 'Barium Swallow', 'HSG', 'Sinogram']
+  },
+  {
+    name: 'Cardiac Diagnostics',
+    tests: ['Echo', 'ECG', 'UMT', 'Holter', 'ABPM']
+  },
+  {
+    name: 'Sleep, Neuro, ENT & Pulmonary Diagnostics',
+    tests: ['Sleep Study', 'Polysomnography', 'EEG', 'Audiometry', 'PFT']
+  },
+  {
+    name: 'Endoscopy & Gastro Diagnostics',
+    tests: ['Endoscopy', 'Colonoscopy', 'Sigmoidoscopy']
+  },
+  {
+    name: 'Urology Diagnostics',
+    tests: ['Uroflowmetry']
+  }
 ];
 
 const CheckupBookingForm = () => {
   const [focused,   setFocused]   = React.useState(null);
   const [submitted, setSubmitted] = React.useState(false);
   const [error,     setError]     = React.useState('');
+  const [mainTestType, setMainTestType] = React.useState('');
+  const [specificTest, setSpecificTest] = React.useState('');
+  const [date, setDate] = React.useState('');
+  const [time, setTime] = React.useState('');
   const mountTime = React.useRef(Date.now());
 
   /* ── Save to localStorage so it shows in Admin → Checkups ── */
-  const saveCheckupToAdmin = ({ name, phone, checkupType, date, notes }) => {
+  const saveCheckupToAdmin = ({ name, phone, mainTestType, specificTest, date, time, notes }) => {
     const existing = JSON.parse(localStorage.getItem('clinic_checkups') || '[]');
     const newEntry = {
       id:         Date.now(),
       name:       sanitizeInput(name, 100),
       phone:      sanitizeInput(phone, 20),
-      checkupType:sanitizeInput(checkupType, 100),
+      mainTestType: sanitizeInput(mainTestType, 100),
+      specificTest: sanitizeInput(specificTest, 100),
       date:       sanitizeInput(date, 10),
+      time:       sanitizeInput(time, 10),
       notes:      sanitizeInput(notes, 1000),
       status:     'Pending',
       createdAt:  new Date().toISOString(),
-      source:     'Website Checkup Form',
+      source:     'Website Lab Form',
     };
     localStorage.setItem('clinic_checkups', JSON.stringify([newEntry, ...existing]));
   };
@@ -59,33 +80,41 @@ const CheckupBookingForm = () => {
     const name        = sanitizeInput(document.getElementById('cu-name').value, 100);
     const rawPhone    = sanitizeInput(document.getElementById('cu-phone').value, 15);
     const phone       = '+91 ' + rawPhone;
-    const checkupType = sanitizeInput(document.getElementById('cu-type').value, 100);
-    const date        = sanitizeInput(document.getElementById('cu-date').value, 10);
     const notes       = sanitizeInput(document.getElementById('cu-notes').value, 1000);
 
     if (!isValidName(name))             return setError('Please enter a valid name (letters only, 2–100 characters).');
     if (!isValidPhone(rawPhone))        return setError('Please enter a valid 10-digit Indian phone number.');
-    if (!checkupType)                   return setError('Please select a checkup or test type.');
-    if (!CHECKUP_TYPES.includes(checkupType)) return setError('Please select a valid checkup type from the list.');
-    if (!isValidDate(date))             return setError('Please select a valid date (today or future).');
+    if (!mainTestType)                  return setError('Please select a main test type.');
+    if (!specificTest)                  return setError('Please select a specific test.');
+    if (!date || !isValidDate(date))    return setError('Please select a valid date (today or future).');
+    if (!time)                          return setError('Please select a preferred time.');
     if (!isValidMessage(notes, 1000))   return setError('Notes are too long (max 1000 characters).');
 
     recordAttempt(RATE_KEY);
-    saveCheckupToAdmin({ name, phone, checkupType, date, notes });
+    saveCheckupToAdmin({ name, phone, mainTestType, specificTest, date, time, notes });
 
     const text = [
-      `Health Checkup Request — Apollo Clinic Srinagar`,
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Checkup Type: ${checkupType}`,
-      `Preferred Date: ${date || 'Flexible'}`,
-      notes ? `Additional Notes: ${notes}` : null,
-    ].filter(Boolean).join('\n');
+      `Hello Apollo Clinic, I want to book a lab test.`,
+      ``,
+      `Patient Name: ${name}`,
+      `Phone Number: ${phone}`,
+      `Test Type: ${mainTestType}`,
+      `Selected Test: ${specificTest}`,
+      `Preferred Date: ${date}`,
+      `Preferred Time: ${time}`,
+      notes ? `Notes: ${notes}` : null,
+      ``,
+      `Please confirm availability.`
+    ].filter(line => line !== null).join('\n');
 
     window.open(waLink(text), '_blank');
 
     setSubmitted(true);
     e.target.reset();
+    setMainTestType('');
+    setSpecificTest('');
+    setDate('');
+    setTime('');
     setTimeout(() => setSubmitted(false), 4500);
   }
 
@@ -95,7 +124,7 @@ const CheckupBookingForm = () => {
     border: `1.5px solid ${focused === id ? '#0ea5e9' : '#cce5f6'}`,
     borderRadius: '12px',
     background: focused === id ? '#fff' : '#f0f9ff',
-    fontSize: '0.92rem',
+    fontSize: '1rem',
     fontFamily: 'inherit',
     color: '#0f172a',
     transition: 'all 0.25s ease',
@@ -124,9 +153,9 @@ const CheckupBookingForm = () => {
       }} />
 
       <div className="text-center" style={{ marginBottom: '1.75rem' }}>
-        <span className="pill" style={{ marginBottom: '0.75rem', display: 'inline-block' }}>🔬 Health Checkup</span>
+        <span className="pill" style={{ marginBottom: '0.75rem', display: 'inline-block' }}>🔬 Lab Tests</span>
         <h3 style={{ color: '#0c4a6e', fontWeight: 800, fontSize: '1.3rem', marginBottom: '0.3rem' }}>
-          Book a Checkup
+          Book a Lab Test
         </h3>
         <p style={{ color: '#64748b', fontSize: '0.85rem', margin: 0 }}>
           Fill the form — we'll confirm your slot via WhatsApp.
@@ -157,7 +186,7 @@ const CheckupBookingForm = () => {
           <CheckCircle size={22} color="#10b981" style={{ flexShrink: 0, marginTop: '1px' }} />
           <div>
             <div style={{ fontWeight: 800, color: '#065f46', fontSize: '0.95rem', marginBottom: '0.3rem' }}>
-              Checkup Request Sent! 🎉
+              Lab Test Request Sent! 🎉
             </div>
             <div style={{ color: '#047857', fontSize: '0.82rem', lineHeight: 1.6 }}>
               Your request is saved as <strong>Pending</strong> in our admin dashboard.
@@ -207,30 +236,79 @@ const CheckupBookingForm = () => {
           </div>
         </div>
 
-        {/* Checkup Type */}
+        {/* Main Test Type */}
         <div className="form-group">
-          <label className="form-label">Checkup / Test Type *</label>
+          <label className="form-label">Main Test Type *</label>
           <div style={{ position: 'relative' }}>
             <FlaskConical size={15} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: iconColor('cu-type'), pointerEvents: 'none', transition: 'color 0.2s' }} />
             <select id="cu-type" required
+              value={mainTestType}
+              onChange={(e) => {
+                setMainTestType(e.target.value);
+                setSpecificTest('');
+              }}
               style={{ ...fieldStyle('cu-type'), appearance: 'none', cursor: 'pointer' }}
               onFocus={() => setFocused('cu-type')}
               onBlur={() => setFocused(null)}>
-              <option value="">Select a checkup or test</option>
-              {CHECKUP_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+              <option value="">Select test type</option>
+              {labTestCategories.map((c) => <option key={c.name} value={c.name}>{c.name}</option>)}
             </select>
           </div>
         </div>
 
-        {/* Date */}
+        {/* Specific Test */}
         <div className="form-group">
-          <label className="form-label">Preferred Date</label>
+          <label className="form-label">Specific Test *</label>
           <div style={{ position: 'relative' }}>
-            <Calendar size={15} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: iconColor('cu-date'), pointerEvents: 'none', transition: 'color 0.2s' }} />
-            <input id="cu-date" type="date"
-              style={fieldStyle('cu-date')}
-              onFocus={() => setFocused('cu-date')}
-              onBlur={() => setFocused(null)} />
+            <FileText size={15} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: iconColor('cu-specific'), pointerEvents: 'none', transition: 'color 0.2s' }} />
+            <select id="cu-specific" required
+              value={specificTest}
+              onChange={(e) => setSpecificTest(e.target.value)}
+              disabled={!mainTestType}
+              style={{ ...fieldStyle('cu-specific'), appearance: 'none', cursor: mainTestType ? 'pointer' : 'not-allowed', opacity: mainTestType ? 1 : 0.6 }}
+              onFocus={() => setFocused('cu-specific')}
+              onBlur={() => setFocused(null)}>
+              {!mainTestType ? (
+                <option value="">Select test type first</option>
+              ) : (
+                <>
+                  <option value="">Select specific test</option>
+                  {labTestCategories.find(c => c.name === mainTestType)?.tests.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </>
+              )}
+            </select>
+          </div>
+        </div>
+
+        {/* Date & Time Row */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+          {/* Date */}
+          <div>
+            <label className="form-label">Preferred Date *</label>
+            <div style={{ position: 'relative' }}>
+              <Calendar size={15} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: iconColor('cu-date'), pointerEvents: 'none', transition: 'color 0.2s' }} />
+              <input id="cu-date" type="date" required
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                style={fieldStyle('cu-date')}
+                onFocus={() => setFocused('cu-date')}
+                onBlur={() => setFocused(null)} />
+            </div>
+          </div>
+          
+          {/* Time */}
+          <div>
+            <label className="form-label">Preferred Time *</label>
+            <div style={{ position: 'relative' }}>
+              <input id="cu-time" type="time" required
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                style={{ ...fieldStyle('cu-time'), paddingLeft: '1rem' }}
+                onFocus={() => setFocused('cu-time')}
+                onBlur={() => setFocused(null)} />
+            </div>
           </div>
         </div>
 
@@ -251,7 +329,7 @@ const CheckupBookingForm = () => {
         <button type="submit" className="btn btn-primary"
           style={{ width: '100%', padding: '1rem', marginTop: '0.5rem', fontSize: '1rem', fontWeight: 800, borderRadius: '14px', background: 'var(--navy)', justifyContent: 'center' }}>
           <MessageSquare size={20} />
-          {submitted ? 'Booked! Open WhatsApp Again ↗' : 'Book Checkup'}
+          {submitted ? 'Booked! Open WhatsApp Again ↗' : 'Book Lab Tests'}
         </button>
 
         <p style={{ textAlign: 'center', fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.85rem', marginBottom: 0 }}>

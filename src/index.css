@@ -992,7 +992,7 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
    MOBILE — body padding for sticky bar
 ───────────────────────────────────────── */
 @media (max-width: 640px) {
-  body { padding-bottom: 62px; }
+  .has-mobile-bar { padding-bottom: 62px; }
 }
 
 /* ─────────────────────────────────────────
@@ -2038,10 +2038,14 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     font-size: 0.6rem !important;
     padding: 0.15rem 0.4rem !important;
   }
+  .doctor-card-h-actions {
+    padding: 0.875rem 1rem 1rem !important;
+    gap: 0.5rem !important;
+  }
   .doctor-card-h-actions button {
-    padding: 0.6rem !important;
-    font-size: 0.75rem !important;
     min-height: 44px !important;
+    font-size: 0.78rem !important;
+    border-radius: 10px !important;
   }
 
   /* Why Choose section — tighter spacing */
@@ -2251,6 +2255,11 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   /* ── TEXT-CENTER helper for non-utility containers ── */
   .text-center {
     text-align: center !important;
+  }
+
+  /* ── iOS zoom prevention for all inputs/selects/textareas ── */
+  input, select, textarea {
+    font-size: 16px !important;
   }
 }
 
@@ -2504,7 +2513,10 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
 }
 .doctor-card-h-actions {
   display: flex;
-  border-top: 1px solid rgba(0,0,0,0.06);
+  gap: 0.625rem;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  background: #fafbfd;
 }
 .doc-btn-primary {
   flex: 1;
@@ -2512,15 +2524,21 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: 0.75rem 0.5rem;
+  padding: 0.72rem 0.5rem;
+  min-height: 44px;
   background: var(--navy);
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
   border: none;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
   white-space: nowrap;
+}
+.doc-btn-primary:hover {
+  background: var(--blue);
+  transform: translateY(-1px);
 }
 .doc-btn-secondary {
   flex: 1;
@@ -2528,16 +2546,22 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: 0.75rem 0.5rem;
-  background: #fff;
+  padding: 0.72rem 0.5rem;
+  min-height: 44px;
+  background: #f0f7ff;
   color: var(--navy);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  border: none;
-  border-left: 1px solid rgba(0,0,0,0.06);
+  border: 1.5px solid rgba(13,82,192,0.18);
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
   white-space: nowrap;
+}
+.doc-btn-secondary:hover {
+  background: #e0eeff;
+  border-color: var(--blue);
+  transform: translateY(-1px);
 }
 
 /* ─────────────────────────────────────────
@@ -2547,6 +2571,12 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   flex: 0 0 380px;
   min-width: 0;
   scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+}
+.carousel-card-wrap .doctor-card-h {
+  flex: 1;
+  height: 100%;
 }
 
 /* ─────────────────────────────────────────
@@ -2660,16 +2690,13 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
 
   /* ── Bottom action buttons ── */
   .home-doctors-section .doctor-card-h-actions {
-    display: flex !important;
-    flex-direction: row !important;
+    padding: 0.875rem 1rem 1rem !important;
+    gap: 0.5rem !important;
   }
   .home-doctors-section .doctor-card-h-actions button {
-    padding: 0.6rem 0.25rem !important;
-    font-size: 0.72rem !important;
+    font-size: 0.75rem !important;
     min-height: 42px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    border-radius: 10px !important;
   }
 
   /* ── Section title ── */
@@ -2691,9 +2718,18 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   .home-doctors-section .doctor-card-h-name {
     font-size: 0.85rem !important;
   }
-  .home-doctors-section .doctor-card-h-actions button {
-    font-size: 0.68rem !important;
-    padding: 0.55rem 0.15rem !important;
+}
+
+/* ── Extra small — stack buttons vertically at 380px ── */
+@media (max-width: 380px) {
+  .doctor-card-h-actions {
+    flex-direction: column !important;
+    padding: 0.875rem 0.875rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+  .doctor-card-h-actions button {
+    width: 100% !important;
+    border-radius: 10px !important;
   }
 }
 

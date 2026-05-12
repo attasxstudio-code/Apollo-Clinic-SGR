@@ -15,7 +15,7 @@ const LINKS = {
   'Information': [
     { label: 'About Us',          path: '/about'    },
     { label: 'Contact & Timing',  path: '/contact'  },
-    { label: 'Book a Checkup',    path: '/book-checkup' },
+    { label: 'Book Lab Tests',    path: '/book-checkup' },
     { label: 'FAQ',               path: '/faq'      },
   ],
 };

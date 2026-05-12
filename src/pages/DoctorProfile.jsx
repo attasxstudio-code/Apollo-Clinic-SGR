@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Calendar, Phone, MapPin, Clock, ChevronLeft, CheckCircle, ArrowRight, ShieldCheck, UserCheck, GraduationCap, HeartPulse, Shield, Activity, FileText, Briefcase } from 'lucide-react';
+import { Calendar, Phone, MapPin, Clock, ChevronLeft, ArrowRight, ShieldCheck, UserCheck, GraduationCap, HeartPulse, Shield, Activity, FileText, Briefcase, CheckCircle } from 'lucide-react';
 import { ALL_DOCTORS } from './OurDoctors';
 import VisitingDoctorBookingForm from '../components/VisitingDoctorBookingForm';
+import BookingForm from '../components/BookingForm';
 
 import { PRIMARY_PHONE, PRIMARY_PHONE_HREF } from '../config/contact';
 
@@ -11,39 +12,10 @@ const DoctorProfile = () => {
   const navigate  = useNavigate();
   const doc       = ALL_DOCTORS.find(d => d.id === id);
 
-  const [form, setForm] = React.useState({
-    name: '', phone: '',
-    date: new Date().toISOString().split('T')[0],
-    time: 'Morning (10 AM - 12 PM)'
-  });
-  const [submitted, setSubmitted] = React.useState(false);
-
   const goBack  = () => { navigate('/doctors'); window.scrollTo(0, 0); };
   const goBook  = () => { navigate('/book');    window.scrollTo(0, 0); };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.name || !form.phone) return;
 
-    // Save to admin dashboard
-    const existing = JSON.parse(localStorage.getItem('clinic_leads') || '[]');
-    const newLead = {
-      id:        Date.now(),
-      name:      form.name,
-      phone:     form.phone,
-      date:      form.date,
-      time:      form.time,
-      notes:     `Appointment requested with ${doc.name} (${doc.specialty})`,
-      doctor:    doc.name,
-      specialty: doc.specialty,
-      status:    'Pending',
-      createdAt: new Date().toISOString(),
-      source:    `Doctor Profile — ${doc.name}`,
-    };
-    localStorage.setItem('clinic_leads', JSON.stringify([newLead, ...existing]));
-
-    setSubmitted(true);
-  };
 
   if (!doc) {
     return (
@@ -519,103 +491,10 @@ const DoctorProfile = () => {
             ) : doc.type === 'visiting-doctor' ? (
               <VisitingDoctorBookingForm doc={doc} />
             ) : (
-            <div className="dp-form-card">
-              
-              {submitted ? (
-                <div style={{ textAlign: 'center', padding: '2rem 0' }}>
-                  <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'var(--green-light)', color: 'var(--green)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                    <CheckCircle size={32} />
-                  </div>
-                  <h3 style={{ fontSize: '1.4rem', color: 'var(--navy)', marginBottom: '0.5rem' }}>Request Sent</h3>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--body)', marginBottom: '2rem', lineHeight: 1.5 }}>
-                    We'll call you shortly to confirm your appointment with {doc.name}.
-                  </p>
-                  <button className="btn btn-outline-blue w-full" onClick={() => setSubmitted(false)} style={{ borderRadius: '8px', justifyContent: 'center' }}>
-                    Book Another
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                    <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Calendar size={18} />
-                    </div>
-                    <h3 style={{ fontSize: '1.15rem', color: 'var(--navy)', margin: 0 }}>Request Appointment</h3>
-                  </div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--body)', marginBottom: '1.5rem', lineHeight: 1.5 }}>
-                    Select a convenient date and time to consult with {doc.name.split(' ')[0]}.
-                  </p>
+            <div>
+              <BookingForm />
 
-                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem' }}>Full Name</label>
-                      <input
-                        type="text"
-                        style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.1)', fontSize: '0.85rem' }}
-                        placeholder="Enter your full name"
-                        value={form.name}
-                        onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem' }}>Phone Number</label>
-                      <input
-                        type="tel"
-                        style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.1)', fontSize: '0.85rem' }}
-                        placeholder="Your contact number"
-                        value={form.phone}
-                        onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
-                        required
-                      />
-                    </div>
-
-                    <div className="dp-form-grid">
-                      <div>
-                        <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem' }}>Preferred Date</label>
-                        <input
-                          type="date"
-                          style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.1)', fontSize: '0.85rem', color: 'var(--body)' }}
-                          value={form.date}
-                          min={new Date().toISOString().split('T')[0]}
-                          onChange={e => setForm(p => ({ ...p, date: e.target.value }))}
-                        />
-                      </div>
-                      <div>
-                        <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.4rem' }}>Preferred Time</label>
-                        <select
-                          style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.1)', fontSize: '0.85rem', color: 'var(--body)', background: '#fff' }}
-                          value={form.time}
-                          onChange={e => setForm(p => ({ ...p, time: e.target.value }))}
-                        >
-                          <option>Select a time</option>
-                          <option>Morning (10 AM - 12 PM)</option>
-                          <option>Afternoon (12 PM - 3 PM)</option>
-                          <option>Evening (3 PM - 6 PM)</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      style={{ width: '100%', padding: '0.85rem', background: 'var(--blue)', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 700, fontSize: '0.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', marginTop: '0.5rem' }}
-                    >
-                      <Calendar size={16} /> Request Consultation
-                    </button>
-                  </form>
-
-                  <div style={{ marginTop: '1.25rem', textAlign: 'center' }}>
-                    <button onClick={goBook} style={{
-                      background: 'none', border: 'none', color: 'var(--blue)', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem', width: '100%'
-                    }}>
-                      Use full booking form <ArrowRight size={14} />
-                    </button>
-                  </div>
-                </>
-              )}
-
-              <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.05)', margin: '2rem 0' }} />
+              <div className="dp-form-card" style={{ marginTop: '1.5rem' }}>
 
               {/* Consultation Hours */}
               <div>
@@ -644,6 +523,7 @@ const DoctorProfile = () => {
                 <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Call us for any assistance</div>
               </div>
 
+              </div>{/* close dp-form-card */}
             </div>
             )}
           </div>

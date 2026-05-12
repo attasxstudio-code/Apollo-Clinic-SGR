@@ -93,7 +93,7 @@ const Navbar = () => {
               onClick={() => goTo('/book-checkup')}
               style={{ fontSize: '0.9rem', fontWeight: 600, padding: '0.5rem 1rem', borderRadius: 'var(--r-full)' }}
             >
-              <Stethoscope size={16} /> Book Checkup
+              <Stethoscope size={16} /> Book Lab Tests
             </button>
             <button
               className="btn btn-orange"
@@ -135,6 +135,13 @@ const Navbar = () => {
               style={{ width: '100%', justifyContent: 'center', minHeight: 48, borderRadius: 'var(--r-lg)' }}
             >
               <Calendar size={16} /> Book Appointment
+            </button>
+            <button
+              className="btn btn-outline-blue"
+              onClick={() => goTo('/book-checkup')}
+              style={{ width: '100%', justifyContent: 'center', minHeight: 48, borderRadius: 'var(--r-lg)', background: 'var(--blue-light)' }}
+            >
+              <Stethoscope size={16} /> Book Lab Tests
             </button>
             <a
               href={PRIMARY_PHONE_HREF}

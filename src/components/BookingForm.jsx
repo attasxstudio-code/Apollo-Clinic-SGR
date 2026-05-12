@@ -1,11 +1,28 @@
 import React from 'react';
-import { MessageSquare, User, Phone, Calendar, FileText, CheckCircle } from 'lucide-react';
+import { MessageSquare, User, Phone, Calendar, FileText, CheckCircle, Stethoscope, ChevronDown } from 'lucide-react';
 import { waLink } from '../config/contact';
 import {
   checkRateLimit, recordAttempt,
   sanitizeInput, isValidName, isValidPhone, isValidDate, isValidMessage,
   isBot, isTooFast, isDuplicateSubmission, logSuspicious,
 } from '../utils/security';
+
+const DEPARTMENTS = [
+  'Orthopaedics',
+  'Paediatrician',
+  'Physician',
+  'ENT',
+  'Cardiologist',
+  'Ophthalmologist',
+  'Neuro Surgeon',
+  'Dentist',
+  'Psychologist',
+  'Dietician',
+  'Urologist',
+  'Physiotherapist',
+  'Infertility Clinic',
+  'General Consultation',
+];
 
 const RATE_KEY = 'booking_form';
 
@@ -16,13 +33,14 @@ const BookingForm = () => {
   const mountTime = React.useRef(Date.now());
 
   // ── Save lead to localStorage so it appears in the Admin Dashboard ──
-  const saveLeadToAdmin = ({ name, phone, date, message }) => {
+  const saveLeadToAdmin = ({ name, phone, date, message, department }) => {
     const existing = JSON.parse(localStorage.getItem('clinic_leads') || '[]');
     const newLead = {
       id:        Date.now(),
       name:      sanitizeInput(name, 100),
       phone:     sanitizeInput(phone, 20),
       date:      sanitizeInput(date, 10),
+      department: sanitizeInput(department, 100),
       notes:     sanitizeInput(message, 1000),
       status:    'Pending',
       createdAt: new Date().toISOString(),
@@ -64,6 +82,7 @@ const BookingForm = () => {
     const rawPhone= sanitizeInput(document.getElementById('phone').value, 15);
     const phone   = '+91 ' + rawPhone;
     const date    = sanitizeInput(document.getElementById('date').value, 10);
+    const department = sanitizeInput(document.getElementById('department').value, 100);
     const message = sanitizeInput(document.getElementById('message').value, 1000);
 
     // Validate
@@ -76,10 +95,10 @@ const BookingForm = () => {
     recordAttempt(RATE_KEY);
 
     // 1️⃣  Save to admin dashboard
-    saveLeadToAdmin({ name, phone, date, message });
+    saveLeadToAdmin({ name, phone, date, message, department });
 
     // 2️⃣  Open WhatsApp
-    const text = `New Appointment Request — Apollo Clinic Srinagar:\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
+    const text = `New Appointment Request — Apollo Clinic Srinagar:\nName: ${name}\nPhone: ${phone}\nDepartment: ${department || 'Not specified'}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
     window.open(waLink(text), '_blank');
 
     // 3️⃣  Show brief success state then reset
@@ -94,7 +113,7 @@ const BookingForm = () => {
     border: `1.5px solid ${focused === id ? '#0ea5e9' : '#cce5f6'}`,
     borderRadius: '12px',
     background: focused === id ? '#fff' : '#f0f9ff',
-    fontSize: '0.92rem',
+    fontSize: '1rem',
     fontFamily: 'inherit',
     color: '#0f172a',
     transition: 'all 0.25s ease',
@@ -217,6 +236,22 @@ const BookingForm = () => {
               style={fieldStyle('date')}
               onFocus={() => setFocused('date')}
               onBlur={() => setFocused(null)} />
+          </div>
+        </div>
+
+        {/* Department */}
+        <div className="form-group">
+          <label className="form-label" htmlFor="department">Department / Service *</label>
+          <div style={{ position: 'relative' }}>
+            <Stethoscope size={15} style={{ position:'absolute', left:'0.9rem', top:'50%', transform:'translateY(-50%)', color: iconColor('department'), transition:'color 0.2s', pointerEvents:'none', zIndex:1 }} />
+            <ChevronDown size={15} style={{ position:'absolute', right:'0.9rem', top:'50%', transform:'translateY(-50%)', color: iconColor('department'), transition:'color 0.2s', pointerEvents:'none', zIndex:1 }} />
+            <select id="department" name="department" required
+              style={{ ...fieldStyle('department'), appearance: 'none', cursor: 'pointer', paddingRight: '2.5rem' }}
+              onFocus={() => setFocused('department')}
+              onBlur={() => setFocused(null)}>
+              <option value="">Select a department</option>
+              {DEPARTMENTS.map(d => <option key={d} value={d}>{d}</option>)}
+            </select>
           </div>
         </div>
 

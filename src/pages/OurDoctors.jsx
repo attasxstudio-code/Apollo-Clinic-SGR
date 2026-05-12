@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Calendar, Phone, ArrowRight, UserCheck, ShieldCheck, HeartPulse, Clock } from 'lucide-react';
 
@@ -1018,9 +1018,9 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
           <p style={{ fontSize: '0.75rem', color: 'var(--body)', marginBottom: '0.5rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.4, flex: 1 }}>
             {doc.title}
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--heading)', fontSize: '0.75rem', fontWeight: 600, marginTop: 'auto' }}>
-            <Clock size={12} className="text-blue" /> 
-            {doc.type === 'visiting-doctor' ? 'Visits once a month' : (doc.avail || 'Check availability')}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--navy)', fontSize: '0.8rem', fontWeight: 800, marginTop: 'auto', letterSpacing: '0.02em', background: '#f0f9ff', padding: '0.4rem 0.6rem', borderRadius: '6px', width: 'fit-content' }}>
+            <Clock size={14} color="var(--blue)" strokeWidth={2.5} /> 
+            {doc.type === 'visiting-doctor' ? 'VISITS ONCE A MONTH' : (doc.avail || 'CHECK AVAILABILITY').toUpperCase()}
           </div>
         </div>
       </div>
@@ -1028,27 +1028,27 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
       {/* Bottom row: CTAs */}
       <div className="doctor-card-h-actions">
         {doc.type === 'visiting-doctor' ? (
-          <button 
-            className="btn btn-outline-blue" 
-            style={{ flex: 1, padding: '0.5rem', fontSize: '0.8rem', borderRadius: '8px' }}
+          <button
+            className="btn btn-outline-blue"
+            style={{ flex: 1, minHeight: '44px', fontSize: '0.82rem', borderRadius: '12px', fontWeight: 700 }}
             onClick={(e) => { e.stopPropagation(); onProfile(); }}
           >
             View Visiting Profile
           </button>
         ) : (
-          <button 
-            className="btn btn-outline-blue" 
-            style={{ flex: 1, padding: '0.5rem', fontSize: '0.8rem', borderRadius: '8px' }}
+          <button
+            className="btn btn-outline-blue"
+            style={{ flex: 1, minHeight: '44px', fontSize: '0.82rem', borderRadius: '12px', fontWeight: 700 }}
             onClick={(e) => { e.stopPropagation(); onProfile(); }}
           >
             View Profile
           </button>
         )}
-        
+
         {doc.type !== 'lab-incharge' && doc.type !== 'visiting-doctor' && (
-          <button 
-            className="btn btn-primary" 
-            style={{ flex: 1, padding: '0.5rem', fontSize: '0.8rem', borderRadius: '8px' }}
+          <button
+            className="btn btn-primary"
+            style={{ flex: 1, minHeight: '44px', fontSize: '0.82rem', borderRadius: '12px', fontWeight: 700 }}
             onClick={(e) => { e.stopPropagation(); onBook(doc); }}
           >
             Book Appointment
@@ -1063,6 +1063,11 @@ const OurDoctors = () => {
   const navigate = useNavigate();
   const [search,  setSearch]  = React.useState('');
   const [filter,  setFilter]  = React.useState('All');
+  const visitingRef = useRef(null);
+
+  const scrollToVisiting = () => {
+    visitingRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const goBook    = (doc) => { navigate('/book');      window.scrollTo(0, 0); };
   const goProfile = (id) => { navigate(`/doctors/${id}`); window.scrollTo(0, 0); };
@@ -1134,6 +1139,27 @@ const OurDoctors = () => {
                   {f}
                 </button>
               ))}
+              {/* Visiting Doctors scroll chip */}
+              <button
+                style={{
+                  padding: '0.5rem 1.25rem',
+                  borderRadius: '50px',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  background: 'linear-gradient(135deg, #f97316, #ea580c)',
+                  color: '#fff',
+                  border: 'none',
+                  boxShadow: '0 4px 12px rgba(249,115,22,0.3)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                }}
+                onClick={scrollToVisiting}
+              >
+                <span style={{ fontSize: '0.8rem' }}>⭐</span> Visiting Doctors
+              </button>
             </div>
           </div>
 
@@ -1186,7 +1212,7 @@ const OurDoctors = () => {
 
       {/* ── Visiting Doctors ── */}
       {visitingDoctors.length > 0 && (
-        <section className="visiting-doc-listing" style={{ padding: '0 0 6rem' }}>
+        <section ref={visitingRef} className="visiting-doc-listing" style={{ padding: '0 0 6rem', scrollMarginTop: '80px' }}>
           <div className="container" style={{ maxWidth: '1400px' }}>
             <div className="doc-listing-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
                <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
@@ -1198,7 +1224,7 @@ const OurDoctors = () => {
               </p>
             </div>
 
-            <div className="doc-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', justifyContent: 'center' }}>
+            <div className="doc-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {visitingDoctors.map(doc => (
                 <DoctorCard key={doc.id} doc={doc} onProfile={() => goProfile(doc.id)} onBook={goBook} />
               ))}

@@ -17,18 +17,18 @@ const BookCheckup = () => (
           <div className="m-center" style={{ paddingTop: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
               <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
-                HEALTH CHECKUPS
+                LAB TESTS
               </span>
             </div>
             
             <h1 style={{ fontSize: '3.5rem', lineHeight: 1.1, color: 'var(--navy)', marginBottom: '1rem' }}>
-              Book Your<br/>Checkup
+              Book Your<br/>Lab Tests
             </h1>
             
             <div style={{ height: '3px', width: '40px', background: 'var(--orange)', marginBottom: '1.5rem' }}></div>
             
             <p style={{ fontSize: '1.2rem', color: 'var(--body)', marginBottom: '3rem', lineHeight: 1.6, maxWidth: '420px' }}>
-              Preventive care today leads to a healthier tomorrow. Schedule your checkup at a time that's convenient for you.
+              Preventive care today leads to a healthier tomorrow. Schedule your lab tests at a time that's convenient for you.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '4rem' }}>
@@ -147,7 +147,7 @@ const BookCheckup = () => (
               <Calendar size={32} color="var(--blue)" />
               <div style={{ position: 'absolute', bottom: '-10px', width: '24px', height: '24px', borderRadius: '50%', background: 'var(--navy)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 800, border: '2px solid #fff' }}>1</div>
             </div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.5rem' }}>Book Your Checkup</h4>
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.5rem' }}>Book Your Lab Tests</h4>
             <p style={{ fontSize: '0.85rem', color: 'var(--body)' }}>Fill in the form with your details and preferred date.</p>
           </div>
 
@@ -165,8 +165,8 @@ const BookCheckup = () => (
               <HeartPulse size={32} color="var(--blue)" />
               <div style={{ position: 'absolute', bottom: '-10px', width: '24px', height: '24px', borderRadius: '50%', background: 'var(--navy)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 800, border: '2px solid #fff' }}>3</div>
             </div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.5rem' }}>Visit & Get Checked</h4>
-            <p style={{ fontSize: '0.85rem', color: 'var(--body)' }}>Our experts will take care of your health.</p>
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.5rem' }}>Visit & Get Tested</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--body)' }}>Our experts will take care of your lab requirements.</p>
           </div>
 
           <div style={{ position: 'relative', zIndex: 1, background: '#f8fafc', padding: '0 1rem' }}>
