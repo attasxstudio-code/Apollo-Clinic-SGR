@@ -66,26 +66,29 @@ const CheckupBookingForm = () => {
     e.preventDefault();
     setError('');
 
+    // 2. Security Checks
     const hp = document.getElementById('checkup_hp')?.value;
-    if (isBot(hp)) { logSuspicious('checkup_honeypot_triggered'); return; }
-    if (isTooFast(mountTime.current, 2000)) { logSuspicious('checkup_too_fast'); return setError('Please take a moment to fill the form properly.'); }
-    if (isDuplicateSubmission('checkup', 3000)) return setError('Please wait a few seconds before submitting again.');
+    if (isBot(hp)) return; // Silent return for bots
+    
+    // Lenient duplicate check
+    if (isDuplicateSubmission('checkup', 1000)) return;
 
-    const rl = checkRateLimit(RATE_KEY, 3, 10 * 60 * 1000);
-    if (!rl.allowed) { logSuspicious('checkup_rate_limited'); return setError(`Too many submissions. Please wait ${Math.ceil(rl.resetIn / 60)} minute(s).`); }
+    // High rate limit for testing
+    const rl = checkRateLimit(RATE_KEY, 10, 5 * 60 * 1000); 
+    if (!rl.allowed) return setError(`Too many attempts. Please try again later.`);
 
-    const name        = sanitizeInput(document.getElementById('cu-name').value, 100);
-    const rawPhone    = sanitizeInput(document.getElementById('cu-phone').value, 15);
+    const name        = sanitizeInput(document.getElementById('cu-name')?.value || '', 100);
+    const rawPhone    = sanitizeInput(document.getElementById('cu-phone')?.value || '', 20);
     const phone       = '+91 ' + rawPhone;
-    const notes       = sanitizeInput(document.getElementById('cu-notes').value, 1000);
+    const notes       = sanitizeInput(document.getElementById('cu-notes')?.value || '', 1000);
 
-    if (!isValidName(name))             return setError('Please enter a valid name (letters only, 2–100 characters).');
-    if (!isValidPhone(rawPhone))        return setError('Please enter a valid 10-digit Indian phone number.');
+    // More forgiving validation
+    if (!name || name.length < 2)       return setError('Please enter your full name.');
+    if (!isValidPhone(rawPhone))        return setError('Please enter a valid 10-digit phone number.');
     if (!mainTestType)                  return setError('Please select a main test type.');
     if (!specificTest)                  return setError('Please select a specific test.');
-    if (!date || !isValidDate(date))    return setError('Please select a valid date (today or future).');
+    if (!date)                          return setError('Please select a preferred date.');
     if (!time)                          return setError('Please select a preferred time.');
-    if (!isValidMessage(notes, 1000))   return setError('Notes are too long (max 1000 characters).');
 
     recordAttempt(RATE_KEY);
     
@@ -106,11 +109,11 @@ const CheckupBookingForm = () => {
 
     const waUrl = waLink(text);
 
-    // Fire-and-forget save to Supabase (don't let it block the window.open)
+    // Fire-and-forget save to Supabase
     saveCheckupToAdmin({ name, phone, mainTestType, specificTest, date, time, notes });
 
-    // Open WhatsApp immediately to avoid browser pop-up blockers
-    window.open(waUrl, '_blank');
+    // Open WhatsApp - Using window.location to avoid pop-up blockers
+    window.location.href = waUrl;
 
     setSubmitted(true);
     if (e.target && typeof e.target.reset === 'function') e.target.reset();
