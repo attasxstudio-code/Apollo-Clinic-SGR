@@ -315,12 +315,31 @@ const DoctorProfile = () => {
                   <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <ShieldCheck size={20} />
                   </div>
-                  <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Awards & Recognition</h2>
+                  <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Awards & Achievements</h2>
                 </div>
                 <ul style={{ margin: 0, padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {doc.awards.map((award, i) => (
                     <li key={i} style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.5 }}>
                       {award}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Research & Publications */}
+            {doc.research && doc.research.length > 0 && (
+              <div className="dp-section-card">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <FileText size={20} />
+                  </div>
+                  <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Research & Publications</h2>
+                </div>
+                <ul style={{ margin: 0, padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {doc.research.map((item, i) => (
+                    <li key={i} style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.5 }}>
+                      {item}
                     </li>
                   ))}
                 </ul>

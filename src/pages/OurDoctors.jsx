@@ -808,6 +808,66 @@ export const ALL_DOCTORS = [
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-harish-kumar-verma',
+    image: '/Doctor-Harish-Kumar-Verma.png',
+    name: 'Dr Harish Kumar Verma',
+    title: 'Senior Pulmonologist & Critical Care Expert',
+    specialty: 'Pulmonology & Critical Care Medicine',
+    specialization: 'Chest & Lung Disease, Sleep Medicine, Interventional Pulmonology, Critical Care, Bronchoscopy, EBUS, Thoracoscopy, Pulmonary Rehabilitation',
+    dept: 'Pulmonology',
+    qual: 'MBBS, MD Internal Medicine, DM Pulmonary & Critical Care Medicine',
+    exp: '18+ years',
+    type: 'visiting-doctor',
+    avail: 'Once a month',
+    languages: [],
+    bio: `Dr Harish Kumar Verma is a seasoned Pulmonologist and Critical Care expert with over 18 years of clinical experience. He specializes in advanced respiratory care, sleep medicine, interventional pulmonology, and critical care procedures.\n\nHe is recognized for managing complex ICU cases, using advanced bronchoscopic techniques, and providing pulmonary rehabilitation. His clinical approach combines evidence-based medicine, compassionate patient care, and advanced respiratory care for patients with complex chest, lung, sleep, and critical care conditions.`,
+    education: [
+      'MBBS',
+      'MD Internal Medicine',
+      'DM Pulmonary & Critical Care Medicine from VMMC & Safdarjung Hospital, Delhi'
+    ],
+    experience: [
+      'Senior Consultant & Incharge, Yathartha Super-speciality Hospital',
+      'Director, Advanta Super-speciality Hospital, Rohtak',
+      'Consultant & Head, Noble Heart & Super-speciality Hospital, Rohtak',
+      'Consultant & Head, Teerathankar Mahaveer Medical College & Hospital, Moradabad',
+      'Associate Consultant, Max Hospital, Saket, Delhi',
+      '18+ years of clinical experience in pulmonology and critical care'
+    ],
+    expertise: [
+      'Chest and lung disease', 'Respiratory diseases', 'Pleural effusion', 'Lung cancer and fibrosis', 'Pneumonia and TB', 'Sleep disorders', 'Asthma and allergy disorders', 'Bronchoscopy', 'EBUS', 'Thoracoscopy', 'Pulmonary rehabilitation', 'Interstitial Lung Disease', 'COPD', 'Smoking-related lung disorders', 'Critical care medicine', 'ICU care and complex respiratory cases'
+    ],
+    specializedCareHeading: 'Specialization & Expertise',
+    specializedCare: [
+      { name: 'Chest & Lung Disease', desc: 'Pleural effusion, lung cancer, fibrosis, pneumonia, and TB.', icon: 'Activity' },
+      { name: 'Sleep & Allergy', desc: 'Sleep disorders, asthma, and allergy disorders.', icon: 'Activity' },
+      { name: 'Advanced Interventions', desc: 'Bronchoscopy, EBUS and thoracoscopy.', icon: 'Shield' },
+      { name: 'Chronic Care', desc: 'Pulmonary rehabilitation, ILD, COPD, and smoking-related lung disorders.', icon: 'Activity' },
+      { name: 'Critical Care', desc: 'Critical care and advanced ICU management.', icon: 'Heart' }
+    ],
+    awards: [
+      'Paper presented at APICON 2010: “Comparison of Indian C-DAS with DAS-28 in Rheumatoid Arthritis”',
+      'Active participant in research on rheumatoid arthritis, critical care, and pulmonary interventions',
+      'Leadership roles across multiple super-speciality hospitals in pulmonology and ICU care'
+    ],
+    research: [
+      'Correlation of Intima-Media Thickness with Rheumatoid Arthritis activity — JIACM, 2011',
+      'Hand function assessment in Rheumatoid Arthritis and its correlation to disease activity — Rheumatology International, 2011',
+      'Clinical Disease Activity Index for Rheumatoid Arthritis assessment — Arthritis, 2011',
+      'Biological therapy as first-line treatment in Rheumatoid Arthritis — Medicine Update, 2011',
+      'International publications of interest from India — Indian Journal of Rheumatology, 2011',
+      'Chemotherapy safety and drug toxicity review — EJBP Sciences, 2017'
+    ],
+    media: [],
+    hours: [],
+    consultation_days: 'Selected monthly schedules. Prior registration is required.',
+    institution: 'Apollo Clinic Srinagar',
+    trust_banner: 'Limited slots available. Prior registration is mandatory for visiting appointments.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
