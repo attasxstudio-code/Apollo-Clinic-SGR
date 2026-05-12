@@ -5,7 +5,7 @@ import {
   Clock, Star, ChevronDown, Heart,
   Stethoscope, ShieldCheck, 
   Baby, HeartPulse, Syringe, Users, ChevronRight,
-  ChevronLeft, Mail,
+  ChevronLeft, Mail, MessageCircle, Navigation,
 } from 'lucide-react';
 
 import { SPECIALTIES } from './Services';
@@ -13,7 +13,7 @@ import { ALL_DOCTORS, DoctorCard } from './OurDoctors';
 import { DIAGNOSTICS_CATEGORIES } from './Diagnostics';
 import AdministratorMessageSection from '../components/AdministratorMessageSection';
 
-import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, CLINIC_EMAIL, WORKING_HOURS } from '../config/contact';
+import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, CLINIC_EMAIL, WORKING_HOURS, WHATSAPP_LINK } from '../config/contact';
 
 /* ─── Constants ─── */
 const MAPS_EMBED = 'https://maps.google.com/maps?q=34.0806043,74.7988594&hl=en&z=17&output=embed&iwloc=near';
@@ -481,6 +481,91 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Spacer so the mobile floating bar doesn't cover the footer/last section */}
+      <div className="mobile-quick-bar-spacer"></div>
+      {/* ─── MOBILE FLOATING QUICK-ACTION BAR ─── */}
+      <div className="mobile-quick-bar">
+        <a href={PRIMARY_PHONE_HREF} className="mqb-item">
+          <Phone size={22} strokeWidth={1.8} />
+          <span>Call</span>
+        </a>
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="mqb-item mqb-wa">
+          <MessageCircle size={22} strokeWidth={1.8} />
+          <span>WhatsApp</span>
+        </a>
+        <a href="/book" className="mqb-item mqb-book">
+          <Calendar size={22} strokeWidth={1.8} />
+          <span>Book</span>
+        </a>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Apollo+Clinic+Karan+Nagar+Srinagar+Jammu+Kashmir"
+          target="_blank" rel="noopener noreferrer" className="mqb-item"
+        >
+          <Navigation size={22} strokeWidth={1.8} />
+          <span>Directions</span>
+        </a>
+      </div>
+
+      <style>{`
+        .mobile-quick-bar {
+          display: none;
+        }
+        .mobile-quick-bar-spacer {
+          display: none;
+        }
+        @media (max-width: 768px) {
+          .mobile-quick-bar-spacer {
+            display: block;
+            height: calc(72px + env(safe-area-inset-bottom, 0px));
+            background: transparent;
+          }
+          .mobile-quick-bar {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(14,165,233,0.1);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+            padding: 0.5rem 0.25rem;
+            padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+            justify-content: space-around;
+            align-items: center;
+          }
+          .mqb-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            text-decoration: none;
+            color: #475569;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            padding: 0.35rem 0.5rem;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            min-width: 64px;
+            -webkit-tap-highlight-color: transparent;
+          }
+          .mqb-item:active {
+            transform: scale(0.92);
+            background: rgba(14,165,233,0.08);
+          }
+          .mqb-item svg {
+            color: #334155;
+          }
+          .mqb-wa svg { color: #25D366; }
+          .mqb-wa span { color: #128C7E; }
+          .mqb-book svg { color: #0369a1; }
+          .mqb-book span { color: #0369a1; }
+        }
+      `}</style>
     </>
   );
 };
