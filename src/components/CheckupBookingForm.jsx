@@ -110,9 +110,11 @@ const CheckupBookingForm = () => {
     const waUrl = waLink(text);
 
     // Fire-and-forget save to Supabase
+    console.log('Checkup form valid. Triggering save and redirect...');
     saveCheckupToAdmin({ name, phone, mainTestType, specificTest, date, time, notes });
 
     // Open WhatsApp - Using window.location to avoid pop-up blockers
+    console.log('Redirecting to WhatsApp:', waUrl);
     window.location.href = waUrl;
 
     setSubmitted(true);

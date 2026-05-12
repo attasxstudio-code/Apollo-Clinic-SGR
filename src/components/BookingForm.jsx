@@ -8,6 +8,8 @@ import {
 } from '../utils/security';
 import { appointmentService } from '../services/appointmentService';
 
+const RATE_KEY = 'booking_form';
+
 const DEPARTMENTS = [
   'Orthopaedics',
   'Paediatrician',
@@ -24,8 +26,6 @@ const DEPARTMENTS = [
   'Infertility Clinic',
   'General Consultation',
 ];
-
-const RATE_KEY = 'booking_form';
 
 const BookingForm = () => {
   const [focused,   setFocused]   = React.useState(null);
@@ -78,13 +78,22 @@ const BookingForm = () => {
     recordAttempt(RATE_KEY);
 
     // Create WhatsApp text immediately
-    const text = `New Appointment Request — Apollo Clinic Srinagar:\nName: ${name}\nPhone: ${phone}\nDepartment: ${department || 'Not specified'}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
+    const text = [
+      `New Appointment Request — Apollo Clinic Srinagar:`,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Department: ${department || 'Not specified'}`,
+      `Date: ${date}`,
+      `Message: ${message || 'No additional message.'}`
+    ].join('\n');
     const waUrl = waLink(text);
 
-    // 1️⃣ Save to admin dashboard (Fire-and-forget)
+    // 1️⃣ Save to admin dashboard
+    console.log('Form data valid. Triggering save and redirect...');
     saveLeadToAdmin({ name, phone, date, message, department });
 
     // 2️⃣ Open WhatsApp - Using window.location to avoid blockers
+    console.log('Redirecting to WhatsApp:', waUrl);
     window.location.href = waUrl;
 
     // 3️⃣  Show brief success state then reset
