@@ -100,7 +100,19 @@ const DoctorProfile = () => {
                 {/* Info */}
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <h1 style={{ fontSize: '2rem', color: 'var(--navy)', marginBottom: '0.25rem', lineHeight: 1.2 }}>{doc.name}</h1>
-                  <div style={{ fontSize: '1.05rem', color: 'var(--blue)', fontWeight: 800, marginBottom: '0.5rem' }}>{doc.specialty}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
+                    <div style={{ fontSize: '1.05rem', color: 'var(--blue)', fontWeight: 800 }}>{doc.specialty}</div>
+                    {doc.type === 'visiting-doctor' && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span style={{ background: 'var(--navy)', color: '#fff', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          Visiting Doctor
+                        </span>
+                        <span style={{ background: 'var(--orange-light)', color: 'var(--orange)', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          Limited Monthly Visit
+                        </span>
+                      </div>
+                    )}
+                  </div>
                   <div style={{ fontSize: '0.95rem', color: 'var(--heading)', fontWeight: 600, marginBottom: '2rem' }}>{doc.title}</div>
                   
                   <div className="dp-quick-info-grid">
@@ -260,13 +272,13 @@ const DoctorProfile = () => {
               ))}
             </div>
 
-            {/* Education & Credentials */}
+            {/* Education & Training */}
             <div className="dp-section-card">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <GraduationCap size={20} />
                 </div>
-                <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Education & Credentials</h2>
+                <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Education & Training</h2>
               </div>
               <ul style={{ margin: 0, padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {doc.education.map((edu, i) => (
@@ -276,6 +288,63 @@ const DoctorProfile = () => {
                 ))}
               </ul>
             </div>
+
+            {/* Experience */}
+            {doc.experience && doc.experience.length > 0 && (
+              <div className="dp-section-card">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Briefcase size={20} />
+                  </div>
+                  <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Experience</h2>
+                </div>
+                <ul style={{ margin: 0, padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {doc.experience.map((exp, i) => (
+                    <li key={i} style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.5 }}>
+                      {exp}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Awards & Recognition */}
+            {doc.awards && doc.awards.length > 0 && (
+              <div className="dp-section-card">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <ShieldCheck size={20} />
+                  </div>
+                  <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Awards & Recognition</h2>
+                </div>
+                <ul style={{ margin: 0, padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {doc.awards.map((award, i) => (
+                    <li key={i} style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.5 }}>
+                      {award}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Public Awareness & Media Presence */}
+            {doc.media && doc.media.length > 0 && (
+              <div className="dp-section-card">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <FileText size={20} />
+                  </div>
+                  <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Public Awareness & Media Presence</h2>
+                </div>
+                <ul style={{ margin: 0, padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {doc.media.map((item, i) => (
+                    <li key={i} style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.5 }}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Specialized Treatments */}
             <div className="dp-section-card">
@@ -405,6 +474,30 @@ const DoctorProfile = () => {
                   </div>
                   <p style={{ fontSize: '0.9rem', color: 'var(--body)', margin: 0, lineHeight: 1.6 }}>
                     Committed to precision, timely reporting, and advanced laboratory processes for accurate healthcare decisions.
+                  </p>
+                </div>
+              </div>
+            ) : doc.type === 'visiting-doctor' ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div className="dp-form-card" style={{ borderTop: '4px solid var(--orange)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                    <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--orange-light)', color: 'var(--orange)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Calendar size={18} />
+                    </div>
+                    <h3 style={{ fontSize: '1.15rem', color: 'var(--navy)', margin: 0 }}>Book a Visiting Appointment</h3>
+                  </div>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--body)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+                    {doc.name} visits Apollo Clinic Srinagar on selected monthly schedules. Prior registration is required and slots are limited.
+                  </p>
+                  <button 
+                    className="btn btn-primary w-full" 
+                    onClick={() => { window.scrollTo(0,0); alert("Visiting Doctor appointment form will be available soon. Please call the clinic to register."); }}
+                    style={{ borderRadius: '8px', justifyContent: 'center', padding: '0.8rem' }}
+                  >
+                    Book Visiting Appointment
+                  </button>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: '1rem', textAlign: 'center' }}>
+                    * You can also register by calling the clinic directly.
                   </p>
                 </div>
               </div>

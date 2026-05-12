@@ -707,6 +707,59 @@ export const ALL_DOCTORS = [
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-gauri-agarwal',
+    image: '/Doctor-Gauri-Agarwal.png',
+    name: 'Dr Gauri Agarwal',
+    title: 'Founder & Director, Seeds of Innocence IVF & Genestring Labs',
+    specialty: 'IVF, Fertility & Reproductive Medicine',
+    dept: 'IVF & Fertility',
+    qual: 'MD, DNB, MBBS',
+    exp: '15+ years',
+    type: 'visiting-doctor',
+    avail: 'Once a month',
+    languages: [],
+    bio: `Dr Gauri Agarwal is a leading IVF and reproductive medicine specialist with over 15 years of experience in advanced infertility treatment, reproductive endocrinology, and advanced fertility techniques. She is the Founder and Director of Seeds of Innocence IVF and Genestring Labs, and has played an important role in bringing innovative fertility solutions and evidence-based reproductive care to India and beyond.\n\nTrained in Embryology at the National University of Singapore and with a Fellowship in IVF & ART from Ghent University, Belgium, Dr Gauri Agarwal combines clinical expertise, advanced reproductive technology, and compassionate patient care. Her work focuses on improving women’s health, spreading awareness about reproductive health, and helping families with trusted fertility guidance.`,
+    education: [
+      'MD, DNB, MBBS',
+      'Trained in Embryology at the National University of Singapore',
+      'Fellowship in IVF & ART from Ghent University, Belgium',
+      'Stanford University Graduate: School of Business',
+      'FDGSI Fertility Specialist'
+    ],
+    expertise: [
+      'IVF consultation', 'Infertility evaluation', 'Reproductive endocrinology', 'Advanced fertility techniques', 'Reproductive medicine', 'Reproductive genetics', 'Women’s reproductive health', 'Fertility counselling', 'Advanced infertility treatment', 'Evidence-based fertility care'
+    ],
+    specializedCare: [
+      { name: 'IVF Consultation', desc: 'Advanced infertility evaluation and individualized IVF treatment planning.', icon: 'Activity' },
+      { name: 'Reproductive Endocrinology', desc: 'Expertise in hormonal imbalances and reproductive health disorders.', icon: 'Activity' },
+      { name: 'Advanced Fertility Techniques', desc: 'Implementation of modern ART procedures and evidence-based fertility care.', icon: 'Shield' },
+      { name: 'Reproductive Genetics', desc: 'Integration of genetic testing in reproductive medicine and fertility solutions.', icon: 'Activity' }
+    ],
+    experience: [
+      'Founder & Director at Seeds of Innocence IVF, India, Oman & Africa',
+      'Founder & Director of Genestring Labs',
+      '15+ years of experience in advanced infertility treatment and reproductive genetics',
+      'Leading gynecologist and highly respected IVF specialist'
+    ],
+    awards: [
+      'Business World Healthcare 40 Under 40 Leaders in India 2022',
+      'Times 40 Under 40 Healthcare Leaders in India 2022',
+      'ET Healthworld Hall of Fame recognition as IVF Virtuoso of 2022'
+    ],
+    media: [
+      'Recognized for public health awareness around fertility, reproductive health, and women’s health',
+      'Featured in major digital interactions and podcasts reaching millions of viewers',
+      'Known for helping break the stigma surrounding infertility through education and outreach'
+    ],
+    hours: [],
+    consultation_days: 'Selected monthly schedules. Prior registration is required.',
+    institution: 'Seeds of Innocence IVF & Genestring Labs',
+    trust_banner: 'Limited slots available. Prior registration is mandatory for visiting appointments.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
@@ -761,54 +814,59 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
         <div className="doctor-card-h-info">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.35rem', gap: '0.5rem' }}>
             <div style={{ fontSize: '0.62rem', fontWeight: 800, color: 'var(--blue)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              {doc.type === 'lab-incharge' ? 'Lab Incharge' : doc.specialty}
+              {doc.type === 'lab-incharge' ? 'Lab Incharge' : doc.type === 'visiting-doctor' ? 'Visiting Doctor' : doc.specialty}
             </div>
-            {doc.avail && (
-              <span className="doctor-card-h-badge">
-                {doc.avail}
-              </span>
+            {doc.type === 'visiting-doctor' && (
+              <div style={{ background: 'var(--orange-light)', color: 'var(--orange)', padding: '0.15rem 0.4rem', borderRadius: '4px', fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', flexShrink: 0 }}>
+                Limited Visit
+              </div>
             )}
           </div>
-          
-          <h3 className="doctor-card-h-name">{doc.name}</h3>
-          <p className="doctor-card-h-qual">{doc.qual}</p>
-          
-          <div className="doctor-card-h-tags">
-            {doc.exp && (
-              <span className="doc-tag">
-                Exp: {doc.exp}
-              </span>
-            )}
-            {doc.expertise && doc.expertise.slice(0, 3).map((tag, i) => (
-              <span key={i} className="doc-tag">
-                {tag}
-              </span>
-            ))}
+          <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--heading)', marginBottom: '0.15rem', lineHeight: 1.2 }}>
+            {doc.name}
+          </h3>
+          <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginBottom: '0.3rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {doc.qual}
+          </p>
+          <p style={{ fontSize: '0.75rem', color: 'var(--body)', marginBottom: '0.5rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.4, flex: 1 }}>
+            {doc.title}
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--heading)', fontSize: '0.75rem', fontWeight: 600, marginTop: 'auto' }}>
+            <Clock size={12} className="text-blue" /> 
+            {doc.type === 'visiting-doctor' ? 'Visits once a month' : (doc.avail || 'Check availability')}
           </div>
         </div>
       </div>
 
-      {/* Bottom: Action buttons */}
+      {/* Bottom row: CTAs */}
       <div className="doctor-card-h-actions">
-        {doc.type !== 'lab-incharge' && (
-          <button
-            className="doc-btn-primary"
-            onClick={(e) => { e.stopPropagation(); onBook(); }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--blue)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}
+        {doc.type === 'visiting-doctor' ? (
+          <button 
+            className="btn btn-outline-blue" 
+            style={{ flex: 1, padding: '0.5rem', fontSize: '0.8rem', borderRadius: '8px' }}
+            onClick={(e) => { e.stopPropagation(); onProfile(); }}
           >
-            Book Appointment <span style={{ fontSize: '0.85em' }}>↗</span>
+            View Visiting Profile
+          </button>
+        ) : (
+          <button 
+            className="btn btn-outline-blue" 
+            style={{ flex: 1, padding: '0.5rem', fontSize: '0.8rem', borderRadius: '8px' }}
+            onClick={(e) => { e.stopPropagation(); onProfile(); }}
+          >
+            View Profile
           </button>
         )}
-        <button
-          className={doc.type === 'lab-incharge' ? 'doc-btn-primary' : 'doc-btn-secondary'}
-          style={doc.type === 'lab-incharge' ? { width: '100%' } : {}}
-          onClick={(e) => { e.stopPropagation(); onProfile(); }}
-          onMouseEnter={e => doc.type === 'lab-incharge' ? e.currentTarget.style.background = 'var(--blue)' : e.currentTarget.style.background = '#f8fafc'}
-          onMouseLeave={e => doc.type === 'lab-incharge' ? e.currentTarget.style.background = 'var(--navy)' : e.currentTarget.style.background = '#fff'}
-        >
-          View Profile
-        </button>
+        
+        {doc.type !== 'lab-incharge' && doc.type !== 'visiting-doctor' && (
+          <button 
+            className="btn btn-primary" 
+            style={{ flex: 1, padding: '0.5rem', fontSize: '0.8rem', borderRadius: '8px' }}
+            onClick={(e) => { e.stopPropagation(); onBook(doc); }}
+          >
+            Book Appointment
+          </button>
+        )}
       </div>
     </div>
   );
@@ -819,14 +877,17 @@ const OurDoctors = () => {
   const [search,  setSearch]  = React.useState('');
   const [filter,  setFilter]  = React.useState('All');
 
-  const goBook    = () => { navigate('/book');         window.scrollTo(0, 0); };
+  const goBook    = (doc) => { navigate('/book');      window.scrollTo(0, 0); };
   const goProfile = (id) => { navigate(`/doctors/${id}`); window.scrollTo(0, 0); };
 
-  const filtered = ALL_DOCTORS.filter(d => {
-    const matchDept   = filter === 'All' || d.dept === filter || d.specialty === filter;
-    const matchSearch = search === '' || d.name.toLowerCase().includes(search.toLowerCase()) || d.specialty.toLowerCase().includes(search.toLowerCase());
-    return matchDept && matchSearch;
-  });
+  const filteredDoctors = ALL_DOCTORS.filter(d => d.type !== 'visiting-doctor' && (filter === 'All' || d.dept === filter || d.specialty === filter));
+  const visitingDoctors = ALL_DOCTORS.filter(d => d.type === 'visiting-doctor');
+
+  const filtered = filteredDoctors.filter(d => 
+    d.name.toLowerCase().includes(search.toLowerCase()) ||
+    d.specialty.toLowerCase().includes(search.toLowerCase()) ||
+    d.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh', paddingBottom: '4rem' }}>
@@ -935,6 +996,29 @@ const OurDoctors = () => {
           )}
         </div>
       </section>
+
+      {/* ── Visiting Doctors ── */}
+      {visitingDoctors.length > 0 && (
+        <section className="visiting-doc-listing" style={{ padding: '0 0 6rem' }}>
+          <div className="container" style={{ maxWidth: '1400px' }}>
+            <div className="doc-listing-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+               <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
+                  <div style={{ height: '2px', width: '30px', background: 'var(--orange)', margin: '0 auto 8px' }}></div>
+                </div>
+              <h2 style={{ fontSize: '2.2rem', color: 'var(--navy)', marginBottom: '0.75rem' }}>Visiting Doctors</h2>
+              <p style={{ color: 'var(--body)', fontSize: '1rem', maxWidth: '600px', margin: '0 auto' }}>
+                Specialist doctors available on selected monthly visits. Prior registration is required due to limited slots.
+              </p>
+            </div>
+
+            <div className="doc-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', justifyContent: 'center' }}>
+              {visitingDoctors.map(doc => (
+                <DoctorCard key={doc.id} doc={doc} onProfile={() => goProfile(doc.id)} onBook={goBook} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Why Choose Our Doctors ── */}
       <section className="doc-why-section" style={{ padding: '2rem 0 5rem' }}>

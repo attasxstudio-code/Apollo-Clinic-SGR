@@ -31,8 +31,12 @@ const Home = () => {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = useState(null);
 
-  const servicesRef = useRef(null);
-  const doctorsRef = useRef(null);
+  const servicesRef = React.useRef(null);
+  const doctorsRef = React.useRef(null);
+  const visitingDoctorsRef = React.useRef(null);
+
+  const mainDoctors = ALL_DOCTORS.filter(d => d.type !== 'visiting-doctor');
+  const visitingDoctors = ALL_DOCTORS.filter(d => d.type === 'visiting-doctor');
   const reviewsRef = useRef(null);
 
   const scrollContainer = (ref, direction) => {
@@ -192,7 +196,7 @@ const Home = () => {
             className="carousel-container no-scrollbar"
             style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
           >
-            {ALL_DOCTORS.map((d, i) => (
+            {mainDoctors.map((d, i) => (
               <div key={i} className="carousel-card-wrap">
                 <DoctorCard doc={d} onProfile={() => goTo(`/doctors/${d.id}`)} onBook={() => { goTo('/book'); window.scrollTo(0,0); }} />
               </div>
@@ -208,6 +212,55 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ─── VISITING DOCTORS ─── */}
+      {visitingDoctors.length > 0 && (
+        <section style={{ padding: '4rem 0 6rem', background: '#f8fafc' }}>
+          <div className="container" style={{ maxWidth: '1400px', position: 'relative' }}>
+            
+            <div className="section-header flex-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
+              <div>
+                <div style={{ color: 'var(--orange)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                  PREMIUM CARE
+                </div>
+                <h2 style={{ fontSize: '2.5rem', color: 'var(--heading)', margin: 0 }}>
+                  Visiting Specialists
+                </h2>
+                <p style={{ color: 'var(--body)', marginTop: '0.5rem', fontSize: '1.05rem', maxWidth: '600px' }}>
+                  Exclusive consultations with renowned specialists visiting Apollo Clinic Srinagar. Limited slots available.
+                </p>
+              </div>
+              <button className="btn btn-outline-blue btn-sm m-hide" onClick={() => goTo('/doctors')} style={{ borderRadius: '8px' }}>
+                View All Doctors
+              </button>
+            </div>
+
+            <div 
+              ref={visitingDoctorsRef}
+              className="carousel-container no-scrollbar"
+              style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
+            >
+              {visitingDoctors.map((d, i) => (
+                <div key={i} className="carousel-card-wrap">
+                  <DoctorCard doc={d} onProfile={() => goTo(`/doctors/${d.id}`)} onBook={() => { goTo('/book'); window.scrollTo(0,0); }} />
+                </div>
+              ))}
+            </div>
+            
+            {/* Scroll Arrows only if there are many, but good to have anyway */}
+            {visitingDoctors.length > 3 && (
+              <>
+                <div className="scroll-arrow" onClick={() => scrollContainer(visitingDoctorsRef, 'left')} style={{ position: 'absolute', left: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+                  <ChevronLeft size={24} color="var(--blue)" />
+                </div>
+                <div className="scroll-arrow" onClick={() => scrollContainer(visitingDoctorsRef, 'right')} style={{ position: 'absolute', right: '-24px', top: '55%', transform: 'translateY(-50%)', width: '48px', height: '48px', background: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', cursor: 'pointer', zIndex: 10 }}>
+                  <ChevronRight size={24} color="var(--blue)" />
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* ─── ADMINISTRATOR MESSAGE ─── */}
       <AdministratorMessageSection />
