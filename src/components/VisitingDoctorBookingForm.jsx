@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, CheckCircle, Phone, User, AlertCircle } from 'lucide-react';
-import { getDoctorSettings, saveAppointment, markWhatsappRedirected } from '../services/visitingDoctorAppointments';
+import { getDoctorSettings } from '../services/visitingDoctorAppointments';
+import { appointmentService } from '../services/appointmentService';
 import { WHATSAPP_NUMBER } from '../config/contact';
 
 const VisitingDoctorBookingForm = ({ doc }) => {
@@ -38,12 +39,15 @@ const VisitingDoctorBookingForm = ({ doc }) => {
     setSubmitting(true);
 
     try {
-      const appt = saveAppointment({
+      appointmentService.saveVisitingAppointment({
         doctorSlug: doc.id,
         doctorName: doc.name,
         patientName: name.trim(),
         phone: phone.trim(),
         bookingCycle,
+        bookingMonthLabel: bookingCycle === 'next-month' ? 'Next Month' : 'Current Month'
+      }).then(appt => {
+         // Optionally update something with appt.id if needed
       });
 
       // Mark success before WhatsApp redirect
@@ -58,7 +62,8 @@ const VisitingDoctorBookingForm = ({ doc }) => {
       const msg = `Hello Apollo Clinic Srinagar, I want to book a visiting appointment.\n\nDoctor: ${doc.name}\nPatient Name: ${name.trim()}\nPhone Number: ${phone.trim()}\nAppointment Type: Visiting Doctor Appointment\nVisit Schedule: ${cycleLabel}\n\nPlease contact me to confirm my spot.`;
 
       // Update whatsapp status
-      markWhatsappRedirected(appt.id);
+      // WhatsApp redirection is handled by the browser redirect below
+      // markWhatsappRedirected(appt.id);
 
       // Open WhatsApp after short delay so user sees success
       setTimeout(() => {

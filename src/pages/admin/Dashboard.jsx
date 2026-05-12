@@ -16,6 +16,7 @@ import {
   getAllSettings as getVisitingSettings,
   saveDoctorSettings as saveVisitingDrSettings,
 } from '../../services/visitingDoctorAppointments';
+import { appointmentService } from '../../services/appointmentService';
 
 /* ══════════════════════════════════════════
    STATUS CONFIG
@@ -189,63 +190,83 @@ const Column = ({ title, items, status, onAdvance, onDelete, isCheckup }) => {
 /* ══════════════════════════════════════════
    SECTION: Appointments or Checkups
 ══════════════════════════════════════════ */
-const Section = ({ storageKey, label, isCheckup, icon }) => {
+const Section = ({ type, label, isCheckup, icon }) => {
   const [leads,     setLeads]     = useState([]);
+  const [loading,   setLoading]   = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState('All');
   const [newLead,   setNewLead]   = useState({ name:'', phone:'', date:'', time:'', department:'', mainTestType:'', specificTest:'', checkupType:'', status:'Pending' });
 
   useEffect(() => { loadLeads(); }, []);
 
-  const loadLeads = () => {
-    const saved = localStorage.getItem(storageKey);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        // Sanitize all string fields when reading from localStorage (prevent stored XSS)
-        const sanitized = Array.isArray(parsed) ? parsed.map(sanitizeObject) : [];
-        setLeads(sanitized);
-      } catch {
-        // Corrupted data — reset
-        setLeads([]);
-        localStorage.setItem(storageKey, JSON.stringify([]));
-      }
-    } else {
+  const loadLeads = async () => {
+    setLoading(true);
+    try {
+      const all = await appointmentService.getAllAppointments();
+      // Filter by type ('general', 'checkup', 'visiting')
+      const filtered = all.filter(l => l.type === type);
+      setLeads(filtered);
+    } catch (err) {
+      console.error('Failed to load leads from Supabase:', err);
       setLeads([]);
-      localStorage.setItem(storageKey, JSON.stringify([]));
+    } finally {
+      setLoading(false);
     }
   };
 
-  const save = (updated) => {
-    setLeads(updated);
-    localStorage.setItem(storageKey, JSON.stringify(updated));
-  };
-
-  const advanceStatus = (id) => {
+  const advanceStatus = async (id) => {
     const order = ['Pending','Contacted','Confirmed'];
-    save(leads.map(l => l.id === id ? {...l, status: order[(order.indexOf(l.status)+1) % order.length]} : l));
+    const lead = leads.find(l => l.id === id);
+    if (!lead) return;
+    const nextStatus = order[(order.indexOf(lead.status) + 1) % order.length];
+    try {
+      await appointmentService.updateAppointment(id, { status: nextStatus });
+      setLeads(leads.map(l => l.id === id ? { ...l, status: nextStatus } : l));
+    } catch (err) {
+      console.error('Failed to update appointment status:', err);
+    }
   };
 
-  const deleteLead = (id) => {
-    if (window.confirm(`Delete this ${isCheckup ? 'checkup' : 'appointment'} entry?`)) save(leads.filter(l => l.id !== id));
+  const deleteLead = async (id) => {
+    if (!window.confirm(`Delete this ${isCheckup ? 'checkup' : 'appointment'} entry?`)) return;
+    try {
+      await appointmentService.deleteAppointment(id);
+      setLeads(leads.filter(l => l.id !== id));
+    } catch (err) {
+      console.error('Failed to delete appointment:', err);
+    }
   };
 
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
-    save([{
-      ...newLead,
-      id: Date.now(),
-      createdAt: new Date().toISOString(),
-      source: 'Admin Manual Entry',
-    }, ...leads]);
-    setShowModal(false);
-    setNewLead({ name:'', phone:'', date:'', time:'', department:'', mainTestType:'', specificTest:'', checkupType:'', status:'Pending' });
+    try {
+      let saved;
+      if (isCheckup) {
+        saved = await appointmentService.saveCheckup({
+          name: newLead.name, phone: newLead.phone,
+          date: newLead.date, department: newLead.mainTestType || newLead.department,
+          notes: newLead.notes || '',
+        });
+      } else {
+        saved = await appointmentService.saveLead({
+          name: newLead.name, phone: newLead.phone,
+          date: newLead.date, department: newLead.department,
+          notes: newLead.notes || '',
+          source: 'Admin Manual Entry',
+        });
+      }
+      if (saved) setLeads([saved, ...leads]);
+      setShowModal(false);
+      setNewLead({ name:'', phone:'', date:'', time:'', department:'', mainTestType:'', specificTest:'', checkupType:'', status:'Pending' });
+    } catch (err) {
+      console.error('Failed to save manual entry:', err);
+    }
   };
 
   const pending   = leads.filter(l => l.status === 'Pending');
   const contacted = leads.filter(l => l.status === 'Contacted');
   const confirmed = leads.filter(l => l.status === 'Confirmed');
-  const todayCount = leads.filter(l => new Date(l.createdAt).toDateString() === new Date().toDateString()).length;
+  const todayCount = leads.filter(l => new Date(l.created_at || l.createdAt).toDateString() === new Date().toDateString()).length;
 
   const TABS = ['All','Pending','Contacted','Confirmed'];
   const filteredByTab = { All:leads, Pending:pending, Contacted:contacted, Confirmed:confirmed };
@@ -276,6 +297,13 @@ const Section = ({ storageKey, label, isCheckup, icon }) => {
       tests: ['Uroflowmetry']
     }
   ];
+
+  if (loading) return (
+    <div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'200px', gap:'0.75rem', color:'#64748b' }}>
+      <Loader2 size={24} style={{ animation:'spin 1s linear infinite' }} />
+      <span style={{ fontWeight:600, fontSize:'0.9rem' }}>Loading from database…</span>
+    </div>
+  );
 
   return (
     <div>
@@ -1544,7 +1572,7 @@ const Dashboard = () => {
         {activeSection === 'appointments' && (
           <Section
             key="appointments"
-            storageKey="clinic_leads"
+            type="general"
             label="Appointments"
             isCheckup={false}
             icon={<Stethoscope size={16} color="#0369a1"/>}
@@ -1555,7 +1583,7 @@ const Dashboard = () => {
         {activeSection === 'checkups' && (
           <Section
             key="checkups"
-            storageKey="clinic_checkups"
+            type="checkup"
             label="Lab Tests"
             isCheckup={true}
             icon={<FlaskConical size={16} color="#059669"/>}

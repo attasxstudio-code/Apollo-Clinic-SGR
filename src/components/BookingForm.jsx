@@ -6,6 +6,7 @@ import {
   sanitizeInput, isValidName, isValidPhone, isValidDate, isValidMessage,
   isBot, isTooFast, isDuplicateSubmission, logSuspicious,
 } from '../utils/security';
+import { appointmentService } from '../services/appointmentService';
 
 const DEPARTMENTS = [
   'Orthopaedics',
@@ -32,21 +33,19 @@ const BookingForm = () => {
   const [error,     setError]     = React.useState('');
   const mountTime = React.useRef(Date.now());
 
-  // ── Save lead to localStorage so it appears in the Admin Dashboard ──
-  const saveLeadToAdmin = ({ name, phone, date, message, department }) => {
-    const existing = JSON.parse(localStorage.getItem('clinic_leads') || '[]');
-    const newLead = {
-      id:        Date.now(),
-      name:      sanitizeInput(name, 100),
-      phone:     sanitizeInput(phone, 20),
-      date:      sanitizeInput(date, 10),
-      department: sanitizeInput(department, 100),
-      notes:     sanitizeInput(message, 1000),
-      status:    'Pending',
-      createdAt: new Date().toISOString(),
-      source:    'Website Booking Form',
-    };
-    localStorage.setItem('clinic_leads', JSON.stringify([newLead, ...existing]));
+  // ── Save lead to Supabase so it appears in the Admin Dashboard ──
+  const saveLeadToAdmin = async ({ name, phone, date, message, department }) => {
+    try {
+      await appointmentService.saveLead({
+        name: sanitizeInput(name, 100),
+        phone: sanitizeInput(phone, 20),
+        date: sanitizeInput(date, 10),
+        department: sanitizeInput(department, 100),
+        notes: sanitizeInput(message, 1000),
+      });
+    } catch (err) {
+      console.error('Failed to save lead to Supabase:', err);
+    }
   };
 
   function sendToWhatsApp(e) {

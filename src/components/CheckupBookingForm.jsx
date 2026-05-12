@@ -6,6 +6,7 @@ import {
   sanitizeInput, isValidName, isValidPhone, isValidDate, isValidMessage,
   isBot, isTooFast, isDuplicateSubmission, logSuspicious,
 } from '../utils/security';
+import { appointmentService } from '../services/appointmentService';
 
 const RATE_KEY = 'checkup_form';
 
@@ -46,23 +47,19 @@ const CheckupBookingForm = () => {
   const [time, setTime] = React.useState('');
   const mountTime = React.useRef(Date.now());
 
-  /* ── Save to localStorage so it shows in Admin → Checkups ── */
-  const saveCheckupToAdmin = ({ name, phone, mainTestType, specificTest, date, time, notes }) => {
-    const existing = JSON.parse(localStorage.getItem('clinic_checkups') || '[]');
-    const newEntry = {
-      id:         Date.now(),
-      name:       sanitizeInput(name, 100),
-      phone:      sanitizeInput(phone, 20),
-      mainTestType: sanitizeInput(mainTestType, 100),
-      specificTest: sanitizeInput(specificTest, 100),
-      date:       sanitizeInput(date, 10),
-      time:       sanitizeInput(time, 10),
-      notes:      sanitizeInput(notes, 1000),
-      status:     'Pending',
-      createdAt:  new Date().toISOString(),
-      source:     'Website Lab Form',
-    };
-    localStorage.setItem('clinic_checkups', JSON.stringify([newEntry, ...existing]));
+  /* ── Save to Supabase so it shows in Admin → Checkups ── */
+  const saveCheckupToAdmin = async ({ name, phone, mainTestType, specificTest, date, time, notes }) => {
+    try {
+      await appointmentService.saveCheckup({
+        name: sanitizeInput(name, 100),
+        phone: sanitizeInput(phone, 20),
+        date: sanitizeInput(date, 10),
+        department: sanitizeInput(mainTestType, 100), // Map category to department
+        notes: `Test: ${sanitizeInput(specificTest, 100)} | Time: ${sanitizeInput(time, 10)} | ${sanitizeInput(notes, 1000)}`,
+      });
+    } catch (err) {
+      console.error('Failed to save checkup to Supabase:', err);
+    }
   };
 
   function handleSubmit(e) {
