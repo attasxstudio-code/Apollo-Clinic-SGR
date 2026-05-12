@@ -352,7 +352,7 @@ const DoctorProfile = () => {
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <HeartPulse size={20} />
                 </div>
-                <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>Specialized Treatments</h2>
+                <h2 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: 0 }}>{doc.specializedCareHeading || 'Specialized Treatments'}</h2>
               </div>
               <div className="dp-treatments-grid">
                 {doc.specializedCare.map((care, i) => (

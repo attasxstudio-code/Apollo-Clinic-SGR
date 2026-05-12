@@ -760,6 +760,54 @@ export const ALL_DOCTORS = [
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-anindya-mukherjee',
+    image: '/Doctor-Anindya-Mukherjee.png',
+    name: 'Dr Anindya Mukherjee',
+    title: 'Consultant Medical Oncologist',
+    specialty: 'Medical Oncology',
+    specialization: 'Solid Tumors, Hematologic Malignancies, Chemotherapy, Immunotherapy, Targeted Therapy, Precision Oncology',
+    dept: 'Medical Oncology',
+    qual: 'MBBS, MD/DNB Radiation Oncology, DrNB Medical Oncology, ECMO',
+    exp: '12+ years',
+    type: 'visiting-doctor',
+    avail: 'Once a month',
+    languages: [],
+    bio: `Dr Anindya Mukherjee is a highly competent and research-driven Medical Oncologist with over 12 years of experience in cancer care. He has strong academic and clinical training from leading cancer institutes and has worked extensively in the management of solid tumors and hematologic malignancies.\n\nHis clinical approach combines chemotherapy, immunotherapy, targeted therapy, precision oncology, and evidence-based treatment planning. Dr Mukherjee focuses on personalized cancer care, multidisciplinary decision-making, and compassionate support for patients and families throughout the treatment journey.`,
+    education: [
+      'MBBS',
+      'MD/DNB Radiation Oncology',
+      'DrNB Medical Oncology',
+      'ECMO'
+    ],
+    experience: [
+      'Consultant, Rajiv Gandhi Cancer Institute and Research Centre, New Delhi',
+      'Consultant, Meherbai Tata Memorial Hospital, Jamshedpur',
+      'Assistant Professor, Malabar Cancer Centre, Kerala',
+      '12+ years of experience in oncology care'
+    ],
+    expertise: [
+      'Medical oncology consultation', 'Breast cancer', 'Lung cancer', 'Gastrointestinal cancer', 'Head and neck cancer', 'Genitourinary cancer', 'Brain tumors', 'Bone tumors and sarcoma', 'Lymphoma management', 'Leukemia management', 'Chemotherapy', 'Immunotherapy', 'Targeted therapy', 'Precision and molecular oncology', 'Multidisciplinary cancer care', 'Palliative cancer care'
+    ],
+    specializedCareHeading: 'Specialization & Expertise',
+    specializedCare: [
+      { name: 'Solid Tumors', desc: 'Breast, lung, gastrointestinal, head and neck, genitourinary cancer.', icon: 'Activity' },
+      { name: 'Complex Tumors', desc: 'Brain tumor, bone tumor and sarcoma management.', icon: 'Activity' },
+      { name: 'Hematologic Malignancies', desc: 'Lymphoma and leukemia management.', icon: 'Shield' },
+      { name: 'Advanced Therapy', desc: 'Chemotherapy, immunotherapy and targeted therapy.', icon: 'Activity' },
+      { name: 'Precision Oncology', desc: 'Precision and molecular oncology.', icon: 'Shield' },
+      { name: 'Comprehensive Care', desc: 'Multidisciplinary and palliative cancer care.', icon: 'Heart' }
+    ],
+    awards: [],
+    media: [],
+    hours: [],
+    consultation_days: 'Selected monthly schedules. Prior registration is required.',
+    institution: 'Apollo Clinic Srinagar',
+    trust_banner: 'Limited slots available. Prior registration is mandatory for visiting appointments.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
