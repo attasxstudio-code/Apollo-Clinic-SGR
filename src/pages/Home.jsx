@@ -19,12 +19,11 @@ import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, CLINIC_EMAIL, WORKING_HOURS } from '
 const MAPS_EMBED = 'https://maps.google.com/maps?q=34.0806043,74.7988594&hl=en&z=17&output=embed&iwloc=near';
 
 const REVIEWS = [
-  { quote: "Excellent care and professional staff. The doctors explained everything clearly and patiently.", author: "Anjali S.", img: "/images/patients/anjali.webp" },
-  { quote: "Very clean and well-organized clinic. Got my reports quickly and the staff was very helpful.", author: "Rahul K.", img: "/images/patients/rahul.webp" },
-  { quote: "I highly recommend Apollo Clinic for anyone looking for quality healthcare and genuine care.", author: "Meena T.", img: "/images/patients/meena.webp" },
-  { quote: "The pediatric department is wonderful. My kids feel very comfortable with the doctors here.", author: "Sunita M.", img: "/images/patients/anjali.webp" },
-  { quote: "State-of-the-art facilities and a very smooth booking process. Saved me a lot of time.", author: "Vikram R.", img: "/images/patients/rahul.webp" },
-  { quote: "Their preventive health checkups are very comprehensive. Great value for money.", author: "Neha P.", img: "/images/patients/meena.webp" },
+  { quote: "Excellent experience. The clinic was clean and hygienic, the facilities were good, the wait time was short, and the staff provided great customer service.", author: "Arjuman" },
+  { quote: "I had a great experience at Apollo Clinic. The place was clean, the staff was friendly and helpful, and booking an appointment was simple and quick.", author: "Arsheen Mehrajudin" },
+  { quote: "Apollo Clinic is one of the best clinics in Kashmir. The patient support and care are excellent.", author: "Mrs Pakiza" },
+  { quote: "No doubt, Apollo Clinic is one of the best clinics in Kashmir, with good facilities, caring staff, and excellent treatment.", author: "GAGAN" },
+  { quote: "The doctor listened actively, gave practical suggestions, and helped me feel supported during treatment.", author: "Aazu" },
 ];
 
 const Home = () => {
@@ -344,14 +343,14 @@ const Home = () => {
         <div className="container" style={{ maxWidth: '1400px', position: 'relative' }}>
           <div className="section-header m-stack" style={{ textAlign: 'center', marginBottom: '2rem', position: 'relative' }}>
             <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-              PATIENT FEEDBACK
+              PATIENT REVIEWS
             </div>
             <h2 style={{ fontSize: '2.5rem', color: 'var(--heading)', margin: 0, marginBottom: '0.75rem' }}>
-              Trusted by thousands of patients and families.
+              Real experiences shared by our patients.
             </h2>
-            <button className="view-all-link" onClick={() => goTo('/about')} style={{ color: 'var(--blue)', fontWeight: 600, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
-              View All Reviews <ArrowRight size={16} />
-            </button>
+            <p style={{ fontSize: '0.95rem', color: 'var(--body)', maxWidth: 560, margin: '0 auto' }}>
+              Real experiences shared by patients who visited Apollo Clinic Srinagar.
+            </p>
           </div>
 
           <div 
@@ -365,9 +364,11 @@ const Home = () => {
                   {[1,2,3,4,5].map(star => <Star key={star} size={18} fill="currentColor" />)}
                 </div>
                 <p style={{ fontSize: '0.95rem', color: 'var(--body)', marginBottom: '1.5rem', flex: 1, fontStyle: 'italic', lineHeight: 1.6 }}>"{r.quote}"</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <div style={{ width: 38, height: 38, borderRadius: '50%', background: 'linear-gradient(135deg,#0d52c0,#10b981)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.85rem', flexShrink: 0 }}>
+                    {r.author.charAt(0).toUpperCase()}
+                  </div>
                   <span style={{ fontWeight: 600, color: 'var(--heading)', fontSize: '0.9rem' }}>— {r.author}</span>
-                  <img src={r.img} alt={r.author} loading="lazy" decoding="async" width="40" height="40" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} />
                 </div>
               </div>
             ))}
