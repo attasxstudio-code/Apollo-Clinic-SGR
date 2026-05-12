@@ -11,6 +11,7 @@ import {
 import { SPECIALTIES } from './Services';
 import { ALL_DOCTORS, DoctorCard } from './OurDoctors';
 import { DIAGNOSTICS_CATEGORIES } from './Diagnostics';
+import AdministratorMessageSection from '../components/AdministratorMessageSection';
 
 import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, CLINIC_EMAIL, WORKING_HOURS } from '../config/contact';
 
@@ -207,6 +208,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ─── ADMINISTRATOR MESSAGE ─── */}
+      <AdministratorMessageSection />
 
       {/* ─── LAB & DIAGNOSTICS ─── */}
       <section style={{ padding: '6rem 0', background: '#f8fafc' }}>

@@ -2823,3 +2823,20 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     padding: 0.4rem 0.85rem !important;
   }
 }
+
+/* ─────────────────────────────────────────
+   ADMINISTRATOR MESSAGE SECTION
+───────────────────────────────────────── */
+.admin-message-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .admin-message-grid {
+    grid-template-columns: 4fr 6fr; /* 40% and 60% approx */
+    gap: 4rem;
+  }
+}
