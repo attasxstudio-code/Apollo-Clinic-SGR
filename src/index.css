@@ -481,6 +481,9 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   color: var(--muted);
 }
 @media (max-width: 768px) {
+  .footer {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 480px) {
