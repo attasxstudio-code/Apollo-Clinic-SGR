@@ -93,12 +93,15 @@ const BookingForm = () => {
     // Record attempt
     recordAttempt(RATE_KEY);
 
-    // 1️⃣  Save to admin dashboard
+    // Create WhatsApp text immediately
+    const text = `New Appointment Request — Apollo Clinic Srinagar:\nName: ${name}\nPhone: ${phone}\nDepartment: ${department || 'Not specified'}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
+    const waUrl = waLink(text);
+
+    // 1️⃣ Save to admin dashboard (Fire-and-forget to avoid blocking redirect)
     saveLeadToAdmin({ name, phone, date, message, department });
 
-    // 2️⃣  Open WhatsApp
-    const text = `New Appointment Request — Apollo Clinic Srinagar:\nName: ${name}\nPhone: ${phone}\nDepartment: ${department || 'Not specified'}\nDate: ${date}\nMessage: ${message || 'No additional message.'}`;
-    window.open(waLink(text), '_blank');
+    // 2️⃣ Open WhatsApp immediately
+    window.open(waUrl, '_blank');
 
     // 3️⃣  Show brief success state then reset
     setSubmitted(true);

@@ -190,29 +190,19 @@ const Column = ({ title, items, status, onAdvance, onDelete, isCheckup }) => {
 /* ══════════════════════════════════════════
    SECTION: Appointments or Checkups
 ══════════════════════════════════════════ */
-const Section = ({ type, label, isCheckup, icon }) => {
-  const [leads,     setLeads]     = useState([]);
-  const [loading,   setLoading]   = useState(true);
+const Section = ({ type, label, isCheckup, icon, initialData = [], refreshData }) => {
+  const [leads, setLeads] = useState(initialData);
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState('All');
-  const [newLead,   setNewLead]   = useState({ name:'', phone:'', date:'', time:'', department:'', mainTestType:'', specificTest:'', checkupType:'', status:'Pending' });
+  const [newLead, setNewLead] = useState({
+    name: '', phone: '', date: '', time: '', department: '',
+    mainTestType: '', specificTest: '', checkupType: '', status: 'Pending'
+  });
 
-  useEffect(() => { loadLeads(); }, []);
-
-  const loadLeads = async () => {
-    setLoading(true);
-    try {
-      const all = await appointmentService.getAllAppointments();
-      // Filter by type ('general', 'checkup', 'visiting')
-      const filtered = all.filter(l => l.type === type);
-      setLeads(filtered);
-    } catch (err) {
-      console.error('Failed to load leads from Supabase:', err);
-      setLeads([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Sync with parent data if it changes
+  useEffect(() => {
+    setLeads(initialData);
+  }, [initialData]);
 
   const advanceStatus = async (id) => {
     const order = ['Pending','Contacted','Confirmed'];
@@ -255,7 +245,10 @@ const Section = ({ type, label, isCheckup, icon }) => {
           source: 'Admin Manual Entry',
         });
       }
-      if (saved) setLeads([saved, ...leads]);
+      if (saved) {
+        if (refreshData) refreshData();
+        else setLeads([saved, ...leads]);
+      }
       setShowModal(false);
       setNewLead({ name:'', phone:'', date:'', time:'', department:'', mainTestType:'', specificTest:'', checkupType:'', status:'Pending' });
     } catch (err) {
@@ -297,13 +290,6 @@ const Section = ({ type, label, isCheckup, icon }) => {
       tests: ['Uroflowmetry']
     }
   ];
-
-  if (loading) return (
-    <div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'200px', gap:'0.75rem', color:'#64748b' }}>
-      <Loader2 size={24} style={{ animation:'spin 1s linear infinite' }} />
-      <span style={{ fontWeight:600, fontSize:'0.9rem' }}>Loading from database…</span>
-    </div>
-  );
 
   return (
     <div>
@@ -1464,9 +1450,24 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { admin, logout } = useAuth();
   const [activeSection, setActiveSection] = useState('appointments');
+  const [allAppointments, setAllAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchAllData = async () => {
+    setLoading(true);
+    try {
+      const data = await appointmentService.getAllAppointments();
+      setAllAppointments(data || []);
+    } catch (err) {
+      console.error('Dashboard load failed:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!admin) { navigate('/admin/login'); }
+    else { fetchAllData(); }
   }, [admin]);
 
   /* Seed legacy clinic_leads if it's empty */
@@ -1568,36 +1569,50 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Appointments section */}
-        {activeSection === 'appointments' && (
-          <Section
-            key="appointments"
-            type="general"
-            label="Appointments"
-            isCheckup={false}
-            icon={<Stethoscope size={16} color="#0369a1"/>}
-          />
-        )}
+        {loading ? (
+          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:'400px', gap:'1rem', color:'#64748b' }}>
+            <Loader2 size={40} style={{ animation:'spin 1.5s linear infinite', color:'#0ea5e9' }} />
+            <div style={{ fontWeight:700, fontSize:'1.1rem' }}>Loading Dashboard Data...</div>
+            <div style={{ fontSize:'0.85rem', opacity:0.7 }}>Connecting to secure database</div>
+          </div>
+        ) : (
+          <>
+            {/* Appointments section */}
+            {activeSection === 'appointments' && (
+              <Section
+                key="appointments"
+                type="general"
+                label="Appointments"
+                initialData={allAppointments.filter(a => a.type === 'general')}
+                refreshData={fetchAllData}
+                isCheckup={false}
+                icon={<Stethoscope size={16} color="#0369a1"/>}
+              />
+            )}
 
-        {/* Checkups section */}
-        {activeSection === 'checkups' && (
-          <Section
-            key="checkups"
-            type="checkup"
-            label="Lab Tests"
-            isCheckup={true}
-            icon={<FlaskConical size={16} color="#059669"/>}
-          />
-        )}
+            {/* Checkups section */}
+            {activeSection === 'checkups' && (
+              <Section
+                key="checkups"
+                type="checkup"
+                label="Lab Tests"
+                initialData={allAppointments.filter(a => a.type === 'checkup')}
+                refreshData={fetchAllData}
+                isCheckup={true}
+                icon={<FlaskConical size={16} color="#059669"/>}
+              />
+            )}
 
-        {/* Test Reports section */}
-        {activeSection === 'reports' && (
-          <TestReportsSection />
-        )}
+            {/* Test Reports section */}
+            {activeSection === 'reports' && (
+              <TestReportsSection />
+            )}
 
-        {/* Visiting Doctors section */}
-        {activeSection === 'visiting' && (
-          <VisitingAppointmentsSection />
+            {/* Visiting Doctors section */}
+            {activeSection === 'visiting' && (
+              <VisitingAppointmentsSection />
+            )}
+          </>
         )}
       </div>
 

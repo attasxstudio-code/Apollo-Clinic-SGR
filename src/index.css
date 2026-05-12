@@ -2896,3 +2896,8 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
 img {
   content-visibility: auto;
 }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

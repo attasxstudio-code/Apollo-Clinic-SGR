@@ -88,8 +88,8 @@ const CheckupBookingForm = () => {
     if (!isValidMessage(notes, 1000))   return setError('Notes are too long (max 1000 characters).');
 
     recordAttempt(RATE_KEY);
-    saveCheckupToAdmin({ name, phone, mainTestType, specificTest, date, time, notes });
-
+    
+    // Create WhatsApp text immediately
     const text = [
       `Hello Apollo Clinic, I want to book a lab test.`,
       ``,
@@ -104,10 +104,16 @@ const CheckupBookingForm = () => {
       `Please confirm availability.`
     ].filter(line => line !== null).join('\n');
 
-    window.open(waLink(text), '_blank');
+    const waUrl = waLink(text);
+
+    // Fire-and-forget save to Supabase (don't let it block the window.open)
+    saveCheckupToAdmin({ name, phone, mainTestType, specificTest, date, time, notes });
+
+    // Open WhatsApp immediately to avoid browser pop-up blockers
+    window.open(waUrl, '_blank');
 
     setSubmitted(true);
-    e.target.reset();
+    if (e.target && typeof e.target.reset === 'function') e.target.reset();
     setMainTestType('');
     setSpecificTest('');
     setDate('');
