@@ -60,7 +60,7 @@ const Navbar = () => {
               zIndex: 0,
             }} />
             <img 
-              src="/logo.jpg" 
+              src="/images/ui/logo.webp" 
               alt="Apollo Clinic Srinagar Logo" 
               style={{ 
                 height: '44px', 

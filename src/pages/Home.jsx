@@ -19,12 +19,12 @@ import { PRIMARY_PHONE, PRIMARY_PHONE_HREF, CLINIC_EMAIL, WORKING_HOURS } from '
 const MAPS_EMBED = 'https://maps.google.com/maps?q=34.0806043,74.7988594&hl=en&z=17&output=embed&iwloc=near';
 
 const REVIEWS = [
-  { quote: "Excellent care and professional staff. The doctors explained everything clearly and patiently.", author: "Anjali S.", img: "/patient-anjali.png" },
-  { quote: "Very clean and well-organized clinic. Got my reports quickly and the staff was very helpful.", author: "Rahul K.", img: "/patient-rahul.png" },
-  { quote: "I highly recommend Apollo Clinic for anyone looking for quality healthcare and genuine care.", author: "Meena T.", img: "/patient-meena.png" },
-  { quote: "The pediatric department is wonderful. My kids feel very comfortable with the doctors here.", author: "Sunita M.", img: "/patient-anjali.png" },
-  { quote: "State-of-the-art facilities and a very smooth booking process. Saved me a lot of time.", author: "Vikram R.", img: "/patient-rahul.png" },
-  { quote: "Their preventive health checkups are very comprehensive. Great value for money.", author: "Neha P.", img: "/patient-meena.png" },
+  { quote: "Excellent care and professional staff. The doctors explained everything clearly and patiently.", author: "Anjali S.", img: "/images/patients/anjali.webp" },
+  { quote: "Very clean and well-organized clinic. Got my reports quickly and the staff was very helpful.", author: "Rahul K.", img: "/images/patients/rahul.webp" },
+  { quote: "I highly recommend Apollo Clinic for anyone looking for quality healthcare and genuine care.", author: "Meena T.", img: "/images/patients/meena.webp" },
+  { quote: "The pediatric department is wonderful. My kids feel very comfortable with the doctors here.", author: "Sunita M.", img: "/images/patients/anjali.webp" },
+  { quote: "State-of-the-art facilities and a very smooth booking process. Saved me a lot of time.", author: "Vikram R.", img: "/images/patients/rahul.webp" },
+  { quote: "Their preventive health checkups are very comprehensive. Great value for money.", author: "Neha P.", img: "/images/patients/meena.webp" },
 ];
 
 const Home = () => {
@@ -98,7 +98,7 @@ const Home = () => {
 
           {/* Hero Image */}
           <div className="hero-image" style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-            <img src="/APOLLO-receptionist-image.png" alt="Apollo Clinic Srinagar Interior" style={{ width: '100%', height: 'auto', display: 'block' }} />
+            <img src="/images/clinic/receptionist.webp" alt="Apollo Clinic Srinagar Interior" style={{ width: '100%', height: 'auto', display: 'block' }} fetchPriority="high" decoding="async" width="1200" height="800" />
           </div>
         </div>
     </section>
@@ -110,16 +110,16 @@ const Home = () => {
             {/* Left Column - 2 smaller stacked images */}
             <div className="showcase-col">
               <div className="showcase-img-wrap showcase-img-small">
-                <img src="/Apollo-real-interior-1.png" alt="Apollo Clinic Interior" loading="lazy" />
+                <img src="/images/clinic/interior-1.webp" alt="Apollo Clinic Interior" loading="lazy" decoding="async" />
               </div>
               <div className="showcase-img-wrap showcase-img-small">
-                <img src="/Apollo-real-interior-2.png" alt="Apollo Clinic Interior" loading="lazy" />
+                <img src="/images/clinic/interior-2.webp" alt="Apollo Clinic Interior" loading="lazy" decoding="async" />
               </div>
             </div>
             
             {/* Right Column - 1 large tall image */}
             <div className="showcase-img-wrap showcase-img-tall">
-              <img src="/Apollo-real-exterior.jpeg" alt="Apollo Clinic Exterior" loading="lazy" />
+              <img src="/images/clinic/exterior.webp" alt="Apollo Clinic Exterior" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -314,7 +314,7 @@ const Home = () => {
                 <p style={{ fontSize: '0.95rem', color: 'var(--body)', marginBottom: '1.5rem', flex: 1, fontStyle: 'italic', lineHeight: 1.6 }}>"{r.quote}"</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontWeight: 600, color: 'var(--heading)', fontSize: '0.9rem' }}>— {r.author}</span>
-                  <img src={r.img} alt={r.author} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} />
+                  <img src={r.img} alt={r.author} loading="lazy" decoding="async" width="40" height="40" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} />
                 </div>
               </div>
             ))}

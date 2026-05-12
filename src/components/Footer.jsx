@@ -32,7 +32,7 @@ const Footer = () => {
           {/* Brand column */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-              <img src="/logo.jpg" alt="Apollo Clinic Logo" style={{ height: '44px', objectFit: 'contain' }} />
+              <img src="/images/ui/logo.webp" alt="Apollo Clinic Logo" style={{ height: '44px', objectFit: 'contain' }} />
             </div>
 
             <p style={{ color: 'var(--body)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: '1.25rem', maxWidth: 240 }}>

@@ -7,7 +7,7 @@ import { PRIMARY_PHONE_HREF } from '../config/contact';
 export const ALL_DOCTORS = [
   {
     id: 'dr-junaid-s-wani',
-    image: '/Doctor_junaid-S-Wani.png',
+    image: '/images/doctors/Doctor_junaid-S-Wani.webp',
     name: 'Dr Junaid S Wani',
     title: 'Professor & Head, Ophthalmology',
     specialty: 'Ophthalmology',
@@ -42,7 +42,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-adil-bashir-shah',
-    image: '/Doctor-Adil-Bashir-Shah.png',
+    image: '/images/doctors/Doctor-Adil-Bashir-Shah.webp',
     name: 'Dr. Adil Bashir Shah',
     title: 'Consultant Orthopaedic Surgeon',
     specialty: 'Orthopaedics',
@@ -84,7 +84,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-ahmad-javaid',
-    image: '/Doctor-Ahmad-Javid.png',
+    image: '/images/doctors/Doctor-Ahmad-Javid.webp',
     name: 'Dr. Ahmad Javaid',
     title: 'Physical Therapy & Manual Therapy Specialist',
     specialty: 'Physiotherapy',
@@ -124,7 +124,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-ajaz-ahmad-khan',
-    image: '/Doctor-Ajaz-Ahmad-Khan.png',
+    image: '/images/doctors/Doctor-Ajaz-Ahmad-Khan.webp',
     name: 'Dr. Ajaz Ahmad Khan',
     title: 'Senior Consultant Clinical and Child Psychologist',
     specialty: 'Clinical Psychology',
@@ -165,7 +165,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'prof-dr-arshad-farooq',
-    image: '/Doctor-Arshad-Farooq.png',
+    image: '/images/doctors/Doctor-Arshad-Farooq.webp',
     name: 'Prof. Dr. Arshad Farooq',
     title: 'Child Specialist',
     specialty: 'Paediatrics',
@@ -202,7 +202,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-faisal-arshad',
-    image: '/Doctor-Faisal_Arshad.png',
+    image: '/images/doctors/Doctor-Faisal_Arshad.webp',
     name: 'Dr. Faisal Arshad',
     title: 'Assistant Professor',
     specialty: 'Orthodontics',
@@ -246,7 +246,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-feroze-ahmad',
-    image: '/Doctor-Feroze-Ahmad.png',
+    image: '/images/doctors/Doctor-Feroze-Ahmad.webp',
     name: 'Dr. Feroze Ahmad',
     title: 'Physician',
     specialty: 'Physician / Internal Medicine',
@@ -283,7 +283,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-gowhar-ahmad-kozgar',
-    image: '/Doctor-Gowhar-Ahmad-Kozgar.png',
+    image: '/images/doctors/Doctor-Gowhar-Ahmad-Kozgar.webp',
     name: 'Dr. Gowhar Ahmad Kozgar',
     title: 'Senior Consultant Ophthalmologist',
     specialty: 'Ophthalmology',
@@ -323,7 +323,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'doctor-khalil-m-baba',
-    image: '/Doctor-Khalil-M-Baba.png',
+    image: '/images/doctors/Doctor-Khalil-M-Baba.webp',
     name: 'Doctor Khalil M. Baba',
     title: 'Professor and Head of Dept. (Pathology), SKIMS Srinagar',
     specialty: 'Pathology',
@@ -361,7 +361,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-masood-ahmad-laharwal',
-    image: '/Doctor-Masood-Ahmad-Laharwal.png',
+    image: '/images/doctors/Doctor-Masood-Ahmad-Laharwal.webp',
     name: 'Dr. Masood Ahmad Laharwal',
     title: 'Neurosurgery Specialist',
     specialty: 'Neurosurgery',
@@ -401,7 +401,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-mukhtiar-wani',
-    image: '/Doctor-Mukhtiar-Wani.png',
+    image: '/images/doctors/Doctor-Mukhtiar-Wani.webp',
     name: 'Dr. Mukhtiar Wani',
     title: 'General Physician',
     specialty: 'General Physician',
@@ -438,7 +438,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'prof-dr-nazir-ahmad-lone',
-    image: '/Doctor-Nazir-Ahmad-Lone.png',
+    image: '/images/doctors/Doctor-Nazir-Ahmad-Lone.webp',
     name: 'Prof. Dr. Nazir Ahmad Lone',
     title: 'Senior Interventional Cardiologist',
     specialty: 'Cardiology',
@@ -475,7 +475,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dt-qurat-ul-aan',
-    image: '/Doctor-Qurat-UL-Aan.png',
+    image: '/images/doctors/Doctor-Qurat-UL-Aan.webp',
     name: 'Dt. Qurat-Ul-Aan',
     title: 'Consultant Dietitian',
     specialty: 'Dietitian / Nutrition',
@@ -522,7 +522,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-shabeer-koul',
-    image: '/Doctor-Shabeer-Koul.png',
+    image: '/images/doctors/Doctor-Shabeer-Koul.webp',
     name: 'Dr. Shabeer Koul',
     title: 'ENT Head & Neck Surgeon',
     specialty: 'ENT',
@@ -559,7 +559,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-syed-sadaf-altaf',
-    image: '/Doctor-Syed-Sadaf-Altaf.png',
+    image: '/images/doctors/Doctor-Syed-Sadaf-Altaf.webp',
     name: 'Dr. Syed Sadaf Altaf',
     title: 'Lecturer, Govt. Medical College, Srinagar',
     specialty: 'Ophthalmology',
@@ -598,7 +598,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'prof-dr-syed-sajjad-nazir',
-    image: '/Doctor-Syed-Sajjad-Nazir.png',
+    image: '/images/doctors/Doctor-Syed-Sajjad-Nazir.webp',
     name: 'Prof. Dr. Syed Sajjad Nazir',
     title: 'Senior Consultant Urologist',
     specialty: 'Urology',
@@ -641,7 +641,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-muntakhab-ul-nafae',
-    image: '/Doctor-Muntakhab-ul-Nafae.png',
+    image: '/images/doctors/Doctor-Muntakhab-ul-Nafae.webp',
     name: 'Dr. Muntakhab ul Nafae',
     title: 'General Surgeon',
     specialty: 'General Surgery',
@@ -677,7 +677,7 @@ export const ALL_DOCTORS = [
   },
   {
     id: 'dr-abdul-rashid-khan',
-    image: '/Doctor-Abdul-Rashid-Khan.png',
+    image: '/images/doctors/Doctor-Abdul-Rashid-Khan.webp',
     name: 'Dr. Abdul Rashid Khan',
     title: 'Head of Department',
     specialty: 'Biochemistry',
@@ -744,6 +744,10 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
           <img 
             src={doc.image} 
             alt={doc.name} 
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="500"
             style={{ 
               position: 'absolute', top: 0, left: 0,
               width: '100%', height: '100%', 
@@ -890,13 +894,13 @@ const OurDoctors = () => {
                  Using existing patient/doctor images grouped beautifully */}
              <div style={{ position: 'relative', width: '100%', height: '450px', background: 'radial-gradient(circle, rgba(13,82,192,0.05) 0%, rgba(255,255,255,0) 70%)' }}>
                 <div style={{ position: 'absolute', top: '5%', left: '20%', width: '180px', height: '180px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', zIndex: 2 }}>
-                  <img src="/Doctor-Faisal_Arshad.png" alt="Doctor" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/images/doctors/Doctor-Faisal_Arshad.webp" alt="Doctor" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div style={{ position: 'absolute', top: '25%', right: '10%', width: '220px', height: '220px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', zIndex: 3 }}>
-                  <img src="/Doctor-Adil-Bashir-Shah.png" alt="Doctor" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/images/doctors/Doctor-Adil-Bashir-Shah.webp" alt="Doctor" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div style={{ position: 'absolute', bottom: '10%', left: '30%', width: '160px', height: '160px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', zIndex: 1 }}>
-                  <img src="/Doctor-Ahmad-Javid.png" alt="Doctor" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/images/doctors/Doctor-Ahmad-Javid.webp" alt="Doctor" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
              </div>
           </div>

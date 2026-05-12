@@ -139,7 +139,7 @@ const Diagnostics = () => {
 
           <div style={{ position: 'relative' }}>
             <div className="diag-hero-img" style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-              <img src="/lab-technician.jpg" alt="Apollo Clinic Diagnostics" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px', objectFit: 'cover' }} />
+              <img src="/images/services/lab-technician.webp" alt="Apollo Clinic Diagnostics" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px', objectFit: 'cover' }} />
             </div>
             
             {/* Stats Card */}

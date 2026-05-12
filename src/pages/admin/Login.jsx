@@ -89,7 +89,7 @@ const Login = () => {
         {/* Top Navbar */}
         <header style={{ padding: '2rem 3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <img src="/logo.jpg" alt="Apollo Clinic" style={{ height: '48px', objectFit: 'contain' }} />
+            <img src="/images/ui/logo.webp" alt="Apollo Clinic" style={{ height: '48px', objectFit: 'contain' }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.9rem', color: 'var(--navy)', fontWeight: 600 }}>
             <span>Trusted healthcare for over 40 years</span>
@@ -113,7 +113,7 @@ const Login = () => {
           }}>
             {/* Logo in card */}
             <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-              <img src="/logo.jpg" alt="Apollo Clinic" style={{ height: '55px', objectFit: 'contain', margin: '0 auto' }} />
+              <img src="/images/ui/logo.webp" alt="Apollo Clinic" style={{ height: '55px', objectFit: 'contain', margin: '0 auto' }} />
             </div>
 
             <h2 style={{ color: 'var(--navy)', fontWeight: 900, fontSize: '1.8rem', marginBottom: '0.5rem', textAlign: 'center' }}>

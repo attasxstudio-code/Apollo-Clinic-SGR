@@ -28,8 +28,10 @@ const AdministratorMessageSection = () => {
           }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5' }}>
               <img 
-                src="/Doctor-Gazzafar-Hameed-Rather(Administrator).png" 
+                src="/images/doctors/Doctor-Gazzafar-Hameed-Rather(Administrator).webp" 
                 alt="Dr Gazzanfar Hameed Rather, Administrator of Apollo Clinic Srinagar"
+                loading="lazy"
+                decoding="async"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
@@ -76,6 +78,8 @@ const AdministratorMessageSection = () => {
                  <img 
                    src="/Doctor-Gazzafar-Hameed-Rather(Administrator)-signature.png" 
                    alt="Signature of Gazzanfar Hameed Rather"
+                   loading="lazy"
+                   decoding="async"
                    style={{ objectFit: 'contain', height: 'auto', maxWidth: '240px', display: 'block' }}
                  />
                  <div>

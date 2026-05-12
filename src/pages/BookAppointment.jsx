@@ -64,7 +64,7 @@ const BookAppointment = () => (
             </div>
 
             <div className="m-h-auto m-ml-0" style={{ height: '320px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', marginLeft: '-2rem' }}>
-              <img src="/clinic-reception.png" alt="Apollo Clinic Reception" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/images/clinic/reception.webp" alt="Apollo Clinic Reception" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
 

@@ -374,7 +374,7 @@ const DoctorProfile = () => {
                   </div>
                 </div>
                 <div style={{ height: '120px', borderRadius: '12px', overflow: 'hidden' }}>
-                  <img src="/APOLLO-receptionist-image.png" alt="Clinic Location" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/images/clinic/receptionist.webp" alt="Clinic Location" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
             </div>

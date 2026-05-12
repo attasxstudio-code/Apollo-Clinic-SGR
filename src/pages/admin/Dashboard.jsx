@@ -1075,7 +1075,7 @@ const Dashboard = () => {
             title="Go to Home Page">
             <div style={{ background:'linear-gradient(135deg,#0ea5e9,#10b981)', borderRadius:'10px', padding:'6px',
               display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-              <img src="/logo.jpg" alt="Apollo Clinic" height="26" style={{ objectFit:'contain', borderRadius:'5px' }}/>
+              <img src="/images/ui/logo.webp" alt="Apollo Clinic" height="26" style={{ objectFit:'contain', borderRadius:'5px' }}/>
             </div>
             <div>
               <div style={{ fontWeight:800, fontSize:'0.92rem', lineHeight:1.15,

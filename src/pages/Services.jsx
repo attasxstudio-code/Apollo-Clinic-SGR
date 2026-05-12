@@ -137,7 +137,7 @@ const Services = () => {
           <div style={{ position: 'relative' }}>
             <div className="svc-hero-img" style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
               {/* Replace with actual image later */}
-              <img src="/services-collage.jpg" alt="Apollo Clinic Services" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px' }} />
+              <img src="/images/services/services-collage.webp" alt="Apollo Clinic Services" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px' }} />
             </div>
             
             {/* Stats Card */}
