@@ -383,6 +383,32 @@ const DoctorProfile = () => {
 
           {/* ════════════ RIGHT COLUMN ════════════ */}
           <div style={{ position: 'sticky', top: '2rem' }}>
+            {doc.type === 'lab-incharge' ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div className="dp-form-card">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                    <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Activity size={18} />
+                    </div>
+                    <h3 style={{ fontSize: '1.15rem', color: 'var(--navy)', margin: 0 }}>Laboratory Leadership</h3>
+                  </div>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--body)', margin: 0, lineHeight: 1.6 }}>
+                    Overseeing all diagnostic operations, ensuring that patient test results meet the highest clinical and academic standards.
+                  </p>
+                </div>
+                <div className="dp-form-card">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                    <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <ShieldCheck size={18} />
+                    </div>
+                    <h3 style={{ fontSize: '1.15rem', color: 'var(--navy)', margin: 0 }}>Diagnostics Quality</h3>
+                  </div>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--body)', margin: 0, lineHeight: 1.6 }}>
+                    Committed to precision, timely reporting, and advanced laboratory processes for accurate healthcare decisions.
+                  </p>
+                </div>
+              </div>
+            ) : (
             <div className="dp-form-card">
               
               {submitted ? (
@@ -509,6 +535,7 @@ const DoctorProfile = () => {
               </div>
 
             </div>
+            )}
           </div>
         </div>
       </div>
@@ -519,22 +546,28 @@ const DoctorProfile = () => {
           <div className="dp-cta-card" style={{ background: '#fff', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.04)' }}>
             <div className="dp-cta-content">
               <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Calendar size={28} />
+                {doc.type === 'lab-incharge' ? <Activity size={28} /> : <Calendar size={28} />}
               </div>
               <div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--navy)', margin: '0 0 0.25rem 0' }}>
-                  Book a Consultation Today
+                  {doc.type === 'lab-incharge' ? 'Explore Lab Services' : 'Book a Consultation Today'}
                 </h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--body)', margin: 0 }}>
-                  Take the first step towards better health with expert care you can trust.
+                  {doc.type === 'lab-incharge' ? 'Discover our comprehensive diagnostic and laboratory services.' : 'Take the first step towards better health with expert care you can trust.'}
                 </p>
               </div>
             </div>
             
             <div className="dp-cta-actions">
-              <button className="btn btn-orange btn-lg" onClick={goBook} style={{ padding: '0.75rem 2rem', fontSize: '0.95rem' }}>
-                <Calendar size={18} /> Book Appointment
-              </button>
+              {doc.type === 'lab-incharge' ? (
+                <button className="btn btn-orange btn-lg" onClick={() => { navigate('/diagnostics'); window.scrollTo(0,0); }} style={{ padding: '0.75rem 2rem', fontSize: '0.95rem' }}>
+                  <Activity size={18} /> View Diagnostics Services
+                </button>
+              ) : (
+                <button className="btn btn-orange btn-lg" onClick={goBook} style={{ padding: '0.75rem 2rem', fontSize: '0.95rem' }}>
+                  <Calendar size={18} /> Book Appointment
+                </button>
+              )}
               <a href={PRIMARY_PHONE_HREF} className="btn btn-outline-orange btn-lg" style={{ padding: '0.75rem 2rem', fontSize: '0.95rem', textDecoration: 'none', border: '1px solid var(--orange)', color: 'var(--orange)', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: 'var(--r-full)' }}>
                 <Phone size={18} /> Call Now
               </a>

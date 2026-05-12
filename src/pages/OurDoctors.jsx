@@ -674,10 +674,43 @@ export const ALL_DOCTORS = [
     clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
     clinic_contact: '0194-2488069 / 0194-4068095',
     clinic_email: 'cypherhealthservicespvtltd@gmail.com',
+  },
+  {
+    id: 'dr-abdul-rashid-khan',
+    image: '/Doctor-Abdul-Rashid-Khan.png',
+    name: 'Dr. Abdul Rashid Khan',
+    title: 'Head of Department',
+    specialty: 'Biochemistry',
+    dept: 'Diagnostics',
+    qual: 'PhD Biochemistry',
+    qual_short: 'PhD Biochemistry',
+    type: 'lab-incharge',
+    avail: 'Lab Incharge',
+    languages: [],
+    bio: `Dr Abdul Rashid Khan is a PhD Biochemistry professional and Lab Incharge associated with Apollo Clinic Srinagar. As Head of Department at SKIMS Medical College, he brings strong academic, laboratory, and diagnostic expertise to support reliable lab processes, diagnostic quality, and patient-focused healthcare standards.`,
+    education: [
+      'PhD Biochemistry',
+      'Head of Department',
+      'SKIMS Medical College'
+    ],
+    expertise: [
+      'Biochemistry', 'Laboratory Medicine', 'Diagnostic Quality', 'Clinical Laboratory Supervision', 'Lab Process Management', 'Test Accuracy', 'Reporting Standards', 'Diagnostics Department Guidance'
+    ],
+    specializedCare: [
+      { name: 'Diagnostic Quality Assurance', desc: 'Overseeing test accuracy and reliable laboratory processes for patient-focused care.', icon: 'Activity' },
+      { name: 'Clinical Laboratory Supervision', desc: 'Guidance and management of the diagnostics department and laboratory standards.', icon: 'Shield' },
+    ],
+    hours: [],
+    consultation_days: null,
+    institution: 'SKIMS Medical College',
+    trust_banner: 'Laboratory leadership ensuring quality diagnostics at Apollo Clinic Srinagar.',
+    clinic_location: 'Apollo Clinic, Karan Nagar Chowk\nNear Mughal Darbar\nOpposite Medicare Diagnostic Centre\nSrinagar, Jammu & Kashmir',
+    clinic_contact: '0194-2488069 / 0194-4068095',
+    clinic_email: 'cypherhealthservicespvtltd@gmail.com',
   }
 ];
 
-const ALL_POSSIBLE_FILTERS = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'General Surgery', 'Dietitian / Nutrition', 'Urology'];
+const ALL_POSSIBLE_FILTERS = ['All', 'General Physician', 'Physician', 'Internal Medicine', 'Cardiology', 'Pediatrics', 'Paediatrics', 'Gynecology', 'Dermatology', 'Orthopedics', 'Orthopaedics', 'ENT', 'Ophthalmology', 'Physiotherapy', 'Clinical Psychology', 'Orthodontics', 'Pathology', 'Neurosurgery', 'General Surgery', 'Diagnostics', 'Dietitian / Nutrition', 'Urology'];
 const SPECIALTIES_FILTER = ALL_POSSIBLE_FILTERS.filter(f => 
   f === 'All' || ALL_DOCTORS.some(d => d.dept === f || d.specialty === f)
 );
@@ -724,11 +757,13 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
         <div className="doctor-card-h-info">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.35rem', gap: '0.5rem' }}>
             <div style={{ fontSize: '0.62rem', fontWeight: 800, color: 'var(--blue)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              {doc.specialty}
+              {doc.type === 'lab-incharge' ? 'Lab Incharge' : doc.specialty}
             </div>
-            <span className="doctor-card-h-badge">
-              {doc.avail}
-            </span>
+            {doc.avail && (
+              <span className="doctor-card-h-badge">
+                {doc.avail}
+              </span>
+            )}
           </div>
           
           <h3 className="doctor-card-h-name">{doc.name}</h3>
@@ -751,19 +786,22 @@ export const DoctorCard = ({ doc, onProfile, onBook }) => {
 
       {/* Bottom: Action buttons */}
       <div className="doctor-card-h-actions">
+        {doc.type !== 'lab-incharge' && (
+          <button
+            className="doc-btn-primary"
+            onClick={(e) => { e.stopPropagation(); onBook(); }}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--blue)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}
+          >
+            Book Appointment <span style={{ fontSize: '0.85em' }}>↗</span>
+          </button>
+        )}
         <button
-          className="doc-btn-primary"
-          onClick={(e) => { e.stopPropagation(); onBook(); }}
-          onMouseEnter={e => e.currentTarget.style.background = 'var(--blue)'}
-          onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}
-        >
-          Book Appointment <span style={{ fontSize: '0.85em' }}>↗</span>
-        </button>
-        <button
-          className="doc-btn-secondary"
+          className={doc.type === 'lab-incharge' ? 'doc-btn-primary' : 'doc-btn-secondary'}
+          style={doc.type === 'lab-incharge' ? { width: '100%' } : {}}
           onClick={(e) => { e.stopPropagation(); onProfile(); }}
-          onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
-          onMouseLeave={e => e.currentTarget.style.background = '#fff'}
+          onMouseEnter={e => doc.type === 'lab-incharge' ? e.currentTarget.style.background = 'var(--blue)' : e.currentTarget.style.background = '#f8fafc'}
+          onMouseLeave={e => doc.type === 'lab-incharge' ? e.currentTarget.style.background = 'var(--navy)' : e.currentTarget.style.background = '#fff'}
         >
           View Profile
         </button>
