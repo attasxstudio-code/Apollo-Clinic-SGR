@@ -106,6 +106,7 @@ export const appointmentService = {
     }
     
     try {
+      console.log('[appointmentService] Attempting Supabase insert...');
       const { data, error } = await withTimeout(
         supabase
           .from('appointments')
@@ -114,16 +115,18 @@ export const appointmentService = {
         4000
       );
       
+      console.log('[appointmentService] Supabase response:', { data, error });
+      
       if (error) { 
-        console.error('[appointmentService] Error saving lead:', error);
+        console.error('[appointmentService] ❌ Supabase error:', error.message, error.code, error.details);
         console.log('[appointmentService] Saving to localStorage fallback');
         return addToLocalStorage(leadData);
       }
       
-      console.log('[appointmentService] Lead saved to Supabase:', data[0]);
+      console.log('[appointmentService] ✅ Lead saved to Supabase:', data[0]);
       return data[0];
     } catch (err) {
-      console.error('[appointmentService] Supabase save failed:', err);
+      console.error('[appointmentService] ❌ Exception during save:', err.message);
       console.log('[appointmentService] Saving to localStorage fallback');
       return addToLocalStorage(leadData);
     }
@@ -152,6 +155,7 @@ export const appointmentService = {
     }
     
     try {
+      console.log('[appointmentService] Attempting Supabase insert for checkup...');
       const { data, error } = await withTimeout(
         supabase
           .from('appointments')
@@ -160,15 +164,17 @@ export const appointmentService = {
         4000
       );
       
+      console.log('[appointmentService] Supabase response:', { data, error });
+      
       if (error) { 
-        console.error('[appointmentService] Error saving checkup:', error);
+        console.error('[appointmentService] ❌ Supabase error:', error.message, error.code);
         return addToLocalStorage(checkupData);
       }
       
-      console.log('[appointmentService] Checkup saved:', data[0]);
+      console.log('[appointmentService] ✅ Checkup saved to Supabase:', data[0]);
       return data[0];
     } catch (err) {
-      console.error('[appointmentService] Supabase save failed:', err);
+      console.error('[appointmentService] ❌ Exception during save:', err.message);
       return addToLocalStorage(checkupData);
     }
   },
