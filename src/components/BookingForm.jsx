@@ -36,15 +36,18 @@ const BookingForm = () => {
   // ── Save lead to Supabase so it appears in the Admin Dashboard ──
   const saveLeadToAdmin = async ({ name, phone, date, message, department }) => {
     try {
-      await appointmentService.saveLead({
+      const result = await appointmentService.saveLead({
         name: sanitizeInput(name, 100),
         phone: sanitizeInput(phone, 20),
         date: sanitizeInput(date, 10),
         department: sanitizeInput(department, 100),
         notes: sanitizeInput(message, 1000),
       });
+      if (!result) throw new Error('No data returned from Supabase');
+      console.log('✅ Appointment saved to Supabase:', result);
     } catch (err) {
-      console.error('Failed to save lead to Supabase:', err);
+      console.error('❌ Failed to save lead to Supabase:', err);
+      // Don't block WhatsApp redirect — just log the error
     }
   };
 
@@ -88,11 +91,11 @@ const BookingForm = () => {
     ].join('\n');
     const waUrl = waLink(text);
 
-    // 1️⃣ Save to admin dashboard
+    // 1️⃣ Save to admin dashboard (fire-and-forget)
     console.log('Form data valid. Triggering save and redirect...');
     saveLeadToAdmin({ name, phone, date, message, department });
 
-    // 2️⃣ Open WhatsApp - Using window.location to avoid blockers
+    // 2️⃣ Open WhatsApp
     console.log('Redirecting to WhatsApp:', waUrl);
     window.location.href = waUrl;
 

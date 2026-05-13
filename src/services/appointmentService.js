@@ -74,8 +74,10 @@ export const appointmentService = {
             name, 
             phone, 
             date, 
-            department: department || mainTestType || '', 
-            notes: notes || specificTest || '', 
+            department: mainTestType || department || '', 
+            notes: specificTest
+              ? `${specificTest}${notes ? ' | ' + notes : ''}`
+              : (notes || ''), 
             source: source || 'Lab Checkup Booking', 
             status: 'Pending' 
           }])

@@ -70,8 +70,8 @@ const BookAppointment = () => (
 
           {/* Right Column: Form */}
           <div style={{ paddingTop: '1rem' }}>
-            <div className="m-p-sm" style={{ 
-              background: '#fff', borderRadius: '24px', padding: '3rem 4rem', 
+            <div className="m-p-sm booking-form-wrapper" style={{ 
+              background: '#fff', borderRadius: '24px', padding: '2.5rem 3rem', 
               boxShadow: '0 20px 60px rgba(0,0,0,0.06)', border: '1px solid rgba(0,0,0,0.05)',
               maxWidth: '600px', margin: '0 auto'
             }}>

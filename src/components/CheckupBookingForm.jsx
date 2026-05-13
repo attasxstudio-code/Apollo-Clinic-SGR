@@ -54,8 +54,9 @@ const CheckupBookingForm = () => {
         name: sanitizeInput(name, 100),
         phone: sanitizeInput(phone, 20),
         date: sanitizeInput(date, 10),
-        department: sanitizeInput(mainTestType, 100), // Map category to department
-        notes: `Test: ${sanitizeInput(specificTest, 100)} | Time: ${sanitizeInput(time, 10)} | ${sanitizeInput(notes, 1000)}`,
+        mainTestType: sanitizeInput(mainTestType, 100),
+        specificTest: sanitizeInput(specificTest, 100),
+        notes: time ? `Time: ${sanitizeInput(time, 10)}${notes ? ' | ' + sanitizeInput(notes, 1000) : ''}` : sanitizeInput(notes, 1000),
       });
     } catch (err) {
       console.error('Failed to save checkup to Supabase:', err);
@@ -291,7 +292,7 @@ const CheckupBookingForm = () => {
         </div>
 
         {/* Date & Time Row */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+        <div className="checkup-datetime-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
           {/* Date */}
           <div>
             <label className="form-label">Preferred Date *</label>

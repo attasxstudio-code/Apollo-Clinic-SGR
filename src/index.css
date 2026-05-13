@@ -2264,6 +2264,23 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   input, select, textarea {
     font-size: 16px !important;
   }
+
+  /* ── BOOKING FORM PAGE — remove excessive inner padding on mobile ── */
+  .booking-form-wrapper {
+    padding: 1.25rem !important;
+    border-radius: 16px !important;
+    max-width: 100% !important;
+  }
+  /* BookingForm / CheckupBookingForm inner card — constrain to viewport */
+  .booking-form-wrapper > div {
+    max-width: 100% !important;
+    padding: 1.5rem !important;
+  }
+
+  /* ── CHECKUP DATE/TIME GRID — stack vertically on mobile ── */
+  .checkup-datetime-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* ── Extra small (≤420px) ── */
