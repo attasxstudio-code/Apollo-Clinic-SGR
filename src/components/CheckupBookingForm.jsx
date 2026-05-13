@@ -49,8 +49,12 @@ const CheckupBookingForm = () => {
 
   /* ── Save to Supabase so it shows in Admin → Checkups ── */
   const saveCheckupToAdmin = async ({ name, phone, mainTestType, specificTest, date, time, notes }) => {
+    console.log('%c📤 saveCheckupToAdmin called', 'color: purple; font-weight: bold');
+    console.log('  Input:', { name, phone, mainTestType, specificTest, date, time });
+    
     try {
-      await appointmentService.saveCheckup({
+      console.log('  Calling appointmentService.saveCheckup...');
+      const result = await appointmentService.saveCheckup({
         name: sanitizeInput(name, 100),
         phone: sanitizeInput(phone, 20),
         date: sanitizeInput(date, 10),
@@ -58,8 +62,10 @@ const CheckupBookingForm = () => {
         specificTest: sanitizeInput(specificTest, 100),
         notes: time ? `Time: ${sanitizeInput(time, 10)}${notes ? ' | ' + sanitizeInput(notes, 1000) : ''}` : sanitizeInput(notes, 1000),
       });
+      console.log('  Result:', result);
+      console.log('%c✅ Checkup saved to Supabase:', 'color: green', result);
     } catch (err) {
-      console.error('Failed to save checkup to Supabase:', err);
+      console.error('%c❌ Failed to save checkup to Supabase:', 'color: red', err);
     }
   };
 
