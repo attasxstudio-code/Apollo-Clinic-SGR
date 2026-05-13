@@ -17,6 +17,7 @@ import FAQ from './pages/FAQ';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
+import SupabaseTest from './pages/admin/SupabaseTest';
 import ReportVerify from './pages/ReportVerify';
 import Reports from './pages/Reports';
 
@@ -46,6 +47,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/admin/test" element={<SupabaseTest />} />
 
             {/* ── Report pages — standalone, no navbar/footer ── */}
             <Route path="/reports" element={<Reports />} />
