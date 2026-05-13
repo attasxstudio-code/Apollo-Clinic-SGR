@@ -1170,15 +1170,20 @@ const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
 
   // Sync with parent data
   useEffect(() => {
-    setAppts(initialData);
+    console.log('[VisitingSection] initialData changed:', initialData?.length);
+    setAppts(initialData || []);
   }, [initialData]);
 
   const reload = () => {
+    console.log('[VisitingSection] reload called');
     if (refreshData) refreshData();
     setSettings(getVisitingSettings());
   };
 
-  useEffect(() => { reload(); }, []);
+  useEffect(() => { 
+    console.log('[VisitingSection] Mounting, calling reload');
+    reload(); 
+  }, []);
 
   const toggleContacted = async (id) => {
     const a = appts.find(x => x.id === id);
@@ -1653,7 +1658,10 @@ const Dashboard = () => {
             {/* Visiting Doctors section */}
             {activeSection === 'visiting' && (
               <VisitingAppointmentsSection
-                initialData={allAppointments.filter(a => a.type === 'visiting')}
+                initialData={allAppointments.filter(a => {
+                  const isVis = a.type === 'visiting';
+                  return isVis;
+                })}
                 refreshData={fetchAllData}
               />
             )}
