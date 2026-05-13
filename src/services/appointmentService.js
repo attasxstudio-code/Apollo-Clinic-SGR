@@ -2,9 +2,8 @@ import { supabase } from '../utils/supabase';
 
 const STORAGE_KEY = 'clinic_appointments_fallback';
 
-const notConfigured = () => {
-  console.warn('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your environment variables.');
-};
+console.log('%c📡 appointmentService initializing', 'color: purple; font-weight: bold');
+console.log('  supabase client exists:', !!supabase);
 
 const withTimeout = (promise, ms = 5000) => {
   return Promise.race([
