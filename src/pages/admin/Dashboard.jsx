@@ -1472,8 +1472,10 @@ const Dashboard = () => {
 
   const fetchAllData = async () => {
     setLoading(true);
+    console.log('[Dashboard] Starting to fetch data...');
     try {
       const data = await appointmentService.getAllAppointments();
+      console.log('[Dashboard] Raw data received:', data?.length || 0, 'appointments');
       
       // Normalize data to handle property name differences (Supabase vs Legacy)
       const normalized = (data || []).map(a => ({
@@ -1490,11 +1492,18 @@ const Dashboard = () => {
         created_at: a.created_at || a.createdAt || a.createdat || new Date().toISOString()
       }));
 
+      // Log breakdown by type
+      const general = normalized.filter(a => a.type === 'general').length;
+      const checkup = normalized.filter(a => a.type === 'checkup').length;
+      const visiting = normalized.filter(a => a.type === 'visiting').length;
+      console.log(`[Dashboard] Breakdown - General: ${general}, Checkup: ${checkup}, Visiting: ${visiting}`);
+
       setAllAppointments(normalized);
     } catch (err) {
-      console.error('Dashboard load failed:', err);
+      console.error('[Dashboard] Load failed:', err);
     } finally {
       setLoading(false);
+      console.log('[Dashboard] Loading complete');
     }
   };
 

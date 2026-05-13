@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, Clock, MapPin, CheckCircle, MessageCircle, Shield, Users, Lock, ChevronLeft, ShieldCheck } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import { WORKING_HOURS } from '../config/contact';
 
-const BookAppointment = () => (
+const BookAppointment = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return (
   <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
     
     {/* ── Main Section ── */}
@@ -12,7 +22,7 @@ const BookAppointment = () => (
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '70%', background: '#fff', zIndex: 0 }}></div>
       
       <div className="container" style={{ maxWidth: '1400px', position: 'relative', zIndex: 1 }}>
-        <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: '5rem', alignItems: 'flex-start' }}>
+        <div className="m-grid-1" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.1fr', gap: isMobile ? '2rem' : '5rem', alignItems: 'flex-start' }}>
 
           {/* Left Column: Info & Image */}
           <div className="m-center" style={{ paddingTop: '2rem' }}>
@@ -63,7 +73,7 @@ const BookAppointment = () => (
               </div>
             </div>
 
-            <div className="m-h-auto m-ml-0" style={{ height: '320px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', marginLeft: '-2rem' }}>
+            <div className="m-h-auto m-ml-0" style={{ height: '320px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', marginLeft: isMobile ? '0' : '-2rem', marginTop: isMobile ? '2rem' : '0' }}>
               <img src="/images/clinic/reception.webp" alt="Apollo Clinic Reception" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
@@ -128,6 +138,7 @@ const BookAppointment = () => (
     </section>
 
   </div>
-);
+  );
+};
 
 export default BookAppointment;
