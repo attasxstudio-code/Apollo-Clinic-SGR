@@ -610,6 +610,7 @@ const TestReportsSection = () => {
   const [uploadError, setUploadError] = useState('');
   const [copyFeedback, setCopyFeedback] = useState('');
   const [filterStatus, setFilterStatus] = useState('All');
+  const [isDeleting, setIsDeleting] = useState(false);
   const fileInputRef = useRef(null);
 
   const [form, setForm] = useState({
@@ -755,23 +756,33 @@ const TestReportsSection = () => {
   };
 
   const deleteReport = (id) => {
+    if (isDeleting) {
+      console.log('[TestReports] Already deleting, ignoring');
+      return;
+    }
+    
     console.log('[TestReports] deleteReport called for id:', id);
-    console.log('[TestReports] Current reports:', reports?.length);
     
     if (!id) {
       console.error('[TestReports] Error: No id provided');
       return;
     }
     
+    setIsDeleting(true);
+    
     const confirmed = window.confirm('Delete this report? This cannot be undone.');
     console.log('[TestReports] User confirmed:', confirmed);
     
-    if (!confirmed) return;
+    if (!confirmed) {
+      setIsDeleting(false);
+      return;
+    }
     
     const remaining = (reports || []).filter(r => r.id !== id);
     console.log('[TestReports] Remaining after delete:', remaining?.length);
     
     saveReports(remaining);
+    setIsDeleting(false);
   };
 
   const toggleStatus = (id) => {
