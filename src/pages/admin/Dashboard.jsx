@@ -1160,7 +1160,8 @@ const VISITING_DOCTORS_LIST = [
 ];
 
 const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
-  const [appts, setAppts] = useState(initialData);
+  // Use initialData directly - no need for separate state that causes re-render loops
+  const appts = initialData || [];
   const [settings, setSettings] = useState({});
   const [showSettings, setShowSettings] = useState(false);
   const [filterDoc, setFilterDoc] = useState('All');
@@ -1168,21 +1169,9 @@ const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
   const [filterCycle, setFilterCycle] = useState('All');
   const [search, setSearch] = useState('');
 
-  // Sync with parent data
+  // Only load settings once on mount
   useEffect(() => {
-    console.log('[VisitingSection] initialData changed:', initialData?.length);
-    setAppts(initialData || []);
-  }, [initialData]);
-
-  const reload = () => {
-    console.log('[VisitingSection] reload called');
-    if (refreshData) refreshData();
     setSettings(getVisitingSettings());
-  };
-
-  useEffect(() => { 
-    console.log('[VisitingSection] Mounting, calling reload');
-    reload(); 
   }, []);
 
   const toggleContacted = async (id) => {
