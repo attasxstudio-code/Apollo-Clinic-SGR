@@ -18,6 +18,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
 import SupabaseTest from './pages/admin/SupabaseTest';
+import EnvCheck from './pages/admin/EnvCheck';
 import ReportVerify from './pages/ReportVerify';
 import Reports from './pages/Reports';
 
@@ -48,6 +49,7 @@ function App() {
               }
             />
             <Route path="/admin/test" element={<SupabaseTest />} />
+            <Route path="/admin/env" element={<EnvCheck />} />
 
             {/* ── Report pages — standalone, no navbar/footer ── */}
             <Route path="/reports" element={<Reports />} />
