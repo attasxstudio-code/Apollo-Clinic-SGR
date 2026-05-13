@@ -610,7 +610,6 @@ const TestReportsSection = () => {
   const [uploadError, setUploadError] = useState('');
   const [copyFeedback, setCopyFeedback] = useState('');
   const [filterStatus, setFilterStatus] = useState('All');
-  const [isDeleting, setIsDeleting] = useState(false);
   const fileInputRef = useRef(null);
 
   const [form, setForm] = useState({
@@ -755,39 +754,34 @@ const TestReportsSection = () => {
     });
   };
 
+  const deleteReportRef = React.useRef(false);
+  
   const handleDeleteReport = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
     
-    if (isDeleting) {
-      console.log('[TestReports] Already deleting, ignoring');
+    if (deleteReportRef.current) {
+      console.log('[TestReports] Already processing delete, ignoring');
       return;
     }
     
-    console.log('[TestReports] deleteReport called for id:', id);
+    deleteReportRef.current = true;
     
-    if (!id) {
-      console.error('[TestReports] Error: No id provided');
-      return;
-    }
-    
-    setIsDeleting(true);
-    
+    // Use setTimeout to let the click event complete fully before blocking
     setTimeout(() => {
-      const confirmed = window.confirm('Delete this report? This cannot be undone.');
-      console.log('[TestReports] User confirmed:', confirmed);
-      
-      if (!confirmed) {
-        setIsDeleting(false);
-        return;
+      try {
+        const confirmed = window.confirm('Delete this report? This cannot be undone.');
+        
+        if (confirmed) {
+          const remaining = (reports || []).filter(r => r.id !== id);
+          saveReports(remaining);
+        }
+      } catch (err) {
+        console.error('Delete error:', err);
+      } finally {
+        deleteReportRef.current = false;
       }
-      
-      const remaining = (reports || []).filter(r => r.id !== id);
-      console.log('[TestReports] Remaining after delete:', remaining?.length);
-      
-      saveReports(remaining);
-      setIsDeleting(false);
-    }, 100);
+    }, 10);
   };
 
   const toggleStatus = (id) => {
