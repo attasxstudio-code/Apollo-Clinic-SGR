@@ -755,8 +755,23 @@ const TestReportsSection = () => {
   };
 
   const deleteReport = (id) => {
-    if (!confirm('Delete this report? This cannot be undone.')) return;
-    saveReports(reports.filter(r => r.id !== id));
+    console.log('[TestReports] deleteReport called for id:', id);
+    console.log('[TestReports] Current reports:', reports?.length);
+    
+    if (!id) {
+      console.error('[TestReports] Error: No id provided');
+      return;
+    }
+    
+    const confirmed = window.confirm('Delete this report? This cannot be undone.');
+    console.log('[TestReports] User confirmed:', confirmed);
+    
+    if (!confirmed) return;
+    
+    const remaining = (reports || []).filter(r => r.id !== id);
+    console.log('[TestReports] Remaining after delete:', remaining?.length);
+    
+    saveReports(remaining);
   };
 
   const toggleStatus = (id) => {
