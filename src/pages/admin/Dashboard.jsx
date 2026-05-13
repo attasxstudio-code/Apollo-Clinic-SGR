@@ -610,6 +610,7 @@ const TestReportsSection = () => {
   const [uploadError, setUploadError] = useState('');
   const [copyFeedback, setCopyFeedback] = useState('');
   const [filterStatus, setFilterStatus] = useState('All');
+  const [deletingId, setDeletingId] = useState(null);
   const fileInputRef = useRef(null);
 
   const [form, setForm] = useState({
@@ -754,34 +755,21 @@ const TestReportsSection = () => {
     });
   };
 
-  const deleteReportRef = React.useRef(false);
-  
-  const handleDeleteReport = (e, id) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleDeleteReport = (id) => {
+    if (deletingId) return;
     
-    if (deleteReportRef.current) {
-      console.log('[TestReports] Already processing delete, ignoring');
-      return;
-    }
+    setDeletingId(id);
     
-    deleteReportRef.current = true;
-    
-    // Use setTimeout to let the click event complete fully before blocking
     setTimeout(() => {
-      try {
-        const confirmed = window.confirm('Delete this report? This cannot be undone.');
-        
-        if (confirmed) {
-          const remaining = (reports || []).filter(r => r.id !== id);
-          saveReports(remaining);
-        }
-      } catch (err) {
-        console.error('Delete error:', err);
-      } finally {
-        deleteReportRef.current = false;
+      const confirmed = window.confirm('Delete this report? This cannot be undone.');
+      
+      if (confirmed) {
+        const remaining = (reports || []).filter(r => r.id !== id);
+        saveReports(remaining);
       }
-    }, 10);
+      
+      setDeletingId(null);
+    }, 50);
   };
 
   const toggleStatus = (id) => {
@@ -925,10 +913,16 @@ const TestReportsSection = () => {
                     }}>
                       {cfg.icon} {report.status}
                     </button>
-                    <button onClick={(e) => handleDeleteReport(e, report.id)} style={{
-                      background:'none', border:'none', cursor:'pointer',
-                      color:'#cbd5e1', padding:'4px',
-                    }}>
+                    <button 
+                      type="button"
+                      onClick={() => handleDeleteReport(report.id)} 
+                      disabled={deletingId === report.id}
+                      style={{
+                        background:'none', border:'none', cursor: deletingId === report.id ? 'not-allowed' : 'pointer',
+                        color: deletingId === report.id ? '#94a3b8' : '#cbd5e1',
+                        padding:'4px', opacity: deletingId === report.id ? 0.5 : 1,
+                      }}
+                    >
                       <Trash2 size={14} />
                     </button>
                   </div>
