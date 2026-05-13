@@ -755,7 +755,10 @@ const TestReportsSection = () => {
     });
   };
 
-  const deleteReport = (id) => {
+  const handleDeleteReport = (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     if (isDeleting) {
       console.log('[TestReports] Already deleting, ignoring');
       return;
@@ -770,19 +773,21 @@ const TestReportsSection = () => {
     
     setIsDeleting(true);
     
-    const confirmed = window.confirm('Delete this report? This cannot be undone.');
-    console.log('[TestReports] User confirmed:', confirmed);
-    
-    if (!confirmed) {
+    setTimeout(() => {
+      const confirmed = window.confirm('Delete this report? This cannot be undone.');
+      console.log('[TestReports] User confirmed:', confirmed);
+      
+      if (!confirmed) {
+        setIsDeleting(false);
+        return;
+      }
+      
+      const remaining = (reports || []).filter(r => r.id !== id);
+      console.log('[TestReports] Remaining after delete:', remaining?.length);
+      
+      saveReports(remaining);
       setIsDeleting(false);
-      return;
-    }
-    
-    const remaining = (reports || []).filter(r => r.id !== id);
-    console.log('[TestReports] Remaining after delete:', remaining?.length);
-    
-    saveReports(remaining);
-    setIsDeleting(false);
+    }, 100);
   };
 
   const toggleStatus = (id) => {
@@ -926,7 +931,7 @@ const TestReportsSection = () => {
                     }}>
                       {cfg.icon} {report.status}
                     </button>
-                    <button onClick={() => deleteReport(report.id)} style={{
+                    <button onClick={(e) => handleDeleteReport(e, report.id)} style={{
                       background:'none', border:'none', cursor:'pointer',
                       color:'#cbd5e1', padding:'4px',
                     }}>
