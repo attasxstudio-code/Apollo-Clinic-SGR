@@ -56,17 +56,21 @@ const BookingForm = () => {
     }
   };
 
-  function sendToWhatsApp(e) {
+  function handleSubmit(e) {
     e.preventDefault();
+    e.stopPropagation();
+    sendToWhatsApp(e);
+  }
+
+  function sendToWhatsApp(e) {
     setError('');
 
-    // 2. Security Checks
+    // Security Checks
     const hp = document.getElementById('booking_hp')?.value;
     if (isBot(hp)) return; 
     
     if (isDuplicateSubmission(RATE_KEY, 1000)) return;
 
-    // High rate limit for testing
     const rl = checkRateLimit(RATE_KEY, 10, 5 * 60 * 1000); 
     if (!rl.allowed) return setError(`Too many attempts. Please try again later.`);
 
@@ -77,15 +81,12 @@ const BookingForm = () => {
     const department = sanitizeInput(document.getElementById('department')?.value || '', 100);
     const message = sanitizeInput(document.getElementById('message')?.value || '', 1000);
 
-    // More forgiving validation
     if (!name || name.length < 2) return setError('Please enter your full name.');
     if (!isValidPhone(rawPhone))  return setError('Please enter a valid 10-digit phone number.');
     if (!date)                   return setError('Please select a preferred date.');
 
-    // Record attempt
     recordAttempt(RATE_KEY);
 
-    // Create WhatsApp text immediately
     const text = [
       `New Appointment Request — Apollo Clinic Srinagar:`,
       `Name: ${name}`,
@@ -96,17 +97,12 @@ const BookingForm = () => {
     ].join('\n');
     const waUrl = waLink(text);
 
-    // 1️⃣ Save to admin dashboard (fire-and-forget)
-    console.log('Form data valid. Triggering save and redirect...');
     saveLeadToAdmin({ name, phone, date, message, department });
 
-    // 2️⃣ Open WhatsApp
-    console.log('Redirecting to WhatsApp:', waUrl);
     window.location.href = waUrl;
 
-    // 3️⃣  Show brief success state then reset
     setSubmitted(true);
-    e.target.reset();
+    document.getElementById('booking-form')?.reset();
     setTimeout(() => setSubmitted(false), 4000);
   }
 
@@ -191,7 +187,7 @@ const BookingForm = () => {
         </div>
       )}
 
-      <form onSubmit={sendToWhatsApp}>
+      <form id="booking-form" onSubmit={handleSubmit}>
 
         {/* Honeypot — invisible to users, bots fill it */}
         <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
@@ -273,7 +269,10 @@ const BookingForm = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary"
+        <button 
+          type="button"
+          className="btn btn-primary"
+          onClick={handleSubmit}
           style={{ 
             width: '100%', 
             padding: '1rem', 
@@ -285,7 +284,9 @@ const BookingForm = () => {
             cursor: 'pointer',
             position: 'relative',
             zIndex: 10,
-            pointerEvents: 'auto'
+            pointerEvents: 'auto',
+            touchAction: 'manipulation',
+            WebkitTapHighlightColor: 'transparent'
           }}>
           <MessageSquare size={20} />
           {submitted ? 'Booked! Open WhatsApp Again ↗' : 'Book Now'}
