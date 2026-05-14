@@ -610,7 +610,7 @@ const TestReportsSection = () => {
   const [uploadError, setUploadError] = useState('');
   const [copyFeedback, setCopyFeedback] = useState('');
   const [filterStatus, setFilterStatus] = useState('All');
-  const [deletingId, setDeletingId] = useState(null);
+  const [loading, setLoading] = useState(true);
   const fileInputRef = useRef(null);
 
   const [form, setForm] = useState({
@@ -621,19 +621,58 @@ const TestReportsSection = () => {
 
   useEffect(() => { loadReports(); }, []);
 
-  const loadReports = () => {
-    const saved = localStorage.getItem('clinic_reports');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setReports(Array.isArray(parsed) ? parsed.map(sanitizeObject) : []);
-      } catch { setReports([]); }
+  const loadReports = async () => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('test_reports')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      
+      const mapped = (data || []).map(r => ({
+        id: r.id,
+        patientName: r.patient_name,
+        phone: r.phone,
+        dob: r.dob,
+        reportTitle: r.report_title,
+        reportDate: r.report_date,
+        testType: r.test_type,
+        notes: r.notes,
+        status: r.status,
+        blobUrl: r.blob_url,
+        token: r.token,
+        createdAt: r.created_at
+      }));
+      
+      setReports(mapped);
+    } catch (err) {
+      console.error('Failed to load reports:', err);
+      setReports([]);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const saveReports = (data) => {
+  const saveReports = async (data) => {
     setReports(data);
-    localStorage.setItem('clinic_reports', JSON.stringify(data));
+  };
+
+  const deleteReportFromSupabase = async (id) => {
+    try {
+      const { error } = await supabase
+        .from('test_reports')
+        .delete()
+        .eq('id', id);
+      
+      if (error) throw error;
+      
+      // Remove from local state
+      setReports(reports.filter(r => r.id !== id));
+    } catch (err) {
+      console.error('Failed to delete report:', err);
+    }
   };
 
   const handleFileSelect = (e) => {
@@ -711,6 +750,25 @@ const TestReportsSection = () => {
         blobUrl: data.blobUrl,
       };
 
+      // Save to Supabase
+      try {
+        await supabase.from('test_reports').insert([{
+          id: data.reportId,
+          patient_name: form.patientName.trim(),
+          phone: form.phone.trim(),
+          dob: form.dob,
+          report_title: form.reportTitle.trim(),
+          report_date: form.reportDate,
+          test_type: form.testType.trim(),
+          notes: form.notes.trim(),
+          status: 'Pending',
+          blob_url: data.blobUrl,
+          token: data.token
+        }]);
+      } catch (err) {
+        console.error('Failed to save to Supabase:', err);
+      }
+
       saveReports([newReport, ...reports]);
 
       // Reset form
@@ -735,13 +793,23 @@ const TestReportsSection = () => {
     return `Hello ${report.patientName},\n\nYour test report from Apollo Clinic Srinagar is ready.\n\n📋 Report: ${report.reportTitle}\n📅 Date: ${report.reportDate}\n\nPlease use the secure link below to access your report:\n${link}\n\nTo protect your privacy, you will need:\n• Your FULL NAME IN CAPITAL LETTERS\n• Your Date of Birth\n\nThis link is confidential. Please do not share it.\n\nApollo Clinic Srinagar\n📍 Karan Nagar, Near National School\n📞 ${PRIMARY_PHONE}`;
   };
 
-  const openWhatsApp = (report) => {
+  const openWhatsApp = async (report) => {
     const phone = report.phone.replace(/[\s\-+()]/g, '');
     const phoneNum = phone.startsWith('91') ? phone : `91${phone}`;
     const msg = getWhatsAppMessage(report);
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
 
-    // Update status to Sent
+    // Update status to Sent in Supabase
+    try {
+      await supabase
+        .from('test_reports')
+        .update({ status: 'Sent' })
+        .eq('id', report.id);
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    }
+
+    // Update local
     const updated = reports.map(r =>
       r.id === report.id ? { ...r, status: 'Sent' } : r
     );
@@ -755,29 +823,33 @@ const TestReportsSection = () => {
     });
   };
 
-  const handleDeleteReport = (id) => {
-    if (deletingId) return;
+  const handleDeleteReport = async (id) => {
+    const confirmed = window.confirm('Delete this report? This cannot be undone.');
     
-    setDeletingId(id);
+    if (!confirmed) return;
     
-    setTimeout(() => {
-      const confirmed = window.confirm('Delete this report? This cannot be undone.');
-      
-      if (confirmed) {
-        const remaining = (reports || []).filter(r => r.id !== id);
-        saveReports(remaining);
-      }
-      
-      setDeletingId(null);
-    }, 50);
+    // Delete from Supabase
+    await deleteReportFromSupabase(id);
   };
 
-  const toggleStatus = (id) => {
-    const updated = reports.map(r => {
-      if (r.id !== id) return r;
-      const next = r.status === 'Pending' ? 'Sent' : r.status === 'Sent' ? 'Viewed' : 'Pending';
-      return { ...r, status: next };
-    });
+  const toggleStatus = async (id) => {
+    const report = reports.find(r => r.id === id);
+    if (!report) return;
+    
+    const next = report.status === 'Pending' ? 'Sent' : report.status === 'Sent' ? 'Viewed' : 'Pending';
+    
+    // Update Supabase
+    try {
+      await supabase
+        .from('test_reports')
+        .update({ status: next })
+        .eq('id', id);
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    }
+    
+    // Update local
+    const updated = reports.map(r => r.id === id ? { ...r, status: next } : r);
     saveReports(updated);
   };
 
@@ -915,12 +987,10 @@ const TestReportsSection = () => {
                     </button>
                     <button 
                       type="button"
-                      onClick={() => handleDeleteReport(report.id)} 
-                      disabled={deletingId === report.id}
+                      onClick={() => handleDeleteReport(report.id)}
                       style={{
-                        background:'none', border:'none', cursor: deletingId === report.id ? 'not-allowed' : 'pointer',
-                        color: deletingId === report.id ? '#94a3b8' : '#cbd5e1',
-                        padding:'4px', opacity: deletingId === report.id ? 0.5 : 1,
+                        background:'none', border:'none', cursor:'pointer',
+                        color:'#cbd5e1', padding:'4px',
                       }}
                     >
                       <Trash2 size={14} />
