@@ -623,13 +623,19 @@ const TestReportsSection = () => {
 
   const loadReports = async () => {
     setLoading(true);
+    console.log('[LoadReports] Starting...');
     try {
       const { data, error } = await supabase
         .from('test_reports')
         .select('*')
         .order('created_at', { ascending: false });
       
-      if (error) throw error;
+      console.log('[LoadReports] Response:', { data: data?.length, error });
+      
+      if (error) {
+        console.error('[LoadReports] Supabase error:', error.message);
+        throw error;
+      }
       
       const mapped = (data || []).map(r => ({
         id: r.id,
@@ -646,9 +652,10 @@ const TestReportsSection = () => {
         createdAt: r.created_at
       }));
       
+      console.log('[LoadReports] Loaded reports:', mapped.length);
       setReports(mapped);
     } catch (err) {
-      console.error('Failed to load reports:', err);
+      console.error('[LoadReports] Failed to load reports:', err);
       setReports([]);
     } finally {
       setLoading(false);
@@ -704,6 +711,8 @@ const TestReportsSection = () => {
     setUploading(true);
 
     try {
+      console.log('[Upload] Starting upload...');
+      
       // Read file as base64
       const fileData = await new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -712,6 +721,7 @@ const TestReportsSection = () => {
         reader.readAsDataURL(selectedFile);
       });
 
+      console.log('[Upload] Calling API...');
       const res = await authFetch('/api/reports/upload', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -728,10 +738,17 @@ const TestReportsSection = () => {
         }),
       });
 
+      console.log('[Upload] Response status:', res.status);
       const data = await res.json();
+      console.log('[Upload] Response data:', data);
 
       if (!res.ok) {
         throw new Error(data.error || 'Upload failed.');
+      }
+
+      if (!data.reportId) {
+        console.error('[Upload] No reportId in response!');
+        throw new Error('Invalid response - missing report ID');
       }
 
       // Save to localStorage for dashboard
@@ -752,7 +769,13 @@ const TestReportsSection = () => {
 
       // Save to Supabase
       try {
-        await supabase.from('test_reports').insert([{
+        console.log('[Upload] Saving to Supabase:', {
+          id: data.reportId,
+          patient_name: form.patientName.trim(),
+          report_title: form.reportTitle.trim()
+        });
+        
+        const { data: supabaseData, error } = await supabase.from('test_reports').insert([{
           id: data.reportId,
           patient_name: form.patientName.trim(),
           phone: form.phone.trim(),
@@ -765,8 +788,14 @@ const TestReportsSection = () => {
           blob_url: data.blobUrl,
           token: data.token
         }]);
+        
+        if (error) {
+          console.error('[Upload] Supabase error:', error.message, error.code, error.details);
+        } else {
+          console.log('[Upload] Saved to Supabase successfully:', supabaseData);
+        }
       } catch (err) {
-        console.error('Failed to save to Supabase:', err);
+        console.error('[Upload] Failed to save to Supabase:', err);
       }
 
       saveReports([newReport, ...reports]);
