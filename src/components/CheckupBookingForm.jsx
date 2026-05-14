@@ -342,7 +342,20 @@ const CheckupBookingForm = () => {
         </div>
 
         <button type="submit" className="btn btn-primary"
-          style={{ width: '100%', padding: '1rem', marginTop: '0.5rem', fontSize: '1rem', fontWeight: 800, borderRadius: '14px', background: 'var(--navy)', justifyContent: 'center' }}>
+          style={{ 
+            width: '100%', 
+            padding: '1rem', 
+            marginTop: '0.5rem', 
+            fontSize: '1rem', 
+            fontWeight: 800, 
+            borderRadius: '14px', 
+            background: 'var(--navy)', 
+            justifyContent: 'center',
+            cursor: 'pointer',
+            position: 'relative',
+            zIndex: 10,
+            pointerEvents: 'auto'
+          }}>
           <MessageSquare size={20} />
           {submitted ? 'Booked! Open WhatsApp Again ↗' : 'Book Lab Tests'}
         </button>

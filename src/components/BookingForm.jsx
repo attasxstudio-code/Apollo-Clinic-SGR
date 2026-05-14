@@ -137,6 +137,7 @@ const BookingForm = () => {
       margin: '0 auto',
       position: 'relative',
       overflow: 'hidden',
+      zIndex: 1
     }}>
       {/* Top gradient bar */}
       <div style={{
@@ -273,7 +274,19 @@ const BookingForm = () => {
         </div>
 
         <button type="submit" className="btn btn-primary"
-          style={{ width: '100%', padding: '1rem', marginTop: '0.5rem', fontSize: '1rem', fontWeight: 800, borderRadius: '14px', background: 'var(--navy)' }}>
+          style={{ 
+            width: '100%', 
+            padding: '1rem', 
+            marginTop: '0.5rem', 
+            fontSize: '1rem', 
+            fontWeight: 800, 
+            borderRadius: '14px', 
+            background: 'var(--navy)',
+            cursor: 'pointer',
+            position: 'relative',
+            zIndex: 10,
+            pointerEvents: 'auto'
+          }}>
           <MessageSquare size={20} />
           {submitted ? 'Booked! Open WhatsApp Again ↗' : 'Book Now'}
         </button>
