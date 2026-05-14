@@ -149,11 +149,11 @@ const Diagnostics = () => {
       <section className="diag-lab-section" style={{ padding: '3rem 0 0' }}>
         <div className="container" style={{ maxWidth: '1400px' }}>
           
-          <div className="m-center" style={{ marginBottom: '3rem' }}>
+          <div className="m-center" style={{ marginBottom: '3rem', textAlign: 'center' }}>
             <h2 style={{ fontSize: '2.5rem', color: 'var(--navy)', marginBottom: '0.75rem' }}>
               Inside Our Diagnostic Lab
             </h2>
-            <p style={{ fontSize: '1.05rem', color: 'var(--body)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '1.05rem', color: 'var(--body)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6, textAlign: 'center' }}>
               A closer look at our testing environment, equipment, and patient-focused diagnostic care.
             </p>
           </div>
