@@ -145,6 +145,92 @@ const Diagnostics = () => {
         </div>
       </section>
 
+      {/* ── Inside Our Diagnostic Lab ── */}
+      <section className="diag-lab-section" style={{ padding: '3rem 0 0' }}>
+        <div className="container" style={{ maxWidth: '1400px' }}>
+          
+          <div className="m-center" style={{ marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2.5rem', color: 'var(--navy)', marginBottom: '0.75rem' }}>
+              Inside Our Diagnostic Lab
+            </h2>
+            <p style={{ fontSize: '1.05rem', color: 'var(--body)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
+              A closer look at our testing environment, equipment, and patient-focused diagnostic care.
+            </p>
+          </div>
+
+          <div className="diag-lab-grid" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '1.5rem'
+          }}>
+            {[
+              { src: '/images/lab/lab-1.webp', label: 'Modern Testing Area', alt: 'Apollo Clinic modern lab testing area with advanced equipment' },
+              { src: '/images/lab/lab-2.webp', label: 'Lab Equipment', alt: 'State-of-the-art diagnostic lab equipment at Apollo Clinic Srinagar' },
+              { src: '/images/lab/lab-3.webp', label: 'Diagnostic Care', alt: 'Patient-focused diagnostic care at Apollo Clinic' },
+            ].map((img, i) => (
+              <div key={i} className="diag-lab-card" style={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                border: '1px solid rgba(0,0,0,0.06)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+                background: '#e2e8f0',
+                position: 'relative',
+                lineHeight: 0,
+                transition: 'all 0.4s ease',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(13,82,192,0.12)';
+                e.currentTarget.style.borderColor = 'rgba(13,82,192,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.04)';
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.06)';
+              }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="diag-lab-img"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    transition: 'transform 0.5s ease',
+                  }}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.style.minHeight = '200px';
+                    e.target.parentElement.style.background = '#eff6ff';
+                  }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  bottom: '0',
+                  left: '0',
+                  right: '0',
+                  padding: '1.25rem 1.25rem 1rem',
+                  background: 'linear-gradient(transparent, rgba(0,0,0,0.6))',
+                }}>
+                  <span style={{
+                    color: '#fff',
+                    fontWeight: 700,
+                    fontSize: '0.9rem',
+                    display: 'block',
+                    textShadow: '0 1px 4px rgba(0,0,0,0.3)',
+                  }}>
+                    {img.label}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Diagnostic Tests We Offer ── */}
       <section className="diag-tests-section" style={{ padding: '6rem 0' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>

@@ -376,6 +376,15 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   color: var(--heading);
   letter-spacing: -0.01em;
   flex-shrink: 0;
+  padding: 0;
+  background: none;
+}
+.navbar-logo-img {
+  height: 72px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  object-position: center left;
 }
 .navbar-logo-icon {
   width: 34px; height: 34px;
@@ -1037,12 +1046,10 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
     color: var(--blue);
     background: var(--blue-light);
   }
-  .navbar-logo img {
-    height: 50px !important;
-  }
-  /* Remove the pale gradient box behind logo on mobile */
-  .navbar-logo > div:first-child {
-    display: none !important;
+  .navbar-logo-img {
+    height: 58px !important;
+    width: auto !important;
+    max-width: 72px !important;
   }
   .navbar-logo {
     padding: 0;
@@ -1803,6 +1810,23 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   }
   .diag-stats > div > div > div:last-child {
     font-size: 0.7rem !important;
+  }
+
+  /* Inside Our Lab section — responsive grid */
+  .diag-lab-section {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .diag-lab-section h2 {
+    font-size: clamp(1.3rem, 5.5vw, 1.8rem) !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .diag-lab-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  .diag-lab-card {
+    border-radius: 14px !important;
   }
 
   /* Diagnostic Tests section — tighter spacing */
@@ -2815,6 +2839,11 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
 /* ─────────────────────────────────────────
    LIQUID PILL BUTTONS (DIAGNOSTICS)
 ───────────────────────────────────────── */
+/* ── Lab Image hover zoom ── */
+.diag-lab-card:hover .diag-lab-img {
+  transform: scale(1.05);
+}
+
 .diag-pill-list {
   display: flex;
   flex-wrap: wrap;
@@ -2894,6 +2923,21 @@ p  { color: var(--body); font-size: 0.95rem; line-height: 1.72; margin-bottom: 0
   .admin-message-grid {
     grid-template-columns: 4fr 6fr; /* 40% and 60% approx */
     gap: 4rem;
+  }
+}
+
+/* ── Inside Our Lab — mobile single column ── */
+@media (max-width: 640px) {
+  .diag-lab-section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 0 !important;
+  }
+  .diag-lab-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .diag-lab-card {
+    border-radius: 12px !important;
   }
 }
 
