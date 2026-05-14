@@ -9,6 +9,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { sanitizeObject } from '../../utils/security';
 import { PRIMARY_PHONE } from '../../config/contact';
+import { supabase } from '../../utils/supabase';
 import {
   getAppointments as getVisitingAppts,
   updateAppointment as updateVisitingAppt,
