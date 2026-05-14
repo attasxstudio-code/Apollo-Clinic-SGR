@@ -820,7 +820,7 @@ const TestReportsSection = () => {
 
   const getWhatsAppMessage = (report) => {
     const link = getReportLink(report.token);
-    return `Hello ${report.patientName},\n\nYour test report from Apollo Clinic Srinagar is ready.\n\n📋 Report: ${report.reportTitle}\n📅 Date: ${report.reportDate}\n\nPlease use the secure link below to access your report:\n${link}\n\nTo protect your privacy, you will need:\n• Your FULL NAME IN CAPITAL LETTERS\n• Your Date of Birth\n\nThis link is confidential. Please do not share it.\n\nApollo Clinic Srinagar\n📍 Karan Nagar, Near National School\n📞 ${PRIMARY_PHONE}`;
+    return `Hello ${report.patientName},\n\nYour test report from Appolo Clinic Srinagar is ready.\n\n📋 Report: ${report.reportTitle}\n📅 Date: ${report.reportDate}\n\nPlease use the secure link below to access your report:\n${link}\n\nTo protect your privacy, you will need:\n• Your FULL NAME IN CAPITAL LETTERS\n• Your Date of Birth\n\nThis link is confidential. Please do not share it.\n\nAppolo Clinic Srinagar\n📍 Karan Nagar, Near National School\n📞 ${PRIMARY_PHONE}`;
   };
 
   const openWhatsApp = async (report) => {
@@ -1322,7 +1322,7 @@ const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
     const phoneNum = phone.startsWith('91') ? phone : `91${phone}`;
     const patientName = a.name || a.patientName || 'Patient';
     const doctorName = a.doctor_name || a.doctorName || 'Specialist';
-    const msg = `Hello ${patientName}, this is Apollo Clinic Srinagar. We received your visiting appointment request for ${doctorName}. Our team is contacting you to confirm your spot for the upcoming monthly visit.`;
+    const msg = `Hello ${patientName}, this is Appolo Clinic Srinagar. We received your visiting appointment request for ${doctorName}. Our team is contacting you to confirm your spot for the upcoming monthly visit.`;
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -1666,7 +1666,7 @@ const Dashboard = () => {
             title="Go to Home Page">
             <div style={{ background:'linear-gradient(135deg,#0ea5e9,#10b981)', borderRadius:'10px', padding:'6px',
               display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-              <img src="/images/ui/logo.webp" alt="Apollo Clinic" height="26" style={{ objectFit:'contain', borderRadius:'5px' }} className="admin-logo-img" />
+              <img src="/images/ui/logo.webp" alt="Appolo Clinic" height="26" style={{ objectFit:'contain', borderRadius:'5px' }} className="admin-logo-img" />
             </div>
             <div>
               <div style={{ fontWeight:800, fontSize:'0.92rem', lineHeight:1.15,
@@ -1674,7 +1674,7 @@ const Dashboard = () => {
                 WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>
                 Admin Panel
               </div>
-              <div style={{ color:'#94a3b8', fontSize:'0.65rem', fontWeight:500 }}>Apollo Clinic Srinagar</div>
+              <div style={{ color:'#94a3b8', fontSize:'0.65rem', fontWeight:500 }}>Appolo Clinic Srinagar</div>
             </div>
           </div>
 

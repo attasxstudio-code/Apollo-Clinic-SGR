@@ -30,14 +30,14 @@ const About = () => {
               </div>
               
               <h1 style={{ fontSize: '3.5rem', lineHeight: 1.1, marginBottom: '1.5rem', color: 'var(--navy)' }}>
-                About Apollo Clinic<br/>
+                About Appolo Clinic<br/>
                 <span style={{ color: 'var(--orange)' }}>Compassionate healthcare.</span><br/>
                 <span style={{ color: 'var(--blue)' }}>Modern expertise.</span> Trusted<br/>
                 care for every family.
               </h1>
               
               <p style={{ fontSize: '1.1rem', color: 'var(--body)', marginBottom: '2.5rem', lineHeight: 1.6, maxWidth: '540px' }}>
-                Apollo Clinic is a multi-specialty healthcare destination committed to delivering high-quality, patient-centered care. With experienced doctors, advanced diagnostics, and personalized treatment, we put your health and well-being at the heart of everything we do.
+                Appolo Clinic is a multi-specialty healthcare destination committed to delivering high-quality, patient-centered care. With experienced doctors, advanced diagnostics, and personalized treatment, we put your health and well-being at the heart of everything we do.
               </p>
 
               <div className="m-wrap" style={{ display: 'flex', gap: '1rem' }}>
@@ -52,7 +52,7 @@ const About = () => {
 
             {/* Right Image */}
             <div className="m-h-auto abt-hero-img" style={{ position: 'relative', height: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-              <img src="/images/clinic/outside.webp" alt="Apollo Clinic Building" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/images/clinic/outside.webp" alt="Appolo Clinic Building" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
 
@@ -110,7 +110,7 @@ const About = () => {
                 A legacy of care.<br/>A commitment to you.
               </h2>
               <p style={{ fontSize: '1rem', color: 'var(--body)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
-                Apollo Clinic is built on the trusted foundation of the Apollo brand—one of India's most respected names in healthcare. We bring hospital-grade expertise to your neighborhood with a focus on convenience, compassion, and clinical excellence.
+                Appolo Clinic is built on the trusted foundation of the Apollo brand—one of India's most respected names in healthcare. We bring hospital-grade expertise to your neighborhood with a focus on convenience, compassion, and clinical excellence.
               </p>
               
               <div className="m-grid-2 abt-trust-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
@@ -214,12 +214,12 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── Why Patients Trust Apollo Clinic ── */}
+      {/* ── Why Patients Trust Appolo Clinic ── */}
       <section className="abt-trust-section" style={{ padding: '5rem 0' }}>
         <div className="container" style={{ maxWidth: '1400px', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', marginBottom: '1rem' }}>
             <span style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
-              WHY PATIENTS TRUST APOLLO CLINIC
+              WHY PATIENTS TRUST APPOLO CLINIC
             </span>
             <div style={{ height: '3px', width: '30px', background: 'var(--orange)', margin: '4px auto 0' }}></div>
           </div>

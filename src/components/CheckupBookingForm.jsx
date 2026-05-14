@@ -101,7 +101,7 @@ const CheckupBookingForm = () => {
     
     // Create WhatsApp text immediately
     const text = [
-      `Hello Apollo Clinic, I want to book a lab test.`,
+      `Hello Appolo Clinic, I want to book a lab test.`,
       ``,
       `Patient Name: ${name}`,
       `Phone Number: ${phone}`,

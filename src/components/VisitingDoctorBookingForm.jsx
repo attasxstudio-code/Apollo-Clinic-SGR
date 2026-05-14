@@ -59,7 +59,7 @@ const VisitingDoctorBookingForm = ({ doc }) => {
         ? 'Next monthly visit'
         : 'Selected monthly visit / Once a month';
 
-      const msg = `Hello Apollo Clinic Srinagar, I want to book a visiting appointment.\n\nDoctor: ${doc.name}\nPatient Name: ${name.trim()}\nPhone Number: ${phone.trim()}\nAppointment Type: Visiting Doctor Appointment\nVisit Schedule: ${cycleLabel}\n\nPlease contact me to confirm my spot.`;
+      const msg = `Hello Appolo Clinic Srinagar, I want to book a visiting appointment.\n\nDoctor: ${doc.name}\nPatient Name: ${name.trim()}\nPhone Number: ${phone.trim()}\nAppointment Type: Visiting Doctor Appointment\nVisit Schedule: ${cycleLabel}\n\nPlease contact me to confirm my spot.`;
 
       // Update whatsapp status
       // WhatsApp redirection is handled by the browser redirect below
@@ -125,7 +125,7 @@ const VisitingDoctorBookingForm = ({ doc }) => {
             fontSize: '0.9rem', color: '#78716c', lineHeight: 1.65, margin: 0,
           }}>
             All visiting appointment slots for <strong>{doc.name}</strong> are currently full.
-            Please contact Apollo Clinic Srinagar directly for availability or check back later.
+            Please contact Appolo Clinic Srinagar directly for availability or check back later.
           </p>
           <a href="tel:01942488069" style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',

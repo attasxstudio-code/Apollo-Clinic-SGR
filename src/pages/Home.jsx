@@ -20,9 +20,9 @@ const MAPS_EMBED = 'https://maps.google.com/maps?q=34.0806043,74.7988594&hl=en&z
 
 const REVIEWS = [
   { quote: "Excellent experience. The clinic was clean and hygienic, the facilities were good, the wait time was short, and the staff provided great customer service.", author: "Arjuman" },
-  { quote: "I had a great experience at Apollo Clinic. The place was clean, the staff was friendly and helpful, and booking an appointment was simple and quick.", author: "Arsheen Mehrajudin" },
-  { quote: "Apollo Clinic is one of the best clinics in Kashmir. The patient support and care are excellent.", author: "Mrs Pakiza" },
-  { quote: "No doubt, Apollo Clinic is one of the best clinics in Kashmir, with good facilities, caring staff, and excellent treatment.", author: "GAGAN" },
+  { quote: "I had a great experience at Appolo Clinic. The place was clean, the staff was friendly and helpful, and booking an appointment was simple and quick.", author: "Arsheen Mehrajudin" },
+  { quote: "Appolo Clinic is one of the best clinics in Kashmir. The patient support and care are excellent.", author: "Mrs Pakiza" },
+  { quote: "No doubt, Appolo Clinic is one of the best clinics in Kashmir, with good facilities, caring staff, and excellent treatment.", author: "GAGAN" },
   { quote: "The doctor listened actively, gave practical suggestions, and helped me feel supported during treatment.", author: "Aazu" },
 ];
 
@@ -60,7 +60,7 @@ const Home = () => {
           
           <div className="m-center" style={{ maxWidth: '600px' }}>
             <div style={{ color: 'var(--blue)', fontWeight: 800, fontSize: '0.85rem', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1rem' }}>
-              WELCOME TO APOLLO CLINIC
+              WELCOME TO APPOLO CLINIC
             </div>
             
             <h1 style={{ fontSize: '4.5rem', lineHeight: 1.1, marginBottom: '1rem', color: 'var(--navy)' }}>
@@ -101,7 +101,7 @@ const Home = () => {
 
           {/* Hero Image */}
           <div className="hero-image" style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-            <img src="/images/clinic/receptionist.webp" alt="Apollo Clinic Srinagar Interior" style={{ width: '100%', height: 'auto', display: 'block' }} fetchPriority="high" decoding="async" width="1200" height="800" />
+            <img src="/images/clinic/receptionist.webp" alt="Appolo Clinic Srinagar Interior" style={{ width: '100%', height: 'auto', display: 'block' }} fetchPriority="high" decoding="async" width="1200" height="800" />
           </div>
         </div>
     </section>
@@ -113,16 +113,16 @@ const Home = () => {
             {/* Left Column - 2 smaller stacked images */}
             <div className="showcase-col">
               <div className="showcase-img-wrap showcase-img-small">
-                <img src="/images/clinic/interior-1.webp" alt="Apollo Clinic Interior" loading="lazy" decoding="async" />
+                <img src="/images/clinic/interior-1.webp" alt="Appolo Clinic Interior" loading="lazy" decoding="async" />
               </div>
               <div className="showcase-img-wrap showcase-img-small">
-                <img src="/images/clinic/interior-2.webp" alt="Apollo Clinic Interior" loading="lazy" decoding="async" />
+                <img src="/images/clinic/interior-2.webp" alt="Appolo Clinic Interior" loading="lazy" decoding="async" />
               </div>
             </div>
             
             {/* Right Column - 1 large tall image */}
             <div className="showcase-img-wrap showcase-img-tall">
-              <img src="/images/clinic/exterior.webp" alt="Apollo Clinic Exterior" loading="lazy" decoding="async" />
+              <img src="/images/clinic/exterior.webp" alt="Appolo Clinic Exterior" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -226,7 +226,7 @@ const Home = () => {
                   Visiting Specialists
                 </h2>
                 <p style={{ color: 'var(--body)', marginTop: '0.5rem', fontSize: '1.05rem', maxWidth: '600px' }}>
-                  Exclusive consultations with renowned specialists visiting Apollo Clinic Srinagar. Limited slots available.
+                  Exclusive consultations with renowned specialists visiting Appolo Clinic Srinagar. Limited slots available.
                 </p>
               </div>
               <button className="btn btn-outline-blue btn-sm m-hide" onClick={() => goTo('/doctors')} style={{ borderRadius: '8px' }}>
@@ -349,7 +349,7 @@ const Home = () => {
               Real experiences shared by our patients.
             </h2>
             <p style={{ fontSize: '0.95rem', color: 'var(--body)', maxWidth: 560, margin: '0 auto' }}>
-              Real experiences shared by patients who visited Apollo Clinic Srinagar.
+              Real experiences shared by patients who visited Appolo Clinic Srinagar.
             </p>
           </div>
 
@@ -396,7 +396,7 @@ const Home = () => {
               We're here for you.
             </h2>
             <p style={{ fontSize: '1rem', color: 'var(--body)', marginBottom: '1.75rem' }}>
-              Visit your nearest Apollo Clinic center.
+              Visit your nearest Appolo Clinic center.
             </p>
 
             <div className="contact-info" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -435,7 +435,7 @@ const Home = () => {
               style={{ border: 0 }} 
               allowFullScreen="" 
               loading="lazy"
-              title="Apollo Clinic Srinagar Location"
+              title="Appolo Clinic Srinagar Location"
             />
           </div>
         </div>
@@ -499,7 +499,7 @@ const Home = () => {
           <span>Book</span>
         </a>
         <a
-          href="https://www.google.com/maps/search/?api=1&query=Apollo+Clinic+Karan+Nagar+Srinagar+Jammu+Kashmir"
+          href="https://www.google.com/maps/search/?api=1&query=Appolo+Clinic+Karan+Nagar+Srinagar+Jammu+Kashmir"
           target="_blank" rel="noopener noreferrer" className="mqb-item"
         >
           <Navigation size={22} strokeWidth={1.8} />

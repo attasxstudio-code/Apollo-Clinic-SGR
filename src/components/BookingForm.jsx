@@ -88,7 +88,7 @@ const BookingForm = () => {
     recordAttempt(RATE_KEY);
 
     const text = [
-      `New Appointment Request — Apollo Clinic Srinagar:`,
+      `New Appointment Request — Appolo Clinic Srinagar:`,
       `Name: ${name}`,
       `Phone: ${phone}`,
       `Department: ${department || 'Not specified'}`,

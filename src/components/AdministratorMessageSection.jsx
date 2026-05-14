@@ -12,7 +12,7 @@ const AdministratorMessageSection = () => {
             Message from the Administrator
           </h2>
           <p style={{ fontSize: '1.05rem', color: 'var(--body)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
-            A note of trust, care, and commitment from the leadership of Apollo Clinic Srinagar.
+            A note of trust, care, and commitment from the leadership of Appolo Clinic Srinagar.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ const AdministratorMessageSection = () => {
             <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5' }}>
               <img 
                 src="/images/doctors/Doctor-Gazzafar-Hameed-Rather(Administrator).webp" 
-                alt="Dr Gazzanfar Hameed Rather, Administrator of Apollo Clinic Srinagar"
+                alt="Gazzanfar Hameed Rather, Administrator of Appolo Clinic Srinagar"
                 loading="lazy"
                 decoding="async"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -37,10 +37,10 @@ const AdministratorMessageSection = () => {
             </div>
             <div style={{ padding: '1.5rem', textAlign: 'center', background: '#fff' }}>
               <h3 style={{ fontSize: '1.25rem', color: 'var(--navy)', margin: '0 0 0.25rem 0', fontWeight: 800 }}>
-                Dr Gazzanfar Hameed Rather
+                Gazzanfar Hameed Rather — M.Com, M.Phil
               </h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--blue)', margin: 0, fontWeight: 600 }}>
-                Administrator, Apollo Clinic Srinagar
+                Administrator, Appolo Clinic Srinagar
               </p>
             </div>
           </div>
@@ -56,16 +56,16 @@ const AdministratorMessageSection = () => {
              
              <div style={{ position: 'relative', zIndex: 2 }}>
                <p style={{ fontSize: '1.05rem', color: 'var(--heading)', fontWeight: 700, marginBottom: '1.25rem' }}>
-                 Welcome to Apollo Clinic, Karan Nagar.
+                 Welcome to Appolo Clinic, Karan Nagar.
                </p>
                <p style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-                 At Apollo Clinic, we redefine healthcare by combining clinical excellence with a refined patient experience. Strategically located in Karan Nagar, our clinic is designed to offer an environment of comfort, privacy, and advanced medical care — where every detail reflects our commitment to quality.
+                 At Appolo Clinic, we redefine healthcare by combining clinical excellence with a refined patient experience. Strategically located in Karan Nagar, our clinic is designed to offer an environment of comfort, privacy, and advanced medical care — where every detail reflects our commitment to quality.
                </p>
                <p style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
                  Our distinguished team of highly qualified doctors and healthcare professionals brings together expertise, precision, and compassion to deliver world-class medical services. We focus on personalized care, ensuring that every patient receives attention tailored to their individual needs, supported by accurate diagnostics and modern treatment protocols.
                </p>
                <p style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-                 At Apollo Clinic, we believe true healthcare goes beyond treatment — it is about trust, reassurance, and long-term wellness. From consultation to recovery, we ensure a seamless and dignified experience for every patient who walks through our doors.
+                 At Appolo Clinic, we believe true healthcare goes beyond treatment — it is about trust, reassurance, and long-term wellness. From consultation to recovery, we ensure a seamless and dignified experience for every patient who walks through our doors.
                </p>
                <p style={{ fontSize: '0.95rem', color: 'var(--body)', lineHeight: 1.8, marginBottom: '1.25rem' }}>
                  With state-of-the-art facilities, stringent hygiene standards, and a patient-first philosophy, we strive to set a benchmark in premium healthcare services in the region.

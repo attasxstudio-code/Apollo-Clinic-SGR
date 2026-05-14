@@ -48,11 +48,11 @@ const Navbar = () => {
           <button
             className="navbar-logo"
             onClick={() => goTo('/')}
-            aria-label="Apollo Clinic Srinagar — home"
+            aria-label="Appolo Clinic Srinagar — home"
           >
             <img 
               src="/images/ui/logo.webp" 
-              alt="Apollo Clinic Srinagar Logo"
+              alt="Appolo Clinic Srinagar Logo"
               className="navbar-logo-img"
             />
           </button>

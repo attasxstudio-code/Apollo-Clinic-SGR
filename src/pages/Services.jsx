@@ -109,7 +109,7 @@ const Services = () => {
             </h1>
             
             <p style={{ fontSize: '1.05rem', color: 'var(--body)', marginBottom: '3rem', lineHeight: 1.6 }}>
-              At Apollo Clinic, we bring together experienced doctors, advanced technology, and compassionate care to provide complete healthcare solutions under one roof.
+              At Appolo Clinic, we bring together experienced doctors, advanced technology, and compassionate care to provide complete healthcare solutions under one roof.
             </p>
 
             <div className="svc-features" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -137,7 +137,7 @@ const Services = () => {
           <div style={{ position: 'relative' }}>
             <div className="svc-hero-img" style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
               {/* Replace with actual image later */}
-              <img src="/images/services/services-collage.webp" alt="Apollo Clinic Services" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px' }} />
+              <img src="/images/services/services-collage.webp" alt="Appolo Clinic Services" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px' }} />
             </div>
             
             {/* Stats Card */}

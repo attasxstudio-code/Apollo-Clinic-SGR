@@ -441,7 +441,7 @@ const DoctorProfile = () => {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.85rem', color: 'var(--heading)', marginBottom: '0.25rem' }}>
                         <FileText size={14} /> Email
                       </div>
-                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>{doc.clinic_email || 'info@apolloclinic.in'}</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--body)' }}>{doc.clinic_email || 'info@appoloclinic.in'}</div>
                     </div>
                     {doc.consultation_days && (
                       <div>

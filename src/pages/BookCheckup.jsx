@@ -80,13 +80,13 @@ const BookCheckup = () => {
                   </div>
                   <div>
                     <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.25rem' }}>Expert Diagnostic Support</h4>
-                    <p style={{ fontSize: '0.95rem', color: 'var(--body)', margin: 0 }}>Backed by Apollo's trusted<br/>network of specialists.</p>
+                    <p style={{ fontSize: '0.95rem', color: 'var(--body)', margin: 0 }}>Backed by Appolo's trusted<br/>network of specialists.</p>
                   </div>
                 </div>
               </div>
 
               <div style={{ height: '320px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-                <img src="/images/clinic/reception.webp" alt="Apollo Clinic Reception" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src="/images/clinic/reception.webp" alt="Appolo Clinic Reception" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             </div>
           )}

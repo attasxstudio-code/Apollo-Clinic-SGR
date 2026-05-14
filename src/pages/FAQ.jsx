@@ -8,16 +8,16 @@ const FAQ_CATEGORIES = [
     category: 'Appointments & Booking',
     items: [
       {
-        q: 'How do I book an appointment at Apollo Clinic Srinagar?',
+        q: 'How do I book an appointment at Appolo Clinic Srinagar?',
         a: `You can book an appointment by filling out the online form on our Book Appointment page, calling us directly at ${PRIMARY_PHONE}, or sending us a WhatsApp message. We will confirm your slot within a few hours.`,
       },
       {
         q: 'Do I need an appointment, or can I walk in?',
-        a: 'Walk-in patients are welcome at Apollo Clinic during our working hours. However, we strongly recommend booking an appointment in advance for specialist consultations to avoid waiting.',
+        a: 'Walk-in patients are welcome at Appolo Clinic during our working hours. However, we strongly recommend booking an appointment in advance for specialist consultations to avoid waiting.',
       },
       {
         q: 'What are the clinic working hours?',
-        a: `Apollo Clinic Srinagar is open ${WORKING_HOURS.weekdays.label} from ${WORKING_HOURS.weekdays.time}, and on ${WORKING_HOURS.sunday.label} from ${WORKING_HOURS.sunday.time}.`,
+        a: `Appolo Clinic Srinagar is open ${WORKING_HOURS.weekdays.label} from ${WORKING_HOURS.weekdays.time}, and on ${WORKING_HOURS.sunday.label} from ${WORKING_HOURS.sunday.time}.`,
       },
       {
         q: 'How will I know my appointment is confirmed?',
@@ -29,7 +29,7 @@ const FAQ_CATEGORIES = [
     category: 'Services & Specialities',
     items: [
       {
-        q: 'What specialities are available at Apollo Clinic Srinagar?',
+        q: 'What specialities are available at Appolo Clinic Srinagar?',
         a: 'We offer General Physician, Dermatology, Pediatrics, Gynecology, Orthopedics, Physiotherapy, and Psychology consultations, along with in-house diagnostics including ECG, ECHO, PFT, and laboratory services.',
       },
       {
@@ -51,7 +51,7 @@ const FAQ_CATEGORIES = [
     items: [
       {
         q: 'What diagnostic tests are available in-house?',
-        a: 'Apollo Clinic offers ECG, ECHO (echocardiogram), Pulmonary Function Tests (PFT), blood tests, urine and stool analysis, diabetes screening, and other routine laboratory tests — all in-house.',
+        a: 'Appolo Clinic offers ECG, ECHO (echocardiogram), Pulmonary Function Tests (PFT), blood tests, urine and stool analysis, diabetes screening, and other routine laboratory tests — all in-house.',
       },
       {
         q: 'How quickly will I get my lab test results?',
@@ -67,20 +67,20 @@ const FAQ_CATEGORIES = [
     category: 'Location & General Information',
     items: [
       {
-        q: 'Where is Apollo Clinic Srinagar located?',
-        a: 'Apollo Clinic Srinagar is located near National School, Arham Towers, Karan Nagar, Srinagar, Jammu & Kashmir. You can find us on Google Maps using the directions link on our Contact page.',
+        q: 'Where is Appolo Clinic Srinagar located?',
+        a: 'Appolo Clinic Srinagar is located near National School, Arham Towers, Karan Nagar, Srinagar, Jammu & Kashmir. You can find us on Google Maps using the directions link on our Contact page.',
       },
       {
         q: 'Is parking available near the clinic?',
         a: 'Parking is generally available in the vicinity of the clinic at Karan Nagar. We recommend arriving a few minutes early to find a suitable spot.',
       },
       {
-        q: 'Is Apollo Clinic Srinagar part of the Apollo Hospitals group?',
-        a: 'Apollo Clinic Srinagar operates under the Apollo Clinic brand, which is associated with the Apollo Health & Lifestyle Ltd. network — providing trusted multi-speciality care to communities across India.',
+        q: 'Is Appolo Clinic Srinagar part of the Apollo Hospitals group?',
+        a: 'Appolo Clinic Srinagar operates under the Appolo Clinic brand, which is associated with the Apollo Health & Lifestyle Ltd. network — providing trusted multi-speciality care to communities across India.',
       },
       {
         q: 'Is my personal and medical information kept confidential?',
-        a: 'Absolutely. Patient privacy is a core value at Apollo Clinic. All medical records, test results, and personal information are handled with strict confidentiality and are only accessible to authorized clinical staff.',
+        a: 'Absolutely. Patient privacy is a core value at Appolo Clinic. All medical records, test results, and personal information are handled with strict confidentiality and are only accessible to authorized clinical staff.',
       },
     ],
   },
@@ -113,7 +113,7 @@ const FAQ = () => (
           Frequently Asked Questions
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: '1.1rem', maxWidth: '580px', margin: '0 auto', lineHeight: 1.7 }}>
-          Find quick answers to the most common questions about Apollo Clinic Srinagar — our services, booking, timings, and more.
+          Find quick answers to the most common questions about Appolo Clinic Srinagar — our services, booking, timings, and more.
         </p>
       </div>
     </section>

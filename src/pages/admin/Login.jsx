@@ -89,7 +89,7 @@ const Login = () => {
         {/* Top Navbar */}
         <header className="admin-login-header">
           <div>
-            <img src="/images/ui/logo.webp" alt="Apollo Clinic" className="admin-login-header-logo" />
+            <img src="/images/ui/logo.webp" alt="Appolo Clinic" className="admin-login-header-logo" />
           </div>
           <div className="admin-login-trust">
             <span>Trusted healthcare for over 40 years</span>
@@ -108,14 +108,14 @@ const Login = () => {
           <div className="admin-login-card">
             {/* Logo in card */}
             <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-              <img src="/images/ui/logo.webp" alt="Apollo Clinic" className="admin-login-card-logo" />
+              <img src="/images/ui/logo.webp" alt="Appolo Clinic" className="admin-login-card-logo" />
             </div>
 
             <h2 style={{ color: 'var(--navy)', fontWeight: 900, fontSize: '1.8rem', marginBottom: '0.5rem', textAlign: 'center' }}>
               Admin Login
             </h2>
             <p style={{ color: 'var(--body)', fontSize: '0.95rem', textAlign: 'center', marginBottom: '2.5rem' }}>
-              Sign in to access the Apollo Clinic dashboard.
+              Sign in to access the Appolo Clinic dashboard.
             </p>
 
             {/* Error Banner */}
@@ -136,7 +136,7 @@ const Login = () => {
                 <label style={{ display: 'block', fontWeight: 800, fontSize: '0.9rem', color: 'var(--navy)', marginBottom: '0.5rem' }}>Email Address</label>
                 <input
                   type="email"
-                  placeholder="admin@apolloclinicsgr.com"
+                  placeholder="admin@appoloclinicsgr.com"
                   value={email} onChange={e => setEmail(e.target.value)}
                   required autoComplete="email" disabled={isLocked}
                   style={{ 
@@ -224,7 +224,7 @@ const Login = () => {
                 fontSize: '0.95rem', fontWeight: 800, textAlign: 'center',
                 textDecoration: 'none', transition: 'all 0.2s'
               }}>
-                ← Back to Apollo
+                ← Back to Appolo
               </Link>
             </div>
           </div>

@@ -93,7 +93,7 @@ const PrivacyPolicy = () => (
         </div>
 
         <P>
-          Apollo Clinic Srinagar respects your privacy and is committed to protecting your personal and medical information. This Privacy Policy explains how we collect, use, store, and protect information when you visit our website, book appointments, book health checkups, contact us, or access online reports through our platform.
+          Appolo Clinic Srinagar respects your privacy and is committed to protecting your personal and medical information. This Privacy Policy explains how we collect, use, store, and protect information when you visit our website, book appointments, book health checkups, contact us, or access online reports through our platform.
         </P>
         <P>
           By using this website, you agree to the terms of this Privacy Policy.
@@ -193,7 +193,7 @@ const PrivacyPolicy = () => (
             'Patients are responsible for keeping their report links and verification details private.',
           ]} />
           <P>
-            Apollo Clinic Srinagar takes reasonable steps to protect reports and medical documents, but no online system can be guaranteed to be completely risk-free.
+            Appolo Clinic Srinagar takes reasonable steps to protect reports and medical documents, but no online system can be guaranteed to be completely risk-free.
           </P>
         </Section>
 
@@ -333,7 +333,7 @@ const PrivacyPolicy = () => (
               fontSize: '1.15rem', fontWeight: 800, color: '#0c4a6e',
               margin: '0 0 1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem',
             }}>
-              <MapPin size={18} /> Apollo Clinic Srinagar
+              <MapPin size={18} /> Appolo Clinic Srinagar
             </h3>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>

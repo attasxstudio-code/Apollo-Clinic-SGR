@@ -102,7 +102,7 @@ const Diagnostics = () => {
 
           <div style={{ position: 'relative' }}>
             <div className="diag-hero-img" style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-              <img src="/images/services/lab-technician.webp" alt="Apollo Clinic Diagnostics" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px', objectFit: 'cover' }} />
+              <img src="/images/services/lab-technician.webp" alt="Appolo Clinic Diagnostics" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block', backgroundColor: '#e2e8f0', minHeight: '400px', objectFit: 'cover' }} />
             </div>
             
             {/* Stats Card */}
@@ -164,9 +164,9 @@ const Diagnostics = () => {
             gap: '1.5rem'
           }}>
             {[
-              { src: '/images/lab/lab-1.webp', label: 'Modern Testing Area', alt: 'Apollo Clinic modern lab testing area with advanced equipment' },
-              { src: '/images/lab/lab-2.webp', label: 'Lab Equipment', alt: 'State-of-the-art diagnostic lab equipment at Apollo Clinic Srinagar' },
-              { src: '/images/lab/lab-3.webp', label: 'Diagnostic Care', alt: 'Patient-focused diagnostic care at Apollo Clinic' },
+              { src: '/images/lab/lab-1.webp', label: 'Modern Testing Area', alt: 'Appolo Clinic modern lab testing area with advanced equipment' },
+              { src: '/images/lab/lab-2.webp', label: 'Lab Equipment', alt: 'State-of-the-art diagnostic lab equipment at Appolo Clinic Srinagar' },
+              { src: '/images/lab/lab-3.webp', label: 'Diagnostic Care', alt: 'Patient-focused diagnostic care at Appolo Clinic' },
             ].map((img, i) => (
               <div key={i} className="diag-lab-card" style={{
                 borderRadius: '16px',

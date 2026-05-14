@@ -32,7 +32,7 @@ const Footer = () => {
           {/* Brand column */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-              <img src="/images/ui/logo.webp" alt="Apollo Clinic Logo" style={{ height: '44px', objectFit: 'contain' }} />
+              <img src="/images/ui/logo.webp" alt="Appolo Clinic Logo" style={{ height: '44px', objectFit: 'contain' }} />
             </div>
 
             <p style={{ color: 'var(--body)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: '1.25rem', maxWidth: 240 }}>
@@ -81,7 +81,7 @@ const Footer = () => {
               }}>
                 <Phone size={14} /> {PRIMARY_PHONE}
               </a>
-              <a href={waLink('Hello! I would like to book an appointment at Apollo Clinic Srinagar.')} target="_blank" rel="noreferrer" style={{
+              <a href={waLink('Hello! I would like to book an appointment at Appolo Clinic Srinagar.')} target="_blank" rel="noreferrer" style={{
                 display: 'flex', alignItems: 'center', gap: '0.45rem', justifyContent: 'center',
                 background: '#25D366', borderRadius: '8px', padding: '0.65rem 1rem',
                 color: '#fff', fontWeight: 600, fontSize: '0.85rem', textDecoration: 'none', transition: 'opacity 0.2s',
@@ -101,7 +101,7 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Apollo Clinic Srinagar. Clinical excellence in Karan Nagar.</span>
+          <span>© {new Date().getFullYear()} Appolo Clinic Srinagar. Clinical excellence in Karan Nagar.</span>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <button className="footer-link" onClick={() => goTo('/privacy-policy')} style={{ marginBottom: 0 }}>Privacy Policy</button>
             <button className="footer-link" onClick={() => goTo('/contact')} style={{ marginBottom: 0 }}>Contact Us</button>

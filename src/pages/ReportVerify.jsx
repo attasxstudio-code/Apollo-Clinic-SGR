@@ -200,7 +200,7 @@ const ReportVerify = () => {
               Secure Report Access
             </h2>
             <p style={{ color:'#64748b', fontSize:'0.9rem', margin:0, lineHeight:1.6 }}>
-              Apollo Clinic Srinagar — Patient Verification
+              Appolo Clinic Srinagar — Patient Verification
             </p>
           </div>
 
@@ -317,7 +317,7 @@ const ReportVerify = () => {
               🔒 Your data is verified securely. We do not store your verification details.
             </p>
             <Link to="/" style={{ color:'#0369a1', fontSize:'0.8rem', fontWeight:600 }}>
-              ← Back to Apollo Clinic
+              ← Back to Appolo Clinic
             </Link>
           </div>
         </div>
@@ -353,7 +353,7 @@ const ReportVerify = () => {
                 <ShieldCheck size={20} color="#fff" />
               </div>
               <div>
-                <div style={{ fontWeight:800, fontSize:'0.85rem', color:'#0c4a6e', lineHeight:1.2 }}>Apollo Clinic</div>
+                <div style={{ fontWeight:800, fontSize:'0.85rem', color:'#0c4a6e', lineHeight:1.2 }}>Appolo Clinic</div>
                 <div style={{ fontSize:'0.65rem', color:'#94a3b8' }}>Secure Report Viewer</div>
               </div>
             </div>
@@ -437,10 +437,10 @@ const ReportVerify = () => {
           borderTop:'1px solid #e2e8f0',
         }}>
           <p style={{ color:'#94a3b8', fontSize:'0.78rem', margin:'0 0 0.5rem' }}>
-            Apollo Clinic Srinagar · Karan Nagar, Near National School
+            Appolo Clinic Srinagar · Karan Nagar, Near National School
           </p>
           <Link to="/" style={{ color:'#0369a1', fontSize:'0.82rem', fontWeight:600 }}>
-            Visit Apollo Clinic →
+            Visit Appolo Clinic →
           </Link>
         </div>
       </div>
@@ -466,7 +466,7 @@ const ReportVerify = () => {
           Invalid Report Link
         </h2>
         <p style={{ color:'#64748b', fontSize:'0.9rem', marginBottom:'1.5rem' }}>
-          This report link appears to be invalid or has expired. Please contact Apollo Clinic for assistance.
+          This report link appears to be invalid or has expired. Please contact Appolo Clinic for assistance.
         </p>
         <Link to="/" style={{
           display:'inline-flex', alignItems:'center', gap:'0.4rem',
@@ -475,7 +475,7 @@ const ReportVerify = () => {
           color:'#fff', fontWeight:700, fontSize:'0.9rem',
           textDecoration:'none',
         }}>
-          ← Back to Apollo Clinic
+          ← Back to Appolo Clinic
         </Link>
       </div>
     </div>

@@ -161,7 +161,7 @@ const Reports = () => {
 
           <div style={{ marginTop: '1.1rem', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
             <Link to="/" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--r-md)' }}>
-              ← Back to Apollo
+              ← Back to Appolo
             </Link>
           </div>
         </div>
@@ -258,7 +258,7 @@ const Reports = () => {
 
           <div style={{ display: 'flex', gap: '0.65rem' }}>
             <button onClick={resetForm} className="btn btn-ghost" style={{ flex: 1, justifyContent: 'center', borderRadius: 'var(--r-md)' }}>← Search Again</button>
-            <Link to="/" className="btn btn-primary" style={{ flex: 1, justifyContent: 'center', borderRadius: 'var(--r-md)', textDecoration: 'none' }}>Apollo Clinic Home</Link>
+            <Link to="/" className="btn btn-primary" style={{ flex: 1, justifyContent: 'center', borderRadius: 'var(--r-md)', textDecoration: 'none' }}>Appolo Clinic Home</Link>
           </div>
         </div>
       </div>
@@ -271,7 +271,7 @@ const Reports = () => {
       <div style={{ maxWidth: 360, textAlign: 'center', background: '#fff', padding: '2.5rem 2rem', borderRadius: 'var(--r-2xl)', boxShadow: 'var(--shadow-sm)', border: '1px solid var(--border)' }}>
         <AlertTriangle size={40} color="var(--red)" style={{ marginBottom: '0.85rem' }} />
         <h2 style={{ color: 'var(--heading)', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.4rem' }}>Something Went Wrong</h2>
-        <p style={{ color: 'var(--body)', fontSize: '0.87rem', marginBottom: '1.25rem' }}>Please try again or contact Apollo Clinic.</p>
+        <p style={{ color: 'var(--body)', fontSize: '0.87rem', marginBottom: '1.25rem' }}>Please try again or contact Appolo Clinic.</p>
         <button onClick={resetForm} className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--r-md)' }}>Try Again</button>
       </div>
     </div>
