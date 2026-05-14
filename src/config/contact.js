@@ -8,7 +8,7 @@ export const CLINIC_PHONES = [
   { display: '9596800336',   href: 'tel:9596800336' },
 ];
 
-export const WHATSAPP_NUMBER = '9596500366';
+export const WHATSAPP_NUMBER = '9596500336';
 export const WHATSAPP_LINK = `https://wa.me/91${WHATSAPP_NUMBER}`;
 
 export const CLINIC_EMAIL = 'cypherhealthservicespvtltd@gmail.com';
