@@ -9,7 +9,11 @@ import { useAuth } from '../context/AuthContext';
  * - Otherwise → renders children
  */
 const ProtectedRoute = ({ children }) => {
-  const { admin } = useAuth();
+  const { admin, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
 
   // Not authenticated → redirect
   if (!admin) {

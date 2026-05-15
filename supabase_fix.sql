@@ -34,8 +34,9 @@ DROP POLICY IF EXISTS "Allow public select" ON public.appointments;
 DROP POLICY IF EXISTS "Allow public update" ON public.appointments;
 DROP POLICY IF EXISTS "Allow public delete" ON public.appointments;
 
--- STEP 4: Create RLS policies allowing anon (public website) users to INSERT
--- and authenticated users (admin) to read/update/delete
+-- STEP 4: Create RLS policies allowing public website users to INSERT only.
+-- Admin reads/updates/deletes must go through the Vercel /api/appointments
+-- endpoint with SUPABASE_SERVICE_ROLE_KEY set in Vercel.
 -- ───────────────────────────────────────────────────────────────────────────────
 
 -- Allow anyone (website visitors) to INSERT new appointments
@@ -45,28 +46,9 @@ CREATE POLICY "Allow public insert"
   TO anon, authenticated
   WITH CHECK (true);
 
--- Allow anyone to SELECT appointments (dashboard reads as anon too with publishable key)
-CREATE POLICY "Allow public select"
-  ON public.appointments
-  FOR SELECT
-  TO anon, authenticated
-  USING (true);
-
--- Allow anyone to UPDATE appointments (admin status changes)
-CREATE POLICY "Allow public update"
-  ON public.appointments
-  FOR UPDATE
-  TO anon, authenticated
-  USING (true)
-  WITH CHECK (true);
-
--- Allow anyone to DELETE appointments (admin deletes)
-CREATE POLICY "Allow public delete"
-  ON public.appointments
-  FOR DELETE
-  TO anon, authenticated
-  USING (true);
+-- Do NOT create public SELECT, UPDATE, or DELETE policies.
+-- The service-role key used by /api/appointments bypasses RLS securely on the server.
 
 -- ═══════════════════════════════════════════════════════════
--- DONE! All 4 policies created. Test by submitting a booking.
+-- DONE. Public visitors can submit bookings, but cannot read, edit, or delete them.
 -- ═══════════════════════════════════════════════════════════

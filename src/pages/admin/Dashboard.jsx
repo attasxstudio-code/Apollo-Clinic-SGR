@@ -9,7 +9,6 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { sanitizeObject } from '../../utils/security';
 import { PRIMARY_PHONE } from '../../config/contact';
-import { supabase } from '../../utils/supabase';
 import {
   getAppointments as getVisitingAppts,
   updateAppointment as updateVisitingAppt,
@@ -191,7 +190,7 @@ const Column = ({ title, items, status, onAdvance, onDelete, isCheckup }) => {
 /* ══════════════════════════════════════════
    SECTION: Appointments or Checkups
 ══════════════════════════════════════════ */
-const Section = ({ type, label, isCheckup, icon, initialData = [], refreshData }) => {
+const Section = ({ type, label, isCheckup, icon, initialData = [], refreshData, authFetch }) => {
   const [leads, setLeads] = useState(initialData);
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState('All');
@@ -211,7 +210,7 @@ const Section = ({ type, label, isCheckup, icon, initialData = [], refreshData }
     if (!lead) return;
     const nextStatus = order[(order.indexOf(lead.status) + 1) % order.length];
     try {
-      await appointmentService.updateAppointment(id, { status: nextStatus });
+      await appointmentService.updateAppointment(id, { status: nextStatus }, authFetch);
       setLeads(leads.map(l => l.id === id ? { ...l, status: nextStatus } : l));
     } catch (err) {
       console.error('Failed to update appointment status:', err);
@@ -221,7 +220,7 @@ const Section = ({ type, label, isCheckup, icon, initialData = [], refreshData }
   const deleteLead = async (id) => {
     if (!window.confirm(`Delete this ${isCheckup ? 'checkup' : 'appointment'} entry?`)) return;
     try {
-      await appointmentService.deleteAppointment(id);
+      await appointmentService.deleteAppointment(id, authFetch);
       setLeads(leads.filter(l => l.id !== id));
     } catch (err) {
       console.error('Failed to delete appointment:', err);
@@ -626,17 +625,10 @@ const TestReportsSection = () => {
     setLoading(true);
     console.log('[LoadReports] Starting...');
     try {
-      const { data, error } = await supabase
-        .from('test_reports')
-        .select('*')
-        .order('created_at', { ascending: false });
-      
-      console.log('[LoadReports] Response:', { data: data?.length, error });
-      
-      if (error) {
-        console.error('[LoadReports] Supabase error:', error.message);
-        throw error;
-      }
+      const res = await authFetch('/api/reports/records');
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(payload.error || 'Unable to load reports.');
+      const data = payload.reports || [];
       
       const mapped = (data || []).map(r => ({
         id: r.id,
@@ -669,12 +661,9 @@ const TestReportsSection = () => {
 
   const deleteReportFromSupabase = async (id) => {
     try {
-      const { error } = await supabase
-        .from('test_reports')
-        .delete()
-        .eq('id', id);
-      
-      if (error) throw error;
+      const res = await authFetch(`/api/reports/records?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Unable to delete report.');
       
       // Remove from local state
       setReports(reports.filter(r => r.id !== id));
@@ -768,15 +757,10 @@ const TestReportsSection = () => {
         blobUrl: data.blobUrl,
       };
 
-      // Save to Supabase
-      try {
-        console.log('[Upload] Saving to Supabase:', {
-          id: data.reportId,
-          patient_name: form.patientName.trim(),
-          report_title: form.reportTitle.trim()
-        });
-        
-        const { data: supabaseData, error } = await supabase.from('test_reports').insert([{
+      const metadataRes = await authFetch('/api/reports/records', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           id: data.reportId,
           patient_name: form.patientName.trim(),
           phone: form.phone.trim(),
@@ -788,15 +772,12 @@ const TestReportsSection = () => {
           status: 'Pending',
           blob_url: data.blobUrl,
           token: data.token
-        }]);
-        
-        if (error) {
-          console.error('[Upload] Supabase error:', error.message, error.code, error.details);
-        } else {
-          console.log('[Upload] Saved to Supabase successfully:', supabaseData);
-        }
-      } catch (err) {
-        console.error('[Upload] Failed to save to Supabase:', err);
+        }),
+      });
+      const metadata = await metadataRes.json().catch(() => ({}));
+
+      if (!metadataRes.ok) {
+        throw new Error(metadata.error || 'Report uploaded, but dashboard metadata could not be saved. Please contact the site administrator before sharing this report link.');
       }
 
       saveReports([newReport, ...reports]);
@@ -831,12 +812,15 @@ const TestReportsSection = () => {
 
     // Update status to Sent in Supabase
     try {
-      await supabase
-        .from('test_reports')
-        .update({ status: 'Sent' })
-        .eq('id', report.id);
+      const res = await authFetch(`/api/reports/records?id=${encodeURIComponent(report.id)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'Sent' }),
+      });
+      if (!res.ok) throw new Error('Unable to update report status.');
     } catch (err) {
       console.error('Failed to update status:', err);
+      return;
     }
 
     // Update local
@@ -870,12 +854,15 @@ const TestReportsSection = () => {
     
     // Update Supabase
     try {
-      await supabase
-        .from('test_reports')
-        .update({ status: next })
-        .eq('id', id);
+      const res = await authFetch(`/api/reports/records?id=${encodeURIComponent(id)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: next }),
+      });
+      if (!res.ok) throw new Error('Unable to update report status.');
     } catch (err) {
       console.error('Failed to update status:', err);
+      return;
     }
     
     // Update local
@@ -1278,7 +1265,7 @@ const VISITING_DOCTORS_LIST = [
   { slug:'dr-harish-kumar-verma',  name:'Dr Harish Kumar Verma' },
 ];
 
-const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
+const VisitingAppointmentsSection = ({ initialData = [], refreshData, authFetch }) => {
   // Use initialData directly - no need for separate state that causes re-render loops
   const appts = initialData || [];
   const [settings, setSettings] = useState({});
@@ -1300,7 +1287,7 @@ const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
     try {
       await appointmentService.updateAppointment(id, { 
         status: isNowConfirmed ? 'Confirmed' : 'Pending' 
-      });
+      }, authFetch);
       if (refreshData) refreshData();
     } catch (err) {
       console.error('Failed to update status:', err);
@@ -1310,7 +1297,7 @@ const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this visiting appointment?')) return;
     try {
-      await appointmentService.deleteAppointment(id);
+      await appointmentService.deleteAppointment(id, authFetch);
       if (refreshData) refreshData();
     } catch (err) {
       console.error('Failed to delete:', err);
@@ -1578,7 +1565,7 @@ const VisitingAppointmentsSection = ({ initialData = [], refreshData }) => {
 ══════════════════════════════════════════ */
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { admin, logout } = useAuth();
+  const { admin, logout, authFetch } = useAuth();
   const [activeSection, setActiveSection] = useState('appointments');
   const [allAppointments, setAllAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -1587,7 +1574,7 @@ const Dashboard = () => {
     setLoading(true);
     console.log('[Dashboard] Starting to fetch data...');
     try {
-      const data = await appointmentService.getAllAppointments();
+      const data = await appointmentService.getAllAppointments(authFetch);
       console.log('[Dashboard] Raw data received:', data?.length || 0, 'appointments');
       
       // Normalize data to handle property name differences (Supabase vs Legacy)
@@ -1742,6 +1729,7 @@ const Dashboard = () => {
                 refreshData={fetchAllData}
                 isCheckup={false}
                 icon={<Stethoscope size={16} color="#0369a1"/>}
+                authFetch={authFetch}
               />
             )}
 
@@ -1755,6 +1743,7 @@ const Dashboard = () => {
                 refreshData={fetchAllData}
                 isCheckup={true}
                 icon={<FlaskConical size={16} color="#059669"/>}
+                authFetch={authFetch}
               />
             )}
 
@@ -1771,6 +1760,7 @@ const Dashboard = () => {
                   return isVis;
                 })}
                 refreshData={fetchAllData}
+                authFetch={authFetch}
               />
             )}
           </>

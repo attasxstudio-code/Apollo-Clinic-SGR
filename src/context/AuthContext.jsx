@@ -4,7 +4,7 @@ const AuthContext = createContext(null);
 
 // ── Session storage keys ──
 const SESSION_KEY = 'hhc_session';
-const SESSION_TTL = 60 * 60 * 1000; // 1 hour in ms
+const SESSION_TTL = 15 * 60 * 1000; // Mirrors the server JWT lifetime.
 
 const isSessionValid = (session) => {
   if (!session) return false;
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     const session = localStorage.getItem(SESSION_KEY);
     return isSessionValid(session) ? JSON.parse(session).admin : null;
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   /* ── Auto-logout when session expires (checks every minute) ── */
   useEffect(() => {
@@ -32,6 +32,42 @@ export const AuthProvider = ({ children }) => {
     }, 60_000);
     return () => clearInterval(interval);
   }, [admin]);
+
+  useEffect(() => {
+    const verifySession = async () => {
+      const session = localStorage.getItem(SESSION_KEY);
+      if (!isSessionValid(session)) {
+        localStorage.removeItem(SESSION_KEY);
+        setAdmin(null);
+        setLoading(false);
+        return;
+      }
+
+      let token = null;
+      try { token = JSON.parse(session).token; } catch {}
+      if (!token) {
+        localStorage.removeItem(SESSION_KEY);
+        setAdmin(null);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth/me', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Invalid session.');
+        setAdmin(data.admin);
+      } catch {
+        localStorage.removeItem(SESSION_KEY);
+        setAdmin(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    verifySession();
+  }, []);
 
   /* ── login: calls the server-side API — no credentials in client code ── */
   const login = useCallback(async (email, password) => {

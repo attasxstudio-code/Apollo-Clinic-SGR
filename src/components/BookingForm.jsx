@@ -35,34 +35,23 @@ const BookingForm = () => {
 
   // ── Save lead to Supabase so it appears in the Admin Dashboard ──
   const saveLeadToAdmin = async ({ name, phone, date, message, department }) => {
-    console.log('%c📤 saveLeadToAdmin called', 'color: purple; font-weight: bold');
-    console.log('  Input:', { name, phone, date, department });
-    
-    try {
-      console.log('  Calling appointmentService.saveLead...');
-      const result = await appointmentService.saveLead({
-        name: sanitizeInput(name, 100),
-        phone: sanitizeInput(phone, 20),
-        date: sanitizeInput(date, 10),
-        department: sanitizeInput(department, 100),
-        notes: sanitizeInput(message, 1000),
-      });
-      console.log('  Result:', result);
-      if (!result) throw new Error('No data returned from Supabase');
-      console.log('%c✅ Appointment saved to Supabase:', 'color: green', result);
-    } catch (err) {
-      console.error('%c❌ Failed to save lead to Supabase:', 'color: red', err);
-      // Don't block WhatsApp redirect — just log the error
-    }
+    const result = await appointmentService.saveLead({
+      name: sanitizeInput(name, 100),
+      phone: sanitizeInput(phone, 20),
+      date: sanitizeInput(date, 10),
+      department: sanitizeInput(department, 100),
+      notes: sanitizeInput(message, 1000),
+    });
+    if (!result) throw new Error('Appointment was not saved.');
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
-    sendToWhatsApp(e);
+    await sendToWhatsApp(e);
   }
 
-  function sendToWhatsApp(e) {
+  async function sendToWhatsApp(e) {
     setError('');
 
     // Security Checks
@@ -97,7 +86,11 @@ const BookingForm = () => {
     ].join('\n');
     const waUrl = waLink(text);
 
-    saveLeadToAdmin({ name, phone, date, message, department });
+    try {
+      await saveLeadToAdmin({ name, phone, date, message, department });
+    } catch {
+      return setError('We could not save your booking. Please try again or contact the clinic directly.');
+    }
 
     window.location.href = waUrl;
 

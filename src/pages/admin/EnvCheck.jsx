@@ -7,7 +7,7 @@ const EnvCheck = () => {
   useEffect(() => {
     const vars = {
       VITE_SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL || 'NOT SET',
-      VITE_SUPABASE_ANON_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY || 'NOT SET',
+      VITE_SUPABASE_ANON_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY ? 'SET' : 'NOT SET',
       VITE_SUPABASE_KEY_LENGTH: import.meta.env.VITE_SUPABASE_ANON_KEY?.length || 0
     };
     setEnvVars(vars);

@@ -4,9 +4,8 @@ const verifyToken = require('../middleware/auth');
 
 const router = express.Router();
 
-/* ── Hardcoded single-admin credentials (never exposed to frontend) ── */
-const ADMIN_EMAIL    = 'admin@homeheal.com';
-const ADMIN_PASSWORD = 'Homeheal@001admin';
+const ADMIN_EMAIL    = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 /* ─────────────────────────────────────────
    POST /api/auth/login
@@ -14,6 +13,10 @@ const ADMIN_PASSWORD = 'Homeheal@001admin';
    Returns: { token, expiresIn }
 ───────────────────────────────────────── */
 router.post('/login', (req, res) => {
+  if (!ADMIN_EMAIL || !ADMIN_PASSWORD || !process.env.JWT_SECRET) {
+    return res.status(500).json({ error: 'Admin authentication is not configured.' });
+  }
+
   const { email, password } = req.body;
 
   // Validate body
@@ -32,16 +35,16 @@ router.post('/login', (req, res) => {
 
   // Sign JWT
   const payload = { email: ADMIN_EMAIL, role: 'admin' };
-  const token   = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+  const token   = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '15m' });
 
   return res.status(200).json({
     message:   'Login successful.',
     token,
-    expiresIn: 3600,   // seconds
+    expiresIn: 900,
     admin: {
       email: ADMIN_EMAIL,
       role:  'admin',
-      name:  'HomeHeal Admin',
+      name:  'Appolo Clinic Admin',
     },
   });
 });
@@ -56,7 +59,7 @@ router.get('/me', verifyToken, (req, res) => {
     admin: {
       email: req.admin.email,
       role:  req.admin.role,
-      name:  'HomeHeal Admin',
+      name:  'Appolo Clinic Admin',
     },
     tokenExpiresAt: new Date(req.admin.exp * 1000).toISOString(),
   });

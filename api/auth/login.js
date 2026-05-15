@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 
 /* ── Credentials (server-side only — never sent to browser) ── */
-const ADMIN_EMAIL    = 'admin@apolloclinicsgr.com';
-const ADMIN_PASSWORD = 'Apolloclinicsgr@001admin';
-const JWT_SECRET     = process.env.JWT_SECRET || 'hhc_jwt_s3cr3t_k3y_2026_x9z';
+const ADMIN_EMAIL    = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const JWT_SECRET     = process.env.JWT_SECRET;
 
 /* ── Allowed origins ── */
 const ALLOWED_ORIGINS = [
@@ -67,6 +67,10 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed.' });
   }
 
+  if (!ADMIN_EMAIL || !ADMIN_PASSWORD || !JWT_SECRET) {
+    return res.status(500).json({ error: 'Admin authentication is not configured.' });
+  }
+
   /* ── Rate limiting ── */
   const ipKey = getRateLimitKey(req);
   if (isRateLimited(ipKey)) {
@@ -102,12 +106,12 @@ export default function handler(req, res) {
   clearLoginAttempts(ipKey);
 
   const payload = { email: ADMIN_EMAIL, role: 'admin' };
-  const token   = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+  const token   = jwt.sign(payload, JWT_SECRET, { expiresIn: '15m' });
 
   return res.status(200).json({
     message:   'Login successful.',
     token,
-    expiresIn: 3600,
+    expiresIn: 900,
     admin: {
       email: ADMIN_EMAIL,
       role:  'admin',

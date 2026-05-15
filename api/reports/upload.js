@@ -2,7 +2,7 @@ import { put } from '@vercel/blob';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'hhc_jwt_s3cr3t_k3y_2026_x9z';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 /* ── Allowed origins ── */
 const ALLOWED_ORIGINS = [
@@ -66,6 +66,10 @@ export default async function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed.' });
+
+  if (!JWT_SECRET) {
+    return res.status(500).json({ error: 'Report security is not configured.' });
+  }
 
   /* ── Auth check ── */
   const admin = verifyAuth(req);

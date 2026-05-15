@@ -33,21 +33,19 @@ const VisitingDoctorBookingForm = ({ doc }) => {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate() || submitting) return;
     setSubmitting(true);
 
     try {
-      appointmentService.saveVisitingAppointment({
+      await appointmentService.saveVisitingAppointment({
         doctorSlug: doc.id,
         doctorName: doc.name,
         patientName: name.trim(),
         phone: phone.trim(),
         bookingCycle,
         bookingMonthLabel: bookingCycle === 'next-month' ? 'Next Month' : 'Current Month'
-      }).then(appt => {
-         // Optionally update something with appt.id if needed
       });
 
       // Mark success before WhatsApp redirect
@@ -69,7 +67,6 @@ const VisitingDoctorBookingForm = ({ doc }) => {
       setTimeout(() => {
         const waPhone = WHATSAPP_NUMBER.replace(/[\s\-+()]/g, '');
         const waNum = waPhone.startsWith('91') ? waPhone : `91${waPhone}`;
-        console.log('Redirecting to WhatsApp:', waNum);
         window.location.href = `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
       }, 800);
 

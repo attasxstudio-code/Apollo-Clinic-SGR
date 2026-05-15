@@ -48,8 +48,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/admin/test" element={<SupabaseTest />} />
-            <Route path="/admin/env" element={<EnvCheck />} />
+            <Route path="/admin/test" element={<ProtectedRoute><SupabaseTest /></ProtectedRoute>} />
+            <Route path="/admin/env" element={<ProtectedRoute><EnvCheck /></ProtectedRoute>} />
 
             {/* ── Report pages — standalone, no navbar/footer ── */}
             <Route path="/reports" element={<Reports />} />

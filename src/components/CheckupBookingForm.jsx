@@ -49,27 +49,18 @@ const CheckupBookingForm = () => {
 
   /* ── Save to Supabase so it shows in Admin → Checkups ── */
   const saveCheckupToAdmin = async ({ name, phone, mainTestType, specificTest, date, time, notes }) => {
-    console.log('%c📤 saveCheckupToAdmin called', 'color: purple; font-weight: bold');
-    console.log('  Input:', { name, phone, mainTestType, specificTest, date, time });
-    
-    try {
-      console.log('  Calling appointmentService.saveCheckup...');
-      const result = await appointmentService.saveCheckup({
-        name: sanitizeInput(name, 100),
-        phone: sanitizeInput(phone, 20),
-        date: sanitizeInput(date, 10),
-        mainTestType: sanitizeInput(mainTestType, 100),
-        specificTest: sanitizeInput(specificTest, 100),
-        notes: time ? `Time: ${sanitizeInput(time, 10)}${notes ? ' | ' + sanitizeInput(notes, 1000) : ''}` : sanitizeInput(notes, 1000),
-      });
-      console.log('  Result:', result);
-      console.log('%c✅ Checkup saved to Supabase:', 'color: green', result);
-    } catch (err) {
-      console.error('%c❌ Failed to save checkup to Supabase:', 'color: red', err);
-    }
+    const result = await appointmentService.saveCheckup({
+      name: sanitizeInput(name, 100),
+      phone: sanitizeInput(phone, 20),
+      date: sanitizeInput(date, 10),
+      mainTestType: sanitizeInput(mainTestType, 100),
+      specificTest: sanitizeInput(specificTest, 100),
+      notes: time ? `Time: ${sanitizeInput(time, 10)}${notes ? ' | ' + sanitizeInput(notes, 1000) : ''}` : sanitizeInput(notes, 1000),
+    });
+    if (!result) throw new Error('Lab test booking was not saved.');
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError('');
 
@@ -117,11 +108,13 @@ const CheckupBookingForm = () => {
     const waUrl = waLink(text);
 
     // Fire-and-forget save to Supabase
-    console.log('Checkup form valid. Triggering save and redirect...');
-    saveCheckupToAdmin({ name, phone, mainTestType, specificTest, date, time, notes });
+    try {
+      await saveCheckupToAdmin({ name, phone, mainTestType, specificTest, date, time, notes });
+    } catch {
+      return setError('We could not save your lab test booking. Please try again or contact the clinic directly.');
+    }
 
     // Open WhatsApp - Using window.location to avoid pop-up blockers
-    console.log('Redirecting to WhatsApp:', waUrl);
     window.location.href = waUrl;
 
     setSubmitted(true);

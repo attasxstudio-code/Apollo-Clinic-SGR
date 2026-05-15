@@ -112,12 +112,12 @@ const Reports = () => {
           <form onSubmit={handleLookup} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {/* Patient ID / Name */}
             <div className="form-group">
-              <label className="form-label">Patient ID or Registered Mobile Number</label>
+                <label className="form-label">Full Name</label>
               <div style={{ position: 'relative' }}>
                 <User size={14} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)', pointerEvents: 'none' }} />
                 <input
                   type="text" className="form-input"
-                  placeholder="Enter Patient ID or Mobile"
+                  placeholder="Enter your full name"
                   value={fullName}
                   onChange={e => setFullName(e.target.value.toUpperCase())}
                   required maxLength={100}
@@ -128,7 +128,7 @@ const Reports = () => {
 
             {/* DOB */}
             <div className="form-group">
-              <label className="form-label">Date of Birth or Report ID</label>
+                <label className="form-label">Date of Birth</label>
               <div style={{ position: 'relative' }}>
                 <Calendar size={14} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)', pointerEvents: 'none' }} />
                 <input

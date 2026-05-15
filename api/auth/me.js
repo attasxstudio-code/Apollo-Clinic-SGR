@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'hhc_jwt_s3cr3t_k3y_2026_x9z';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 /* ── Allowed origins ── */
 const ALLOWED_ORIGINS = [
@@ -24,6 +24,10 @@ export default function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed.' });
+
+  if (!JWT_SECRET) {
+    return res.status(500).json({ error: 'Admin authentication is not configured.' });
+  }
 
   const authHeader = req.headers['authorization'];
   if (!authHeader || !authHeader.startsWith('Bearer ')) {

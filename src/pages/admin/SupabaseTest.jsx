@@ -70,45 +70,14 @@ const SupabaseTest = () => {
       setStatus('FAILED - Exception');
     }
 
-    // Test 4: Try to insert test data
-    addResult('📝 Testing insert (saving a test record)...');
-    try {
-      const testData = {
-        type: 'general',
-        name: 'TEST - Delete Me',
-        phone: '+91 9999999999',
-        date: new Date().toISOString().split('T')[0],
-        department: 'Testing',
-        notes: 'This is a test to verify Supabase connection - can be deleted',
-        source: 'Supabase Test',
-        status: 'Pending'
-      };
-
-      const { data, error } = await supabase
-        .from('appointments')
-        .insert([testData])
-        .select();
-
-      if (error) {
-        addResult('❌ Insert error: ' + error.message, true);
-        addResult('   Code: ' + error.code);
-        if (error.details) addResult('   Details: ' + error.details);
-        setStatus('FAILED - Insert error');
-      } else {
-        addResult('✅ Successfully inserted test record!');
-        addResult('   ID: ' + data[0]?.id);
-        setStatus('SUCCESS - Connected!');
-      }
-    } catch (err) {
-      addResult('❌ Insert exception: ' + err.message, true);
-      setStatus('FAILED - Insert exception');
-    }
+    addResult('ℹ️ Write test skipped to avoid creating test records.');
+    setStatus('SUCCESS - Read test completed');
 
     setTesting(false);
   };
 
   useEffect(() => {
-    runTest();
+    setStatus('Ready - click Run Test to start');
   }, []);
 
   return (
