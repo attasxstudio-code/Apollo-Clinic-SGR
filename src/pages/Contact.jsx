@@ -27,32 +27,45 @@ const Contact = () => (
       <div className="container">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '1rem' }}>
           {[
-            { icon: <Phone size={20} color="#0369a1" />, label: 'Call Us', value: PRIMARY_PHONE, href: PRIMARY_PHONE_HREF },
+            { icon: <Phone size={20} color="#0369a1" />, label: 'Call Us', value: PRIMARY_PHONE, href: PRIMARY_PHONE_HREF, ext: false },
             { icon: <MessageCircle size={20} color="#25D366" />, label: 'WhatsApp', value: 'Chat Now →', href: waLink('Hello! I would like to book an appointment at Appolo Clinic Srinagar.'), ext: true },
-            { icon: <Clock size={20} color="#0369a1" />, label: `${WORKING_HOURS.weekdays.label.replace('Monday – Saturday', 'Mon–Sat')} Hours`, value: WORKING_HOURS.weekdays.time.replace('08:00 AM – 07:00 PM', '8 AM–7 PM'), href: null },
+            { icon: <Clock size={20} color="#0369a1" />, label: `${WORKING_HOURS.weekdays.label.replace('Monday – Saturday', 'Mon–Sat')} Hours`, value: WORKING_HOURS.weekdays.time.replace('08:00 AM – 07:00 PM', '8 AM–7 PM'), href: null, ext: false },
             { icon: <MapPin size={20} color="#0369a1" />, label: 'Address', value: 'Karan Nagar, Srinagar', href: 'https://maps.google.com/?q=34.0806043,74.7988594', ext: true },
-          ].map((item, i) => (
-            <div key={i} style={{
-              display: 'flex', alignItems: 'center', gap: '0.875rem',
-              padding: '1.1rem 1.25rem', borderRadius: '14px',
-              border: '1.5px solid #e2e8f0', background: '#fafcff',
-              transition: 'all 0.25s',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#0ea5e9'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(14,165,233,0.1)'; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.boxShadow = 'none'; }}
-            >
-              <div style={{ width: 40, height: 40, borderRadius: '10px', background: 'linear-gradient(135deg,#e0f2fe,#d1fae5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                {item.icon}
+          ].map((item, i) => {
+            const inner = (
+              <>
+                <div style={{ width: 40, height: 40, borderRadius: '10px', background: 'linear-gradient(135deg,#e0f2fe,#d1fae5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  {item.icon}
+                </div>
+                <div>
+                  <p style={{ color: '#94a3b8', fontSize: '0.74rem', fontWeight: 600, margin: 0, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{item.label}</p>
+                  <span style={{ color: '#0c4a6e', fontWeight: 700, fontSize: '0.9rem' }}>{item.value}</span>
+                </div>
+              </>
+            );
+            return item.href ? (
+              <a key={i} href={item.href} target={item.ext ? '_blank' : undefined} rel={item.ext ? 'noopener noreferrer' : undefined}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '0.875rem', textDecoration: 'none',
+                  padding: '1.1rem 1.25rem', borderRadius: '14px',
+                  border: '1.5px solid #e2e8f0', background: '#fafcff',
+                  transition: 'all 0.25s', cursor: 'pointer',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#0ea5e9'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(14,165,233,0.1)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.boxShadow = 'none'; }}
+              >
+                {inner}
+              </a>
+            ) : (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: '0.875rem',
+                padding: '1.1rem 1.25rem', borderRadius: '14px',
+                border: '1.5px solid #e2e8f0', background: '#fafcff',
+              }}>
+                {inner}
               </div>
-              <div>
-                <p style={{ color: '#94a3b8', fontSize: '0.74rem', fontWeight: 600, margin: 0, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{item.label}</p>
-                {item.href
-                  ? <a href={item.href} target={item.ext ? '_blank' : undefined} rel="noreferrer" style={{ color: '#0c4a6e', fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none' }}>{item.value}</a>
-                  : <span style={{ color: '#0c4a6e', fontWeight: 700, fontSize: '0.9rem' }}>{item.value}</span>
-                }
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
